@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>AfterIncProbe3</AssemblyName>
+    <Version>0.1.0</Version>
+    <GameRoot>F:\SteamLibrary\steamapps\common\After Inc</GameRoot>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BepInEx.Core" HintPath="$(GameRoot)\BepInEx\core\BepInEx.Core.dll" Private="false" />
+    <Reference Include="BepInEx.Unity.IL2CPP" HintPath="$(GameRoot)\BepInEx\core\BepInEx.Unity.IL2CPP.dll" Private="false" />
+    <Reference Include="Il2CppInterop.Runtime" HintPath="$(GameRoot)\BepInEx\core\Il2CppInterop.Runtime.dll" Private="false" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="$(GameRoot)\BepInEx\interop\UnityEngine.CoreModule.dll" Private="false" />
+  <Reference Include="Il2Cppmscorlib" HintPath="$(GameRoot)\BepInEx\interop\Il2Cppmscorlib.dll" Private="false" /></ItemGroup>
+</Project>
+

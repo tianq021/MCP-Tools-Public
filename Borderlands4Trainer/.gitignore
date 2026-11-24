@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.venv/
+build/
+dist/
+backups/
+logs/
+*.dmp
+research/*.local.json
+research/runtime_inspection.json

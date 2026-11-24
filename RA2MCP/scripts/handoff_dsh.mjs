@@ -1,0 +1,12 @@
+import fs from 'node:fs';
+const info=JSON.parse(fs.readFileSync('F:/deepseekA/logs/server.json','utf8').replace(/^\uFEFF/,''));
+const log=fs.readFileSync(info.stdout,'utf8');
+const url=log.match(/http:\/\/127\.0\.0\.1:3080\/\?token=\S+/)?.[0];
+if(!url) throw Error('No local DSH launch URL');
+const auth=await fetch(url,{redirect:'manual'});
+const cookie=auth.headers.getSetCookie().map(v=>v.split(';')[0]).join('; ');
+if(!cookie) throw Error('No authentication cookie');
+const request={requestId:crypto.randomUUID(),sessionId:'session-876e7b4a-eb77-46f2-8bdb-b1b1aab49090',mode:'queue',clientTimeZone:'Asia/Shanghai',content:[{type:'text',text:'用户明确要求 Codex 交给 DSH 尝试真实操控测试。请续接 E:\\RA2MCP 项目并实际执行。先读取 reports/codex-control-smoke.json、scripts/control_smoke.py 和你原来的 reports/dsh-handoff.md。Codex 刚在普通 test-game 遭遇战通过 UnitOrder 发出 MOVE 与 STOP，车辆坐标 23680→24182→24448，任务 Move→Guard，停后位置稳定；没有发出 SELL 或 DEPLOY。用户刚反馈：是不是卖掉了主基地，可能开启快速战斗（无建筑判负）。优先核查当前对局是否结束、单位是否是未展开基地车、实际 ShortGame 设置与失败原因，不要把猜测写成结论；此前读到 test-game/spawn.ini 的 ShortGame=No。然后在测试副本独立复测移动/停止，条件具备时测试部署、生产、攻击、改令和小队控制，记录实际效果和响应延迟。只操作 E:\\RA2MCP 下副本，原 E:\\hj 及原存档不动；不要出售主基地。每步验证真实状态，不以返回成功代替动作成功，不盲重发超时命令。当前没有完整 MCP/租约系统，Codex 已停止发游戏指令，由你单独测试。游戏可能仍运行，也可能已判负，先确认。若需要重开，仅在测试副本离线重开。写报告 reports/dsh-control-test.md 和机器可读证据，明确已通过/失败/未测，战役与整阵营接管不能未经实测宣称支持。保持现有模型及权限设置。请开始，并在本会话报告结果。'}]};
+const method='session/prompt';
+const res=await fetch('http://127.0.0.1:3080/api/'+method,{method:'POST',headers:{'content-type':'application/json',cookie,origin:'http://127.0.0.1:3080'},body:JSON.stringify({type:'client-request',rpcId:crypto.randomUUID(),method,payload:{args:{request}}})});
+console.log(res.status,await res.text());

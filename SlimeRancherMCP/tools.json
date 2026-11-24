@@ -1,0 +1,1720 @@
+{
+  "version": 2,
+  "tools": [
+    {
+      "name": "inspect_backpack",
+      "title": "查背包",
+      "description": "读取当前背包槽位、物品和数量。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_backpack"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_silos",
+      "title": "查筒仓",
+      "description": "读取已加载普通筒仓的可用槽位及其中物品。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_silos"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_collectors",
+      "title": "查结晶收集器",
+      "description": "查看围栏收集器和集晶仓库存。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_collectors"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_feeders",
+      "title": "查自动喂食机",
+      "description": "查看已加载喂食机的饲料、余量和速度。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_feeders"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_diets",
+      "title": "查围栏饮食",
+      "description": "按已加载围栏列出附近可识别史莱姆的最爱食物和食物类别。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_diets"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_refinery",
+      "title": "查精炼炉",
+      "description": "查看精炼炉已有材料的存量和剩余容量。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_refinery"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "store_plorts",
+      "title": "存背包结晶",
+      "description": "将背包结晶并入筒仓同类格，满后使用空格。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "preview",
+      "modes": {
+        "preview": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "store_plorts"
+          ],
+          "writes_game_state": false
+        },
+        "apply": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "store_plorts",
+            "--apply"
+          ],
+          "writes_game_state": true,
+          "requires_explicit_user_authorization": true
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "deposit_materials",
+      "title": "交背包制作材料",
+      "description": "将背包中的制作材料存入精炼炉。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "preview",
+      "modes": {
+        "preview": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "deposit_materials"
+          ],
+          "writes_game_state": false
+        },
+        "apply": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "deposit_materials",
+            "--apply"
+          ],
+          "writes_game_state": true,
+          "requires_explicit_user_authorization": true
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "fill_feeders",
+      "title": "用背包食物补喂食机",
+      "description": "按围栏史莱姆饮食分配背包食物，优先最爱。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "preview",
+      "modes": {
+        "preview": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "fill_feeders"
+          ],
+          "writes_game_state": false
+        },
+        "apply": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "fill_feeders",
+            "--apply"
+          ],
+          "writes_game_state": true,
+          "requires_explicit_user_authorization": true
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_market",
+      "title": "查结晶行情",
+      "description": "查看结晶的当前单价和市场闭市状态。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_market"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_drones",
+      "title": "查无人机",
+      "description": "查看已加载无人机的任务和运行状态。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_drones"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_extractors",
+      "title": "查采集设备",
+      "description": "查看已部署采集设备的状态。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_extractors"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_corrals",
+      "title": "查围栏",
+      "description": "查看围栏、附近史莱姆数量及设施。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_corrals"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_active_exchange",
+      "title": "查当前委托",
+      "description": "查看当前委托的物品需求和奖励。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_active_exchange"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_exchange_offers",
+      "title": "查待选委托",
+      "description": "列出尚可选择的委托。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_exchange_offers"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_clock",
+      "title": "查游戏时间",
+      "description": "查看游戏日、时刻、暂停和快进状态。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_clock"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_player",
+      "title": "查玩家状态",
+      "description": "查看玩家位置、区域和资源。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_player"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_map_data",
+      "title": "查地图数据装置",
+      "description": "查询地图数据装置的位置和状态。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_map_data"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "store_collector_plorts",
+      "title": "把收集器结晶存入筒仓",
+      "description": "从已加载围栏的结晶收集仓转存至普通筒仓，优先填同类格。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "preview",
+      "modes": {
+        "preview": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "store_collector_plorts"
+          ],
+          "writes_game_state": false
+        },
+        "apply": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "store_collector_plorts",
+            "--apply"
+          ],
+          "writes_game_state": true,
+          "requires_explicit_user_authorization": true
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_silo_inventory",
+      "title": "查跨区筒仓库存",
+      "description": "查跨区筒仓库存。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_silo_inventory"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_collector_inventory",
+      "title": "查跨区结晶收集仓库存",
+      "description": "查跨区结晶收集仓库存。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_collector_inventory"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_feeder_inventory",
+      "title": "查跨区喂食机库存",
+      "description": "查跨区喂食机库存。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_feeder_inventory"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_loose_plorts",
+      "title": "找附近地面结晶",
+      "description": "找附近地面结晶。可追加 --offset N，N 取上一页的 next_offset。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "find_loose_plorts"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_loose_materials",
+      "title": "找附近地面制作材料",
+      "description": "找附近地面制作材料。可追加 --offset N，N 取上一页的 next_offset。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "find_loose_materials"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_loose_food",
+      "title": "找附近地面食物",
+      "description": "找附近地面食物。可追加 --offset N，N 取上一页的 next_offset。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "find_loose_food"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_unopened_pods",
+      "title": "查未开启宝箱",
+      "description": "查未开启宝箱。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_unopened_pods"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_unpopped_gordos",
+      "title": "查未喂爆巨型史莱姆",
+      "description": "查未喂爆巨型史莱姆。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_unpopped_gordos"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_key_doors",
+      "title": "查钥匙门",
+      "description": "查钥匙门。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_key_doors"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_zones",
+      "title": "查区域",
+      "description": "查区域。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_zones"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_plots",
+      "title": "查牧场地块",
+      "description": "查牧场地块。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_plots"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_available_player_upgrades",
+      "title": "查可用玩家升级",
+      "description": "查可用玩家升级。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_available_player_upgrades"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_unread_mail",
+      "title": "查未读邮件",
+      "description": "查未读邮件。可追加 --offset N，N 取上一页的 next_offset。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_unread_mail"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "search_item_catalog",
+      "title": "查物品编号",
+      "description": "按名称或编号关键词搜索物品目录。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "search_item_catalog",
+            "{query}"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl",
+      "arguments": [
+        {
+          "name": "query",
+          "type": "string",
+          "required": true,
+          "position": 1,
+          "example": "PLORT"
+        },
+        {
+          "name": "offset",
+          "flag": "--offset",
+          "type": "integer",
+          "minimum": 0,
+          "required": false,
+          "default": 0
+        }
+      ]
+    },
+    {
+      "name": "locate_item_stocks",
+      "title": "找指定物品",
+      "description": "按物品编号查背包、已加载仓储、精炼炉和附近地面。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "locate_item_stocks",
+            "{item_id}"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl",
+      "arguments": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "required": true,
+          "position": 1,
+          "example": "PINK_PLORT"
+        },
+        {
+          "name": "offset",
+          "flag": "--offset",
+          "type": "integer",
+          "minimum": 0,
+          "required": false,
+          "default": 0
+        }
+      ]
+    },
+    {
+      "name": "inspect_slime_species",
+      "title": "查指定史莱姆",
+      "description": "按种类编号查饮食、最爱食物和产物，支持 Largo。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_slime_species",
+            "{item_id}"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl",
+      "arguments": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "required": true,
+          "position": 1,
+          "example": "ROCK_SLIME"
+        }
+      ]
+    },
+    {
+      "name": "quote_plort",
+      "title": "查单种结晶报价",
+      "description": "按结晶编号查当前价格。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "quote_plort",
+            "{item_id}"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl",
+      "arguments": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "required": true,
+          "position": 1,
+          "example": "PINK_PLORT"
+        }
+      ]
+    },
+    {
+      "name": "inspect_refinery_item",
+      "title": "查单种精炼材料",
+      "description": "按物品编号查精炼炉存量和剩余容量。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_refinery_item",
+            "{item_id}"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl",
+      "arguments": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "required": true,
+          "position": 1,
+          "example": "PINK_PLORT"
+        }
+      ]
+    },
+    {
+      "name": "inspect_plot_upgrades",
+      "title": "查指定地块商店",
+      "description": "按已加载地块编号查建造和升级价格。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_plot_upgrades",
+            "{plot_id}"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl",
+      "arguments": [
+        {
+          "name": "plot_id",
+          "type": "string",
+          "required": true,
+          "position": 1,
+          "example": "plot1796182480"
+        }
+      ]
+    },
+    {
+      "name": "inspect_drone_options",
+      "title": "查指定无人机选项",
+      "description": "使用查无人机返回的站点编号，查看任务可选来源、目标和目的地。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "inspect_drone_options",
+            "{site_id}"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl",
+      "arguments": [
+        {
+          "name": "site_id",
+          "type": "string",
+          "required": true,
+          "position": 1
+        }
+      ]
+    },
+    {
+      "name": "search_gadget_blueprints",
+      "title": "搜索设备蓝图",
+      "description": "按关键词查蓝图、配方和制作资格。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "search_gadget_blueprints",
+            "{query}"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl",
+      "arguments": [
+        {
+          "name": "query",
+          "type": "string",
+          "required": true,
+          "position": 1,
+          "example": "DRONE"
+        },
+        {
+          "name": "offset",
+          "flag": "--offset",
+          "type": "integer",
+          "minimum": 0,
+          "required": false,
+          "default": 0
+        }
+      ]
+    },
+    {
+      "name": "find_zone_gadget_sites",
+      "title": "查指定区域设备站点",
+      "description": "按区域编号列出可见站点。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "find_zone_gadget_sites",
+            "{zone}"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl",
+      "arguments": [
+        {
+          "name": "zone",
+          "type": "string",
+          "required": true,
+          "position": 1,
+          "example": "RANCH"
+        },
+        {
+          "name": "offset",
+          "flag": "--offset",
+          "type": "integer",
+          "minimum": 0,
+          "required": false,
+          "default": 0
+        }
+      ]
+    },
+    {
+      "name": "search_pedia",
+      "title": "搜索牧场百科",
+      "description": "按条目编号关键词查询百科解锁情况。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/tidy_vacpack.py",
+            "search_pedia",
+            "{query}"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl",
+      "arguments": [
+        {
+          "name": "query",
+          "type": "string",
+          "required": true,
+          "position": 1,
+          "example": "SLIME"
+        },
+        {
+          "name": "offset",
+          "flag": "--offset",
+          "type": "integer",
+          "minimum": 0,
+          "required": false,
+          "default": 0
+        }
+      ]
+    },
+    {
+      "name": "find_empty_feeders",
+      "title": "找空喂食机",
+      "description": "列出当前饲料数量为零的已加载自动喂食机。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_empty_feeders"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_low_feeders",
+      "title": "找不够一轮的喂食机",
+      "description": "列出仍有饲料、但余量少于一次投喂量的自动喂食机。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_low_feeders"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_stocked_collectors",
+      "title": "找有货的结晶收集仓",
+      "description": "返回可取结晶的地块、仓储编号、槽位、种类和数量。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_stocked_collectors"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_hungry_corrals",
+      "title": "找有饥饿史莱姆的围栏",
+      "description": "返回附近检测到饥饿史莱姆的已加载围栏和饥饿数量。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_hungry_corrals"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_feral_corrals",
+      "title": "找有狂暴史莱姆的围栏",
+      "description": "返回附近检测到狂暴史莱姆的已加载围栏和狂暴数量。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_feral_corrals"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_corrals_without_feeders",
+      "title": "找缺喂食机的围栏",
+      "description": "列出已加载且未检测到自动喂食机的围栏。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_corrals_without_feeders"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_corrals_without_collectors",
+      "title": "找缺收集器的围栏",
+      "description": "列出已加载且未检测到结晶收集器的围栏。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_corrals_without_collectors"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_ready_extractors",
+      "title": "找可收获的采集器",
+      "description": "列出已加载且可交互收获的采集设备及其位置。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_ready_extractors"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_depleted_drones",
+      "title": "找没电的无人机",
+      "description": "列出已加载且确认电量耗尽的无人机及其站点。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_depleted_drones"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_plort_silo_space",
+      "title": "查结晶可用筒仓空间",
+      "description": "按已加载筒仓格列出可存数量，优先已有同种结晶的格子。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_plort_silo_space",
+            "{item_id}"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl",
+      "arguments": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "required": true,
+          "position": 1,
+          "example": "PINK_PLORT"
+        }
+      ]
+    },
+    {
+      "name": "find_corrals_for_food",
+      "title": "查适合指定食物的围栏",
+      "description": "根据已加载围栏附近史莱姆的饮食筛选，优先列出最爱。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_corrals_for_food",
+            "{item_id}"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl",
+      "arguments": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "required": true,
+          "position": 1,
+          "example": "BEET_VEGGIE"
+        }
+      ]
+    },
+    {
+      "name": "inspect_recipe_shortfall",
+      "title": "查制作一件设备缺什么",
+      "description": "按设备编号比对配方和精炼炉库存，返回每种缺料的数量。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "inspect_recipe_shortfall",
+            "{gadget_id}"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl",
+      "arguments": [
+        {
+          "name": "gadget_id",
+          "type": "string",
+          "required": true,
+          "position": 1,
+          "example": "DRONE"
+        }
+      ]
+    },
+    {
+      "name": "find_craftable_gadgets",
+      "title": "查现在能制作的设备",
+      "description": "只列出当前满足游戏制作条件的设备及其配方。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_craftable_gadgets"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_stocked_gadgets",
+      "title": "查已有的设备成品",
+      "description": "按设备编号列出库存大于零的成品及数量。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_stocked_gadgets"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_unowned_unlocked_blueprints",
+      "title": "查已解锁但未拥有的蓝图",
+      "description": "列出已解锁且尚未拥有的设备蓝图与标价。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_unowned_unlocked_blueprints"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_empty_gadget_sites",
+      "title": "找空设备站点",
+      "description": "查询当前活动且尚未安装设备的站点，返回区域、位置和距离。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_empty_gadget_sites"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_rising_plorts",
+      "title": "查上涨结晶",
+      "description": "只列出市场价格变化为正的结晶，附单价、涨幅数值和闭市状态。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_rising_plorts"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_falling_plorts",
+      "title": "查下跌结晶",
+      "description": "只列出价格变化为负的结晶、当前单价、变化量和闭市状态。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_falling_plorts"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_sell_now_plorts",
+      "title": "查建议出售的结晶",
+      "description": "列出桥接行情规则标记 SELL_NOW 的结晶、价格和饱和度。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_sell_now_plorts"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_wait_plorts",
+      "title": "查建议等待的结晶",
+      "description": "列出桥接行情规则标记 WAIT 的结晶、价格和饱和度。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_wait_plorts"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "quote_backpack_plorts",
+      "title": "估算背包结晶报价",
+      "description": "用当前市场单价乘以各背包槽的结晶数量并合计，不含额外奖金。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "quote_backpack_plorts"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_exchange_pack_shortfall",
+      "title": "查委托的背包缺口",
+      "description": "对每个未完成委托独立比较剩余需求与当前背包数量，列出缺口。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "inspect_exchange_pack_shortfall"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_unplanted_gardens",
+      "title": "查未种植的花园",
+      "description": "只返回作物编号为 NONE 的花园地块。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_unplanted_gardens"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_gardens_without_sprinklers",
+      "title": "查缺洒水器的花园",
+      "description": "列出缺少 SPRINKLER 升级的花园和当前主作物。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_gardens_without_sprinklers"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_gardens_without_soil",
+      "title": "查缺营养土的花园",
+      "description": "列出缺少 SOIL 升级的花园和当前主作物。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_gardens_without_soil"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_gardens_for_crop",
+      "title": "找种指定作物的花园",
+      "description": "按物品编号查询以它为主作物的花园，含未加载地块。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_gardens_for_crop",
+            "{item_id}"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl",
+      "arguments": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "required": true,
+          "position": 1,
+          "example": "BEET_VEGGIE"
+        }
+      ]
+    },
+    {
+      "name": "find_feeder_space_for_food",
+      "title": "查指定饲料可补入的喂食机",
+      "description": "只列出饮食匹配且槽位能接收该食物的已加载喂食机，附可补数量，最爱优先。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_feeder_space_for_food",
+            "{item_id}"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl",
+      "arguments": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "required": true,
+          "position": 1,
+          "example": "BEET_VEGGIE"
+        }
+      ]
+    },
+    {
+      "name": "find_nearest_unopened_pod",
+      "title": "找最近的未开宝箱",
+      "description": "按玩家直线距离返回最近的已加载未开宝箱及其升级要求。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_nearest_unopened_pod"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_nearest_locked_door",
+      "title": "找最近的上锁钥匙门",
+      "description": "按玩家直线距离返回最近的已加载 LOCKED 门及其区域和坐标。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_nearest_locked_door"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_nearest_unpopped_gordo",
+      "title": "找最近的未爆巨型史莱姆",
+      "description": "按玩家直线距离返回最近的已加载且未喂爆的巨型史莱姆。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_nearest_unpopped_gordo"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_gordo_feed_remaining",
+      "title": "查巨型史莱姆剩余喂食点数",
+      "description": "按剩余喂食点数升序列出已加载且未喂爆的巨型史莱姆。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "inspect_gordo_feed_remaining"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_key_reward_gordos",
+      "title": "找掉钥匙的巨型史莱姆",
+      "description": "列出模型中标记会掉钥匙且尚未喂爆的巨型史莱姆，未加载者也保留编号。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_key_reward_gordos"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "inspect_backpack_stack_space",
+      "title": "查背包同类物品还能装多少",
+      "description": "按普通背包非空槽列出物品、现有数量、容量及同类物品余量。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "inspect_backpack_stack_space"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_empty_backpack_slots",
+      "title": "查普通背包空槽",
+      "description": "列出普通背包中数量为零的可用槽位编号及总数。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_empty_backpack_slots"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_empty_silo_slots",
+      "title": "查可用筒仓空格",
+      "description": "列出所有已加载普通筒仓中已解锁的空格编号及总数。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_empty_silo_slots"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    },
+    {
+      "name": "find_full_refinery_resources",
+      "title": "查精炼炉哪些物品已满",
+      "description": "列出精炼炉中存量大于零且剩余容量为零的物品及数量。",
+      "cwd": "E:\\SlimeRancherMCP",
+      "default_mode": "read",
+      "modes": {
+        "read": {
+          "argv": [
+            "python",
+            "-B",
+            "tool/ranch_checks.py",
+            "find_full_refinery_resources"
+          ],
+          "writes_game_state": false
+        }
+      },
+      "stdout_format": "jsonl"
+    }
+  ]
+}

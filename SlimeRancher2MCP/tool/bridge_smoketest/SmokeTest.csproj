@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    通道冒烟测试：不启动游戏、不需要 MelonLoader。
+    直接编译 plugin 里的 BridgeServer/BridgeConfig + 本目录的 Stub，起本地 HTTP 做协议自测。
+    运行：& .\run.ps1
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>10.0</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>BridgeSmokeTest</AssemblyName>
+    <RootNamespace>BridgeSmokeTest</RootNamespace>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <DebugType>none</DebugType>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Stub.cs" />
+    <Compile Include="TeleportFixture.cs" />
+    <Compile Include="SessionFixture.cs" />
+    <Compile Include="WorldFixture.cs" />
+    <Compile Include="RanchFixture.cs" />
+    <Compile Include="ExplorationFixture.cs" />
+    <Compile Include="FabricationFixture.cs" />
+    <Compile Include="ActionFixture.cs" />
+    <Compile Include="RanchControlsFixture.cs" />
+    <Compile Include="StorageMovementFixture.cs" />
+    <Compile Include="..\..\plugin\SlimeRancher2Bridge\StorageMovement.cs" Link="StorageMovement.cs" />
+    <Compile Include="..\..\plugin\SlimeRancher2Bridge\RanchControls.cs" Link="RanchControls.cs" />
+    <Compile Include="RescueFixture.cs" />
+    <Compile Include="..\..\plugin\SlimeRancher2Bridge\ToolsRescue.cs" Link="ToolsRescue.cs" />
+    <Compile Include="..\..\plugin\SlimeRancher2Bridge\ToolsInventory.cs" Link="ToolsInventory.cs" />
+    <Compile Include="..\..\plugin\SlimeRancher2Bridge\ToolsActions.cs" Link="ToolsActions.cs" />
+    <Compile Include="ProgressFixture.cs" />
+    <Compile Include="..\..\plugin\SlimeRancher2Bridge\ToolsProgress.cs" Link="ToolsProgress.cs" />
+    <Compile Include="..\..\plugin\SlimeRancher2Bridge\ToolsFabrication.cs" Link="ToolsFabrication.cs" />
+    <Compile Include="..\..\plugin\SlimeRancher2Bridge\ToolsExploration.cs" Link="ToolsExploration.cs" />
+    <Compile Include="..\..\plugin\SlimeRancher2Bridge\ToolsRanch.cs" Link="ToolsRanch.cs" />
+    <Compile Include="..\..\plugin\SlimeRancher2Bridge\ToolsWorld.cs" Link="ToolsWorld.cs" />
+    <Compile Include="..\..\plugin\SlimeRancher2Bridge\ToolsSession.cs" Link="ToolsSession.cs" />
+    <Compile Include="MarketFixture.cs" />
+    <Compile Include="..\..\plugin\SlimeRancher2Bridge\ToolsMarket.cs" Link="ToolsMarket.cs" />
+    <Compile Include="..\..\plugin\SlimeRancher2Bridge\WallClock.cs" Link="WallClock.cs" />
+    <Compile Include="..\..\plugin\SlimeRancher2Bridge\ToolsNavigation.cs" Link="ToolsNavigation.cs" />
+    <Compile Include="..\..\plugin\SlimeRancher2Bridge\BridgeServer.cs" Link="BridgeServer.cs" />
+    <Compile Include="..\..\plugin\SlimeRancher2Bridge\BridgeConfig.cs" Link="BridgeConfig.cs" />
+    <Compile Include="..\..\plugin\SlimeRancher2Bridge\ToolsCore.cs" Link="ToolsCore.cs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,1141 @@
+diff --git a/src/civ_mcp/end_turn.py b/src/civ_mcp/end_turn.py
+index 7dbd9dd..46a0e7d 100644
+--- a/src/civ_mcp/end_turn.py
++++ b/src/civ_mcp/end_turn.py
+@@ -16,6 +16,21 @@ if TYPE_CHECKING:
+ 
+ log = logging.getLogger(__name__)
+ 
++# Hard cap on how long end_turn polls for turn advancement before handing
++# control back to the agent.
++#
++# Why this exists: the MCP client kills a tool call at toolCallTimeoutMs
++# (180 s in this deployment) while the poll table below used to run ~9 min.
++# Any genuine stall therefore ended in a CLIENT-side cancel, which skips the
++# cleanup at the end of this function — leaving _pending_end_turn=True and a
++# stale _pending_end_turn_from behind. That stale baseline is what produced
++# phantom "Turn 58 -> 61" reports and a 3-minute dead wait per hang.
++#
++# Staying comfortably under the client timeout means end_turn always returns
++# on its own terms: either "advanced" or an actionable WAITING:/HANG: message.
++_MAX_TURN_WAIT_S = 100.0
++
++
+ 
+ async def _check_mid_turn_diplomacy(
+     gs: GameState,
+@@ -1162,6 +1177,7 @@ async def execute_end_turn(gs: GameState) -> str:
+     # diplomacy subsystem, causing infinite hangs (seen in Games 1-5).
+     turn_after = None
+     advanced = False
++    capped = False
+ 
+     # Phase 1: Quick check (4s) — turn sometimes advances within 1-2s
+     for _ in range(8):
+@@ -1181,6 +1197,7 @@ async def execute_end_turn(gs: GameState) -> str:
+         # 10 min total: AI can take several minutes on large maps with wars.
+         # Quick polls early (catch fast turns), then escalate to 30s intervals.
+         diplomacy_probed = False
++        capped = False
+         cumulative_wait = 4.0  # Phase 1 already waited ~4s
+         for delay in [
+             2.0,
+@@ -1217,6 +1234,11 @@ async def execute_end_turn(gs: GameState) -> str:
+         ]:
+             await asyncio.sleep(delay)
+             cumulative_wait += delay
++            # Stop before the client's tool-call timeout can cancel us: a cancel
++            # skips the flag cleanup at the bottom of this function.
++            if cumulative_wait >= _MAX_TURN_WAIT_S:
++                capped = True
++                break
+             turn_after = await _get_turn_number(gs)
+             if (
+                 turn_after is not None
+@@ -1345,6 +1367,29 @@ async def execute_end_turn(gs: GameState) -> str:
+                     f"The game has ended."
+                 )
+ 
++        # We stopped at the wait cap instead of exhausting the old ~9 min
++        # budget. Keep the in-flight flag set so the next call resumes polling
++        # without sending a second ACTION_ENDTURN (which can skip a turn).
++        if capped:
++            streak = getattr(gs, "_end_turn_wait_streak", 0) + 1
++            gs._end_turn_wait_streak = streak
++            if streak < 3:
++                turn_num = turn_after or turn_before
++                return (
++                    f"WAITING:{turn_num}|Turn not advanced after "
++                    f"{int(cumulative_wait)}s (wait {streak}/3) — the AI is "
++                    f"probably still processing; late-game turns with many units "
++                    f"do this. The end-turn request is still in flight, so call "
++                    f"end_turn again to keep waiting — no duplicate request is "
++                    f"sent. If it keeps stalling, check get_pending_diplomacy / "
++                    f"get_pending_trades, or run_lua "
++                    f"UI.RequestAction(ActionTypes.ACTION_ENDTURN)."
++                )
++            # Three capped waits in a row (~5 min of zero progress): treat as a
++            # genuine hang and fall through to the HANG: diagnostics below.
++        else:
++            gs._end_turn_wait_streak = 0
++
+         # Provide specific blocker info instead of generic message
+         details: list[str] = []
+         try:
+@@ -1405,6 +1450,7 @@ async def execute_end_turn(gs: GameState) -> str:
+     # Turn advanced — clear the pending flag
+     gs._pending_end_turn = False
+     gs._pending_end_turn_from = None
++    gs._end_turn_wait_streak = 0
+ 
+     # Turn regression detection — catch accidental wrong-save loads
+     if turn_after is not None and gs._high_water_turn > 0:
+diff --git a/src/civ_mcp/game_launcher.py b/src/civ_mcp/game_launcher.py
+index e532a5b..378e7f8 100644
+--- a/src/civ_mcp/game_launcher.py
++++ b/src/civ_mcp/game_launcher.py
+@@ -167,12 +167,20 @@ def is_game_running() -> bool:
+         return r.returncode == 0
+     elif sys.platform == "win32":
+         for name in _PROCESS_NAMES:
++            # NOTE: do NOT use text=True here. On a Chinese Windows install
++            # tasklist emits GBK/CP936 bytes; with PYTHONUTF8=1 (which this
++            # environment sets) subprocess decodes them as UTF-8, the reader
++            # thread dies with UnicodeDecodeError and r.stdout ends up None —
++            # which then raised "'NoneType' object has no attribute 'lower'"
++            # and aborted every restart_and_load. Decode ourselves with
++            # errors="replace": the IMAGENAME we match is ASCII, so a lossy
++            # decode is harmless. (Fixed 2026-10-28.)
+             r = subprocess.run(
+                 ["tasklist", "/FI", f"IMAGENAME eq {name}", "/NH"],
+                 capture_output=True,
+-                text=True,
+             )
+-            if name.lower() in r.stdout.lower():
++            out = (r.stdout or b"").decode("utf-8", "replace")
++            if name.lower() in out.lower():
+                 return True
+         return False
+     raise NotImplementedError(f"is_game_running not supported on {sys.platform}")
+diff --git a/src/civ_mcp/game_state.py b/src/civ_mcp/game_state.py
+index ec14a3f..d26cb99 100644
+--- a/src/civ_mcp/game_state.py
++++ b/src/civ_mcp/game_state.py
+@@ -112,6 +112,16 @@ class GameState:
+                 log.debug("Failed to bootstrap snapshot", exc_info=True)
+         return ov
+ 
++    async def get_civ_abilities(self) -> lq.CivAbilities:
++        """Identity + trait texts + unique kit of the civ we are playing.
++
++        Reads GameInfo.Traits / CivilizationTraits / LeaderTraits, which no
++        other query in this package touches. InGame context: needs
++        PlayerConfigurations and Locale.Lookup.
++        """
++        lines = await self.conn.execute_write(lq.build_civ_abilities_query())
++        return lq.parse_civ_abilities_response(lines)
++
+     async def get_diary_snapshot(self) -> lq.DiarySnapshot:
+         """Full per-turn snapshot for diary JSONL. InGame context."""
+         lines = await self.conn.execute_write(lq.build_diary_full_query())
+@@ -172,6 +182,13 @@ class GameState:
+         lines = await self.conn.execute_read(lq.build_threat_scan_query())
+         return lq.parse_threat_scan_response(lines)
+ 
++    async def get_stacking_issues(
++        self,
++    ) -> tuple[list[lq.StackingConflict], list[lq.StackTile]]:
++        """Audit friendly units that break the per-FormationClass stacking rule."""
++        lines = await self.conn.execute_read(lq.build_stacking_issues_query())
++        return lq.parse_stacking_issues(lines)
++
+     async def get_pathing_estimate(
+         self, unit_index: int, target_x: int, target_y: int
+     ) -> lq.PathingEstimate:
+@@ -385,7 +402,11 @@ class GameState:
+ 
+                 if city_def:
+                     w_hp, w_max, g_hp, g_max = city_def
+-                    if w_max > 0:
++                    # Report the garrison (city HP) even when the wall capacity
++                    # reads 0/0: once walls are breached the city HP is the only
++                    # remaining progress readout, and hiding it here blinded the
++                    # endgame of the T57-T66 siege.
++                    if w_max > 0 or g_max > 0:
+                         damage_info += (
+                             f"|city walls: {w_hp}/{w_max}, garrison: {g_hp}/{g_max}"
+                         )
+@@ -1610,7 +1631,16 @@ class GameState:
+         score: int | None = None,
+     ) -> str:
+         """Format turn events and notifications into a scannable report."""
+-        header = f"Turn {turn_before} -> {turn_after}"
++        if (
++            turn_after is not None
++            and turn_before is not None
++            and turn_after <= turn_before
++        ):
++            # A stale _pending_end_turn baseline used to make this render as
++            # "Turn 60 -> 60", which reads like a successful transition.
++            header = f"Turn {turn_after} (no advance)"
++        else:
++            header = f"Turn {turn_before} -> {turn_after}"
+         if score is not None:
+             header += f" | Score: {score}"
+         lines = [header]
+@@ -1670,6 +1700,40 @@ class GameState:
+ 
+         return await execute_end_turn(self)
+ 
++    async def get_end_turn_blockers(self) -> list[tuple[str, str]]:
++        """Return [(blocking_type, message)] for anything blocking turn advance.
++
++        One cheap round-trip. The end_turn tool uses this to fail fast with a
++        structured reason: without it the advance poll can outlive the MCP
++        client's tool timeout (~180 s) and surface to the caller only as an
++        opaque "[object Object]" / "Request timed out".
++        """
++        lines = await self.conn.execute_write(lq.build_end_turn_blocking_query())
++        return lq.parse_end_turn_blocking(lines)
++
++    async def validate_unit_id(self, unit_id: int) -> str | None:
++        """Return a caller-facing error when ``unit_id`` is not one of our units.
++
++        Every tool resolves a unit with ``unit_id % 65536``, so a stale or
++        mistyped id silently targets whatever unit sits at that index — during
++        live testing a bad id moved a Settler two tiles off course. Validation
++        costs one get_units() round-trip and turns that into a clear error.
++        """
++        try:
++            units = await self.get_units()
++        except Exception:
++            log.debug("unit id validation skipped (get_units failed)", exc_info=True)
++            return None
++        known = sorted(u.unit_id for u in units)
++        if unit_id in known:
++            return None
++        return (
++            f"ERR:UNIT_ID_NOT_FOUND|unit_id={unit_id} is not one of your units. "
++            f"Valid ids right now: {known}. "
++            "Copy the exact id from get_units — an unknown id is resolved as "
++            "'unit_id % 65536' and would command a DIFFERENT unit."
++        )
++
+     async def dismiss_popup(self) -> str:
+         """Dismiss any blocking popup or UI overlay."""
+         from civ_mcp.game_lifecycle import dismiss_popup
+diff --git a/src/civ_mcp/lua/__init__.py b/src/civ_mcp/lua/__init__.py
+index 554d59f..e3baf4f 100644
+--- a/src/civ_mcp/lua/__init__.py
++++ b/src/civ_mcp/lua/__init__.py
+@@ -206,6 +206,8 @@ from civ_mcp.lua.models import (  # noqa: F401
+     SpyInfo,
+     StaticMapDump,
+     StaticMapTile,
++    StackingConflict,
++    StackTile,
+     StrategicMapData,
+     TechCivicStatus,
+     TechOption,
+@@ -304,11 +306,24 @@ from civ_mcp.lua.units import (  # noqa: F401
+     parse_fog_neighbor_response,
+     parse_pathing_estimate,
+     parse_post_move_visibility,
++    parse_stacking_issues,
+     parse_threat_scan_response,
+     parse_units_response,
++    build_stacking_issues_query,
+ )
+ from civ_mcp.lua.victory import (  # noqa: F401
+     build_victory_progress_query,
+     build_victory_proximity_query,
+     parse_victory_progress_response,
+ )
++
++# Civ identity (traits + unique kit) — added on top of upstream 1.1.11.
++from civ_mcp.lua.civ import (  # noqa: F401
++    build_civ_abilities_query,
++    parse_civ_abilities_response,
++)
++from civ_mcp.lua.models import (  # noqa: F401
++    CivAbilities,
++    CivTrait,
++    UniqueItem,
++)
+diff --git a/src/civ_mcp/lua/cities.py b/src/civ_mcp/lua/cities.py
+index ba3830b..5554746 100644
+--- a/src/civ_mcp/lua/cities.py
++++ b/src/civ_mcp/lua/cities.py
+@@ -144,7 +144,7 @@ for i, c in Players[me]:GetCities():Members() do
+                 local guInfo = GameInfo.Units[gu:GetType()]
+                 if guInfo then
+                     local fc = guInfo.FormationClass
+-                    if fc == "FORMATION_CLASS_LAND_COMBAT" or fc == "FORMATION_CLASS_NAVAL_COMBAT" then
++                    if fc == "FORMATION_CLASS_LAND_COMBAT" or fc == "FORMATION_CLASS_NAVAL" then
+                         garrisonUnit = guInfo.UnitType
+                         garFound = true
+                     end
+diff --git a/src/civ_mcp/lua/great_people.py b/src/civ_mcp/lua/great_people.py
+index 361ed6a..2237c20 100644
+--- a/src/civ_mcp/lua/great_people.py
++++ b/src/civ_mcp/lua/great_people.py
+@@ -385,19 +385,27 @@ def build_gp_advisor_query(unit_index: int) -> str:
+ local uInfo = GameInfo.Units[unit:GetType()]
+ if not uInfo then {_bail("ERR:UNIT_INFO_NOT_FOUND")} end
+ local gpClass = ""
+-pcall(function() gpClass = uInfo.GreatPersonClass end)
+-if gpClass == "" then {_bail("ERR:NOT_A_GREAT_PERSON")} end
+-local classToDistrict = {{
+-    GREAT_PERSON_CLASS_SCIENTIST = "DISTRICT_CAMPUS",
+-    GREAT_PERSON_CLASS_ENGINEER = "DISTRICT_INDUSTRIAL_ZONE",
+-    GREAT_PERSON_CLASS_MERCHANT = "DISTRICT_COMMERCIAL_HUB",
+-    GREAT_PERSON_CLASS_WRITER = "DISTRICT_THEATER",
+-    GREAT_PERSON_CLASS_ARTIST = "DISTRICT_THEATER",
+-    GREAT_PERSON_CLASS_MUSICIAN = "DISTRICT_THEATER",
+-    GREAT_PERSON_CLASS_PROPHET = "DISTRICT_HOLY_SITE",
+-    GREAT_PERSON_CLASS_GENERAL = "DISTRICT_ENCAMPMENT",
+-    GREAT_PERSON_CLASS_ADMIRAL = "DISTRICT_HARBOR",
+-}}
++-- The Units table has no GreatPersonClass column (verified against
++-- Base/Assets/Gameplay/Data/Units.xml: zero "GreatPerson" hits), so the old
++-- uInfo.GreatPersonClass lookup always produced nil and every Great Person —
++-- vanilla or modded — failed here with UNKNOWN_GP_CLASS.
++-- GreatPersonClasses holds the real mapping (class -> UnitType -> DistrictType)
++-- and also covers mod classes, which a hardcoded table could not.
++local gpClassRow = nil
++pcall(function()
++    for row in GameInfo.GreatPersonClasses() do
++        if row.UnitType == uInfo.UnitType then
++            gpClassRow = row
++            break
++        end
++    end
++end)
++if not gpClassRow then {_bail("ERR:NOT_A_GREAT_PERSON")} end
++gpClass = gpClassRow.GreatPersonClassType
++local targetDist = gpClassRow.DistrictType
++if gpClass == nil or gpClass == "" or targetDist == nil or targetDist == "" then
++    {_bail("ERR:UNKNOWN_GP_CLASS")}
++end
+ local classToYield = {{
+     GREAT_PERSON_CLASS_SCIENTIST = "YIELD_SCIENCE",
+     GREAT_PERSON_CLASS_ENGINEER = "YIELD_PRODUCTION",
+@@ -409,8 +417,6 @@ local classToYield = {{
+     GREAT_PERSON_CLASS_GENERAL = "YIELD_PRODUCTION",
+     GREAT_PERSON_CLASS_ADMIRAL = "YIELD_GOLD",
+ }}
+-local targetDist = classToDistrict[gpClass]
+-if not targetDist then {_bail("ERR:UNKNOWN_GP_CLASS")} end
+ local charges = -1
+ local gp = unit:GetGreatPerson()
+ if gp then pcall(function() charges = gp:GetActionCharges() end) end
+diff --git a/src/civ_mcp/lua/models.py b/src/civ_mcp/lua/models.py
+index 4a9327c..c4dfbaf 100644
+--- a/src/civ_mcp/lua/models.py
++++ b/src/civ_mcp/lua/models.py
+@@ -221,6 +221,27 @@ class UnitInfo:
+     upgrade_cost: int = 0
+     valid_improvements: list[str] = field(default_factory=list)
+     religion: str = ""
++    formation_class: str = ""  # FORMATION_CLASS_LAND_COMBAT / NAVAL / AIR / CIVILIAN / SUPPORT
++
++
++@dataclass
++class StackingConflict:
++    """Friendly units of the same FormationClass sharing one tile (illegal)."""
++
++    x: int
++    y: int
++    formation_class: str
++    units: list[str] = field(default_factory=list)
++
++
++@dataclass
++class StackTile:
++    """A tile where several friendly units of DIFFERENT classes stack (legal)."""
++
++    x: int
++    y: int
++    count: int
++    formation_classes: list[str] = field(default_factory=list)
+ 
+ 
+ @dataclass
+@@ -1287,3 +1308,41 @@ class BuilderInfo:
+     y: int
+     charges: int
+     moves: float
++
++
++@dataclass
++class CivTrait:
++    """One civilization or leader trait (the game's own ability text)."""
++
++    scope: str  # "CIV" or "LEADER"
++    trait_type: str  # e.g. "TRAIT_CIVILIZATION_BYZANTIUM"
++    name: str
++    description: str
++
++
++@dataclass
++class UniqueItem:
++    """A civ-unique unit / district / building / improvement."""
++
++    kind: str  # "UNIT" | "DISTRICT" | "BUILDING" | "IMPROVEMENT"
++    item_type: str  # e.g. "UNIT_TAGMA"
++    name: str
++    combat: int = 0
++    ranged_combat: int = 0
++    prereq_tech: str = ""
++    prereq_civic: str = ""
++    cost: int = 0
++
++
++@dataclass
++class CivAbilities:
++    """Identity + kit of the civ the agent is currently playing."""
++
++    civ_type: str
++    civ_name: str
++    leader_type: str
++    leader_name: str
++    traits: list[CivTrait] = field(default_factory=list)
++    uniques: list[UniqueItem] = field(default_factory=list)
++    # Self-diagnostics — proves at runtime whether each GameInfo lookup worked.
++    diagnostics: dict[str, int] = field(default_factory=dict)
+diff --git a/src/civ_mcp/lua/units.py b/src/civ_mcp/lua/units.py
+index f6f5a4d..ca79f9a 100644
+--- a/src/civ_mcp/lua/units.py
++++ b/src/civ_mcp/lua/units.py
+@@ -15,6 +15,8 @@ from civ_mcp.lua.models import (
+     BuilderTask,
+     CombatEstimate,
+     PathingEstimate,
++    StackingConflict,
++    StackTile,
+     ThreatInfo,
+     UnitInfo,
+ )
+@@ -179,7 +181,7 @@ for i, u in Players[id]:GetUnits():Members() do
+             end
+             if #meList > 0 then validImps = table.concat(meList, ";") end
+         end
+-        print(uid .. "|" .. (uid % 65536) .. "|" .. nm .. "|" .. ut .. "|" .. x .. "," .. y .. "|" .. u:GetMovesRemaining() .. "/" .. u:GetMaxMoves() .. "|" .. (u:GetMaxDamage() - u:GetDamage()) .. "/" .. u:GetMaxDamage() .. "|" .. cs .. "|" .. rs .. "|" .. charges .. "|" .. targets .. "|" .. promo .. "|" .. canUp .. "|" .. upName .. "|" .. upCost .. "|" .. validImps .. "|" .. relName)
++        print(uid .. "|" .. (uid % 65536) .. "|" .. nm .. "|" .. ut .. "|" .. x .. "," .. y .. "|" .. u:GetMovesRemaining() .. "/" .. u:GetMaxMoves() .. "|" .. (u:GetMaxDamage() - u:GetDamage()) .. "/" .. u:GetMaxDamage() .. "|" .. cs .. "|" .. rs .. "|" .. charges .. "|" .. targets .. "|" .. promo .. "|" .. canUp .. "|" .. upName .. "|" .. upCost .. "|" .. validImps .. "|" .. relName .. "|" .. (entry and entry.FormationClass or ""))
+     end
+ end
+ print("{SENTINEL}")
+@@ -195,18 +197,25 @@ end
+ if not UnitManager.CanStartOperation(unit, UnitOperationTypes.MOVE_TO, nil, true) then
+     {_bail("ERR:CANNOT_MOVE|Unit cannot move (invalid state)")}
+ end
+--- Pre-check: stacking conflict at target tile
++-- Pre-check: stacking conflict at target tile.
++-- Official rule (Civilopedia → 概念 → 战斗 → 编队):
++--   "军事单位能随时创建带有一个支援单位和平民单位的编队。海军军事单位也能
++--    创建编队，编队带有能上船的陆地单位。支援单位，比如攻城单位，在战斗中，
++--    与另一军事单位一起时，最有效。"
++-- So units of DIFFERENT FormationClasses may share a tile (land combat +
++-- support + civilian/great person, or naval + embarked land); only the SAME
++-- FormationClass cannot stack. Air units are their own class and slot.
+ local unitInfo = GameInfo.Units[unit:GetType()]
+-local isCivilian = (unitInfo and unitInfo.FormationClass == "FORMATION_CLASS_CIVILIAN")
++local myClass = (unitInfo and unitInfo.FormationClass) or ""
+ local tgtUnits = Map.GetUnitsAt({target_x}, {target_y})
+ if tgtUnits then
+     for other in tgtUnits:Units() do
+         if other:GetOwner() == me then
+             local otherInfo = GameInfo.Units[other:GetType()]
+-            local otherCivilian = (otherInfo and otherInfo.FormationClass == "FORMATION_CLASS_CIVILIAN")
+-            if isCivilian == otherCivilian then
++            local otherClass = (otherInfo and otherInfo.FormationClass) or ""
++            if myClass ~= "" and myClass == otherClass then
+                 local otherName = otherInfo and otherInfo.UnitType or "unit"
+-                {_bail_lua(f'"ERR:STACKING_CONFLICT|Friendly " .. otherName .. " already on ({target_x},{target_y}). Cannot stack same formation class."')}
++                {_bail_lua(f'"ERR:STACKING_CONFLICT|Friendly " .. otherName .. " (" .. otherClass .. ") already on ({target_x},{target_y}). Same FormationClass cannot stack — different classes can."')}
+             end
+         end
+     end
+@@ -262,6 +271,8 @@ pcall(function()
+         print("DIAG|MOUNTAIN|impassable mountain")
+     elseif plot:IsImpassable() then
+         print("DIAG|IMPASSABLE|impassable terrain (ice or natural wonder)")
++    elseif plot:IsCity() and plot:GetOwner() ~= me then
++        print("DIAG|ENEMY_CITY|target is an enemy city center — a city with HP remaining cannot be entered. Attack it instead (attack, or reduce its HP to 0 first).")
+     else
+         local owner = plot:GetOwner()
+         if owner >= 0 and owner ~= me then
+@@ -388,15 +399,17 @@ else
+     -- Map.GetPlotDistance can misreport distance on offset hex grids, so we
+     -- do not use it as a gate here — only as a diagnostic in the error message.
+     local myCS = unitInfo and unitInfo.Combat or 0
+-    -- Movement check: melee attack requires movement points (ranged does not)
+-    if unit:GetMovesRemaining() <= 0 then
+-        {_bail("ERR:NO_MOVES|Unit has no movement points for melee attack. Melee requires movement to close distance. Wait until next turn.")}
+-    end
+-    -- ZOC check: if unit entered enemy ZOC this turn, it cannot attack until next turn.
++    -- ZOC check FIRST: a unit that walked into enemy ZOC and then exhausted its
++    -- moves satisfies both conditions, and the ZOC rule is the one that actually
++    -- blocks the attack this turn. Reporting NO_MOVES there hides the real cause.
+     -- CanStartOperation returns true but RequestOperation silently queues for next turn.
+     if unit:HasMovedIntoZOC() then
+         {_bail_lua('"ERR:ZOC|Unit entered Zone of Control this turn — cannot attack until next turn. End turn and attack from current position next turn."')}
+     end
++    -- Movement check: melee attack requires movement points (ranged does not)
++    if unit:GetMovesRemaining() <= 0 then
++        {_bail("ERR:NO_MOVES|Unit has no movement points for melee attack. Melee requires movement to close distance. Wait until next turn.")}
++    end
+     params[UnitOperationTypes.PARAM_MODIFIERS] = UnitOperationMoveModifiers.ATTACK
+     if not UnitManager.CanStartOperation(unit, UnitOperationTypes.MOVE_TO, nil, params) then
+         {_bail_lua('"ERR:ATTACK_BLOCKED|Cannot attack " .. enemyName .. " at ({target_x},{target_y}) (map dist=" .. dist .. "). Unit not adjacent or blocked by popup/diplomacy."')}
+@@ -465,9 +478,10 @@ for i = 0, 63 do
+                                 local wHP = wMax - (d:GetDamage(DefenseTypes.DISTRICT_OUTER) or 0)
+                                 local gMax = d:GetMaxDamage(DefenseTypes.DISTRICT_GARRISON) or 0
+                                 local gHP = gMax - (d:GetDamage(DefenseTypes.DISTRICT_GARRISON) or 0)
+-                                if wMax > 0 or gMax > 0 then
+-                                    print("CITY_DEF|wall:" .. wHP .. "/" .. wMax .. "|garrison:" .. gHP .. "/" .. gMax)
+-                                end
++                                -- Always report, even when walls are down (0/0):
++                                -- the garrison figure is the city HP, and it is
++                                -- the only progress readout once walls are breached.
++                                print("CITY_DEF|wall:" .. wHP .. "/" .. wMax .. "|garrison:" .. gHP .. "/" .. gMax)
+                             end)
+                             break
+                         end
+@@ -506,7 +520,17 @@ local unitInfo = GameInfo.Units[unit:GetType()]
+ local attType = unitInfo and unitInfo.UnitType or "UNKNOWN"
+ local attCS = unitInfo and unitInfo.Combat or 0
+ local attRS = unitInfo and unitInfo.RangedCombat or 0
+-local isRanged = attRS > 0 and dist > 1
++local isRanged = false
++do
++    -- Mirror build_attack_unit's decision (CanStartOperation on the unit, not
++    -- on the target). Deciding by `dist > 1` made an archer firing at an
++    -- adjacent enemy look like a melee attacker: the estimate then claimed
++    -- counter-damage that a ranged attack never takes.
++    local okR, canR = pcall(function()
++        return UnitManager.CanStartOperation(unit, UnitOperationTypes.RANGE_ATTACK, nil, true)
++    end)
++    isRanged = (okR and canR == true and attRS > 0)
++end
+ local effAttCS = isRanged and attRS or attCS
+ -- Find defender
+ local enemy = nil
+@@ -1373,6 +1397,7 @@ def parse_units_response(lines: list[str]) -> list[UnitInfo]:
+             [v for v in valid_imps_raw.split(";") if v] if valid_imps_raw else []
+         )
+         religion = parts[16] if len(parts) > 16 else ""
++        formation_class = parts[17] if len(parts) > 17 else ""
+         units.append(
+             UnitInfo(
+                 unit_id=int(parts[0]),
+@@ -1395,11 +1420,107 @@ def parse_units_response(lines: list[str]) -> list[UnitInfo]:
+                 upgrade_cost=upgrade_cost,
+                 valid_improvements=valid_imps,
+                 religion=religion,
++                formation_class=formation_class,
+             )
+         )
+     return units
+ 
+ 
++def build_stacking_issues_query() -> str:
++    """GameCore: audit friendly units that violate the FormationClass stacking rule.
++
++    Civ 6 allows several units on one tile as long as their ``FormationClass``
++    differ (land combat + support + civilian/great person, etc.). Two units of
++    the SAME class on one tile is a violation. Such states appear after
++    upgrades, purchases, or city-center spawning; without this query the only
++    signal is the ENDTURN_BLOCKING_STACKED_UNITS notification.
++    """
++    return """
++local me = Game.GetLocalPlayer()
++local groups = {}
++local order = {}
++for _, u in Players[me]:GetUnits():Members() do
++    local x, y = u:GetX(), u:GetY()
++    if x ~= -9999 then
++        local key = x .. "," .. y
++        local entry = GameInfo.Units[u:GetType()]
++        local cls = (entry and entry.FormationClass) or "UNKNOWN"
++        local ut = (entry and entry.UnitType) or "UNKNOWN"
++        local uid = u:GetID()
++        if not groups[key] then groups[key] = {}; table.insert(order, key) end
++        table.insert(groups[key], {uid = uid, cls = cls, ut = ut})
++    end
++end
++local conflicts = 0
++for _, pos in ipairs(order) do
++    local list = groups[pos]
++    if #list > 1 then
++        local byClass = {}
++        local classOrder = {}
++        for _, it in ipairs(list) do
++            if not byClass[it.cls] then
++                byClass[it.cls] = {}
++                table.insert(classOrder, it.cls)
++            end
++            table.insert(byClass[it.cls], it.ut .. "#" .. it.uid)
++        end
++        if #classOrder > 0 then
++            print("MULTI|" .. pos .. "|" .. #list .. "|" .. table.concat(classOrder, ","))
++        end
++        for _, cls in ipairs(classOrder) do
++            local unitsHere = byClass[cls]
++            if #unitsHere > 1 then
++                print("STACK|" .. pos .. "|" .. cls .. "|" .. table.concat(unitsHere, ","))
++                conflicts = conflicts + 1
++            end
++        end
++    end
++end
++print("STACKCOUNT|" .. conflicts .. "|" .. #Players[me]:GetUnits():Members())
++print("{SENTINEL}")
++""".replace("{SENTINEL}", SENTINEL)
++
++
++def parse_stacking_issues(
++    lines: list[str],
++) -> tuple[list[StackingConflict], list[StackTile]]:
++    """Parse build_stacking_issues_query output.
++
++    Returns (conflicts, mixed_tiles): conflicts are same-class stacks
++    (violations); mixed_tiles are legal multi-class stacks.
++    """
++    conflicts: list[StackingConflict] = []
++    tiles: list[StackTile] = []
++    for line in lines:
++        if line.startswith("STACK|"):
++            parts = line.split("|")
++            if len(parts) < 4:
++                continue
++            x_str, y_str = parts[1].split(",")
++            conflicts.append(
++                StackingConflict(
++                    x=int(x_str),
++                    y=int(y_str),
++                    formation_class=parts[2],
++                    units=[u for u in parts[3].split(",") if u],
++                )
++            )
++        elif line.startswith("MULTI|"):
++            parts = line.split("|")
++            if len(parts) < 4:
++                continue
++            x_str, y_str = parts[1].split(",")
++            tiles.append(
++                StackTile(
++                    x=int(x_str),
++                    y=int(y_str),
++                    count=int(parts[2]) if parts[2].isdigit() else 0,
++                    formation_classes=[c for c in parts[3].split(",") if c],
++                )
++            )
++    return conflicts, tiles
++
++
+ def parse_threat_scan_response(lines: list[str]) -> list[ThreatInfo]:
+     threats: list[ThreatInfo] = []
+     for line in lines:
+diff --git a/src/civ_mcp/narrate.py b/src/civ_mcp/narrate.py
+index 6e06ec7..c2f0428 100644
+--- a/src/civ_mcp/narrate.py
++++ b/src/civ_mcp/narrate.py
+@@ -147,6 +147,59 @@ def narrate_spies(spies: list[lq.SpyInfo]) -> str:
+     return "\n".join(lines)
+ 
+ 
++FORMATION_CLASS_LABELS: dict[str, str] = {
++    "FORMATION_CLASS_LAND_COMBAT": "陆战",
++    "FORMATION_CLASS_NAVAL": "海军",
++    "FORMATION_CLASS_AIR": "空军",
++    "FORMATION_CLASS_CIVILIAN": "平民",
++    "FORMATION_CLASS_SUPPORT": "支援",
++}
++
++
++def _formation_tag(formation_class: str) -> str:
++    label = FORMATION_CLASS_LABELS.get(formation_class)
++    if label:
++        return f" [{label}]"
++    if formation_class:
++        return f" [{formation_class.replace('FORMATION_CLASS_', '')}]"
++    return ""
++
++
++def narrate_stacking_issues(
++    conflicts: list[lq.StackingConflict],
++    tiles: list[lq.StackTile],
++) -> str:
++    """Render get_stacking_issues output.
++
++    Civ 6 stacking rule: several units may share a tile as long as their
++    FormationClass differs; only SAME-class units conflict.
++    """
++    lines: list[str] = []
++    if not conflicts:
++        lines.append("No illegal stacks: every tile has at most one unit per FormationClass.")
++    else:
++        lines.append(
++            f"ILLEGAL STACKS ({len(conflicts)}) — same FormationClass on one tile. "
++            "Move one of each pair to a neighbouring tile:"
++        )
++        for c in conflicts:
++            label = FORMATION_CLASS_LABELS.get(c.formation_class, c.formation_class)
++            lines.append(
++                f"  ({c.x},{c.y}) {label} x{len(c.units)}: {', '.join(c.units)}"
++                f"  → unit_action(action='move') 移走其中一个"
++            )
++    if tiles:
++        lines.append("")
++        lines.append(f"Legal mixed stacks ({len(tiles)}):")
++        for t in tiles:
++            classes = ", ".join(
++                FORMATION_CLASS_LABELS.get(c, c.replace("FORMATION_CLASS_", ""))
++                for c in t.formation_classes
++            )
++            lines.append(f"  ({t.x},{t.y}) {t.count} units [{classes}]")
++    return "\n".join(lines)
++
++
+ def narrate_units(
+     units: list[lq.UnitInfo],
+     threats: list[lq.ThreatInfo] | None = None,
+@@ -195,7 +248,7 @@ def narrate_units(
+             else f"{u.moves_remaining:.1f}/{int(u.max_moves)}"
+         )
+         lines.append(
+-            f"  {u.name} ({u.unit_type}) at ({u.x},{u.y}) —{strength} "
++            f"  {u.name} ({u.unit_type}){_formation_tag(u.formation_class)} at ({u.x},{u.y}) —{strength} "
+             f"moves {moves_disp}{charges}{religion_flag}{status}{route_flag}{promo_flag}{upgrade_flag} "
+             f"[id:{u.unit_id}, idx:{u.unit_index}]"
+         )
+@@ -2102,3 +2155,82 @@ def narrate_move_discoveries(
+     else:
+         lines.append(f"Revealed {total_new} new tiles (no notable features)")
+     return "\n".join(lines)
++
++
++def narrate_civ_abilities(ab: lq.CivAbilities) -> str:
++    """Render civ identity + trait texts + unique kit."""
++    lines: list[str] = []
++    head = f"{ab.civ_name or ab.civ_type} / {ab.leader_name or ab.leader_type}"
++    lines.append(f"=== CIV IDENTITY: {head} ===")
++    lines.append(f"civ={ab.civ_type}  leader={ab.leader_type}")
++
++    if ab.traits:
++        lines.append("")
++        lines.append(f"TRAITS ({len(ab.traits)}) — your structural advantages:")
++        for t in ab.traits:
++            label = "civ" if t.scope == "CIV" else "leader"
++            name = t.name or t.trait_type
++            desc = (t.description or "").strip()
++            lines.append(f"  [{label}] {name}")
++            if desc:
++                lines.append(f"      {desc}")
++            elif "特色" in name or "UNIQUE" in t.trait_type.upper():
++                # Chinese/localized marker traits name the unique item instead
++                # of describing an effect — the item itself is listed below.
++                lines.append("      (marker trait for the unique item listed below)")
++            else:
++                lines.append("      (no description in GameInfo)")
++    else:
++        lines.append("")
++        lines.append(
++            "!! NO TRAITS RETURNED — the trait tables did not resolve. "
++            "See DIAG counters below; do not substitute memory for missing data."
++        )
++
++    groups = [
++        ("UNIT", "UNIQUE UNITS"),
++        ("DISTRICT", "UNIQUE DISTRICTS"),
++        ("BUILDING", "UNIQUE BUILDINGS"),
++        ("IMPROVEMENT", "UNIQUE IMPROVEMENTS"),
++    ]
++    for kind, title in groups:
++        items = [u for u in ab.uniques if u.kind == kind]
++        if not items:
++            continue
++        lines.append("")
++        lines.append(f"{title} ({len(items)}):")
++        for u in items:
++            detail: list[str] = []
++            cs: list[str] = []
++            if u.combat:
++                cs.append(f"CS {u.combat}")
++            if u.ranged_combat:
++                cs.append(f"RS {u.ranged_combat}")
++            if cs:
++                detail.append(" ".join(cs))
++            if u.prereq_tech:
++                detail.append(f"needs {u.prereq_tech}")
++            if u.prereq_civic:
++                detail.append(f"needs {u.prereq_civic}")
++            if u.cost:
++                detail.append(f"cost {u.cost}")
++            suffix = f"  ({'; '.join(detail)})" if detail else ""
++            lines.append(f"  - {u.name or u.item_type}{suffix}")
++
++    if ab.diagnostics:
++        lines.append("")
++        lines.append(
++            "DIAG " + " ".join(f"{k}={v}" for k, v in sorted(ab.diagnostics.items()))
++        )
++        if ab.diagnostics.get("TRAITS", 0) == 0:
++            lines.append(
++                "WARNING: zero traits resolved — report this rather than guessing "
++                "the civ's abilities from memory."
++            )
++
++    lines.append("")
++    lines.append(
++        "Act on this: put the unlock tech/civic on your research path and build "
++        "the unique kit. A civ played generically gives up its structural edge."
++    )
++    return "\n".join(lines)
+diff --git a/src/civ_mcp/server.py b/src/civ_mcp/server.py
+index 9fa2861..e863567 100644
+--- a/src/civ_mcp/server.py
++++ b/src/civ_mcp/server.py
+@@ -46,6 +46,24 @@ from civ_mcp.web_api import create_app
+ 
+ log = logging.getLogger(__name__)
+ 
++# Auto-restart on connection loss is OPT-IN.
++#
++# Why (2026-10-28 incident): the watcher in play_mcp.py probes run_lua every
++# ~1.5s. When the game is simply offline or sitting at the main menu (no save
++# loaded), every probe raises ConnectionError — so after 5 misses (~10s) the
++# old code called restart_and_load(), whose first step is
++# `taskkill /IM CivilizationVI*.exe /F`. That killed a perfectly healthy game
++# the user had just launched, twice, and the relaunch then failed due to a
++# Chinese-Windows tasklist decoding bug. Net effect: "I opened the game and it
++# vanished". Auto-kill must never be triggered by "no game in progress".
++# Set CIV_MCP_AUTO_RESTART=1 to restore the upstream behaviour.
++_AUTO_RESTART = os.environ.get("CIV_MCP_AUTO_RESTART", "0").strip().lower() in (
++    "1",
++    "true",
++    "yes",
++    "on",
++)
++
+ 
+ @dataclass
+ class AppContext:
+@@ -330,12 +348,42 @@ async def lifespan(server: FastMCP) -> AsyncIterator[AppContext]:
+     popup_watcher.start()
+     watchdog.start()
+ 
+-    # Start the web dashboard API as a background task (port 8000)
++    # Start the web dashboard API as a background task.
++    # Best-effort by design: a dashboard must never be able to kill the MCP
++    # control channel. uvicorn calls sys.exit(1) when it cannot bind, which
++    # would otherwise tear down the whole stdio server. That happens for real
++    # on Windows when the port falls inside an excluded-port range
++    # (e.g. 7942-8041 covers 8000 on some Hyper-V/WSL hosts).
++    web_port = int(os.environ.get("CIV_MCP_WEB_PORT", "8000"))
++    web_host = os.environ.get("CIV_MCP_WEB_HOST", "0.0.0.0")
+     web_app = create_app(gs)
+-    uvi_config = uvicorn.Config(web_app, host="0.0.0.0", port=8000, log_level="info")
++    uvi_config = uvicorn.Config(web_app, host=web_host, port=web_port, log_level="info")
+     uvi_server = uvicorn.Server(uvi_config)
+-    api_task = asyncio.create_task(uvi_server.serve())
+-    log.info("Web API starting on http://0.0.0.0:8000")
++    api_task: asyncio.Task[None] | None = None
++
++    async def _serve_web_dashboard() -> None:
++        try:
++            await uvi_server.serve()
++        except asyncio.CancelledError:
++            raise
++        except SystemExit:
++            log.warning(
++                "Web dashboard disabled: cannot bind %s:%s (port busy, reserved, "
++                "or blocked). MCP tools are unaffected — set CIV_MCP_WEB_PORT to "
++                "pick another port.",
++                web_host,
++                web_port,
++            )
++        except Exception:
++            log.warning(
++                "Web dashboard failed; MCP tools are unaffected.", exc_info=True
++            )
++
++    if web_port > 0:
++        api_task = asyncio.create_task(_serve_web_dashboard())
++        log.info("Web dashboard starting on http://%s:%s", web_host, web_port)
++    else:
++        log.info("Web dashboard disabled (CIV_MCP_WEB_PORT=%s)", web_port)
+ 
+     try:
+         yield AppContext(
+@@ -352,8 +400,9 @@ async def lifespan(server: FastMCP) -> AsyncIterator[AppContext]:
+         await watchdog.stop()
+         await camera.stop()
+         await popup_watcher.stop()
+-        uvi_server.should_exit = True
+-        await api_task
++        if api_task is not None:
++            uvi_server.should_exit = True
++            await api_task
+         await conn.disconnect()
+ 
+ 
+@@ -368,6 +417,56 @@ def _get_game(ctx: Context) -> GameState:
+     return ctx.request_context.lifespan_context.game
+ 
+ 
++# Blockers that never require an action before advancing. Two kinds:
++#   - "a unit still has moves" is purely informational;
++#   - "consider changing government" / world-congress look / spy escape route
++#     are advisory or auto-resolved by the engine. Refusing to advance on these
++#     would wedge the turn forever.
++_NON_BLOCKING_END_TURN_TYPES = frozenset(
++    {
++        "ENDTURN_BLOCKING_UNITS",
++        "ENDTURN_BLOCKING_CONSIDER_GOVERNMENT_CHANGE",
++        "ENDTURN_BLOCKING_WORLD_CONGRESS_LOOK",
++        "ENDTURN_BLOCKING_WORLD_CONGRESS_SPECIAL_SESSION",
++        "ENDTURN_BLOCKING_SPY_CHOOSE_ESCAPE_ROUTE",
++    }
++)
++
++
++async def _end_turn_blocked_message(gs: GameState) -> str | None:
++    """Return a structured refusal when the game is waiting on a decision.
++
++    Why this exists: ``execute_end_turn`` polls while the engine holds an
++    end-turn blocker. With an unresolved decision (no research / no civic /
++    empty production / empty policy slot / open diplomacy) that poll can
++    outlive the MCP client's tool timeout, and the caller only sees
++    "[object Object]" or "Request timed out" with no idea what to fix.
++    Checking first turns a 180 s dead wait into an immediate, actionable list.
++    """
++    try:
++        blockers = await gs.get_end_turn_blockers()
++    except Exception:
++        log.warning("end_turn precheck failed; advancing anyway", exc_info=True)
++        return None
++    actionable = [b for b in blockers if b[0] not in _NON_BLOCKING_END_TURN_TYPES]
++    if not actionable:
++        return None
++    from civ_mcp.lua.notifications import BLOCKING_TOOL_MAP
++
++    lines = [
++        "BLOCKED: the turn will NOT advance until these are resolved.",
++        "Returned immediately instead of waiting ~180 s for a timeout.",
++        "",
++    ]
++    for blocking_type, message in actionable:
++        lines.append(f"  - {blocking_type}: {message or '(no message)'}")
++        lines.append(
++            f"      -> {BLOCKING_TOOL_MAP.get(blocking_type, 'Resolve this in-game')}"
++        )
++    lines += ["", "Resolve them, then call end_turn again."]
++    return "\n".join(lines)
++
++
+ def _get_logger(ctx: Context) -> GameLogger:
+     return ctx.request_context.lifespan_context.logger
+ 
+@@ -449,14 +548,25 @@ async def _logged(
+ 
+         # Connection-loss recovery: after consecutive failures,
+         # the game has likely crashed. Auto-restart from autosave.
++        # Gated behind CIV_MCP_AUTO_RESTART (default off) — see _AUTO_RESTART
++        # above: a game that is merely offline / at the main menu must never
++        # be killed by this heuristic.
+         _logged._conn_errors = getattr(_logged, "_conn_errors", 0) + 1
+         if _logged._conn_errors >= 5:
++            _logged._conn_errors = 0
++            if not _AUTO_RESTART:
++                log.warning(
++                    "CONNECTION RECOVERY SKIPPED: 5 consecutive connection "
++                    "failures, but auto-restart is disabled. No kill/relaunch "
++                    "performed. If you expected a game to be running, check "
++                    "the game window (it may be closed or at the main menu), "
++                    "or set CIV_MCP_AUTO_RESTART=1 to opt in."
++                )
++                return result
+             log.error(
+-                "CONNECTION RECOVERY: %d consecutive connection failures "
+-                "— triggering restart_and_load",
+-                _logged._conn_errors,
++                "CONNECTION RECOVERY: 5 consecutive connection failures "
++                "— triggering restart_and_load"
+             )
+-            _logged._conn_errors = 0
+             try:
+                 from civ_mcp.autosave import get_autosave_for_turn, get_latest_autosave
+ 
+@@ -574,6 +684,26 @@ async def get_game_overview(ctx: Context) -> str:
+     return await _logged(ctx, "get_game_overview", {}, _run)
+ 
+ 
++@mcp.tool(annotations={"readOnlyHint": True})
++async def get_civ_abilities(ctx: Context) -> str:
++    """Read your civilization and leader traits, abilities, and unique kit.
++
++    Returns the game's own ability text for every civ trait and leader trait,
++    plus your unique units, districts, buildings, and improvements with their
++    combat stats, unlock tech/civic, and cost.
++
++    Call this at game start (and after any civ change) BEFORE planning a
++    strategy: your kit determines which victory path is actually realistic.
++    """
++    gs = _get_game(ctx)
++
++    async def _run():
++        ab = await gs.get_civ_abilities()
++        return nr.narrate_civ_abilities(ab)
++
++    return await _logged(ctx, "get_civ_abilities", {}, _run)
++
++
+ @mcp.tool(annotations={"readOnlyHint": True})
+ async def get_units(ctx: Context) -> str:
+     """List all your units with position, type, movement, and health.
+@@ -601,6 +731,29 @@ async def get_units(ctx: Context) -> str:
+     return await _logged(ctx, "get_units", {}, _run, tiles=unit_tiles)
+ 
+ 
++@mcp.tool(annotations={"readOnlyHint": True})
++async def get_stacking_issues(ctx: Context) -> str:
++    """Audit illegal unit stacks (Civ 6 stacking rule).
++
++    Civ 6 allows several units on one tile as long as their **FormationClass**
++    differs — e.g. land combat + support + civilian/great person can share a
++    tile. Only units of the SAME FormationClass cannot stack.
++
++    Illegal states appear after upgrades, purchases, or city-center spawning,
++    and otherwise only surface as an ENDTURN_BLOCKING_STACKED_UNITS blocker.
++    This tool lists every offending tile with unit ids so you can move one out.
++    """
++    gs = _get_game(ctx)
++    unit_tiles: set[tuple[int, int]] = set()
++
++    async def _run():
++        conflicts, tiles = await gs.get_stacking_issues()
++        unit_tiles.update((c.x, c.y) for c in conflicts)
++        return nr.narrate_stacking_issues(conflicts, tiles)
++
++    return await _logged(ctx, "get_stacking_issues", {}, _run, tiles=unit_tiles)
++
++
+ @mcp.tool(annotations={"readOnlyHint": True})
+ async def get_spies(ctx: Context) -> str:
+     """List all your spy units with position, rank, city, and available missions.
+@@ -652,6 +805,8 @@ async def spy_action(
+         - get_spies shows which ops are available at the spy's current location.
+     """
+     gs = _get_game(ctx)
++    if invalid := await gs.validate_unit_id(unit_id):
++        return invalid
+     unit_index = unit_id % 65536
+     params = {
+         "unit_id": unit_id,
+@@ -1068,6 +1223,8 @@ async def promote_unit(ctx: Context, unit_id: int, promotion_type: str) -> str:
+     Use get_unit_promotions first to see available options.
+     """
+     gs = _get_game(ctx)
++    if invalid := await gs.validate_unit_id(unit_id):
++        return invalid
+     return await _logged(
+         ctx,
+         "promote_unit",
+@@ -1199,6 +1356,8 @@ async def upgrade_unit(ctx: Context, unit_id: int) -> str:
+     moves remaining. The unit's movement is consumed by upgrading.
+     """
+     gs = _get_game(ctx)
++    if invalid := await gs.validate_unit_id(unit_id):
++        return invalid
+     return await _logged(
+         ctx, "upgrade_unit", {"unit_id": unit_id}, lambda: gs.upgrade_unit(unit_id)
+     )
+@@ -1593,6 +1752,8 @@ async def unit_action(
+     delete = permanently disband the unit.
+     """
+     gs = _get_game(ctx)
++    if invalid := await gs.validate_unit_id(unit_id):
++        return invalid
+     unit_index = unit_id % 65536
+     params: dict[str, Any] = {"unit_id": unit_id, "action": action}
+     if target_x is not None:
+@@ -1935,8 +2096,33 @@ async def end_turn(
+             except Exception:
+                 log.warning("Diary: failed to write entry", exc_info=True)
+ 
+-    # Advance the turn
+-    result = await _logged(ctx, "end_turn", {}, gs.end_turn)
++    # Fail fast when the engine is holding an end-turn blocker. Without this
++    # the advance poll can outlive the MCP client's tool timeout (~180 s) and
++    # the caller sees only "[object Object]" with no idea what to resolve.
++    blocked = await _end_turn_blocked_message(gs)
++    if blocked is not None:
++
++        async def _blocked() -> str:
++            return blocked
++
++        return await _logged(ctx, "end_turn", {"blocked": True}, _blocked)
++
++    # Advance the turn. Convert any escaped BaseException (SystemExit from a
++    # background task, BaseExceptionGroup, ...) into readable text — an
++    # unhandled non-Exception surfaces to MCP clients as "[object Object]".
++    try:
++        result = await _logged(ctx, "end_turn", {}, gs.end_turn)
++    except asyncio.CancelledError:
++        raise
++    except BaseException as exc:
++        log.exception("end_turn raised %s", type(exc).__name__)
++        return (
++            f"ERR:END_TURN_FAILED|{type(exc).__name__}: {exc}\n"
++            "The turn may or may not have advanced — call get_game_overview to "
++            "check the turn number. If it did not advance, force it with "
++            "run_lua(context='ingame') executing "
++            "UI.RequestAction(ActionTypes.ACTION_ENDTURN)."
++        )
+ 
+     # ---------------------------------------------------------------
+     # Auto-recover from AI turn hangs (transparent to agent).
+diff --git a/src/civ_mcp/version.py b/src/civ_mcp/version.py
+index 41a9326..0f98b47 100644
+--- a/src/civ_mcp/version.py
++++ b/src/civ_mcp/version.py
+@@ -13,7 +13,7 @@ def _get_version() -> str:
+     # Fallback: read from pyproject.toml (uv run doesn't install metadata)
+     pyproject = Path(__file__).resolve().parent.parent.parent / "pyproject.toml"
+     if pyproject.exists():
+-        for line in pyproject.read_text().splitlines():
++        for line in pyproject.read_text(encoding="utf-8").splitlines():
+             if line.strip().startswith("version =") or line.strip().startswith(
+                 "version="
+             ):
+diff --git a/uv.lock b/uv.lock
+index 668d2ac..2a7f7b4 100644
+--- a/uv.lock
++++ b/uv.lock
+@@ -1,5 +1,5 @@
+ version = 1
+-revision = 3
++revision = 5
+ requires-python = ">=3.12"
+ resolution-markers = [
+     "python_full_version >= '3.14'",
+@@ -486,7 +486,7 @@ wheels = [
+ 
+ [[package]]
+ name = "civ6-mcp"
+-version = "1.1.8"
++version = "1.1.11"
+ source = { editable = "." }
+ dependencies = [
+     { name = "anthropic" },
+@@ -4444,7 +4444,7 @@ name = "zipfile-zstd"
+ version = "0.0.4"
+ source = { registry = "https://pypi.org/simple" }
+ dependencies = [
+-    { name = "zstandard", marker = "python_full_version < '3.14'" },
++    { name = "zstandard" },
+ ]
+ sdist = { url = "https://files.pythonhosted.org/packages/f7/2a/2e0941bc0058d10ab37d8c578b94a19f611f6ae54f124140f2fb451f0932/zipfile-zstd-0.0.4.tar.gz", hash = "sha256:c1498e15b7922a3d1af0ea55df8b11b2af4e8f7e0e80e414e25d66899f7def89", size = 4603, upload-time = "2021-12-08T07:38:16.245Z" }
+ wheels = [

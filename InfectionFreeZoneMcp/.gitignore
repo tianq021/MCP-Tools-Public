@@ -1,0 +1,15 @@
+/.local/
+/node_modules/
+/plugin/bin/
+/plugin/obj/
+/npc-enhanced/bin/
+/npc-enhanced/obj/
+/npc-enhanced/tests/bin/
+/npc-enhanced/tests/obj/
+/coop-zh/bin/
+/coop-zh/obj/
+/dist/
+/NVIDIA Corporation/
+*.log
+*.bak
+*.bak-*

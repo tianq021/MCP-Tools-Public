@@ -1,0 +1,12 @@
+import fs from 'node:fs';
+const [method, input] = process.argv.slice(2);
+if (!method || !input) throw Error('Usage: node dsh_rpc.mjs session/create request.json');
+const info=JSON.parse(fs.readFileSync('F:/deepseekA/logs/server.json','utf8').replace(/^\uFEFF/,''));
+const url=fs.readFileSync(info.stdout,'utf8').match(/http:\/\/127\.0\.0\.1:3080\/\?token=\S+/)?.[0];
+if(!url) throw Error('No DSH launch URL');
+const auth=await fetch(url,{redirect:'manual'});
+const cookie=auth.headers.getSetCookie().map(v=>v.split(';')[0]).join('; ');
+if(!cookie) throw Error('No authentication cookie');
+const request=JSON.parse(fs.readFileSync(input,'utf8').replace(/^\uFEFF/,''));
+const res=await fetch('http://127.0.0.1:3080/api/'+method,{method:'POST',headers:{'content-type':'application/json',cookie,origin:'http://127.0.0.1:3080'},body:JSON.stringify({type:'client-request',rpcId:crypto.randomUUID(),method,payload:{args:{request}}})});
+console.log(await res.text());

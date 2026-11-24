@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ds-agents-local"
+version = "0.1.0"
+description = "Bounded read-only Codex and DeepSeek collaboration"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+ds-agents = "ds_agents.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["ds_agents*"]

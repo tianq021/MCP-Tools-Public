@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理后台</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+    <header class="admin-header">
+        <div>
+            <p class="eyebrow">管理</p>
+            <h1>管理后台</h1>
+        </div>
+        <nav>
+            <a href="{{ url_for('page.user_home') }}">用户首页</a>
+            <a href="{{ url_for('page.logout') }}">退出</a>
+        </nav>
+    </header>
+
+    <main class="admin-main">
+        <section class="admin-tabs" aria-label="后台功能">
+            <button class="tab-button active" type="button" data-tab-target="api-panel">接口管理</button>
+            <button class="tab-button" type="button" data-tab-target="data-panel">数据管理</button>
+            <button class="tab-button" type="button" data-tab-target="users-panel">用户管理</button>
+            <button class="tab-button" type="button" data-tab-target="comments-panel">评论管理</button>
+            <button class="tab-button" type="button" data-tab-target="ai-health-panel">AI 测试</button>
+            <button class="tab-button" type="button" data-tab-target="explanation-panel">功能解释</button>
+            <button class="tab-button" type="button" data-tab-target="feedback-panel">用户反馈</button>
+            <button class="tab-button" type="button" data-tab-target="logs-panel">FastGPT 日志</button>
+        </section>
+
+        <section id="api-panel" class="tab-panel active">
+            <div class="toolbar">
+                <input id="endpoint-search" type="search" placeholder="搜索路径、名称或方法">
+                <span id="save-status" aria-live="polite"></span>
+            </div>
+
+            <section class="endpoint-list" aria-label="接口列表">
+                {% for item in endpoints %}
+                <article class="endpoint-item" data-search="{{ item.path }} {{ item.methods }} {{ item.title }} {{ item.description }}">
+                    <div class="endpoint-meta">
+                        <span class="method">{{ item.methods }}</span>
+                        <code>{{ item.path }}</code>
+                        <small>{{ item.endpoint }}</small>
+                    </div>
+
+                    <div class="endpoint-editor">
+                        <label>
+                            <span>名称</span>
+                            <input type="text" data-field="title" value="{{ item.title }}">
+                        </label>
+                        <label>
+                            <span>说明</span>
+                            <textarea data-field="description" rows="2">{{ item.description }}</textarea>
+                        </label>
+                        <button type="button" data-endpoint="{{ item.endpoint }}">保存</button>
+                    </div>
+                </article>
+                {% endfor %}
+            </section>
+        </section>
+
+        <section id="data-panel" class="tab-panel">
+            <div class="data-layout">
+                <section class="tool-list-panel">
+                    <div class="panel-head">
+                        <div>
+                            <h2>工具数据</h2>
+                            <p id="tool-file-path"></p>
+                        </div>
+                        <select id="tool-source">
+                            <option value="local">本地工具</option>
+                            <option value="fastgpt">FastGPT 工具</option>
+                            <option value="custom">自定义工具</option>
+                        </select>
+                        <button id="config-status-check" class="secondary-button" type="button">配置检查</button>
+                        <button id="config-export" class="secondary-button" type="button">导出配置</button>
+                    </div>
+                    <p id="config-status" class="source-note" aria-live="polite"></p>
+                    <p id="tool-source-note" class="source-note"></p>
+                    <div id="tool-list" class="tool-list"></div>
+                </section>
+
+                <section class="tool-editor-panel">
+                    <div class="panel-head">
+                        <div>
+                            <h2>添加或修改工具</h2>
+                            <p>按工具 ID 保存；已有 ID 会被更新。</p>
+                        </div>
+                        <button id="tool-reset" class="secondary-button" type="button">清空</button>
+                    </div>
+
+                    <form id="tool-form" class="tool-form">
+                        <div class="form-grid">
+                            <label>
+                                <span>工具编号</span>
+                                <input name="id" type="text" placeholder="例如：工具编号" required>
+                            </label>
+                            <label>
+                                <span>名称</span>
+                                <input name="title" type="text" placeholder="工具名称" required>
+                            </label>
+                            <label data-field-group="category">
+                                <span>分类</span>
+                                <input name="category" type="text" placeholder="文本工具">
+                            </label>
+                            <label>
+                                <span>工具类型</span>
+                                <select name="type">
+                                    <option value="link">链接工具</option>
+                                    <option value="placeholder">占位说明</option>
+                                    <option value="random">随机数</option>
+                                    <option value="hash">文字哈希</option>
+                                    <option value="file_hash">文件哈希</option>
+                                    <option value="base64">Base64 编解码</option>
+                                    <option value="comments">评论区</option>
+                                </select>
+                            </label>
+                            <label>
+                                <span>排序</span>
+                                <input name="sort_order" type="number" min="0" step="1" placeholder="100">
+                            </label>
+                            <label class="wide">
+                                <span>工具链接</span>
+                                <input name="url" type="url" placeholder="请输入完整工具链接">
+                            </label>
+                            <label>
+                                <span>FastGPT 会话编号</span>
+                                <input name="chat_id" type="text" placeholder="默认使用工具编号">
+                            </label>
+                            <label>
+                                <span>FastGPT 接口密钥</span>
+                                <input name="api_key" type="password" placeholder="留空则保留当前密钥">
+                            </label>
+                            <label class="wide">
+                                <span>说明</span>
+                                <textarea name="desc" rows="3" placeholder="工具说明"></textarea>
+                            </label>
+                            <label class="wide">
+                                <span>AI 页面介绍</span>
+                                <textarea name="intro" rows="5" placeholder="选择该 AI 后展示的详细介绍，每个 AI 可单独填写"></textarea>
+                            </label>
+                            <label class="wide">
+                                <span>扩展配置</span>
+                                <textarea name="extra_json" rows="4" placeholder='例如：{"图标":"星标"}'></textarea>
+                            </label>
+                        </div>
+
+                        <div class="check-row">
+                            <label>
+                                <input name="enabled" type="checkbox" checked>
+                                <span>启用</span>
+                            </label>
+                            <label>
+                                <input name="default" type="checkbox">
+                                <span>默认工具</span>
+                            </label>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit">保存工具</button>
+                            <span id="tool-status" aria-live="polite"></span>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </section>
+        <section id="users-panel" class="tab-panel">
+            <div class="toolbar">
+                <button id="refresh-admin-users" class="secondary-button" type="button">刷新用户</button>
+                <span id="admin-user-status" aria-live="polite"></span>
+            </div>
+            <div id="admin-user-list" class="log-list"></div>
+        </section>
+        <section id="comments-panel" class="tab-panel">
+            <div class="toolbar">
+                <select id="admin-comment-page-key">
+                    <option value="all">全部来源</option>
+                    <option value="tools">工具评论区</option>
+                </select>
+                <select id="admin-comment-sort">
+                    <option value="time">按时间排序</option>
+                    <option value="hot">按热度排序</option>
+                </select>
+                <button id="refresh-admin-comments" class="secondary-button" type="button">刷新评论</button>
+                <button id="delete-selected-comments" class="secondary-button danger-button" type="button">删除选中</button>
+                <span id="admin-comment-status" aria-live="polite"></span>
+            </div>
+            <div id="admin-comment-list" class="log-list"></div>
+        </section>
+        <section id="ai-health-panel" class="tab-panel">
+            <div class="ai-health-layout">
+                <section class="tool-list-panel">
+                    <div class="panel-head">
+                        <div>
+                            <h2>统一测试</h2>
+                            <p>逐个访问所有 FastGPT 工具 profile，等待全部返回后展示结果。</p>
+                        </div>
+                    </div>
+                    <div class="fastgpt-health-prompts" aria-label="FastGPT 统一测试提示词">
+                        <label>
+                            <span>测试系统提示词</span>
+                            <textarea id="fastgpt-health-system-prompt" rows="4">You are a health-check assistant. Reply with OK only.</textarea>
+                        </label>
+                        <label>
+                            <span>测试用户提示词</span>
+                            <textarea id="fastgpt-health-user-prompt" rows="3">Reply OK</textarea>
+                        </label>
+                    </div>
+                    <div class="form-actions">
+                        <button id="fastgpt-health-check-all" type="button">开始一键测试</button>
+                        <span id="fastgpt-health-summary" aria-live="polite"></span>
+                    </div>
+                </section>
+                <section class="tool-editor-panel">
+                    <div class="panel-head">
+                        <div>
+                            <h2>测试结果</h2>
+                            <p>绿色表示接口可继续使用；红色表示需要检查 key、profile 或 FastGPT 服务。</p>
+                        </div>
+                    </div>
+                    <div id="fastgpt-health-result-list" class="ai-health-result-list">
+                        <p class="empty-state">点击“开始一键测试”后显示结果。</p>
+                    </div>
+                </section>
+            </div>
+        </section>
+        <section id="explanation-panel" class="tab-panel">
+            <form id="feature-explanation-form" class="tool-form">
+                <div class="panel-head">
+                    <div>
+                        <h2>页面功能解释</h2>
+                        <p>配置顶部“功能解释”按钮点击后显示的内容。</p>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <label>
+                        <span>页面</span>
+                        <select name="page_key">
+                            <option value="fastgpt">FastGPT 页面</option>
+                            <option value="user">用户工作台（更新消息）</option>
+                            <option value="tools">工具页面</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span>标题</span>
+                        <input name="title" type="text" maxlength="200" required>
+                    </label>
+                    <label class="wide">
+                        <span>解释内容</span>
+                        <textarea name="content" rows="10" required></textarea>
+                    </label>
+                </div>
+                <div class="check-row">
+                    <label>
+                        <input name="enabled" type="checkbox" checked>
+                        <span>启用</span>
+                    </label>
+                </div>
+                <div class="form-actions">
+                    <button type="submit">保存功能解释</button>
+                    <span id="feature-explanation-status" aria-live="polite"></span>
+                </div>
+            </form>
+        </section>
+        <section id="feedback-panel" class="tab-panel">
+            <div class="toolbar">
+                <button id="refresh-user-feedback" class="secondary-button" type="button">刷新反馈</button>
+                <span id="user-feedback-status" aria-live="polite"></span>
+            </div>
+            <div id="user-feedback-list" class="log-list"></div>
+        </section>
+        <section id="logs-panel" class="tab-panel">
+            <div class="toolbar">
+                <button id="refresh-fastgpt-logs" class="secondary-button" type="button">刷新日志</button>
+                <select id="fastgpt-log-limit">
+                    <option value="50">最近 50 条</option>
+                    <option value="100" selected>最近 100 条</option>
+                    <option value="200">最近 200 条</option>
+                    <option value="500">最近 500 条</option>
+                </select>
+                <span id="fastgpt-log-status" aria-live="polite"></span>
+            </div>
+            <div id="fastgpt-log-list" class="log-list"></div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+</body>
+</html>

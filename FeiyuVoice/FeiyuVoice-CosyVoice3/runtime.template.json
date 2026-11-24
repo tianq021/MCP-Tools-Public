@@ -1,0 +1,9 @@
+{
+  "distribution": "Ubuntu-24.04",
+  "python": "/absolute/path/to/cosyvoice3/bin/python",
+  "repo": "/absolute/path/to/CosyVoice",
+  "commit": "074ca6dc9e80a2f424f1f74b48bdd7d3fea531cc",
+  "python_library_dir": "",
+  "torch_version": "2.11.0+cu128",
+  "python_version": "3.11.17"
+}

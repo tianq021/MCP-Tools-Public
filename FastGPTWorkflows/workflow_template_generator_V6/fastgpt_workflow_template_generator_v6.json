@@ -1,0 +1,653 @@
+{
+  "nodes": [
+    {
+      "nodeId": "userGuide",
+      "name": "系统配置",
+      "intro": "系统配置",
+      "avatar": "core/workflow/template/systemConfig",
+      "flowNodeType": "userGuide",
+      "position": {
+        "x": 100,
+        "y": -400
+      },
+      "inputs": [
+        {
+          "key": "welcomeText",
+          "renderTypeList": [
+            "hidden"
+          ],
+          "valueType": "string",
+          "label": "core.app.Welcome Text",
+          "value": "#### FastGPT V6 单节点模板合并生成器\n输入工作流目标后，系统会根据固定单节点模板生成可导入、可人工补全的工作流 JSON。"
+        },
+        {
+          "key": "variables",
+          "renderTypeList": [
+            "hidden"
+          ],
+          "valueType": "any",
+          "label": "core.app.Chat Variable",
+          "value": []
+        },
+        {
+          "key": "questionGuide",
+          "renderTypeList": [
+            "hidden"
+          ],
+          "valueType": "any",
+          "label": "core.app.Question Guide",
+          "value": {
+            "open": false
+          }
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "nodeId": "start",
+      "name": "流程开始",
+      "avatar": "core/workflow/template/workflowStart",
+      "flowNodeType": "workflowStart",
+      "position": {
+        "x": 500,
+        "y": -320
+      },
+      "inputs": [
+        {
+          "key": "userChatInput",
+          "renderTypeList": [
+            "reference",
+            "textarea"
+          ],
+          "valueType": "string",
+          "label": "workflow:user_question",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "id": "userChatInput",
+          "key": "userChatInput",
+          "type": "static",
+          "valueType": "string",
+          "label": "用户需求"
+        }
+      ]
+    },
+    {
+      "nodeId": "text_single_node_templates",
+      "name": "单节点模板库",
+      "avatar": "core/workflow/template/textConcat",
+      "flowNodeType": "textEditor",
+      "position": {
+        "x": 900,
+        "y": -520
+      },
+      "inputs": [
+        {
+          "key": "system_textareaInput",
+          "renderTypeList": [
+            "textarea"
+          ],
+          "valueType": "string",
+          "required": true,
+          "label": "workflow:concatenation_text",
+          "value": "{\n  \"version\": \"v6_single_node_templates_1\",\n  \"templates\": [\n    {\n      \"templateId\": \"userGuide\",\n      \"description\": \"系统配置节点，提供欢迎语和基础配置。\",\n      \"node\": {\n        \"nodeId\": \"userGuide\",\n        \"name\": \"系统配置\",\n        \"intro\": \"系统配置\",\n        \"avatar\": \"core/workflow/template/systemConfig\",\n        \"flowNodeType\": \"userGuide\",\n        \"position\": {\n          \"x\": 100,\n          \"y\": -400\n        },\n        \"inputs\": [\n          {\n            \"key\": \"welcomeText\",\n            \"renderTypeList\": [\n              \"hidden\"\n            ],\n            \"valueType\": \"string\",\n            \"label\": \"core.app.Welcome Text\",\n            \"value\": \"#### FastGPT V6 单节点模板合并生成器\\n输入工作流目标后，系统会根据固定单节点模板生成可导入、可人工补全的工作流 JSON。\"\n          },\n          {\n            \"key\": \"variables\",\n            \"renderTypeList\": [\n              \"hidden\"\n            ],\n            \"valueType\": \"any\",\n            \"label\": \"core.app.Chat Variable\",\n            \"value\": []\n          },\n          {\n            \"key\": \"questionGuide\",\n            \"renderTypeList\": [\n              \"hidden\"\n            ],\n            \"valueType\": \"any\",\n            \"label\": \"core.app.Question Guide\",\n            \"value\": {\n              \"open\": false\n            }\n          }\n        ],\n        \"outputs\": []\n      },\n      \"defaultOutputs\": [],\n      \"manualConfig\": [],\n      \"rules\": [\n        \"userGuide 只用于系统配置，不负责变量传值。\"\n      ]\n    },\n    {\n      \"templateId\": \"workflowStart_text\",\n      \"description\": \"纯文本输入流程开始节点。\",\n      \"node\": {\n        \"nodeId\": \"start\",\n        \"name\": \"流程开始\",\n        \"avatar\": \"core/workflow/template/workflowStart\",\n        \"flowNodeType\": \"workflowStart\",\n        \"position\": {\n          \"x\": 500,\n          \"y\": -320\n        },\n        \"inputs\": [\n          {\n            \"key\": \"userChatInput\",\n            \"renderTypeList\": [\n              \"reference\",\n              \"textarea\"\n            ],\n            \"valueType\": \"string\",\n            \"label\": \"workflow:user_question\",\n            \"required\": true\n          }\n        ],\n        \"outputs\": [\n          {\n            \"id\": \"userChatInput\",\n            \"key\": \"userChatInput\",\n            \"type\": \"static\",\n            \"valueType\": \"string\",\n            \"label\": \"用户问题\"\n          }\n        ]\n      },\n      \"defaultOutputs\": [\n        \"userChatInput\"\n      ],\n      \"manualConfig\": [],\n      \"rules\": [\n        \"纯文本工作流使用该入口。\",\n        \"不包含 userFiles 输出。\"\n      ]\n    },\n    {\n      \"templateId\": \"workflowStart_file\",\n      \"description\": \"文件上传流程开始节点，必须输出 userFiles。\",\n      \"node\": {\n        \"nodeId\": \"start\",\n        \"name\": \"流程开始\",\n        \"avatar\": \"core/workflow/template/workflowStart\",\n        \"flowNodeType\": \"workflowStart\",\n        \"position\": {\n          \"x\": 500,\n          \"y\": -320\n        },\n        \"inputs\": [\n          {\n            \"key\": \"userChatInput\",\n            \"renderTypeList\": [\n              \"reference\",\n              \"textarea\"\n            ],\n            \"valueType\": \"string\",\n            \"label\": \"workflow:user_question\",\n            \"required\": true\n          }\n        ],\n        \"outputs\": [\n          {\n            \"id\": \"userChatInput\",\n            \"key\": \"userChatInput\",\n            \"type\": \"static\",\n            \"valueType\": \"string\",\n            \"label\": \"用户问题\"\n          },\n          {\n            \"id\": \"userFiles\",\n            \"key\": \"userFiles\",\n            \"type\": \"static\",\n            \"valueType\": \"arrayString\",\n            \"label\": \"app:workflow.user_file_input\"\n          }\n        ]\n      },\n      \"defaultOutputs\": [\n        \"userChatInput\",\n        \"userFiles\"\n      ],\n      \"manualConfig\": [\n        \"用户运行时从聊天框上传文件\"\n      ],\n      \"rules\": [\n        \"必须包含 userFiles 输出。\",\n        \"readFiles 只能引用 start.userFiles，不能引用 userChatInput。\"\n      ]\n    },\n    {\n      \"templateId\": \"readFiles\",\n      \"description\": \"读取用户上传文件，固定二维数组引用 start.userFiles。\",\n      \"node\": {\n        \"nodeId\": \"readFiles\",\n        \"name\": \"文档解析\",\n        \"avatar\": \"core/workflow/template/readFiles\",\n        \"flowNodeType\": \"readFiles\",\n        \"showStatus\": true,\n        \"position\": {\n          \"x\": 900,\n          \"y\": -320\n        },\n        \"inputs\": [\n          {\n            \"key\": \"fileUrlList\",\n            \"renderTypeList\": [\n              \"reference\"\n            ],\n            \"valueType\": \"arrayString\",\n            \"required\": true,\n            \"label\": \"文件\",\n            \"value\": [\n              [\n                \"start\",\n                \"userFiles\"\n              ]\n            ]\n          }\n        ],\n        \"outputs\": [\n          {\n            \"id\": \"system_text\",\n            \"key\": \"system_text\",\n            \"type\": \"static\",\n            \"valueType\": \"string\",\n            \"label\": \"解析文本\"\n          }\n        ]\n      },\n      \"defaultOutputs\": [\n        \"system_text\"\n      ],\n      \"manualConfig\": [],\n      \"rules\": [\n        \"fileUrlList 必须是二维数组 [[\\\"start\\\", \\\"userFiles\\\"]]。\",\n        \"禁止引用 userChatInput。\"\n      ]\n    },\n    {\n      \"templateId\": \"textEditor\",\n      \"description\": \"提示词拼接节点，固定拼接 readFiles.system_text 和可选 analyzeContent.analysisText。\",\n      \"node\": {\n        \"nodeId\": \"formatPrompt\",\n        \"name\": \"总结提示词拼接\",\n        \"avatar\": \"core/workflow/template/textConcat\",\n        \"flowNodeType\": \"textEditor\",\n        \"position\": {\n          \"x\": 1700,\n          \"y\": -320\n        },\n        \"inputs\": [\n          {\n            \"key\": \"system_textareaInput\",\n            \"renderTypeList\": [\n              \"textarea\"\n            ],\n            \"valueType\": \"string\",\n            \"required\": true,\n            \"label\": \"workflow:concatenation_text\",\n            \"value\": \"请根据以下内容生成总结。\\n\\n文件分析结果：\\n{{$analyzeContent.analysisText$}}\\n\\n原始文件内容：\\n{{$readFiles.system_text$}}\\n\\n请用中文简要总结。\"\n          }\n        ],\n        \"outputs\": [\n          {\n            \"id\": \"system_text\",\n            \"key\": \"system_text\",\n            \"type\": \"static\",\n            \"valueType\": \"string\",\n            \"label\": \"workflow:concatenation_result\"\n          }\n        ]\n      },\n      \"defaultOutputs\": [\n        \"system_text\"\n      ],\n      \"manualConfig\": [\n        \"可根据业务修改固定提示词，但必须保留真实变量引用\"\n      ],\n      \"rules\": [\n        \"文件总结必须包含 {{$readFiles.system_text$}}。\",\n        \"如果有代码分析节点，必须包含 {{$analyzeContent.analysisText$}}。\",\n        \"禁止 ${readFiles.system_text}、{readFiles.system_text}、{summarize.answerText}。\"\n      ]\n    },\n    {\n      \"templateId\": \"chatNode\",\n      \"description\": \"AI 总结节点，模型字段留空，导入后人工选择模型。\",\n      \"node\": {\n        \"nodeId\": \"summarize\",\n        \"name\": \"AI 总结\",\n        \"avatar\": \"core/workflow/template/aiChat\",\n        \"flowNodeType\": \"chatNode\",\n        \"showStatus\": true,\n        \"position\": {\n          \"x\": 2100,\n          \"y\": -320\n        },\n        \"version\": \"4.9.7\",\n        \"inputs\": [\n          {\n            \"key\": \"model\",\n            \"renderTypeList\": [\n              \"settingLLMModel\",\n              \"reference\"\n            ],\n            \"label\": \"common:core.module.input.label.aiModel\",\n            \"valueType\": \"string\",\n            \"value\": \"\"\n          },\n          {\n            \"key\": \"temperature\",\n            \"renderTypeList\": [\n              \"hidden\"\n            ],\n            \"label\": \"\",\n            \"valueType\": \"number\",\n            \"value\": 0\n          },\n          {\n            \"key\": \"isResponseAnswerText\",\n            \"renderTypeList\": [\n              \"hidden\"\n            ],\n            \"label\": \"\",\n            \"valueType\": \"boolean\",\n            \"value\": true\n          },\n          {\n            \"key\": \"systemPrompt\",\n            \"renderTypeList\": [\n              \"textarea\",\n              \"reference\"\n            ],\n            \"valueType\": \"string\",\n            \"label\": \"common:core.ai.Prompt\",\n            \"value\": \"你是文件总结助手。请根据用户提供的内容输出清晰、简洁的中文总结。\"\n          },\n          {\n            \"key\": \"history\",\n            \"renderTypeList\": [\n              \"numberInput\",\n              \"reference\"\n            ],\n            \"valueType\": \"chatHistory\",\n            \"label\": \"common:core.module.input.label.chat history\",\n            \"required\": true,\n            \"value\": 0\n          },\n          {\n            \"key\": \"userChatInput\",\n            \"renderTypeList\": [\n              \"reference\",\n              \"textarea\"\n            ],\n            \"valueType\": \"string\",\n            \"label\": \"workflow:user_question\",\n            \"required\": true,\n            \"value\": [\n              \"formatPrompt\",\n              \"system_text\"\n            ]\n          }\n        ],\n        \"outputs\": [\n          {\n            \"id\": \"history\",\n            \"key\": \"history\",\n            \"type\": \"static\",\n            \"valueType\": \"chatHistory\",\n            \"label\": \"新上下文\"\n          },\n          {\n            \"id\": \"answerText\",\n            \"key\": \"answerText\",\n            \"type\": \"static\",\n            \"valueType\": \"string\",\n            \"label\": \"AI 回复\"\n          },\n          {\n            \"id\": \"system_error_text\",\n            \"key\": \"system_error_text\",\n            \"type\": \"error\",\n            \"valueType\": \"string\",\n            \"label\": \"错误信息\"\n          }\n        ],\n        \"catchError\": false\n      },\n      \"defaultOutputs\": [\n        \"answerText\"\n      ],\n      \"manualConfig\": [\n        \"导入后选择模型\",\n        \"根据业务修改 systemPrompt\"\n      ],\n      \"rules\": [\n        \"model.value 必须为空字符串。\",\n        \"renderTypeList 使用 settingLLMModel/reference。\",\n        \"禁止 gpt-3.5-turbo、qwen-plus、selectModel。\"\n      ]\n    },\n    {\n      \"templateId\": \"answerNode\",\n      \"description\": \"最终回复节点，由程序固定引用 summarize.answerText。\",\n      \"node\": {\n        \"nodeId\": \"answer\",\n        \"name\": \"指定回复\",\n        \"avatar\": \"core/workflow/template/reply\",\n        \"flowNodeType\": \"answerNode\",\n        \"position\": {\n          \"x\": 2500,\n          \"y\": -320\n        },\n        \"inputs\": [\n          {\n            \"key\": \"text\",\n            \"renderTypeList\": [\n              \"textarea\",\n              \"reference\"\n            ],\n            \"valueType\": \"any\",\n            \"required\": true,\n            \"isRichText\": false,\n            \"maxLength\": 100000,\n            \"label\": \"common:core.module.input.label.Response content\",\n            \"value\": \"{{$summarize.answerText$}}\"\n          }\n        ],\n        \"outputs\": []\n      },\n      \"defaultOutputs\": [],\n      \"manualConfig\": [],\n      \"rules\": [\n        \"answer.text 必须由程序固定为 {{$summarize.answerText$}}。\",\n        \"禁止空字符串、单大括号变量、数组引用。\"\n      ]\n    },\n    {\n      \"templateId\": \"code_file_analysis\",\n      \"description\": \"文件内容分析代码节点，使用固定安全 JS 模板。\",\n      \"node\": {\n        \"nodeId\": \"analyzeContent\",\n        \"name\": \"文件内容分析\",\n        \"avatar\": \"core/workflow/template/codeRun\",\n        \"flowNodeType\": \"code\",\n        \"showStatus\": true,\n        \"position\": {\n          \"x\": 1300,\n          \"y\": -320\n        },\n        \"inputs\": [\n          {\n            \"key\": \"system_addInputParam\",\n            \"renderTypeList\": [\n              \"addInputParam\"\n            ],\n            \"valueType\": \"dynamic\",\n            \"label\": \"\",\n            \"required\": false\n          },\n          {\n            \"key\": \"fileContent\",\n            \"renderTypeList\": [\n              \"reference\"\n            ],\n            \"valueType\": \"string\",\n            \"required\": true,\n            \"label\": \"fileContent\",\n            \"value\": [\n              \"readFiles\",\n              \"system_text\"\n            ]\n          },\n          {\n            \"key\": \"codeType\",\n            \"renderTypeList\": [\n              \"hidden\"\n            ],\n            \"label\": \"\",\n            \"valueType\": \"string\",\n            \"value\": \"js\"\n          },\n          {\n            \"key\": \"code\",\n            \"renderTypeList\": [\n              \"custom\"\n            ],\n            \"label\": \"\",\n            \"valueType\": \"string\",\n            \"value\": \"function main(params) {\\n  const content = params.fileContent || '';\\n  const lineCount = content ? content.split(/\\\\r?\\\\n/).length : 0;\\n  const wordCount = content.trim() ? content.trim().split(/\\\\s+/).filter(Boolean).length : 0;\\n  const hasSensitiveWords = /password|secret|token/i.test(content);\\n  const analysisText = `文件行数：${lineCount}\\\\n单词数量：${wordCount}\\\\n是否包含敏感词：${hasSensitiveWords ? '是' : '否'}`;\\n  return {\\n    analysisResult: {\\n      lineCount,\\n      wordCount,\\n      hasSensitiveWords\\n    },\\n    analysisText\\n  };\\n}\"\n          }\n        ],\n        \"outputs\": [\n          {\n            \"id\": \"system_addOutputParam\",\n            \"key\": \"system_addOutputParam\",\n            \"type\": \"dynamic\",\n            \"valueType\": \"dynamic\",\n            \"label\": \"\"\n          },\n          {\n            \"id\": \"system_rawResponse\",\n            \"key\": \"system_rawResponse\",\n            \"type\": \"static\",\n            \"valueType\": \"object\",\n            \"label\": \"system_rawResponse\"\n          },\n          {\n            \"id\": \"analysisResult\",\n            \"key\": \"analysisResult\",\n            \"type\": \"dynamic\",\n            \"valueType\": \"object\",\n            \"label\": \"analysisResult\"\n          },\n          {\n            \"id\": \"analysisText\",\n            \"key\": \"analysisText\",\n            \"type\": \"dynamic\",\n            \"valueType\": \"string\",\n            \"label\": \"analysisText\"\n          },\n          {\n            \"id\": \"error\",\n            \"key\": \"error\",\n            \"type\": \"error\",\n            \"valueType\": \"string\",\n            \"label\": \"error\"\n          }\n        ],\n        \"catchError\": false\n      },\n      \"defaultOutputs\": [\n        \"analysisResult\",\n        \"analysisText\"\n      ],\n      \"manualConfig\": [],\n      \"rules\": [\n        \"code.value 必须使用固定安全模板。\",\n        \"fileContent 输入必须绑定 readFiles.system_text。\",\n        \"必须输出 analysisResult 和 analysisText。\",\n        \"禁止 AI 自由改写 code.value。\"\n      ]\n    }\n  ]\n}\n"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "system_text",
+          "key": "system_text",
+          "label": "workflow:concatenation_result",
+          "type": "static",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "nodeId": "merge_plan_ai",
+      "name": "合并方案 AI",
+      "avatar": "core/workflow/template/aiChat",
+      "flowNodeType": "chatNode",
+      "showStatus": true,
+      "position": {
+        "x": 1300,
+        "y": -320
+      },
+      "version": "4.9.7",
+      "inputs": [
+        {
+          "key": "model",
+          "renderTypeList": [
+            "settingLLMModel",
+            "reference"
+          ],
+          "label": "common:core.module.input.label.aiModel",
+          "valueType": "string",
+          "value": ""
+        },
+        {
+          "key": "temperature",
+          "renderTypeList": [
+            "hidden"
+          ],
+          "label": "",
+          "valueType": "number",
+          "value": 0
+        },
+        {
+          "key": "isResponseAnswerText",
+          "renderTypeList": [
+            "hidden"
+          ],
+          "label": "",
+          "value": true,
+          "valueType": "boolean"
+        },
+        {
+          "key": "aiChatQuoteRole",
+          "renderTypeList": [
+            "hidden"
+          ],
+          "label": "",
+          "valueType": "string",
+          "value": "system"
+        },
+        {
+          "key": "systemPrompt",
+          "renderTypeList": [
+            "textarea",
+            "reference"
+          ],
+          "valueType": "string",
+          "label": "common:core.ai.Prompt",
+          "maxLength": 100000,
+          "value": "你是 FastGPT V6 合并方案规划器。只输出合并方案 JSON，不要输出完整 FastGPT 工作流 JSON。\n只允许从 single_node_templates.json 的 templateId 中选择节点。\n第一阶段只支持 file_upload_summary、file_upload_code_summary、text_ai_reply。\n禁止输出 nodes/edges/chatConfig 的完整工作流结构。"
+        },
+        {
+          "key": "history",
+          "renderTypeList": [
+            "numberInput",
+            "reference"
+          ],
+          "valueType": "chatHistory",
+          "label": "common:core.module.input.label.chat history",
+          "required": true,
+          "value": 0
+        },
+        {
+          "key": "userChatInput",
+          "renderTypeList": [
+            "reference",
+            "textarea"
+          ],
+          "valueType": "string",
+          "label": "workflow:user_question",
+          "required": true,
+          "value": [
+            "start",
+            "userChatInput"
+          ]
+        },
+        {
+          "key": "aiChatResponseFormat",
+          "renderTypeList": [
+            "hidden"
+          ],
+          "label": "",
+          "valueType": "string",
+          "value": "json_object"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "history",
+          "key": "history",
+          "type": "static",
+          "valueType": "chatHistory",
+          "label": "新上下文"
+        },
+        {
+          "id": "answerText",
+          "key": "answerText",
+          "type": "static",
+          "valueType": "string",
+          "label": "AI 回复"
+        },
+        {
+          "id": "system_error_text",
+          "key": "system_error_text",
+          "type": "error",
+          "valueType": "string",
+          "label": "错误信息"
+        }
+      ],
+      "catchError": false
+    },
+    {
+      "nodeId": "merge_json_code",
+      "name": "代码合并 JSON",
+      "avatar": "core/workflow/template/codeRun",
+      "flowNodeType": "code",
+      "showStatus": true,
+      "position": {
+        "x": 1700,
+        "y": -320
+      },
+      "inputs": [
+        {
+          "key": "system_addInputParam",
+          "renderTypeList": [
+            "addInputParam"
+          ],
+          "valueType": "dynamic",
+          "label": "",
+          "required": false
+        },
+        {
+          "key": "userRequirement",
+          "renderTypeList": [
+            "reference"
+          ],
+          "valueType": "string",
+          "required": true,
+          "label": "userRequirement",
+          "value": [
+            "start",
+            "userChatInput"
+          ]
+        },
+        {
+          "key": "templatesText",
+          "renderTypeList": [
+            "reference"
+          ],
+          "valueType": "string",
+          "required": true,
+          "label": "templatesText",
+          "value": [
+            "text_single_node_templates",
+            "system_text"
+          ]
+        },
+        {
+          "key": "mergePlanText",
+          "renderTypeList": [
+            "reference"
+          ],
+          "valueType": "string",
+          "required": true,
+          "label": "mergePlanText",
+          "value": [
+            "merge_plan_ai",
+            "answerText"
+          ]
+        },
+        {
+          "key": "codeType",
+          "renderTypeList": [
+            "hidden"
+          ],
+          "label": "",
+          "valueType": "string",
+          "value": "js"
+        },
+        {
+          "key": "code",
+          "renderTypeList": [
+            "custom"
+          ],
+          "label": "",
+          "valueType": "string",
+          "value": "function main({ userRequirement, templatesText, mergePlanText }) {\n  function stripFence(text) {\n    return String(text || \"\").trim().replace(/^```json\\s*/i, \"\").replace(/^```\\s*/i, \"\").replace(/```$/i, \"\").trim();\n  }\n  function safeParse(text, fallback) {\n    try { return JSON.parse(stripFence(text)); } catch (e) { return fallback; }\n  }\n  function clone(obj) {\n    return JSON.parse(JSON.stringify(obj));\n  }\n  function byId(templates) {\n    const map = {};\n    for (const item of templates.templates || []) map[item.templateId] = item;\n    return map;\n  }\n  function inferPlan(req) {\n    const text = String(req || \"\");\n    const needFileUpload = /文件|上传|文档|pdf|doc|总结/.test(text);\n    const needCodeAnalysis = needFileUpload && /分析|统计|行数|词|敏感/.test(text);\n    if (needFileUpload) {\n      return {\n        workflowType: needCodeAnalysis ? \"file_upload_code_summary\" : \"file_upload_summary\",\n        nodes: needCodeAnalysis\n          ? [\"workflowStart_file\", \"readFiles\", \"code_file_analysis\", \"textEditor\", \"chatNode\", \"answerNode\"]\n          : [\"workflowStart_file\", \"readFiles\", \"textEditor\", \"chatNode\", \"answerNode\"],\n        needFileUpload,\n        needCodeAnalysis,\n        finalAnswerNodeId: \"summarize\",\n        manualConfig: [\"导入后选择模型\", \"根据业务修改 AI systemPrompt\"]\n      };\n    }\n    return {\n      workflowType: \"text_ai_reply\",\n      nodes: [\"workflowStart_text\", \"textEditor\", \"chatNode\", \"answerNode\"],\n      needFileUpload: false,\n      needCodeAnalysis: false,\n      finalAnswerNodeId: \"summarize\",\n      manualConfig: [\"导入后选择模型\", \"根据业务修改 AI systemPrompt\"]\n    };\n  }\n  function getInput(node, key) {\n    return (node.inputs || []).find(item => item.key === key);\n  }\n  function sanitizeNode(node) {\n    if (node.flowNodeType === \"chatNode\") {\n      const model = getInput(node, \"model\");\n      if (model) {\n        model.renderTypeList = [\"settingLLMModel\", \"reference\"];\n        model.value = \"\";\n      }\n    }\n    return node;\n  }\n  function makeEdge(source, target) {\n    return {\n      source,\n      target,\n      sourceHandle: source + \"-source-right\",\n      targetHandle: target + \"-target-left\"\n    };\n  }\n  const templates = safeParse(templatesText, { templates: [] });\n  const templateMap = byId(templates);\n  let plan = safeParse(mergePlanText, null);\n  if (!plan || !Array.isArray(plan.nodes) || plan.nodes.some(id => !templateMap[id])) plan = inferPlan(userRequirement);\n\n  const nodes = [];\n  const add = (templateId) => {\n    const item = templateMap[templateId];\n    if (!item) return;\n    nodes.push(sanitizeNode(clone(item.node)));\n  };\n\n  if (plan.needFileUpload) add(\"workflowStart_file\");\n  else add(\"workflowStart_text\");\n\n  if (plan.needFileUpload) add(\"readFiles\");\n  if (plan.needCodeAnalysis) add(\"code_file_analysis\");\n  add(\"textEditor\");\n  add(\"chatNode\");\n  add(\"answerNode\");\n\n  const existing = new Set(nodes.map(n => n.nodeId));\n  const formatPrompt = nodes.find(n => n.nodeId === \"formatPrompt\");\n  if (formatPrompt) {\n    const input = getInput(formatPrompt, \"system_textareaInput\");\n    if (input && !plan.needCodeAnalysis) {\n      input.value = \"请根据以下文件内容生成中文总结：\\n\\n{{$readFiles.system_text$}}\\n\\n请输出简洁、清晰的总结。\";\n    }\n    if (input && !plan.needFileUpload) {\n      input.value = \"用户需求：\\n{{$start.userChatInput$}}\\n\\n请根据用户需求直接回复。\";\n    }\n  }\n  const summarize = nodes.find(n => n.nodeId === \"summarize\");\n  if (summarize && !plan.needFileUpload) {\n    const userChatInput = getInput(summarize, \"userChatInput\");\n    if (userChatInput) userChatInput.value = [\"formatPrompt\", \"system_text\"];\n  }\n  const answer = nodes.find(n => n.nodeId === \"answer\");\n  if (answer) {\n    const text = getInput(answer, \"text\");\n    if (text) text.value = \"{{$summarize.answerText$}}\";\n  }\n\n  const sequence = [\"start\"];\n  if (existing.has(\"readFiles\")) sequence.push(\"readFiles\");\n  if (existing.has(\"analyzeContent\")) sequence.push(\"analyzeContent\");\n  sequence.push(\"formatPrompt\", \"summarize\", \"answer\");\n  const edges = [];\n  for (let i = 0; i < sequence.length - 1; i++) edges.push(makeEdge(sequence[i], sequence[i + 1]));\n\n  const chatConfig = {\n    welcomeText: \"#### FastGPT V6 生成的工作流模板\\n导入后请手动选择模型，并按业务调整提示词。\",\n    variables: [],\n    scheduledTriggerConfig: { cronString: \"\", timezone: \"Etc/GMT-8\", defaultPrompt: \"\" },\n    fileSelectConfig: plan.needFileUpload ? {\n      canSelectFile: true,\n      canSelectImg: false,\n      maxFiles: 1,\n      canSelectVideo: false,\n      canSelectAudio: false,\n      canSelectCustomFileExtension: false,\n      customFileExtensionList: []\n    } : {\n      canSelectFile: false,\n      canSelectImg: false,\n      maxFiles: 0,\n      canSelectVideo: false,\n      canSelectAudio: false,\n      canSelectCustomFileExtension: false,\n      customFileExtensionList: []\n    },\n    autoExecute: { open: false, defaultPrompt: \"\" }\n  };\n\n  return {\n    workflowJsonText: JSON.stringify({ nodes, edges, chatConfig }, null, 2),\n    mergePlanJsonText: JSON.stringify(plan, null, 2)\n  };\n}"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "system_addOutputParam",
+          "key": "system_addOutputParam",
+          "type": "dynamic",
+          "valueType": "dynamic",
+          "label": ""
+        },
+        {
+          "id": "system_rawResponse",
+          "key": "system_rawResponse",
+          "type": "static",
+          "valueType": "object",
+          "label": "system_rawResponse"
+        },
+        {
+          "id": "workflowJsonText",
+          "key": "workflowJsonText",
+          "type": "dynamic",
+          "valueType": "string",
+          "label": "workflowJsonText"
+        },
+        {
+          "id": "mergePlanJsonText",
+          "key": "mergePlanJsonText",
+          "type": "dynamic",
+          "valueType": "string",
+          "label": "mergePlanJsonText"
+        },
+        {
+          "id": "error",
+          "key": "error",
+          "type": "error",
+          "valueType": "string",
+          "label": "error"
+        }
+      ],
+      "catchError": false
+    },
+    {
+      "nodeId": "review_ai",
+      "name": "整理检查 AI",
+      "avatar": "core/workflow/template/aiChat",
+      "flowNodeType": "chatNode",
+      "showStatus": true,
+      "position": {
+        "x": 2100,
+        "y": -320
+      },
+      "version": "4.9.7",
+      "inputs": [
+        {
+          "key": "model",
+          "renderTypeList": [
+            "settingLLMModel",
+            "reference"
+          ],
+          "label": "common:core.module.input.label.aiModel",
+          "valueType": "string",
+          "value": ""
+        },
+        {
+          "key": "temperature",
+          "renderTypeList": [
+            "hidden"
+          ],
+          "label": "",
+          "valueType": "number",
+          "value": 0
+        },
+        {
+          "key": "isResponseAnswerText",
+          "renderTypeList": [
+            "hidden"
+          ],
+          "label": "",
+          "value": true,
+          "valueType": "boolean"
+        },
+        {
+          "key": "aiChatQuoteRole",
+          "renderTypeList": [
+            "hidden"
+          ],
+          "label": "",
+          "valueType": "string",
+          "value": "system"
+        },
+        {
+          "key": "systemPrompt",
+          "renderTypeList": [
+            "textarea",
+            "reference"
+          ],
+          "valueType": "string",
+          "label": "common:core.ai.Prompt",
+          "maxLength": 100000,
+          "value": "你是 FastGPT V6 结果检查器。只输出检查报告 JSON：{\"pass\":true,\"errors\":[],\"warnings\":[],\"fixSuggestion\":\"\"}。\n不要自由重写业务，不要输出完整工作流 JSON。重点检查是否符合用户需求、是否需要人工选择模型、是否仍有明显变量链路问题。"
+        },
+        {
+          "key": "history",
+          "renderTypeList": [
+            "numberInput",
+            "reference"
+          ],
+          "valueType": "chatHistory",
+          "label": "common:core.module.input.label.chat history",
+          "required": true,
+          "value": 0
+        },
+        {
+          "key": "userChatInput",
+          "renderTypeList": [
+            "reference",
+            "textarea"
+          ],
+          "valueType": "string",
+          "label": "workflow:user_question",
+          "required": true,
+          "value": [
+            "merge_json_code",
+            "workflowJsonText"
+          ]
+        },
+        {
+          "key": "aiChatResponseFormat",
+          "renderTypeList": [
+            "hidden"
+          ],
+          "label": "",
+          "valueType": "string",
+          "value": "json_object"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "history",
+          "key": "history",
+          "type": "static",
+          "valueType": "chatHistory",
+          "label": "新上下文"
+        },
+        {
+          "id": "answerText",
+          "key": "answerText",
+          "type": "static",
+          "valueType": "string",
+          "label": "AI 回复"
+        },
+        {
+          "id": "system_error_text",
+          "key": "system_error_text",
+          "type": "error",
+          "valueType": "string",
+          "label": "错误信息"
+        }
+      ],
+      "catchError": false
+    },
+    {
+      "nodeId": "final_validate_code",
+      "name": "最终代码校验",
+      "avatar": "core/workflow/template/codeRun",
+      "flowNodeType": "code",
+      "showStatus": true,
+      "position": {
+        "x": 2500,
+        "y": -320
+      },
+      "inputs": [
+        {
+          "key": "system_addInputParam",
+          "renderTypeList": [
+            "addInputParam"
+          ],
+          "valueType": "dynamic",
+          "label": "",
+          "required": false
+        },
+        {
+          "key": "workflowJsonText",
+          "renderTypeList": [
+            "reference"
+          ],
+          "valueType": "string",
+          "required": true,
+          "label": "workflowJsonText",
+          "value": [
+            "merge_json_code",
+            "workflowJsonText"
+          ]
+        },
+        {
+          "key": "reviewText",
+          "renderTypeList": [
+            "reference"
+          ],
+          "valueType": "string",
+          "required": true,
+          "label": "reviewText",
+          "value": [
+            "review_ai",
+            "answerText"
+          ]
+        },
+        {
+          "key": "codeType",
+          "renderTypeList": [
+            "hidden"
+          ],
+          "label": "",
+          "valueType": "string",
+          "value": "js"
+        },
+        {
+          "key": "code",
+          "renderTypeList": [
+            "custom"
+          ],
+          "label": "",
+          "valueType": "string",
+          "value": "function main({ workflowJsonText, reviewText }) {\n  function stripFence(text) {\n    return String(text || \"\").trim().replace(/^```json\\s*/i, \"\").replace(/^```\\s*/i, \"\").replace(/```$/i, \"\").trim();\n  }\n  function err(errors, msg) { errors.push(msg); }\n  function getInput(node, key) {\n    return (node.inputs || []).find(item => item.key === key);\n  }\n  function codeInput(node) {\n    const item = getInput(node, \"code\");\n    return item ? String(item.value || \"\") : \"\";\n  }\n  function extractParams(code) {\n    const out = new Set();\n    String(code || \"\").replace(/params\\.([A-Za-z_][A-Za-z0-9_]*)/g, function(_, key) {\n      out.add(key);\n      return \"\";\n    });\n    return Array.from(out);\n  }\n  function extractReturnKeys(code) {\n    const match = String(code || \"\").match(/return\\s*\\{([\\s\\S]*?)\\};/);\n    if (!match) return [];\n    const body = match[1];\n    const segments = [];\n    let current = \"\";\n    let depth = 0;\n    for (let i = 0; i < body.length; i++) {\n      const ch = body[i];\n      if (ch === \"{\") depth++;\n      if (ch === \"}\") depth = Math.max(0, depth - 1);\n      if (ch === \",\" && depth === 0) {\n        segments.push(current.trim());\n        current = \"\";\n      } else {\n        current += ch;\n      }\n    }\n    if (current.trim()) segments.push(current.trim());\n    const keys = [];\n    for (const segment of segments) {\n      const colon = segment.match(/^([A-Za-z_][A-Za-z0-9_]*)\\s*:/);\n      const shorthand = segment.match(/^([A-Za-z_][A-Za-z0-9_]*)$/);\n      if (colon) keys.push(colon[1]);\n      else if (shorthand) keys.push(shorthand[1]);\n    }\n    return Array.from(new Set(keys));\n  }\n  const errors = [];\n  let workflow;\n  const original = stripFence(workflowJsonText);\n  try {\n    workflow = JSON.parse(original);\n  } catch (e) {\n    return { finalJsonText: JSON.stringify({ pass: false, errors: [\"JSON.parse failed: \" + e.message], workflowJsonText: original }, null, 2) };\n  }\n  if (!workflow || typeof workflow !== \"object\") err(errors, \"Top level must be object.\");\n  if (!Array.isArray(workflow.nodes)) err(errors, \"nodes must be array.\");\n  if (!Array.isArray(workflow.edges)) err(errors, \"edges must be array.\");\n  if (!workflow.chatConfig || typeof workflow.chatConfig !== \"object\") err(errors, \"chatConfig must be object.\");\n  const nodes = Array.isArray(workflow.nodes) ? workflow.nodes : [];\n  const edges = Array.isArray(workflow.edges) ? workflow.edges : [];\n  const nodeIds = new Set();\n  for (const node of nodes) {\n    if (!node.nodeId) err(errors, \"Node missing nodeId.\");\n    if (nodeIds.has(node.nodeId)) err(errors, \"Duplicate nodeId: \" + node.nodeId);\n    nodeIds.add(node.nodeId);\n    if (!Array.isArray(node.inputs || [])) err(errors, node.nodeId + \" inputs must be array.\");\n    if (!Array.isArray(node.outputs || [])) err(errors, node.nodeId + \" outputs must be array.\");\n  }\n  for (const edge of edges) {\n    if (!nodeIds.has(edge.source)) err(errors, \"edge source not found: \" + edge.source);\n    if (!nodeIds.has(edge.target)) err(errors, \"edge target not found: \" + edge.target);\n    if (edge.sourceHandle !== edge.source + \"-source-right\") err(errors, \"bad sourceHandle: \" + edge.sourceHandle);\n    if (edge.targetHandle !== edge.target + \"-target-left\") err(errors, \"bad targetHandle: \" + edge.targetHandle);\n  }\n  const workflowForTextScan = JSON.parse(JSON.stringify(workflow));\n  for (const node of workflowForTextScan.nodes || []) {\n    for (const input of node.inputs || []) {\n      if (input.key === \"code\") input.value = \"\";\n    }\n  }\n  const text = JSON.stringify(workflowForTextScan);\n  if (/\\$\\{[^}]+\\}/.test(text)) err(errors, \"Found ${...} variable format outside code.value.\");\n  if (/\\{summarize\\.answerText\\}/.test(text)) err(errors, \"Found single-brace summarize answer variable.\");\n  if (/REPLACE_ME|YOUR_WEBHOOK|\\bxxx\\b/i.test(text)) err(errors, \"Found placeholder text.\");\n  if (/gpt-3\\.5-turbo|qwen-plus|selectModel/i.test(text)) err(errors, \"Found invented model or selectModel.\");\n  const readFiles = nodes.find(n => n.nodeId === \"readFiles\");\n  if (readFiles) {\n    const input = getInput(readFiles, \"fileUrlList\");\n    if (JSON.stringify(input && input.value) !== JSON.stringify([[\"start\", \"userFiles\"]])) {\n      err(errors, \"readFiles.fileUrlList must be [[\\\"start\\\",\\\"userFiles\\\"]].\");\n    }\n  }\n  const textEditor = nodes.find(n => n.nodeId === \"formatPrompt\");\n  if (readFiles && textEditor) {\n    const value = String((getInput(textEditor, \"system_textareaInput\") || {}).value || \"\");\n    if (!value.includes(\"{{$readFiles.system_text$}}\")) err(errors, \"textEditor must reference {{$readFiles.system_text$}}.\");\n  }\n  const answer = nodes.find(n => n.flowNodeType === \"answerNode\");\n  if (!answer) err(errors, \"Missing answerNode.\");\n  else {\n    const value = (getInput(answer, \"text\") || {}).value;\n    if (!value) err(errors, \"answerNode.text is empty.\");\n    if (typeof value !== \"string\" || !/\\{\\{\\$[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+\\$\\}\\}/.test(value)) {\n      err(errors, \"answerNode.text must use {{$node.output$}} format.\");\n    }\n  }\n  for (const node of nodes.filter(n => n.flowNodeType === \"code\")) {\n    const code = codeInput(node);\n    if (/split\\('\\\\n'\\)/.test(code)) err(errors, node.nodeId + \" code.value contains split('\\\\n').\");\n    const inputKeys = new Set((node.inputs || []).map(item => item.key));\n    for (const key of extractParams(code)) {\n      if (!inputKeys.has(key)) err(errors, node.nodeId + \" params.\" + key + \" has no same-key input.\");\n    }\n    const outputKeys = new Set((node.outputs || []).map(item => item.key || item.id));\n    for (const key of extractReturnKeys(code)) {\n      if (!outputKeys.has(key)) err(errors, node.nodeId + \" return field \" + key + \" has no same-key output.\");\n    }\n  }\n  if (errors.length) {\n    return { finalJsonText: JSON.stringify({ pass: false, errors, reviewText, workflowJsonText: original }, null, 2) };\n  }\n  return { finalJsonText: JSON.stringify(workflow, null, 2) };\n}"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "system_addOutputParam",
+          "key": "system_addOutputParam",
+          "type": "dynamic",
+          "valueType": "dynamic",
+          "label": ""
+        },
+        {
+          "id": "system_rawResponse",
+          "key": "system_rawResponse",
+          "type": "static",
+          "valueType": "object",
+          "label": "system_rawResponse"
+        },
+        {
+          "id": "finalJsonText",
+          "key": "finalJsonText",
+          "type": "dynamic",
+          "valueType": "string",
+          "label": "finalJsonText"
+        },
+        {
+          "id": "error",
+          "key": "error",
+          "type": "error",
+          "valueType": "string",
+          "label": "error"
+        }
+      ],
+      "catchError": false
+    },
+    {
+      "nodeId": "answer",
+      "name": "指定回复",
+      "avatar": "core/workflow/template/reply",
+      "flowNodeType": "answerNode",
+      "position": {
+        "x": 3300,
+        "y": -320
+      },
+      "inputs": [
+        {
+          "key": "text",
+          "renderTypeList": [
+            "textarea",
+            "reference"
+          ],
+          "valueType": "any",
+          "required": true,
+          "isRichText": false,
+          "maxLength": 100000,
+          "label": "common:core.module.input.label.Response content",
+          "value": "{{$final_validate_code.finalJsonText$}}"
+        }
+      ],
+      "outputs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "start",
+      "target": "text_single_node_templates",
+      "sourceHandle": "start-source-right",
+      "targetHandle": "text_single_node_templates-target-left"
+    },
+    {
+      "source": "text_single_node_templates",
+      "target": "merge_plan_ai",
+      "sourceHandle": "text_single_node_templates-source-right",
+      "targetHandle": "merge_plan_ai-target-left"
+    },
+    {
+      "source": "merge_plan_ai",
+      "target": "merge_json_code",
+      "sourceHandle": "merge_plan_ai-source-right",
+      "targetHandle": "merge_json_code-target-left"
+    },
+    {
+      "source": "merge_json_code",
+      "target": "review_ai",
+      "sourceHandle": "merge_json_code-source-right",
+      "targetHandle": "review_ai-target-left"
+    },
+    {
+      "source": "review_ai",
+      "target": "final_validate_code",
+      "sourceHandle": "review_ai-source-right",
+      "targetHandle": "final_validate_code-target-left"
+    },
+    {
+      "source": "final_validate_code",
+      "target": "answer",
+      "sourceHandle": "final_validate_code-source-right",
+      "targetHandle": "answer-target-left"
+    }
+  ],
+  "chatConfig": {
+    "welcomeText": "#### FastGPT V6 单节点模板合并生成器\n输入工作流目标后，系统会先生成合并方案，再由代码合并固定单节点模板。",
+    "variables": [],
+    "scheduledTriggerConfig": {
+      "cronString": "",
+      "timezone": "Etc/GMT-8",
+      "defaultPrompt": ""
+    },
+    "fileSelectConfig": {
+      "canSelectFile": false,
+      "canSelectImg": false,
+      "maxFiles": 0,
+      "canSelectVideo": false,
+      "canSelectAudio": false,
+      "canSelectCustomFileExtension": false,
+      "customFileExtensionList": []
+    },
+    "autoExecute": {
+      "open": false,
+      "defaultPrompt": ""
+    }
+  },
+  "_v6Metadata": {
+    "schema": "v6_single_node_template_generator",
+    "description": "AI only creates merge plan; code merges fixed node templates and validates final JSON."
+  }
+}

@@ -1,0 +1,5 @@
+local pid = Game.GetLocalPlayer()
+print("TURN=" .. tostring(Game.GetCurrentGameTurn()))
+print("IS_TURN_ACTIVE=" .. tostring(Players[pid]:IsTurnActive()))
+print("ROUND=" .. tostring(Game.GetRound()))
+print("---END---")

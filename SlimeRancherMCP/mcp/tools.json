@@ -1,0 +1,1838 @@
+{
+  "game": "Slime Rancher 1",
+  "bridge_version": "0.8.2",
+  "tools": [
+    {
+      "name": "sr_ping",
+      "title": "桥接连通性",
+      "description": "验证 MCP、HTTP 和游戏 Mod 通道；不读取存档。",
+      "kind": "read",
+      "args": []
+    },
+    {
+      "name": "sr_health",
+      "title": "桥接与游戏健康",
+      "description": "查看已加载的桥接版本、工具名、场景、存档状态、快照年龄、排队和错误计数。即使游戏主线程不响应也可探活。",
+      "kind": "read",
+      "args": []
+    },
+    {
+      "name": "sr_state",
+      "title": "游戏状态快照",
+      "description": "保持原版游戏状态快照，返回玩家、市场、委托、地块和场景对象的文本摘要及关键字段。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "required",
+          "type": "int",
+          "description": "设为 1 时，未读档返回 NOT_READY。默认 0 时返回带说明的空状态。",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "name": "sr_echo",
+      "title": "回声测试",
+      "description": "原样回传文本，验证 MCP 参数序列化。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "text",
+          "type": "str",
+          "description": "任意测试文本。",
+          "default": ""
+        }
+      ]
+    },
+    {
+      "name": "sr_player",
+      "title": "玩家与位置",
+      "description": "查看新币、钥匙、生命、能量、辐射、背包模式、游戏模式、坐标以及所在区域。",
+      "kind": "read",
+      "args": []
+    },
+    {
+      "name": "sr_time",
+      "title": "游戏时钟",
+      "description": "读取当前游戏日、小时、世界时间、暂停、快进和窗口焦点状态。",
+      "kind": "read",
+      "args": []
+    },
+    {
+      "name": "sr_vacpack",
+      "title": "背包格子",
+      "description": "读取当前背包模式、选中格子、物品 ID、数量、容量和零基格号。普通背包格号可用于后续操作。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "include_empty",
+          "type": "bool",
+          "description": "同时列出空格，搬入背包前应查看目标格。",
+          "default": true
+        }
+      ]
+    },
+    {
+      "name": "sr_market",
+      "title": "结晶市场",
+      "description": "读取当前结晶价格、相对昨日变化、闭市状态以及已加载的销售接收点数量。报价不含随机销售奖励。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "item_id",
+          "type": "str",
+          "description": "精确物品 ID，例如 PINK_PLORT。留空返回所有适用物品。",
+          "default": "",
+          "max_length": 128
+        }
+      ]
+    },
+    {
+      "name": "sr_exchange",
+      "title": "牧场交易委托",
+      "description": "查看所有当前委托的类型、唯一 ID、发布人、到期时间、交付进度、剩余数量和奖励。交付时同时引用 offer_type 与 offer_id。",
+      "kind": "read",
+      "args": []
+    },
+    {
+      "name": "sr_plots",
+      "title": "牧场地块",
+      "description": "读取地块 ID、类型、坐标、升级、种植作物及喂食状态。用 plot_id 查询商店、喂食器和收集器。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "plot_id",
+          "type": "str",
+          "description": "地块 ID，从 sr_plots 获取。留空查看所有匹配地块。",
+          "default": "",
+          "max_length": 160
+        }
+      ]
+    },
+    {
+      "name": "sr_storage",
+      "title": "仓储格子",
+      "description": "分页列出已加载的筒仓、结晶收集器和喂食器等仓储。默认只列可用格，筒仓同时返回已解锁仓口。指定 item_id 后逐格检查能否接收该物品和剩余容量。storage_id 随游戏对象加载变化。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "storage_type",
+          "type": "str",
+          "description": "容器类型。可用 NON_SLIMES、PLORT、FOOD、CRAFTING、ELDER，留空为全部。",
+          "default": "",
+          "max_length": 30
+        },
+        {
+          "name": "plot_id",
+          "type": "str",
+          "description": "地块 ID，从 sr_plots 获取。留空查看所有匹配地块。",
+          "default": "",
+          "max_length": 160
+        },
+        {
+          "name": "item_id",
+          "type": "str",
+          "description": "可选，用来检查每格能否接收的精确物品 ID。返回 can_receive 和 free_space_for_item，无需背包持有该物品。",
+          "default": "",
+          "max_length": 128
+        },
+        {
+          "name": "include_empty",
+          "type": "bool",
+          "description": "同时返回空格和容量。",
+          "default": true
+        },
+        {
+          "name": "include_locked",
+          "type": "bool",
+          "description": "同时返回锁定槽，用于排查旧版误存的物品。槽的 accessible 标记是否可通过已解锁仓口使用。",
+          "default": false
+        },
+        {
+          "name": "offset",
+          "type": "int",
+          "description": "从零开始的分页偏移。下一页传上一页的 next_offset。",
+          "default": 0,
+          "ge": 0
+        },
+        {
+          "name": "limit",
+          "type": "int",
+          "description": "单页条数，1–200。",
+          "default": 45,
+          "ge": 1,
+          "le": 200
+        }
+      ]
+    },
+    {
+      "name": "sr_feeders",
+      "title": "自动喂食器",
+      "description": "查看已加载自动喂食器的 ID、地块、食物类型、存量、投喂速度和单次投喂量。补料可通过 sr_storage 查询 FOOD 格后调用 sr_move。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "plot_id",
+          "type": "str",
+          "description": "地块 ID，从 sr_plots 获取。留空查看所有匹配地块。",
+          "default": "",
+          "max_length": 160
+        }
+      ]
+    },
+    {
+      "name": "sr_collectors",
+      "title": "结晶收集器",
+      "description": "读取已加载收集器的 ID、地块和坐标，同时返回 PLORT 仓储格子。可用 sr_start_collector 触发原生收集。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "plot_id",
+          "type": "str",
+          "description": "地块 ID，从 sr_plots 获取。留空查看所有匹配地块。",
+          "default": "",
+          "max_length": 160
+        }
+      ]
+    },
+    {
+      "name": "sr_refinery",
+      "title": "精炼机库存",
+      "description": "读取精炼机的结晶和科技材料库存、每种材料的剩余容量。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "item_id",
+          "type": "str",
+          "description": "精确物品 ID，例如 PINK_PLORT。留空返回所有适用物品。",
+          "default": "",
+          "max_length": 128
+        },
+        {
+          "name": "include_empty",
+          "type": "bool",
+          "description": "留空 item_id 时，是否连同零库存的可接受材料一起返回。",
+          "default": false
+        }
+      ]
+    },
+    {
+      "name": "sr_extractors",
+      "title": "科技钻井与采集器",
+      "description": "查看已接入存档模型的钻井、泵和蜂箱，含位置、区域、周期结束时间、剩余周期、已排队产出及候选掉落。ready 表示当前已加载且可触发原生吐料。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "site_id",
+          "type": "str",
+          "description": "站点 ID，从 sr_gadget_sites 获取。留空查看全部。",
+          "default": "",
+          "max_length": 160
+        }
+      ]
+    },
+    {
+      "name": "sr_drones",
+      "title": "小蜜蜂状态",
+      "description": "列出可见的普通和高级小蜜蜂、站点、电量到期时间、携带物品及当前程序。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "site_id",
+          "type": "str",
+          "description": "站点 ID，从 sr_gadget_sites 获取。留空查看全部。",
+          "default": "",
+          "max_length": 160
+        }
+      ]
+    },
+    {
+      "name": "sr_drone_options",
+      "title": "小蜜蜂程序选项",
+      "description": "读取指定小蜜蜂可选的目标、来源和目的地 ID。具体组合由 sr_program_drone 按游戏规则验证。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "site_id",
+          "type": "str",
+          "description": "sr_gadget_sites、sr_extractors 或 sr_drones 返回的精确站点 ID。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 160
+        }
+      ]
+    },
+    {
+      "name": "sr_gadgets",
+      "title": "科技设备与配方",
+      "description": "分页查看设备蓝图是否拥有或解锁、价格、成品数、制作资格、配方和精炼机库存。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "query",
+          "type": "str",
+          "description": "按 ID 子串筛选。目录支持按游戏本地化名称筛选。",
+          "default": "",
+          "max_length": 120
+        },
+        {
+          "name": "owned_only",
+          "type": "bool",
+          "description": "只显示已拥有蓝图或有成品的设备。找可购买蓝图时设为 false。",
+          "default": true
+        },
+        {
+          "name": "offset",
+          "type": "int",
+          "description": "从零开始的分页偏移。下一页传上一页的 next_offset。",
+          "default": 0,
+          "ge": 0
+        },
+        {
+          "name": "limit",
+          "type": "int",
+          "description": "单页条数，1–200。",
+          "default": 35,
+          "ge": 1,
+          "le": 200
+        }
+      ]
+    },
+    {
+      "name": "sr_gadget_sites",
+      "title": "科技设备站点",
+      "description": "分页查找可见科技站点、坐标、区域、玩家距离、当前设备及对象是否处于活动状态。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "zone",
+          "type": "str",
+          "description": "按游戏区域 ID 精确筛选，使用 sr_zones 返回的 zone。",
+          "default": "",
+          "max_length": 128
+        },
+        {
+          "name": "occupied_only",
+          "type": "bool",
+          "description": "只返回已安装设备的站点。",
+          "default": false
+        },
+        {
+          "name": "offset",
+          "type": "int",
+          "description": "从零开始的分页偏移。下一页传上一页的 next_offset。",
+          "default": 0,
+          "ge": 0
+        },
+        {
+          "name": "limit",
+          "type": "int",
+          "description": "单页条数，1–200。",
+          "default": 40,
+          "ge": 1,
+          "le": 200
+        }
+      ]
+    },
+    {
+      "name": "sr_loose_items",
+      "title": "附近场景物品",
+      "description": "查找已加载且活动的世界实体，按离玩家距离排序，带坐标、区域和地块。用于寻找地面结晶、钻井吐出的材料等。结果包含符合筛选的场景对象，位置不能证明物品的生成来源。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "item_id",
+          "type": "str",
+          "description": "精确物品 ID，例如 PINK_PLORT。留空返回所有适用物品。",
+          "default": "",
+          "max_length": 128
+        },
+        {
+          "name": "category",
+          "type": "str",
+          "description": "分类筛选。plort、craft、food、slime、liquid 或 other，留空为全部。",
+          "default": "",
+          "max_length": 20
+        },
+        {
+          "name": "radius",
+          "type": "int",
+          "description": "以玩家为中心的查询半径，1–500 游戏单位。",
+          "default": 100,
+          "ge": 1,
+          "le": 500
+        },
+        {
+          "name": "offset",
+          "type": "int",
+          "description": "从零开始的分页偏移。下一页传上一页的 next_offset。",
+          "default": 0,
+          "ge": 0
+        },
+        {
+          "name": "limit",
+          "type": "int",
+          "description": "单页条数，1–200。",
+          "default": 40,
+          "ge": 1,
+          "le": 200
+        }
+      ]
+    },
+    {
+      "name": "sr_find_items",
+      "title": "查找同种物品的来源",
+      "description": "按精确物品 ID 对照背包、已加载仓储、精炼机及附近场景实体。仓储槽用 accessible 标注是否已解锁，并返回 accessible_storage_count；锁定槽里的旧物品仍可查到。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "item_id",
+          "type": "str",
+          "description": "精确物品 ID。使用来源格子或 sr_item_catalog 返回的 item_id。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 128
+        },
+        {
+          "name": "radius",
+          "type": "int",
+          "description": "以玩家为中心的查询半径，1–500 游戏单位。",
+          "default": 100,
+          "ge": 1,
+          "le": 500
+        },
+        {
+          "name": "offset",
+          "type": "int",
+          "description": "从零开始的分页偏移。下一页传上一页的 next_offset。",
+          "default": 0,
+          "ge": 0
+        },
+        {
+          "name": "limit",
+          "type": "int",
+          "description": "单页条数，1–200。",
+          "default": 40,
+          "ge": 1,
+          "le": 200
+        }
+      ]
+    },
+    {
+      "name": "sr_zones",
+      "title": "区域与地图解锁",
+      "description": "查看当前区域和各游戏区域的地图解锁状态、区域集 ID。",
+      "kind": "read",
+      "args": []
+    },
+    {
+      "name": "sr_progress",
+      "title": "剧情和奖励进度",
+      "description": "读取游戏内已有进度计数，可用来核对牧场扩展线、NPC 奖励和科技阶段。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "include_zero",
+          "type": "bool",
+          "description": "同时列出计数为零的进度项。",
+          "default": false
+        }
+      ]
+    },
+    {
+      "name": "sr_mail",
+      "title": "星邮列表",
+      "description": "按最近优先分页读取星邮类型、键和已读状态，同时返回未读数。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "unread_only",
+          "type": "bool",
+          "description": "只返回未读星邮。",
+          "default": false
+        },
+        {
+          "name": "offset",
+          "type": "int",
+          "description": "从零开始的分页偏移。下一页传上一页的 next_offset。",
+          "default": 0,
+          "ge": 0
+        },
+        {
+          "name": "limit",
+          "type": "int",
+          "description": "单页条数，1–200。",
+          "default": 35,
+          "ge": 1,
+          "le": 200
+        }
+      ]
+    },
+    {
+      "name": "sr_pedia",
+      "title": "史莱姆百科解锁",
+      "description": "按 ID 查询存档里的百科条目和解锁状态。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "query",
+          "type": "str",
+          "description": "按百科条目 ID 子串筛选。",
+          "default": "",
+          "max_length": 120
+        },
+        {
+          "name": "unlocked_only",
+          "type": "bool",
+          "description": "默认只列已解锁条目。",
+          "default": true
+        },
+        {
+          "name": "offset",
+          "type": "int",
+          "description": "从零开始的分页偏移。下一页传上一页的 next_offset。",
+          "default": 0,
+          "ge": 0
+        },
+        {
+          "name": "limit",
+          "type": "int",
+          "description": "单页条数，1–200。",
+          "default": 50,
+          "ge": 1,
+          "le": 200
+        }
+      ]
+    },
+    {
+      "name": "sr_player_shop",
+      "title": "玩家装备商店",
+      "description": "读取个人升级的游戏价格、拥有状态、解锁条件和购买能力。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "available_only",
+          "type": "bool",
+          "description": "只列已可购买且未拥有的升级，资金不足的也会列出。",
+          "default": false
+        }
+      ]
+    },
+    {
+      "name": "sr_item_catalog",
+      "title": "物品 ID 目录",
+      "description": "按游戏 ID、当前语言名称或分类查找物品，并返回分页游标。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "query",
+          "type": "str",
+          "description": "按 ID 子串筛选。目录支持按游戏本地化名称筛选。",
+          "default": "",
+          "max_length": 120
+        },
+        {
+          "name": "category",
+          "type": "str",
+          "description": "分类筛选。plort、craft、food、slime、liquid 或 other，留空为全部。",
+          "default": "",
+          "max_length": 20
+        },
+        {
+          "name": "offset",
+          "type": "int",
+          "description": "从零开始的分页偏移。下一页传上一页的 next_offset。",
+          "default": 0,
+          "ge": 0
+        },
+        {
+          "name": "limit",
+          "type": "int",
+          "description": "单页条数，1–200。",
+          "default": 60,
+          "ge": 1,
+          "le": 200
+        }
+      ]
+    },
+    {
+      "name": "sr_plot_shop",
+      "title": "地块价格与升级",
+      "description": "用指定地块的原生菜单资源读取建造价格、升级价格、已拥有状态、剧情前置和余额。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "plot_id",
+          "type": "str",
+          "description": "sr_plots 返回的已加载地块 ID。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 160
+        }
+      ]
+    },
+    {
+      "name": "sr_sell",
+      "title": "出售指定来源的结晶",
+      "description": "预演或从指定背包或仓储格出售结晶。要求真实存量和已加载的开放市场；原生销售会计算奖金，并返回实际扣除与入账。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "item_id",
+          "type": "str",
+          "description": "精确物品 ID。使用来源格子或 sr_item_catalog 返回的 item_id。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 128
+        },
+        {
+          "name": "source_slot",
+          "type": "int",
+          "description": "来源格子序号，从零开始。使用 sr_vacpack 或 sr_storage 返回的 slot。",
+          "required": true,
+          "ge": 0
+        },
+        {
+          "name": "count",
+          "type": "int",
+          "description": "操作数量，必须能由指定来源格子一次提供。",
+          "required": true,
+          "ge": 1,
+          "le": 999
+        },
+        {
+          "name": "source_storage_id",
+          "type": "int",
+          "description": "0 代表普通背包。使用仓库、收集器或喂食器时填 sr_storage 的非零 storage_id。",
+          "default": 0
+        },
+        {
+          "name": "min_unit_price",
+          "type": "int",
+          "description": "最低可接受基础单价，低于此价格将拒绝出售。",
+          "default": 0,
+          "ge": 0
+        }
+      ]
+    },
+    {
+      "name": "sr_move",
+      "title": "跨库存搬运",
+      "description": "预演或在背包和仓储之间搬运整批物品，或在同一仓库的不同格间转移。目标槽必须可用且能放下整批。旧版存入锁定槽的物品可移到已解锁的空格或相同物品格。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "item_id",
+          "type": "str",
+          "description": "精确物品 ID。使用来源格子或 sr_item_catalog 返回的 item_id。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 128
+        },
+        {
+          "name": "source_slot",
+          "type": "int",
+          "description": "来源格子序号，从零开始。使用 sr_vacpack 或 sr_storage 返回的 slot。",
+          "required": true,
+          "ge": 0
+        },
+        {
+          "name": "count",
+          "type": "int",
+          "description": "操作数量，必须能由指定来源格子一次提供。",
+          "required": true,
+          "ge": 1,
+          "le": 999
+        },
+        {
+          "name": "destination_slot",
+          "type": "int",
+          "description": "目标格子序号，从零开始。",
+          "required": true,
+          "ge": 0
+        },
+        {
+          "name": "source_storage_id",
+          "type": "int",
+          "description": "0 代表普通背包。使用仓库、收集器或喂食器时填 sr_storage 的非零 storage_id。",
+          "default": 0
+        },
+        {
+          "name": "destination_storage_id",
+          "type": "int",
+          "description": "目标容器 ID。0 代表普通背包；喂食器填 sr_storage 返回的 FOOD 容器 ID。",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "name": "sr_deposit_refinery",
+      "title": "存入精炼机",
+      "description": "预演或从指定格子把结晶或科技材料存入精炼机。整批容量足够才执行，精炼机存入后按原版规则使用。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "item_id",
+          "type": "str",
+          "description": "精确物品 ID。使用来源格子或 sr_item_catalog 返回的 item_id。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 128
+        },
+        {
+          "name": "source_slot",
+          "type": "int",
+          "description": "来源格子序号，从零开始。使用 sr_vacpack 或 sr_storage 返回的 slot。",
+          "required": true,
+          "ge": 0
+        },
+        {
+          "name": "count",
+          "type": "int",
+          "description": "操作数量，必须能由指定来源格子一次提供。",
+          "required": true,
+          "ge": 1,
+          "le": 999
+        },
+        {
+          "name": "source_storage_id",
+          "type": "int",
+          "description": "0 代表普通背包。使用仓库、收集器或喂食器时填 sr_storage 的非零 storage_id。",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "name": "sr_deliver",
+      "title": "远程交付委托",
+      "description": "预演或提交指定物品到当前委托。校验委托 ID、剩余需求、到期时间与已加载的原生奖励接收器。按实际接受数量扣除来源，奖励按游戏规则生成。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "offer_type",
+          "type": "str",
+          "description": "sr_exchange 返回的 offer_type。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 80
+        },
+        {
+          "name": "offer_id",
+          "type": "str",
+          "description": "sr_exchange 返回的当前唯一 offer_id。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 160
+        },
+        {
+          "name": "item_id",
+          "type": "str",
+          "description": "精确物品 ID。使用来源格子或 sr_item_catalog 返回的 item_id。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 128
+        },
+        {
+          "name": "source_slot",
+          "type": "int",
+          "description": "来源格子序号，从零开始。使用 sr_vacpack 或 sr_storage 返回的 slot。",
+          "required": true,
+          "ge": 0
+        },
+        {
+          "name": "count",
+          "type": "int",
+          "description": "操作数量，必须能由指定来源格子一次提供。",
+          "required": true,
+          "ge": 1,
+          "le": 999
+        },
+        {
+          "name": "source_storage_id",
+          "type": "int",
+          "description": "0 代表普通背包。使用仓库、收集器或喂食器时填 sr_storage 的非零 storage_id。",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "name": "sr_harvest",
+      "title": "触发科技采集器出料",
+      "description": "预演或触发已完成周期的钻井、泵或蜂箱。输出按游戏流程吐到装置附近地面，可用 sr_loose_items 查看。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "site_id",
+          "type": "str",
+          "description": "sr_gadget_sites、sr_extractors 或 sr_drones 返回的精确站点 ID。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 160
+        }
+      ]
+    },
+    {
+      "name": "sr_set_feeder_speed",
+      "title": "调整自动喂食速度",
+      "description": "预演或通过原生喂食器设置投喂频率。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "feeder_id",
+          "type": "int",
+          "description": "sr_feeders 返回的 feeder_id。",
+          "required": true
+        },
+        {
+          "name": "speed",
+          "type": "str",
+          "description": "SLOW、NORMAL 或 FAST。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 10
+        }
+      ]
+    },
+    {
+      "name": "sr_start_collector",
+      "title": "触发结晶收集器",
+      "description": "预演或触发指定已加载收集器的原生吸附过程。响应表示调用已提交，稍后读取 sr_collectors 查看实际入库。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "collector_id",
+          "type": "int",
+          "description": "sr_collectors 返回的 collector_id。",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "sr_buy_player_upgrade",
+      "title": "购买玩家升级",
+      "description": "预演或按游戏报价购买已解锁的升级。检查前置、余额和现有升级，并返回余额回读。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "upgrade_id",
+          "type": "str",
+          "description": "sr_player_shop 返回的可用 upgrade_id。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 128
+        },
+        {
+          "name": "max_price",
+          "type": "int",
+          "description": "可接受的最高新币价格，-1 表示按当前游戏价。执行前可用预演报价作为上限。",
+          "default": -1,
+          "ge": -1
+        }
+      ]
+    },
+    {
+      "name": "sr_buy_blueprint",
+      "title": "购买科技蓝图",
+      "description": "预演或按游戏报价购买已解锁且未拥有的科技蓝图，执行会扣除新币。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "gadget_id",
+          "type": "str",
+          "description": "sr_gadgets 返回的设备或蓝图 ID。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 128
+        },
+        {
+          "name": "max_price",
+          "type": "int",
+          "description": "可接受的最高新币价格，-1 表示按当前游戏价。执行前可用预演报价作为上限。",
+          "default": -1,
+          "ge": -1
+        }
+      ]
+    },
+    {
+      "name": "sr_fabricate",
+      "title": "制作科技设备",
+      "description": "预演或消耗精炼机材料制作一次指定设备。检查蓝图、库存上限和材料，成对设备按游戏规则产出两件。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "gadget_id",
+          "type": "str",
+          "description": "sr_gadgets 返回的设备或蓝图 ID。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 128
+        }
+      ]
+    },
+    {
+      "name": "sr_place_gadget",
+      "title": "部署科技设备",
+      "description": "预演或在指定的已加载空站点安装一件持有的设备，适用游戏原有放置条件。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "site_id",
+          "type": "str",
+          "description": "sr_gadget_sites、sr_extractors 或 sr_drones 返回的精确站点 ID。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 160
+        },
+        {
+          "name": "gadget_id",
+          "type": "str",
+          "description": "sr_gadgets 返回的设备或蓝图 ID。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 128
+        }
+      ]
+    },
+    {
+      "name": "sr_program_drone",
+      "title": "设置小蜜蜂程序",
+      "description": "预演或改写指定小蜜蜂的一格程序，验证来源和目的地。小蜜蜂携带物品时先等待卸货。程序生效后由游戏实际执行搬运。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "site_id",
+          "type": "str",
+          "description": "sr_gadget_sites、sr_extractors 或 sr_drones 返回的精确站点 ID。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 160
+        },
+        {
+          "name": "program",
+          "type": "int",
+          "description": "程序格序号，从零开始。普通小蜜蜂通常只有 0。",
+          "required": true,
+          "ge": 0
+        },
+        {
+          "name": "target",
+          "type": "str",
+          "description": "sr_drone_options 返回的 target ID。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 160
+        },
+        {
+          "name": "source",
+          "type": "str",
+          "description": "sr_drone_options 返回的 source ID。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 160
+        },
+        {
+          "name": "destination",
+          "type": "str",
+          "description": "sr_drone_options 返回的 destination ID。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 160
+        }
+      ]
+    },
+    {
+      "name": "sr_buy_plot",
+      "title": "购买并建造地块",
+      "description": "预演或在指定空地按游戏原生菜单价格建造围栏、花园、鸡舍、筒仓、水池或焚化炉。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "plot_id",
+          "type": "str",
+          "description": "sr_plots 返回的已加载地块 ID。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 160
+        },
+        {
+          "name": "plot_type",
+          "type": "str",
+          "description": "sr_plot_shop 返回的 plot_type。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 30
+        },
+        {
+          "name": "max_price",
+          "type": "int",
+          "description": "可接受的最高新币价格，-1 表示按当前游戏价。执行前可用预演报价作为上限。",
+          "default": -1,
+          "ge": -1
+        }
+      ]
+    },
+    {
+      "name": "sr_buy_plot_upgrade",
+      "title": "购买地块升级",
+      "description": "预演或给指定地块购买可用升级，使用地块商店价格并检查原版解锁前置。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "plot_id",
+          "type": "str",
+          "description": "sr_plots 返回的已加载地块 ID。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 160
+        },
+        {
+          "name": "upgrade_id",
+          "type": "str",
+          "description": "sr_plot_shop 返回的 upgrade_id。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 128
+        },
+        {
+          "name": "max_price",
+          "type": "int",
+          "description": "可接受的最高新币价格，-1 表示按当前游戏价。执行前可用预演报价作为上限。",
+          "default": -1,
+          "ge": -1
+        }
+      ]
+    },
+    {
+      "name": "sr_pickup_loose",
+      "title": "拾取指定场景物品",
+      "description": "预演或用正常背包收取一件已加载、未被抓住的食物、结晶或科技材料。精确校验实体 ID、物品 ID、同一区域集、范围及容量。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "instance_id",
+          "type": "int",
+          "required": true,
+          "description": "sr_loose_items 返回的当前实体 instance_id。切换区域或重载存档后重新查询。"
+        },
+        {
+          "name": "item_id",
+          "type": "str",
+          "required": true,
+          "min_length": 1,
+          "max_length": 128,
+          "description": "该实体的精确 item_id。"
+        },
+        {
+          "name": "radius",
+          "type": "int",
+          "default": 30,
+          "ge": 1,
+          "le": 500,
+          "description": "拾取时与玩家的最大距离，1–500 游戏单位。"
+        }
+      ]
+    },
+    {
+      "name": "sr_recharge_drone",
+      "title": "给小蜜蜂补水充电",
+      "description": "预演或消耗普通背包一单位水，按原版充电逻辑为指定小蜜蜂补至满电并回读剩余水量。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "site_id",
+          "type": "str",
+          "required": true,
+          "min_length": 1,
+          "max_length": 160,
+          "description": "sr_drones 返回的已加载小蜜蜂站点 ID。"
+        },
+        {
+          "name": "water_slot",
+          "type": "int",
+          "required": true,
+          "ge": 0,
+          "description": "sr_vacpack 返回的零基水格号，必须有水。"
+        }
+      ]
+    },
+    {
+      "name": "sr_backup",
+      "title": "备份存档",
+      "description": "把当前 .sav 复制到 backups 目录并回传 SHA256（不依赖游戏是否读档，主菜单也可用）。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "label",
+          "type": "str",
+          "required": false,
+          "default": "auto",
+          "description": "备份目录前缀，例如 manual、before-sell。"
+        }
+      ]
+    },
+    {
+      "name": "sr_save",
+      "title": "立即保存游戏",
+      "description": "调用游戏原生保存（存档+档案）并回读保存文件哈希。默认预演，只列磁盘现状；执行需 dry_run=false + request_id。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "dry_run",
+          "type": "bool",
+          "required": false,
+          "default": true,
+          "description": "默认预演，不写入存档。"
+        },
+        {
+          "name": "request_id",
+          "type": "str",
+          "required": false,
+          "default": "",
+          "description": "执行时填本次动作唯一标识；重试保留原值。"
+        }
+      ]
+    },
+    {
+      "name": "sr_silo_port",
+      "title": "切换筒仓仓口槽位",
+      "description": "把筒仓仓口切换到指定内部槽（等于在游戏里按仓口按钮切槽），让该槽的结晶在仓口可见/可取出。默认预演，执行需 dry_run=false + request_id。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "plot_id",
+          "type": "str",
+          "required": false,
+          "default": "",
+          "description": "筒仓地块 ID（sr_plots 返回）。与 storage_id 二选一。"
+        },
+        {
+          "name": "storage_id",
+          "type": "int",
+          "required": false,
+          "default": 0,
+          "description": "筒仓 storage_id（sr_storage 返回）。与 plot_id 二选一。"
+        },
+        {
+          "name": "slot",
+          "type": "int",
+          "required": false,
+          "default": -1,
+          "description": "目标内部槽号；留空(-1)只列出仓口与可访问槽。"
+        },
+        {
+          "name": "dry_run",
+          "type": "bool",
+          "required": false,
+          "default": true,
+          "description": "默认预演。"
+        },
+        {
+          "name": "request_id",
+          "type": "str",
+          "required": false,
+          "default": "",
+          "description": "执行时填唯一标识。"
+        }
+      ]
+    },
+    {
+      "name": "sr_slimes",
+      "title": "史莱姆清单",
+      "description": "列出内存中的史莱姆/大型/巨型：种类、位置、区域集、饥饿/恐惧/躁动、是否野生狂暴、最近围栏地块与距离。按玩家距离排序分页。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "radius",
+          "type": "int",
+          "required": false,
+          "default": 0,
+          "description": "以玩家为中心的半径；0 = 不过滤（全部内存史莱姆）。"
+        },
+        {
+          "name": "plot_id",
+          "type": "str",
+          "required": false,
+          "default": "",
+          "description": "只看某个围栏附近的史莱姆（最近围栏 = 该地块且距离 ≤25）。"
+        },
+        {
+          "name": "include_feral",
+          "type": "bool",
+          "required": false,
+          "default": true,
+          "description": "是否包含野生狂暴（feral）个体。"
+        },
+        {
+          "name": "offset",
+          "type": "int",
+          "required": false,
+          "default": 0,
+          "description": "分页偏移。"
+        },
+        {
+          "name": "limit",
+          "type": "int",
+          "required": false,
+          "default": 60,
+          "description": "单页条数 1-200。"
+        }
+      ]
+    },
+    {
+      "name": "sr_corrals",
+      "title": "围栏体检",
+      "description": "逐个围栏汇总：附近史莱姆数量/种类/饥饿/feral、地上结晶、收集器、喂食器、仓储与告警（喂食器空/结晶落地/无收集器/仓满等）。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "plot_id",
+          "type": "str",
+          "required": false,
+          "default": "",
+          "description": "只看指定围栏地块；留空看全部。"
+        },
+        {
+          "name": "radius",
+          "type": "int",
+          "required": false,
+          "default": 14,
+          "description": "判定“在围栏内”的半径，3-60。"
+        }
+      ]
+    },
+    {
+      "name": "sr_collect_all",
+      "title": "批量触发收集器",
+      "description": "对已加载的结晶收集器批量触发原生吸附（等于逐个走进围栏触发）。默认预演只列目标；执行需 dry_run=false + request_id。吸附是动画过程，稍后用 sr_collectors/sr_storage 查入库。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "plot_id",
+          "type": "str",
+          "required": false,
+          "default": "",
+          "description": "只处理指定围栏；留空处理全部已加载收集器。"
+        },
+        {
+          "name": "dry_run",
+          "type": "bool",
+          "required": false,
+          "default": true,
+          "description": "默认预演。"
+        },
+        {
+          "name": "request_id",
+          "type": "str",
+          "required": false,
+          "default": "",
+          "description": "执行时填唯一标识。"
+        }
+      ]
+    },
+    {
+      "name": "sr_feed",
+      "title": "给喂食器补料",
+      "description": "从其他 FOOD 仓储（或背包）把指定食物搬进喂食器，按目标容量整批搬运并回读。默认预演；执行需 dry_run=false + request_id。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "feeder_id",
+          "type": "int",
+          "required": false,
+          "default": -1,
+          "description": "sr_feeders 返回的 feeder_id。"
+        },
+        {
+          "name": "plot_id",
+          "type": "str",
+          "required": false,
+          "default": "",
+          "description": "或按围栏地块找该围栏的喂食器。"
+        },
+        {
+          "name": "item_id",
+          "type": "str",
+          "required": false,
+          "default": "",
+          "description": "食物 ID；留空则用喂食器现有食物或最近的 FOOD 仓储里最多的食物。"
+        },
+        {
+          "name": "count",
+          "type": "int",
+          "required": false,
+          "default": -1,
+          "description": "搬运数量；留空(-1)=按目标剩余容量补满。"
+        },
+        {
+          "name": "dry_run",
+          "type": "bool",
+          "required": false,
+          "default": true,
+          "description": "默认预演。"
+        },
+        {
+          "name": "request_id",
+          "type": "str",
+          "required": false,
+          "default": "",
+          "description": "执行时填唯一标识。"
+        }
+      ]
+    },
+    {
+      "name": "sr_overview",
+      "title": "牧场总览",
+      "description": "一次汇总：玩家/时间/市场（含最高最低价）/委托/史莱姆统计/仓储分布/围栏与设备数量/告警清单。适合每次对话或定时巡检先调用。",
+      "kind": "read",
+      "args": []
+    },
+    {
+      "name": "sr_gordos",
+      "title": "Gordo 巨型史莱姆",
+      "description": "列出全图 Gordo：是否已爆、已吃数量/目标数量、是否掉钥匙、所在区域与位置（已加载的才带坐标）。total/all_total/popped_total/loaded_total 均为过滤后同口径，all_total 为过滤前全图总数。用于规划钥匙与地图解锁。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "zone",
+          "type": "str",
+          "required": false,
+          "default": "",
+          "description": "按区域筛选（sr_zones 的 zone）。"
+        },
+        {
+          "name": "radius",
+          "type": "int",
+          "required": false,
+          "default": 0,
+          "description": "以玩家为中心半径；0 = 不过滤。"
+        },
+        {
+          "name": "include_popped",
+          "type": "bool",
+          "required": false,
+          "default": true,
+          "description": "是否包含已经爆开的 Gordo。"
+        }
+      ]
+    },
+    {
+      "name": "sr_pods",
+      "title": "宝箱 Treasure Pod",
+      "description": "列出全图宝箱：开/未开、是否已加载、坐标区域、内含蓝图/皮肤、所需升级。total 为过滤后行数，open_total + locked_total = total，loaded_total 为其中已加载数，all_total 为过滤前全图总数。用于清图与蓝图收集。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "zone",
+          "type": "str",
+          "required": false,
+          "default": "",
+          "description": "按区域筛选。"
+        },
+        {
+          "name": "include_open",
+          "type": "bool",
+          "required": false,
+          "default": true,
+          "description": "是否包含已开启的宝箱。"
+        }
+      ]
+    },
+    {
+      "name": "sr_doors",
+      "title": "钥匙门 Access Door",
+      "description": "列出全图钥匙门：状态（LOCKED/OPEN/CLOSED）、解锁目标区域、所需进度、门价与位置。total 为过滤后行数，locked_total + open_total + closed_total = total，loaded_total 为其中已加载数，all_total 为过滤前全图总数。用于判断下一个解锁目标。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "zone",
+          "type": "str",
+          "required": false,
+          "default": "",
+          "description": "按区域筛选。"
+        }
+      ]
+    },
+    {
+      "name": "sr_saves",
+      "title": "存档列表与摘要",
+      "description": "读取磁盘上所有 .sav：槽名、天数（1 基，与 sr_time 一致）、新币、百科数、版本、保存时间（本地时区，另给 saved_at_utc）。current=true 表示游戏实际加载的那个文件（由 Harmony 捕获，slot_tracking 字段标状态）；latest=true 表示同局最新时间戳。不依赖游戏读档状态。配合 sr_backup 做备份核对。",
+      "kind": "read",
+      "args": []
+    },
+    {
+      "name": "sr_harvest_all",
+      "title": "批量收获钻井",
+      "description": "对所有已完成周期的钻井/泵机/蜂房触发原生吐料（OnInteract）。默认预演只列可收获目标；执行需 dry_run=false + request_id。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "zone",
+          "type": "str",
+          "required": false,
+          "default": "",
+          "description": "只处理指定区域。"
+        },
+        {
+          "name": "dry_run",
+          "type": "bool",
+          "required": false,
+          "default": true,
+          "description": "默认预演。"
+        },
+        {
+          "name": "request_id",
+          "type": "str",
+          "required": false,
+          "default": "",
+          "description": "执行时填唯一标识。"
+        }
+      ]
+    },
+    {
+      "name": "sr_sell_all",
+      "title": "批量出售某种结晶",
+      "description": "按来源（背包/仓储/两者）批量出售同一种结晶，支持最低单价与总量上限，逐槽返回成交明细与总收入。默认预演；执行需 dry_run=false + request_id。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "item_id",
+          "type": "str",
+          "required": true,
+          "description": "结晶 item_id，例如 PINK_PLORT。"
+        },
+        {
+          "name": "scope",
+          "type": "str",
+          "required": false,
+          "default": "both",
+          "description": "来源范围：vacpack / storage / both。"
+        },
+        {
+          "name": "count",
+          "type": "int",
+          "required": false,
+          "default": -1,
+          "description": "最多出售数量；-1 = 全部。"
+        },
+        {
+          "name": "min_unit_price",
+          "type": "int",
+          "required": false,
+          "default": 0,
+          "description": "低于该单价则拒绝出售。"
+        },
+        {
+          "name": "dry_run",
+          "type": "bool",
+          "required": false,
+          "default": true,
+          "description": "默认预演。"
+        },
+        {
+          "name": "request_id",
+          "type": "str",
+          "required": false,
+          "default": "",
+          "description": "执行时填唯一标识。"
+        }
+      ]
+    },
+    {
+      "name": "sr_store_all",
+      "title": "背包批量入仓/入精炼机",
+      "description": "把背包里的结晶/材料批量搬进对应仓储（mode=storage）或精炼机（mode=refinery），逐槽返回结果。默认预演；执行需 dry_run=false + request_id。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "mode",
+          "type": "str",
+          "required": false,
+          "default": "storage",
+          "description": "storage = 搬进 PLORT/NON_SLIMES 仓储；refinery = 存进精炼机。"
+        },
+        {
+          "name": "max_per_item",
+          "type": "int",
+          "required": false,
+          "default": 999,
+          "description": "每种物品最多搬多少。"
+        },
+        {
+          "name": "dry_run",
+          "type": "bool",
+          "required": false,
+          "default": true,
+          "description": "默认预演。"
+        },
+        {
+          "name": "request_id",
+          "type": "str",
+          "required": false,
+          "default": "",
+          "description": "执行时填唯一标识。"
+        }
+      ]
+    },
+    {
+      "name": "sr_slime_info",
+      "title": "史莱姆饮食与产出",
+      "description": "查询史莱姆定义：饮食大类、最爱食物、额外可吃食物、产出结晶、是否 Largo/基础史莱姆、最爱玩具。用于规划投喂与围栏搭配。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "item_id",
+          "type": "str",
+          "required": false,
+          "default": "",
+          "description": "史莱姆 item_id（如 PINK_SLIME）；留空列出全部。"
+        },
+        {
+          "name": "include_largo",
+          "type": "bool",
+          "required": false,
+          "default": true,
+          "description": "是否包含 Largo 组合。"
+        }
+      ]
+    },
+    {
+      "name": "sr_exchange_pending",
+      "title": "待选委托",
+      "description": "查看当前待选委托人（pending_ranchers）与已有委托；判断是否需要接受、是否可自动选择。",
+      "kind": "read",
+      "args": []
+    },
+    {
+      "name": "sr_exchange_accept",
+      "title": "接受/选择委托",
+      "description": "接受当期委托；有多个待选委托人时必须传 rancher_id。默认预演；执行需 dry_run=false + request_id。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "rancher_id",
+          "type": "str",
+          "required": false,
+          "default": "",
+          "description": "待选委托人 id（sr_exchange_pending 返回）；只有一个时可留空。"
+        },
+        {
+          "name": "dry_run",
+          "type": "bool",
+          "required": false,
+          "default": true,
+          "description": "默认预演。"
+        },
+        {
+          "name": "request_id",
+          "type": "str",
+          "required": false,
+          "default": "",
+          "description": "执行时填唯一标识。"
+        }
+      ]
+    },
+    {
+      "name": "sr_watch",
+      "title": "告警巡检",
+      "description": "一次返回所有值得注意的状态：喂食器空、收集器仓储满、地上结晶、饥饿/野生史莱姆、钻井可收获、无人机电站电量、委托到期、市场闭市、可用钥匙。",
+      "kind": "read",
+      "args": []
+    },
+    {
+      "name": "sr_market_advice",
+      "title": "市场卖出建议",
+      "description": "对每种结晶给出价格/基准价/市场饱和度/变化与建议（SELL_NOW / HOLD / WAIT），用于决定现在卖还是等。",
+      "kind": "read",
+      "args": []
+    },
+    {
+      "name": "sr_teleport",
+      "title": "传送（作弊）",
+      "description": "把玩家传送到坐标或已加载地块（作弊类，用于跨区操作）。默认预演；执行需 dry_run=false + request_id。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "plot_id",
+          "type": "str",
+          "required": false,
+          "default": "",
+          "description": "目标地块 ID（sr_plots 返回，需已加载）。与 x/z 二选一。"
+        },
+        {
+          "name": "x",
+          "type": "int",
+          "required": false,
+          "default": 0,
+          "description": "目标世界坐标 X。"
+        },
+        {
+          "name": "y",
+          "type": "int",
+          "required": false,
+          "default": -99999,
+          "description": "目标 Y；留空则保持当前高度。"
+        },
+        {
+          "name": "z",
+          "type": "int",
+          "required": false,
+          "default": 0,
+          "description": "目标世界坐标 Z。"
+        },
+        {
+          "name": "dry_run",
+          "type": "bool",
+          "required": false,
+          "default": true,
+          "description": "默认预演。"
+        },
+        {
+          "name": "request_id",
+          "type": "str",
+          "required": false,
+          "default": "",
+          "description": "执行时填唯一标识。"
+        }
+      ]
+    },
+    {
+      "name": "sr_restore_backup",
+      "title": "还原备份存档",
+      "description": "把 sr_backup 生成的备份目录里的 .sav 还原回存档目录；仅允许在主菜单/未读档时执行，执行前会自动再备份当前存档。默认预演。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "backup_dir",
+          "type": "str",
+          "required": true,
+          "description": "备份目录绝对路径（sr_backup 返回的 backup_dir，必须在 backups 下）。"
+        },
+        {
+          "name": "dry_run",
+          "type": "bool",
+          "required": false,
+          "default": true,
+          "description": "默认预演。"
+        },
+        {
+          "name": "request_id",
+          "type": "str",
+          "required": false,
+          "default": "",
+          "description": "执行时填唯一标识。"
+        }
+      ]
+    },
+    {
+      "name": "sr_chat_pending",
+      "title": "聊天收件箱（玩家→管家）",
+      "description": "取走玩家在游戏内聊天框（回车呼出）发出的消息；每次调用会清空待取队列。没有消息时返回空数组。只操作内存队列，不写存档。",
+      "kind": "read",
+      "args": []
+    },
+    {
+      "name": "sr_chat_send",
+      "title": "管家回话（游戏内显示）",
+      "description": "把管家回复推送到游戏内聊天框：玩家会看到回复并弹出提示。文本最长 400 字。只操作内存队列和 UI，不写存档。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "text",
+          "type": "str",
+          "required": true,
+          "max_length": 400,
+          "description": "要显示在游戏内聊天框的回复文本。"
+        }
+      ]
+    },
+    {
+      "name": "sr_chat_status",
+      "title": "聊天框状态",
+      "description": "查看游戏内聊天框是否存活/打开、待取消息数、最近一次轮询距今秒数，用于判断管家通道是否在线。",
+      "kind": "read",
+      "args": []
+    },
+    {
+      "name": "sr_map_data",
+      "title": "地图数据装置定位",
+      "description": "列出所有区域地图数据装置（MapDataEntry）的坐标、距离、是否已解锁及全息特效状态；找不到本区域蓝色全息数据块时用它直接定位。只读。",
+      "kind": "read",
+      "args": []
+    },
+    {
+      "name": "sr_model_storage",
+      "title": "跨区域读仓库（模型层）",
+      "description": "直接读游戏数据模型里的仓库内容，未加载的区域也能读（不需要玩家靠近）。返回每个地块的仓库类型、槽位、物品与数量。只读，不修改状态。",
+      "kind": "read",
+      "args": [
+        {
+          "name": "plot_id",
+          "type": "str",
+          "description": "可选：只看某个地块 ID（子串匹配）。留空返回全部地块。",
+          "default": ""
+        },
+        {
+          "name": "storage_type",
+          "type": "str",
+          "description": "可选：只看某种仓库类型（NON_SLIMES / PLORT / FOOD / CRAFTING / ELDER），留空返回全部。",
+          "default": ""
+        },
+        {
+          "name": "include_empty",
+          "type": "bool",
+          "description": "是否返回空格子（默认 true）。",
+          "default": true
+        }
+      ]
+    },
+    {
+      "name": "sr_model_move",
+      "title": "跨区域搬仓库（模型层）",
+      "description": "在数据模型层把物品从一个地块仓库搬到另一个地块仓库，未加载的区域也能搬（不需要玩家跑动）。已加载的一侧自动走游戏正常接口保持同步。target 槽必须空着或同物品，且容量足够。先 dry_run 预演，执行需 dry_run=false + 唯一 request_id。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "from_plot",
+          "type": "str",
+          "description": "来源地块 ID（sr_model_storage 返回的 plot_id）。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 64
+        },
+        {
+          "name": "from_store",
+          "type": "str",
+          "description": "来源仓库类型：NON_SLIMES / PLORT / FOOD / CRAFTING / ELDER。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 32
+        },
+        {
+          "name": "from_slot",
+          "type": "int",
+          "description": "来源格子序号（sr_model_storage 返回的 slot）。",
+          "required": true,
+          "ge": 0
+        },
+        {
+          "name": "to_plot",
+          "type": "str",
+          "description": "目标地块 ID。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 64
+        },
+        {
+          "name": "to_store",
+          "type": "str",
+          "description": "目标仓库类型：NON_SLIMES / PLORT / FOOD / CRAFTING / ELDER。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 32
+        },
+        {
+          "name": "to_slot",
+          "type": "int",
+          "description": "目标格子序号。",
+          "required": true,
+          "ge": 0
+        },
+        {
+          "name": "count",
+          "type": "int",
+          "description": "搬运数量，必须不超过来源格子数量且目标格子放得下。",
+          "required": true,
+          "ge": 1,
+          "le": 999
+        }
+      ]
+    },
+    {
+      "name": "sr_buy_expansion",
+      "title": "购买扩展区（锁门）",
+      "description": "预演或购买一扇未解锁的扩展区门（如 LAB / WILDS / RUINS / DOCKS）。价格来自该门的 doorPurchase；货币不足会拒绝。执行后会开门、处理 linkedDoors 并自动存档。需玩家在门附近（门已加载）。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "door_id",
+          "type": "str",
+          "description": "sr_doors 返回的 door_id（必须是 loaded=true 且 state=LOCKED）。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 64
+        }
+      ]
+    },
+    {
+      "name": "sr_spawn_slime",
+      "title": "生成史莱姆",
+      "description": "在玩家面前生成指定种类的史莱姆（作弊/测试用）。默认预演，执行需 dry_run=false + request_id。金史莱姆等稀有种类适合用此工具测试。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "slime_id",
+          "type": "str",
+          "description": "史莱姆 ID，例如 GOLD_SLIME、PINK_SLIME、TABBY_SLIME。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 64
+        },
+        {
+          "name": "count",
+          "type": "int",
+          "description": "生成数量，1-20。",
+          "default": 1,
+          "ge": 1,
+          "le": 20
+        },
+        {
+          "name": "distance",
+          "type": "int",
+          "description": "生成距离（米），1-12。",
+          "default": 3,
+          "ge": 1,
+          "le": 12
+        }
+      ]
+    },
+    {
+      "name": "sr_pedia_unlock",
+      "title": "补全史莱姆百科",
+      "description": "解锁史莱姆百科条目（成就「专业范儿」用）。pedia_id 留空 = 解锁所有未解锁的非隐藏条目；也可传逗号分隔的条目 ID。走游戏自己的 PediaDirector.Unlock()，会正常触发 COMPLETED_SLIMEPEDIA 统计。默认预演，执行需 dry_run=false + request_id。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "pedia_id",
+          "type": "str",
+          "description": "留空=全部未解锁的非隐藏条目；或逗号分隔，如 BRIAR_CHICKADOO,GINGER。",
+          "default": "",
+          "max_length": 500
+        }
+      ]
+    },
+    {
+      "name": "sr_give_item",
+      "title": "发放物品到背包",
+      "description": "把指定物品直接加进真空背包（走原生 Ammo.MaybeAddToSpecificSlot）。用于测试与 Rush 模式批量产结晶。默认预演，执行需 dry_run=false + request_id。",
+      "kind": "write",
+      "args": [
+        {
+          "name": "item_id",
+          "type": "str",
+          "description": "精确物品 ID，如 GOLD_PLORT、PINK_PLORT。",
+          "required": true,
+          "min_length": 1,
+          "max_length": 64
+        },
+        {
+          "name": "count",
+          "type": "int",
+          "description": "数量，1-999（受背包格子容量限制，返回值里有 added/remaining）。",
+          "default": 1,
+          "ge": 1,
+          "le": 999
+        }
+      ]
+    }
+  ]
+}

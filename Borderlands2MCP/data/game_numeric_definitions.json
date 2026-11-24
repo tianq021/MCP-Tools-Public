@@ -1,0 +1,241 @@
+{
+ "schema": "bl2-numeric-definitions-v1",
+ "updated": "2026-11-15",
+ "scope": "BL2 原生数值定义/技能直接修改的离线证据表；不修改游戏",
+ "disclaimer": "本表区分“已确认属性/字段”和“未确认的基础值/单位/求值顺序”。未确认项不得当事实使用；所有数值最终需实机/反射验证。",
+ "sources": {
+  "bl2_attributes": {
+   "name": "BL2 AttributeDefinition dump（Greem / BLCMods）",
+   "url": "https://github.com/BLCM/BLCMods/blob/master/Borderlands%202%20mods/Greem/Resources/BL2/Weapon%20Attributes.txt",
+   "note": "312 条 D_Attributes.*；证明属性对象存在，不含基础值/单位说明。"
+  },
+  "ucp_patch": {
+   "name": "BLCMods / Community Patch Team Patch.txt",
+   "url": "https://github.com/BLCM/BLCMods/tree/master/Borderlands%202%20mods/Community%20Patch%20Team",
+   "note": "技能/武器 AttributeEffect 的实际 set 写法与示例数值。"
+  },
+  "difficulty_modes": {
+   "name": "ZetaDaemon/bl-sdk-mods DifficultyModes",
+   "url": "https://github.com/ZetaDaemon/bl-sdk-mods/blob/main/DifficultyModes/__init__.py",
+   "note": "Attribute_Names 映射与 SkillEffectData 使用；Movespeed→FootSpeed，Fire_Rate→WeaponFireInterval，Reload_Speed→WeaponReloadSpeed。"
+  },
+  "chronos_modifier": {
+   "name": "juso40/bl2sdk_Mods Chronos",
+   "url": "https://github.com/juso40/bl2sdk_Mods/blob/master/Chronos/__init__.py",
+   "note": "注释记录 ModifierType 0=MT_Scale、1=MT_PreAdd、2=MT_PostAdd；只是枚举拼接，不是完整求值文档。"
+  },
+  "reign_giants": {
+   "name": "mopioid/Borderlands-Reign-Of-Giants",
+   "url": "https://github.com/mopioid/Borderlands-Reign-Of-Giants/blob/main/ReignOfGiants/__init__.py",
+   "note": "WillowAIPawn.MovementSpeedModifier 字段使用（AI pawn，不是玩家）。"
+  },
+  "commander_speed": {
+   "name": "mopioid/Borderlands-Commander _speed.py",
+   "url": "https://github.com/mopioid/Borderlands-Commander/blob/master/Commander/_speed.py",
+   "note": "132/140/144 行只有注释掉的 PlayerPawn.GroundSpeed 用法，不能当已确认字段。"
+  },
+  "unspec_skills": {
+   "name": "ZetaDaemon/bl-sdk-mods UnspecSkills",
+   "url": "https://github.com/ZetaDaemon/bl-sdk-mods/blob/main/UnspecSkills/__init__.py",
+   "note": "PlayerSkillTree.Skills / GetSkillGrade / GetSkillUpgradeCost / SetSkillGrade / GetSkillManager().ActiveSkills。"
+  },
+  "skill_randomizer": {
+   "name": "bl-sdk/former-default-mods SkillRandomizer",
+   "url": "https://github.com/bl-sdk/former-default-mods/blob/master/SkillRandomizer/__init__.py",
+   "note": "PlayerSkillTree.Initialize / SkillTreeDef.Root/Children / Tier.Layout / PointsToUnlockNextTier。"
+  },
+  "clone_bpd_skill": {
+   "name": "ZetaDaemon/bl-sdk-mods clone_bpd_skill.py",
+   "url": "https://github.com/ZetaDaemon/bl-sdk-mods/blob/main/ZetaCommands/builtins/clone_bpd_skill.py",
+   "note": "SkillDefinition.BehaviorProviderDefinition / BehaviorSequences / Behavior_AttributeEffect.AttributeEffect / Behavior_ActivateSkill.SkillToActivate。"
+  }
+ },
+ "modifier_types": {
+  "note": "数值/枚举名来自 Chronos 注释；完整求值与叠加规则没有 SDK 文档证据。",
+  "values": {
+   "MT_Scale": 0,
+   "MT_PreAdd": 1,
+   "MT_PostAdd": 2
+  },
+  "observed_usage": {
+   "MT_Scale": "技能/武器效果最常用；可用于 WeaponFireInterval（负值缩短间隔）、WeaponReloadSpeed（正值提高速度）、FootSpeed、ActiveSkillCooldownConsumptionRate。",
+   "MT_PreAdd": "DifficultyModes 对 Armor 使用；示例值经过 (10000/(100-x))-100 变换，说明不是简单的 +百分比。",
+   "MT_PostAdd": "Chronos 有使用（ModifierType=2）；本表不推断具体顺序。"
+  }
+ },
+ "movement": {
+  "foot_speed": {
+   "attribute": "D_Attributes.GameplayAttributes.FootSpeed",
+   "status": "属性确认；基础值、单位、是否 UU/s 未确认",
+   "usage": "技能/物品通过 SkillEffectDefinitions/ExternalAttributeEffects 修改；DifficultyModes 映射 Movespeed→FootSpeed。",
+   "examples": [
+    {
+     "object": "GD_Mercenary_Skills.Brawn.Incite_Active",
+     "fields": ["SkillEffectDefinitions[].AttributeToModify", "ModifierType", "BaseModifierValue", "InitializationDefinition"],
+     "source_line": "UCP Patch.txt 129 行",
+     "note": "ModifierType=MT_Scale，基础值由 Init_Incite_FootSpdCalc 计算。"
+    },
+    {
+     "object": "GD_Weap_SMG.Barrel.SMG_Barrel_Dahl_Bane",
+     "fields": ["ExternalAttributeEffects[].AttributeToModify", "ModifierType", "BaseModifierValue"],
+     "source_line": "UCP Patch.txt 3174/3175 行",
+     "note": "武器外部属性也可改 FootSpeed（移动惩罚类）。"
+    },
+    {
+     "object": "GD_Shields.Skills.Juggernaut_Shield_Skill_LegendarySlow",
+     "fields": ["SkillEffectDefinitions[].AttributeToModify"],
+     "source_line": "UCP Patch.txt 3431 行",
+     "note": "护盾技能也可挂 FootSpeed。"
+    }
+   ],
+   "unknowns": ["基础 FootSpeed 数值", "单位（UE UU/s 还是倍率）", "多来源叠加规则", "MT_Scale 基底"]
+  },
+  "pawn_speed": {
+   "attribute": "D_Attributes.Movement.PawnSpeed",
+   "status": "属性存在（BL2 属性 dump）；无本地使用实例/单位说明",
+   "usage": "可能是移动速度的另一属性；不要与 FootSpeed 混用，需实机/反射确认。",
+   "unknowns": ["语义", "单位", "基础值", "是否实际被使用"]
+  },
+  "sprinting": {
+   "attribute": "D_Attributes.GameplayAttributes.Sprinting",
+   "status": "属性存在；语义/单位/是否布尔状态未确认",
+   "usage": "本地只看到属性名；没有找到修改冲刺速度的字段。",
+   "related_input": "WillowGame.WillowPlayerInput.SprintPressed（MovementTech dashing.py 119 行）只是输入事件，不是速度值。",
+   "unknowns": ["Sprinting 是状态还是倍率", "冲刺基础速度字段", "如何只改冲刺不改走路"]
+  },
+  "ground_speed": {
+   "field": "PlayerPawn.GroundSpeed",
+   "status": "未确认",
+   "evidence": "Borderlands-Commander _speed.py 132/140/144 行只有注释掉的示例；没有活动代码证据。",
+   "note": "UE3 Pawn.GroundSpeed 很可能是基础移动速度字段，但本轮不能把它当已确认的 BL2 字段/单位。"
+  },
+  "ai_movement_speed_modifier": {
+   "field": "WillowAIPawn.MovementSpeedModifier",
+   "status": "AI Pawn 字段确认（ReignOfGiants 331 行）",
+   "usage": "self.uobject.MovementSpeedModifier *= ... 用于 AI 巨人化；不是玩家角色移动速度。",
+   "note": "不要把它当玩家 FootSpeed 的替代。"
+  }
+ },
+ "weapon": {
+  "fire_interval": {
+   "attribute": "D_Attributes.Weapon.WeaponFireInterval",
+   "offhand_attribute": "D_Attributes.OffHandWeapon.WeaponFireInterval_Offhand",
+   "status": "属性/用法确认；基础值/单位未由定义 dump 确认",
+   "semantics": "名字是“射击间隔”；UCP 示例用 MT_Scale 负值缩短间隔（LayWaste -0.08），即间隔变小、射速变快。",
+   "examples": [
+    {
+     "object": "GD_Mercenary_Skills.Gun_Lust.LayWaste",
+     "fields": ["SkillEffectDefinitions[].AttributeToModify", "ModifierType=MT_Scale", "BaseModifierValue(BaseValueConstant=-0.08)", "PerGradeUpgrade"],
+     "source_line": "UCP Patch.txt 126 行"
+    },
+    {
+     "object": "GD_Weap_Shotgun.Barrel.SG_Barrel_Confetti",
+     "fields": ["WeaponAttributeEffects[].AttributeToModify", "ModifierType=MT_Scale", "BaseModifierValue", "ZoomWeaponAttributeEffects"],
+     "source_line": "Constructor example1.blcm 26/52 行"
+    }
+   ],
+   "unknowns": ["基础 interval 数值", "单位是否秒", "多个 MT_Scale 的叠加方式", "与射速显示值的换算"]
+  },
+  "reload_speed": {
+   "attribute": "D_Attributes.Weapon.WeaponReloadSpeed",
+   "offhand_attribute": "D_Attributes.OffHandWeapon.WeaponReloadSpeed_Offhand",
+   "status": "属性/用法确认；基础值/单位未确认",
+   "semantics": "名字是“装填速度”；与 interval 不同，正值通常表示更快（MT_Scale）。",
+   "examples": [
+    {
+     "object": "GD_Soldier_Skills.Survival.Pressure",
+     "fields": ["SkillEffectDefinitions[].AttributeToModify", "ModifierType=MT_Scale", "BaseModifierValue"],
+     "source_line": "UCP Patch.txt 121 行；基础值由 Init_Pressure_ReloadSpdCalc_P1 计算"
+    }
+   ],
+   "unknowns": ["基础值/单位", "多来源叠加", "是否与动画时间字段直接对应"]
+  },
+  "reload_animation_times": {
+   "attributes": ["D_Attributes.Weapon.WeaponMaxReloadAnimTime", "D_Attributes.Weapon.WeaponMaxFastReloadAnimTime"],
+   "status": "属性存在（BL2 属性 dump）；语义/单位/使用实例未确认",
+   "note": "可能是动画时间，不等同于 WeaponReloadSpeed；本轮不把它们当替代字段。"
+  }
+ },
+ "skill_cooldown": {
+  "action_skill_cooldown_time": {
+   "attribute": "D_Attributes.SkillAttributes.ActionSkillCooldownTime",
+   "status": "属性存在（BL2 属性 dump）；基础值/单位/求值未确认",
+   "unknowns": ["是秒还是倍率", "基础值在哪个 SkillDefinition/对象上", "多来源叠加规则"]
+  },
+  "active_skill_cooldown_resource": {
+   "attributes": [
+    "D_Attributes.ActiveSkillCooldownResource.ActiveSkillCooldownCurrentValue",
+    "D_Attributes.ActiveSkillCooldownResource.ActiveSkillCooldownMaxValue",
+    "D_Attributes.ActiveSkillCooldownResource.ActiveSkillCooldownMinValue",
+    "D_Attributes.ActiveSkillCooldownResource.ActiveSkillCooldownConsumptionRate"
+   ],
+   "status": "属性存在；ConsumptionRate 有 class mod 使用实例",
+   "examples": [
+    {
+     "object": "GD_ClassMods.A_Item_Soldier.ClassMod_Soldier_Engineer",
+     "fields": ["AttributeSlotEffects[].AttributeToModify", "ModifierType=MT_Scale", "BaseModifierValue(BaseValueConstant=0.1)"],
+     "source_line": "UCP Patch.txt 176 行",
+     "note": "Class mod 通过 AttributeSlotEffects 改 cooldown consumption rate；+0.1 的实际效果方向未独立验证。"
+    }
+   ],
+   "unknowns": ["ConsumptionRate 与最终冷却秒数的关系", "Current/Max/Min 的单位", "技能自身冷却基础字段"]
+  },
+  "note": "没有找到 ActionSkill 技能定义上的 Cooldown 字段一手证据；不要编造字段名，需反射 SkillDefinition/行为对象。"
+ },
+ "skill_modification": {
+  "level": {
+   "save": {
+    "field": "save field 8（已学技能列表）",
+    "content": "每个条目保存内部技能路径 + 等级（项目 skills.py 已实现）",
+    "persistence": "等级会写进存档；树层级/额外效果不在存档里"
+   },
+   "runtime": {
+    "objects": ["PlayerSkillTree.Skills[].Definition", "PlayerSkillTree.Skills[].SkillIndices"],
+    "methods": ["GetSkillGrade(skill)", "GetSkillUpgradeCost(skill)", "SetSkillGrade(skill, grade)", "GetSkillManager().ActiveSkills"],
+    "source": "UnspecSkills（ZetaDaemon/bl-sdk-mods）",
+    "limits": "UI/引擎是否在 SetSkillGrade/读档时校验层级未验证；树层级规则不能只靠存档推断"
+   }
+  },
+  "effect_parameters": {
+   "native_field": "SkillDefinition.SkillEffectDefinitions[]",
+   "fields": [
+    "AttributeToModify",
+    "ModifierType",
+    "BaseModifierValue(BaseValueConstant/BaseValueAttribute/InitializationDefinition/BaseValueScaleConstant)",
+    "EffectTarget",
+    "GradeToStartApplyingEffect",
+    "PerGradeUpgradeInterval",
+    "PerGradeUpgrade",
+    "BonusUpgradeList",
+    "bIncludeSelfAsTarget/bIncludeDuelingTargets/bOnlyEffectTargetsInRange/bExcludeNonPlayerCharacters"
+   ],
+   "runtime": "SkillDefinition.BehaviorProviderDefinition → BehaviorSequences → Behavior_AttributeEffect.AttributeEffect",
+   "examples": ["GD_Mercenary_Skills.Gun_Lust.LayWaste", "GD_Soldier_Skills.Survival.Pressure", "GD_Mercenary_Skills.Brawn.Incite_Active"],
+   "stacking": "每级用 PerGradeUpgrade 增长；多来源如何相加/相乘未验证，ModifierType 名称不等于完整公式",
+   "persistence": "效果参数不写存档；补丁/模组加载才生效"
+  },
+  "extra_effects": {
+   "approach": "向 SkillEffectDefinitions 追加条目（或运行时改 Behavior_AttributeEffect.AttributeEffect）",
+   "evidence": ["UCP 大量 set 技能 SkillEffectDefinitions", "clone_bpd_skill 克隆行为图"],
+   "limits": ["需要正确目标/EffectTarget/ModifierType", "可能被 UI/引擎忽略或限制", "叠加/上限未验证", "不写入存档"]
+  },
+  "tree_position": {
+   "runtime_objects": ["PlayerSkillTree.Initialize", "SkillTreeDef.Root", "SkillTreeDef.Root.Children/Branches", "Branch.Tiers[].SkillIndices", "Tier.Layout.Tiers[].bCellIsOccupied", "Tier.PointsToUnlockNextTier"],
+   "evidence": "SkillRandomizer（bl-sdk/former-default-mods）",
+   "notes": [
+    "技能树位置来自 SkillTreeDef/Definition，不是存档 field 8；改存档等级不会移动技能。",
+    "把技能移到别的位置/跨职业需要运行时改 SkillTreeDef 或技能定义；UI/引擎兼容未验证。",
+    "层级解锁 5 点/层是 UI/引擎规则，存档无校验字段不等于引擎不校验。"
+   ]
+  }
+ },
+ "unknown_boundaries": [
+  "FootSpeed/PawnSpeed/Sprinting 的基础值、单位、求值顺序未确认；不要声称 UU/s 或固定倍率。",
+  "冲刺速度没有找到独立字段；SprintPressed 只是输入事件。",
+  "WeaponFireInterval/WeaponReloadSpeed 的基础值来自武器定义/部件；本机 dumps 只有 base/parts 引用，没有直接数值字段。",
+  "ActionSkillCooldownTime 与 ActiveSkillCooldownResource 的字段存在，但技能定义的 Cooldown 基础字段未找到。",
+  "ModifierType 0/1/2 的名称有证据，实际叠加/求值公式未验证。",
+  "技能树层级/跨职业技能/树位置兼容性未实机验证。",
+  "本表没有修改游戏；所有数值仍需实机/反射验证。"
+ ]
+}

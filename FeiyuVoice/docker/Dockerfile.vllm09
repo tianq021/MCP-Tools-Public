@@ -1,0 +1,51 @@
+# Feiyu 大肥鱼 TTS —— Linux/CUDA 环境（vLLM 0.9.0 legacy 路径 + transformers 4.51.3）
+#
+# 依据：CosyVoice 官方 README 给出的兼容组合
+#   pip install vllm==0.9.0 transformers==4.51.3 numpy==1.26.4
+# vLLM 0.11 与 transformers 4.51.3 不兼容（实测 ImportError: AutoVideoProcessor），
+# 而 transformers 4.57.1 会让 CosyVoice3 生成质量崩坏（音频时长 3-4 倍），所以只能用 0.9.0。
+#
+# 构建：docker build -t feiyu-voice:vllm09 -f E:\feiyu\docker\Dockerfile.vllm09 E:\feiyu\docker
+
+FROM python:3.11-slim
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    PIP_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONUTF8=1 \
+    OMP_NUM_THREADS=4
+
+RUN sed -i 's|http://deb.debian.org/debian-security|https://mirrors.tuna.tsinghua.edu.cn/debian-security|g; s|http://deb.debian.org/debian|https://mirrors.tuna.tsinghua.edu.cn/debian|g' /etc/apt/sources.list.d/debian.sources 2>/dev/null || true \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+        git ffmpeg libsndfile1 libgomp1 build-essential ninja-build curl ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# vLLM 0.9.0 锁定 torch 2.7.0 / torchaudio 2.7.0（PyPI linux 轮子自带 CUDA 运行时）
+RUN pip install --no-cache-dir torch==2.7.0 torchaudio==2.7.0
+
+# vLLM 0.9.0（legacy 引擎路径，CosyVoice 官方支持）
+RUN pip install --no-cache-dir vllm==0.9.0
+
+# CosyVoice 推理依赖（Linux 侧），transformers 固定为 4.51.3
+RUN pip install --no-cache-dir \
+        "transformers==4.51.3" "tokenizers==0.21.4" "numpy==1.26.4" \
+        onnxruntime==1.18.0 onnx==1.16.0 pyarrow==18.1.0 \
+        pyworld==0.3.4 inflect==7.3.1 hyperpyyaml==1.2.3 omegaconf==2.3.0 \
+        hydra-core==1.3.2 antlr4-python3-runtime==4.9.3 \
+        wetext==0.0.4 librosa==0.10.2 soundfile==0.12.1 protobuf==4.25 \
+        x-transformers==2.11.24 conformer==0.3.2 lightning==2.2.4 \
+        gdown==5.1.0 matplotlib==3.7.5 wget==3.2 wandb \
+        einops regex tqdm tiktoken modelscope==1.20.0 scipy packaging pyyaml \
+        diffusers==0.29.0
+
+# openai-whisper 只有 sdist，且构建需要 pkg_resources：先做 wheel 再装
+RUN pip install --no-cache-dir "setuptools<81" wheel \
+    && pip wheel --no-cache-dir --no-build-isolation --no-deps -w /tmp/wheels \
+        -i https://pypi.tuna.tsinghua.edu.cn/simple openai-whisper==20231117 \
+    && pip install --no-cache-dir --no-deps /tmp/wheels/openai_whisper-20231117-py3-none-any.whl \
+    && rm -rf /tmp/wheels
+
+WORKDIR /opt
+CMD ["bash"]

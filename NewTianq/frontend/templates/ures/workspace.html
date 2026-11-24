@@ -1,0 +1,189 @@
+<!-- frontend/templates/ures/workspace.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ workspace.page_title | default("个人工作页") }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/workspace.css') }}">
+</head>
+
+<body>
+<div class="page">
+
+    <!-- 顶部搜索栏 -->
+    <section class="search-area">
+        <h1 class="search-title">
+            {{ workspace.page_title | default("个人文章工作页") }}
+        </h1>
+
+        <p class="search-subtitle">
+            {{ workspace.subtitle | default("搜索文章、查看分类、记录项目和学习过程") }}
+        </p>
+
+        <form class="search-form" method="get" action="{{ url_for('page.workspace_page', slug=workspace.slug) }}">
+            {% if current_category %}
+                <input type="hidden" name="category" value="{{ current_category }}">
+            {% endif %}
+
+            <input
+                type="text"
+                name="q"
+                value="{{ q | default('') }}"
+                placeholder="搜索文章标题、简介、关键词..."
+            >
+
+            <button type="submit">搜索</button>
+        </form>
+    </section>
+
+    <!-- 分类栏 -->
+    <nav class="category-bar">
+        <a
+            class="category-link {% if not current_category %}active{% endif %}"
+            href="{{ url_for('page.workspace_page', slug=workspace.slug) }}{% if q %}?q={{ q | urlencode }}{% endif %}"
+        >
+            全部
+        </a>
+
+        {% for category in categories %}
+            <a
+                class="category-link {% if current_category == category.name %}active{% endif %}"
+                href="{{ url_for('page.workspace_page', slug=workspace.slug) }}?category={{ category.name | urlencode }}{% if q %}&q={{ q | urlencode }}{% endif %}"
+            >
+                {{ category.name }}
+                {% if category.count %}
+                    · {{ category.count }}
+                {% endif %}
+            </a>
+        {% endfor %}
+    </nav>
+
+    <div class="layout">
+
+        <!-- 左侧文章列表 -->
+        <main class="main">
+
+            {% if q or current_category %}
+                <section class="card">
+                    <h2>筛选结果</h2>
+                    <p class="filter-summary">
+                        {% if current_category %}
+                            当前分类：{{ current_category }}
+                        {% else %}
+                            当前分类：全部
+                        {% endif %}
+
+                        {% if q %}
+                            ｜搜索关键词：{{ q }}
+                        {% endif %}
+                    </p>
+                </section>
+            {% endif %}
+
+            <section class="article-list">
+                {% if articles %}
+                    {% for article in articles %}
+                        <a class="article-card" href="{{ article.url | default('#') }}">
+                            <div class="article-top">
+                                <h3>{{ article.title }}</h3>
+
+                                {% if article.category %}
+                                    <span class="article-category">{{ article.category }}</span>
+                                {% endif %}
+                            </div>
+
+                            <p class="article-summary">
+                                {{ article.summary | default("暂无简介。") }}
+                            </p>
+
+                            <div class="article-meta">
+                                <span>{{ article.created_at }}</span>
+                                <span>阅读 {{ article.view_count | default(0) }}</span>
+                                <span>评论 {{ article.comment_count | default(0) }}</span>
+                            </div>
+                        </a>
+                    {% endfor %}
+                {% else %}
+                    <div class="card">
+                        <p class="empty">没有找到相关文章。</p>
+                    </div>
+                {% endif %}
+            </section>
+        </main>
+
+        <!-- 右侧固定信息栏 -->
+        <aside class="sidebar">
+
+            <section class="card">
+                <h2>基本信息</h2>
+
+                <div class="info-row">
+                    <span>页面主人</span>
+                    <strong>{{ workspace.owner_name | default("未设置") }}</strong>
+                </div>
+
+                <div class="info-row">
+                    <span>方向</span>
+                    <strong>{{ workspace.direction | default("数据 / 编程 / AI") }}</strong>
+                </div>
+
+                <div class="info-row">
+                    <span>文章数</span>
+                    <strong>{{ total_articles | default(0) }}</strong>
+                </div>
+
+                <div class="info-row">
+                    <span>页面地址</span>
+                    <strong>/p/{{ workspace.slug }}</strong>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>简单工具</h2>
+
+                <div class="link-list">
+                    {% if tools %}
+                        {% for tool in tools %}
+                            <a class="side-link" href="{{ tool.url }}">
+                                <span>{{ tool.name }}</span>
+                                <span>→</span>
+                            </a>
+                        {% endfor %}
+                    {% else %}
+                        <a class="side-link" href="/tools">
+                            <span>通用工具</span>
+                            <span>→</span>
+                        </a>
+
+                        <a class="side-link" href="/fastgpt">
+                            <span>FastGPT 调用</span>
+                            <span>→</span>
+                        </a>
+                    {% endif %}
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>其他链接</h2>
+
+                <div class="link-list">
+                    {% if links %}
+                        {% for link in links %}
+                            <a class="side-link" href="{{ link.url }}" target="_blank">
+                                <span>{{ link.name }}</span>
+                                <span>↗</span>
+                            </a>
+                        {% endfor %}
+                    {% else %}
+                        <p class="empty">暂无其他链接。</p>
+                    {% endif %}
+                </div>
+            </section>
+
+        </aside>
+
+    </div>
+</div>
+</body>
+</html>

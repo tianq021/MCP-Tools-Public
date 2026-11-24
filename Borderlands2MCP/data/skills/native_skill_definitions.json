@@ -1,0 +1,2803 @@
+[
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.ActionSkill.Skill_Deception",
+    "section": "ActionSkill.Skill_Deception SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "Action Skill. Press <StringAliasMap:Action.ActionSkill> to create a holographic decoy and vanish for a few seconds. The longer you are invisible the more damage your next attack deals, but ending invisibility sooner results in a shorter Decepti0n cooldown. ",
+    "fields": {
+      "SkillDescription": "\"[skill]Action Skill.[-skill] Press <StringAliasMap:Action.ActionSkill> to create a [skill]holographic decoy[-skill] and [skill]vanish[-skill] for a few seconds.  The longer you are invisible the more [skill]damage[-skill] your next attack deals, but ending invisibility sooner results in a shorter [skill]Decepti0n[-skill] cooldown. \"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Bloodshed.Backstab",
+    "section": "Bloodshed.Backstab SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "Your melee attacks deal additional damage when hitting an enemy in the back.",
+    "fields": {
+      "SkillDescription": "\"Your [skill]melee attacks[-skill] deal [skill]additional damage[-skill] when hitting an enemy in the [skill]back[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Bloodshed.BeLikeWater",
+    "section": "Bloodshed.BeLikeWater SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "Shooting an enemy increases the damage of your next melee attack. Melee attacks increase the damage of your next shot.",
+    "fields": {
+      "SkillDescription": "\"[skill]Shooting[-skill] an enemy increases the damage of your next [skill]melee attack[-skill].  [skill]Melee attacks[-skill] increase the damage of your [skill]next shot[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Bloodshed.Execute",
+    "section": "Bloodshed.Execute SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "Melee Override Skill. While Decepti0n is active and a target is under your crosshairs, press <StringAliasMap:Action.Melee> to dash forward a short distance and perform a special melee strike, dealing massive damage.",
+    "fields": {
+      "SkillDescription": "\"[skill]Melee Override Skill.[-skill]  While [skill]Decepti0n[-skill] is active and a target is under your crosshairs, press <StringAliasMap:Action.Melee> to [skill]dash forward[-skill] a short distance and perform a [skill]special melee strike[-skill], dealing massive damage.\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Bloodshed.Grim",
+    "section": "Bloodshed.Grim SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "Kill Skill. Killing an enemy causes your shields to quickly regenerate and increases your Action Skill Cooldown Rate for a few seconds.",
+    "fields": {
+      "SkillDescription": "\"[skill]Kill Skill.[-skill] Killing an enemy causes your [skill]shields to quickly regenerate[-skill] and increases your [skill]Action Skill Cooldown Rate[-skill] for a few seconds.\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Bloodshed.IronHand",
+    "section": "Bloodshed.IronHand SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "Increases your Melee Damage and Maximum Health.",
+    "fields": {
+      "SkillDescription": "\"Increases your [skill]Melee Damage[-skill] and [skill]Maximum Health[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Bloodshed.LikeTheWind",
+    "section": "Bloodshed.LikeTheWind SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "While moving, you deal increased Melee Damage and Gun Damage.",
+    "fields": {
+      "SkillDescription": "\"While moving, you deal increased [skill]Melee Damage[-skill] and [skill]Gun Damage[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Bloodshed.ManyMustFall",
+    "section": "Bloodshed.ManyMustFall SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "Killing an enemy with a melee attack while Decepti0n is active causes you to deploy another holographic decoy, re-stealth, and adds time to Decepti0n's duration. This can be done multiple times in succession.",
+    "fields": {
+      "SkillDescription": "\"[skill]Killing an enemy[-skill] with a [skill]melee attack[-skill] while [skill]Decepti0n[-skill] is active causes you to deploy another holographic decoy, re-stealth, and adds time to [skill]Decepti0n's[-skill] duration.  This can be done multiple times in succession.\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Bloodshed.Resurgence",
+    "section": "Bloodshed.Resurgence SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "Killing an enemy with a melee attack restores health. The lower your health, the more health you receive.",
+    "fields": {
+      "SkillDescription": "\"Killing an enemy with a [skill]melee attack[-skill] restores [skill]health[-skill].  The lower your health, the more health you receive.\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Cunning.Ambush",
+    "section": "Cunning.Ambush SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "Increases damage dealt when attacking from behind, or when attacking an enemy who is targeting someone other than you.",
+    "fields": {
+      "SkillDescription": "\"[skill]Increases damage[-skill] dealt when [skill]attacking from behind[-skill], or when attacking an enemy who is [skill]targeting someone other than you[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Cunning.CounterStrike",
+    "section": "Cunning.CounterStrike SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "After getting hit, your next melee attack has a chance to deal massively increased damage.",
+    "fields": {
+      "SkillDescription": "\"After getting hit, your next [skill]melee attack[-skill] has a chance to deal [skill]massively increased damage[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Cunning.DeathBlossom",
+    "section": "Cunning.DeathBlossom SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "Action Skill Augment. Press <StringAliasMap:Action.ActionSkill> while Decepti0n is active to throw a handful of kunai. Each kunai will explode with a random elemental type. Kunai do not benefit from the Decepti0n damage bonuses, but throwing kunai does not end Decepti0n and can apply Death Mark.",
+    "fields": {
+      "SkillDescription": "\"[skill]Action Skill Augment.[-skill] Press <StringAliasMap:Action.ActionSkill> while [skill]Decepti0n[-skill] is active to throw a handful of kunai.  Each kunai will explode with a random elemental type.  Kunai do not benefit from the [skill]Decepti0n[-skill] damage bonuses, but throwing kunai does not end [skill]Decepti0n[-skill] and can apply [skill]Death Mark[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Cunning.DeathMark",
+    "section": "Cunning.DeathMark SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "Melee attacks mark the target for death for a short duration. Marked targets take additional damage from all sources. Also, it's not an easy thing to live with.",
+    "fields": {
+      "SkillDescription": "\"Melee attacks mark the target for death for a short duration. Marked targets take [skill]additional damage[-skill] from all sources. Also, it's not an easy thing to live with.\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Cunning.FastHands",
+    "section": "Cunning.FastHands SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "Increases Reload Speed and Weapon Swap Speed.",
+    "fields": {
+      "SkillDescription": "\"Increases [skill]Reload Speed[-skill] and [skill]Weapon Swap Speed[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Cunning.Fearless",
+    "section": "Cunning.Fearless SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "While your shield is depleted, you gain a bonus to Gun Damage and Fire Rate.",
+    "fields": {
+      "SkillDescription": "\"While your shield is depleted, you gain a bonus to [skill]Gun Damage[-skill] and [skill]Fire Rate[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Cunning.Innervate",
+    "section": "Cunning.Innervate SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "While Decepti0n is active you gain increased Gun Damage and Movement Speed, as well as regenerate health.",
+    "fields": {
+      "SkillDescription": "\"While [skill]Decepti0n[-skill] is active you gain increased [skill]Gun Damage[-skill] and [skill]Movement Speed[-skill], as well as [skill]regenerate health[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Cunning.RisingShot",
+    "section": "Cunning.RisingShot SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "Each successful ranged or melee attack grants a stacking damage bonus for a short time. This bonus can stack up to 5 times. Faster weapons can gain stacks more quickly, but slower weapons retain stacks for a longer period of time.",
+    "fields": {
+      "SkillDescription": "\"Each successful [skill]ranged or melee attack[-skill] grants a [skill]stacking damage bonus[-skill] for a short time.  This bonus can stack up to 5 times.  Faster weapons can gain stacks more quickly, but slower weapons retain stacks for a longer period of time.\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Cunning.RisingShot_Active",
+    "section": "Cunning.RisingShot_Active SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "Hitting an enemy provides a damage bonus for a few seconds. Stacks up to 5 times.",
+    "fields": {
+      "SkillDescription": "\"Hitting an enemy provides a damage bonus for a few seconds.  Stacks up to 5 times.\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Cunning.TwoFang",
+    "section": "Cunning.TwoFang SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "Every time you fire a gun, you have a chance to fire twice.",
+    "fields": {
+      "SkillDescription": "\"Every time you [skill]fire a gun[-skill], you have a chance to [skill]fire twice[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Cunning.Unforseen",
+    "section": "Cunning.Unforseen SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "Your holographic decoy explodes when you become visible again, dealing Shock Damage to nearby enemies.",
+    "fields": {
+      "SkillDescription": "\"Your holographic decoy explodes when you become visible again, dealing [skill]Shock Damage[-skill] to nearby enemies.\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Sniping.AtOneWithTheGun",
+    "section": "Sniping.AtOneWithTheGun SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "Greatly improves your Accuracy with Sniper Rifles when shooting from the hip. Additionally, increases Reload Speed and Magazine Size with Sniper Rifles.",
+    "fields": {
+      "SkillDescription": "\"Greatly improves your [skill]Accuracy[-skill] with [skill]Sniper Rifles[-skill] when shooting from the hip.  Additionally, increases [skill]Reload Speed[-skill] and [skill]Magazine Size[-skill] with [skill]Sniper Rifles[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Sniping.Bore",
+    "section": "Sniping.Bore SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "Your shots pierce through enemies. If your shot hits an enemy after piercing an enemy, it deals massively increased damage. B0re does not work with rockets and some special projectiles. Additionally, while Decepti0n is active, your visor will highlight enemy crit locations.",
+    "fields": {
+      "SkillDescription": "\"Your [skill]shots pierce through enemies[-skill].  If your shot hits an enemy after piercing an enemy, it deals [skill]massively increased damage[-skill].  [skill]B0re[-skill] does not work with rockets and some special projectiles. Additionally, while [skill]Decepti0n[-skill] is active, your [skill]visor will highlight enemy crit locations.[-skill]\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Sniping.CriticalAscention",
+    "section": "Sniping.CriticalAscention SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "Scoring a Critical Hit with a Sniper Rifle increases your Gun Damage and Critical Hit Damage with Sniper Rifles. This effect can stack up to 999 times. Stacks slowly decay if you haven't scored a critical hit in awhile.",
+    "fields": {
+      "SkillDescription": "\"Scoring a [skill]Critical Hit[-skill] with a [skill]Sniper Rifle[-skill] increases your [skill]Gun Damage[-skill] and [skill]Critical Hit Damage[-skill] with [skill]Sniper Rifles[-skill].  This effect can stack up to 999 times.  Stacks slowly decay if you haven't scored a critical hit in awhile.\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Sniping.KillConfirmed",
+    "section": "Sniping.KillConfirmed SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "Aiming down the sights with your gun grants you increased Critical Hit Damage. The longer you aim down the sights, the greater the bonus.",
+    "fields": {
+      "SkillDescription": "\"Aiming down the sights with your gun grants you increased [skill]Critical Hit Damage[-skill].  The longer you aim down the sights, the greater the bonus.\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Sniping.Killer",
+    "section": "Sniping.Killer SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "Kill Skill. Killing an enemy increases Critical Hit Damage and Reload Speed for a few seconds.",
+    "fields": {
+      "SkillDescription": "\"[skill]Kill Skill[-skill]. Killing an enemy increases [skill]Critical Hit Damage[-skill] and [skill]Reload Speed[-skill] for a few seconds.\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Sniping.OneShotOneKill",
+    "section": "Sniping.OneShotOneKill SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "The first shot fired from a fully-loaded magazine deals increased damage.",
+    "fields": {
+      "SkillDescription": "\"The [skill]first shot[-skill] fired from a fully-loaded magazine deals [skill]increased damage[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Sniping.Optics",
+    "section": "Sniping.Optics SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "Increases your Zoom with all gun types. Additionally, your aim is not disrupted as much when taking damage.",
+    "fields": {
+      "SkillDescription": "\"Increases your [skill]Zoom[-skill] with all gun types.  Additionally, your aim is not disrupted as much when taking damage.\"\r"
+    }
+  },
+  {
+    "class_id": "assassin",
+    "path": "GD_Assassin_Skills.Sniping.Velocity",
+    "section": "Sniping.Velocity SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+    "description": "Increases Bullet Speed, Gun Damage, and Critical Hit Damage with all guns.",
+    "fields": {
+      "SkillDescription": "\"Increases [skill]Bullet Speed[-skill], [skill]Gun Damage[-skill], and [skill]Critical Hit Damage[-skill] with all guns.\"\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_finalboss.skills.skill_superslag",
+    "section": "skills.skill_superslag SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\gd_finalboss.int",
+    "description": "",
+    "fields": {
+      "SkillName": "超级镒渣技能\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_fink.skills.fink_shieldregenbuffskill",
+    "section": "skills.fink_shieldregenbuffskill SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\gd_fink.int",
+    "description": "芬克护盾",
+    "fields": {
+      "SkillDescription": "芬克护盾\r",
+      "SkillName": "芬克护盾\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_healthdrops.skills.boostershieldpickup_skill",
+    "section": "skills.boostershieldpickup_skill SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\gd_healthdrops.int",
+    "description": "",
+    "fields": {
+      "SkillName": "拾取护盾能量块\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.ActionSkill.Skill_Gunzerking",
+    "section": "ActionSkill.Skill_Gunzerking SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "Action Skill. Press <StringAliasMap:Action.ActionSkill> to draw a second gun and go nuts! While Gunzerking you instantly regain 50% of your Maximum Health, gain Damage Reduction against enemy attacks, and constantly regenerate health and ammo. Does not regenerate rockets.",
+    "fields": {
+      "SkillDescription": "\"[skill]Action Skill[-skill].  Press <StringAliasMap:Action.ActionSkill> to draw a second gun and go nuts!  While [skill]Gunzerking[-skill] you [skill]instantly regain 50% of your Maximum Health[-skill], gain [skill]Damage Reduction[-skill] against enemy attacks, and constantly [skill]regenerate health and ammo[-skill].  Does not regenerate rockets.\"\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.Brawn.AintGotTimeToBleed",
+    "section": "Brawn.AintGotTimeToBleed SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "While Gunzerking you regenerate health. The lower your current health, the more powerful the regeneration.",
+    "fields": {
+      "SkillDescription": "\"While [skill]Gunzerking[-skill] you [skill]regenerate health[-skill].  The lower your current health, the more powerful the regeneration.\"\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.Brawn.Asbestos",
+    "section": "Brawn.Asbestos SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "Reduces the duration of enemy Elemental Status Effects on you.",
+    "fields": {
+      "SkillDescription": "\"Reduces the duration of enemy [skill]Elemental Status Effects[-skill] on you.\"\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.Brawn.ComeAtMeBro",
+    "section": "Brawn.ComeAtMeBro SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "Action Skill Augment. While Gunzerking press <StringAliasMap:Action.ActionSkill> to taunt your enemies and instantly gain full health. Taunted enemies are more likely to attack you, and for the next few seconds you gain massive damage reduction.",
+    "fields": {
+      "SkillName": "\"Come At Me, Bro\"\r",
+      "SkillDescription": "\"[skill]Action Skill Augment[-skill].  While [skill]Gunzerking[-skill] press <StringAliasMap:Action.ActionSkill> to [skill]taunt your enemies[-skill] and instantly gain [skill]full health[-skill].  Taunted enemies are more likely to attack you, and for the next few seconds you gain [skill]massive damage reduction[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.Brawn.ImTheJuggernaut",
+    "section": "Brawn.ImTheJuggernaut SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "Kill Skill. Killing an enemy reduces all damage taken for a few seconds.",
+    "fields": {
+      "SkillDescription": "\"[skill]Kill Skill[-skill].  Killing an enemy [skill]reduces all damage[-skill] taken for a few seconds.\"\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.Brawn.Incite",
+    "section": "Brawn.Incite SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "Taking damage from enemies increases your Movement Speed and Reload Speed for a few seconds.",
+    "fields": {
+      "SkillDescription": "\"Taking damage from enemies increases your [skill]Movement Speed[-skill] and [skill]Reload Speed[-skill] for a few seconds.\"\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.Brawn.JustGotReal",
+    "section": "Brawn.JustGotReal SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "Increases Gun Damage for all gun types. The lower your health, the greater the damage bonus.",
+    "fields": {
+      "SkillDescription": "\"Increases [skill]Gun Damage[-skill] for all gun types.  The lower your health, the greater the damage bonus.\"\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.Brawn.OutOfBubblegum",
+    "section": "Brawn.OutOfBubblegum SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "Increases Fire Rate with all gun types while your shields are depleted.",
+    "fields": {
+      "SkillDescription": "\"Increases [skill]Fire Rate[-skill] with all gun types while your shields are depleted.\"\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.Brawn.SexualTyrannosaurus",
+    "section": "Brawn.SexualTyrannosaurus SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "Taking damage causes you to regenerate health for five seconds. This effect does not stack.",
+    "fields": {
+      "SkillDescription": "\"Taking damage causes you to [skill]regenerate health[-skill] for five seconds.  This effect does not stack.\"\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.Gun_Lust.AllIneedIsOne",
+    "section": "Gun_Lust.AllIneedIsOne SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "Swapping weapons causes your next shot fired to deal additional damage.",
+    "fields": {
+      "SkillDescription": "\"[skill]Swapping weapons[-skill] causes your next shot fired to deal [skill]additional damage[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.Gun_Lust.AutoLoader",
+    "section": "Gun_Lust.AutoLoader SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "Killing an enemy instantly reloads all of the guns you have equipped that are not currently in your hands. Swapping guns after Auto-Loader has reloaded a gun triggers Locked & Loaded.",
+    "fields": {
+      "SkillDescription": "\"Killing an enemy [skill]instantly reloads[-skill] all of the guns you have equipped that are not currently in your hands.  Swapping guns after [skill]Auto-Loader[-skill] has reloaded a gun triggers [skill]Locked & Loaded[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.Gun_Lust.ImYourHuckleberry",
+    "section": "Gun_Lust.ImYourHuckleberry SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "Increases Gun Damage and Reload Speed with pistols.",
+    "fields": {
+      "SkillDescription": "\"Increases [skill]Gun Damage[-skill] and [skill]Reload Speed[-skill] with pistols.\"\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.Gun_Lust.Inconceivable",
+    "section": "Gun_Lust.Inconceivable SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "Your shots have a chance to not consume ammo. The lower your health and shields, the greater the chance of free shots.",
+    "fields": {
+      "SkillDescription": "\"Your shots have a chance to [skill]not consume ammo[-skill].  The lower your health and shields, the greater the chance of [skill]free shots[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.Gun_Lust.KeepItPipingHot",
+    "section": "Gun_Lust.KeepItPipingHot SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "While Gunzerking is in the process of cooling down, you gain bonus Gun Damage, Melee Damage, and Grenade Damage.",
+    "fields": {
+      "SkillDescription": "\"While [skill]Gunzerking[-skill] is in the process of [skill]cooling down[-skill], you gain bonus [skill]Gun Damage[-skill], [skill]Melee Damage[-skill], and [skill]Grenade Damage[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.Gun_Lust.LayWaste",
+    "section": "Gun_Lust.LayWaste SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "Kill Skill. Killing an enemy increases Fire Rate and Critical Hit Damage with all guns for a short while.",
+    "fields": {
+      "SkillDescription": "\"[skill]Kill Skill[-skill].  Killing an enemy increases [skill]Fire Rate[-skill] and [skill]Critical Hit Damage[-skill] with all guns for a short while.\"\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.Gun_Lust.LockedandLoaded",
+    "section": "Gun_Lust.LockedandLoaded SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "Reloading your gun increases Fire Rate for a short time.",
+    "fields": {
+      "SkillName": "\"Locked & Loaded\"\r",
+      "SkillDescription": "\"[skill]Reloading[-skill] your gun increases [skill]Fire Rate[-skill] for a short time.\"\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.Gun_Lust.MoneyShot",
+    "section": "Gun_Lust.MoneyShot SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "The last round fired from your magazine deals massively increased damage. Guns with small magazines receive a smaller bonus. This skill works with all weapon types.",
+    "fields": {
+      "SkillDescription": "\"The [skill]last round[-skill] fired from your magazine deals [skill]massively increased damage[-skill].  Guns with [skill]small magazines[-skill] receive a [skill]smaller bonus[-skill].  This skill works with all weapon types.\"\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.Gun_Lust.NoKillLikeOverkill",
+    "section": "Gun_Lust.NoKillLikeOverkill SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "Killing an enemy grants Bonus Damage to your next shot equal to the amount of excess damage you dealt to the enemy you just killed.",
+    "fields": {
+      "SkillDescription": "\"Killing an enemy grants [skill]Bonus Damage[-skill] to your next shot equal to the amount of [skill]excess damage[-skill] you dealt to the enemy you just killed.\"\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.Rampage.AllInTheReflexes",
+    "section": "Rampage.AllInTheReflexes SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "Increases Reload Speed and Melee Damage.",
+    "fields": {
+      "SkillDescription": "\"Increases [skill]Reload Speed[-skill] and [skill]Melee Damage[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.Rampage.DoubleYourFun",
+    "section": "Rampage.DoubleYourFun SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "Throwing a grenade while Gunzerking causes you to throw 2 grenades. The second grenade does not cost ammo.",
+    "fields": {
+      "SkillDescription": "\"Throwing a grenade while [skill]Gunzerking[-skill] causes you to [skill]throw 2 grenades[-skill].  The second grenade does not cost ammo.\"\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.Rampage.GetSome",
+    "section": "Rampage.GetSome SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "Shooting an enemy decreases your Gunzerking cooldown. This effect can only occur once every 3 seconds.",
+    "fields": {
+      "SkillDescription": "\"Shooting an enemy decreases your [skill]Gunzerking[-skill] cooldown.  This effect can only occur once every 3 seconds.\"\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.Rampage.Inconceivable",
+    "section": "Rampage.Inconceivable SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "Your shots have a chance to not consume ammo. The lower your health and shields, the greater the chance of free shots.",
+    "fields": {
+      "SkillDescription": "\"Your shots have a chance to [skill]not consume ammo[-skill].  The lower your health and shields, the greater the chance of [skill]free shots[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.Rampage.LastLonger",
+    "section": "Rampage.LastLonger SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "Increases the duration of Gunzerking.",
+    "fields": {
+      "SkillDescription": "\"Increases the duration of [skill]Gunzerking[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "gunzerker",
+    "path": "GD_Mercenary_Skills.Rampage.SteadyAsSheGoes",
+    "section": "Rampage.SteadyAsSheGoes SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+    "description": "Reduces Recoil with both guns while Gunzerking. Additionally, each shot that hits an enemy has a chance to improve your accuracy with both guns.",
+    "fields": {
+      "SkillDescription": "\"Reduces [skill]Recoil[-skill] with both guns while [skill]Gunzerking[-skill].  Additionally, each shot that hits an enemy has a chance to [skill]improve your accuracy with both guns[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_nomadshared.skills.banditformationfire",
+    "section": "skills.banditformationfire SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\gd_nomadshared.int",
+    "description": "",
+    "fields": {
+      "SkillName": "强盗构建火力\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "GD_ProbeShared.Skill.Skill_ProbeShared_BulletReflection",
+    "section": "Skill.Skill_ProbeShared_BulletReflection SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_ProbeShared.int",
+    "description": "After killing an enemy you gain the ability to reflect enemy bullets, sending them flying back toward your enemies. This effect lasts for a short time.",
+    "fields": {
+      "SkillDescription": "\"After killing an enemy you gain the ability to reflect enemy bullets, sending them flying back toward your enemies. This effect lasts for a short time.\"\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_rolanddeployableturret.skills.supplydrop_ammoregen",
+    "section": "skills.supplydrop_ammoregen SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\gd_rolanddeployableturret.int",
+    "description": "",
+    "fields": {
+      "SkillName": "空降补给\r"
+    }
+  },
+  {
+    "class_id": "siren",
+    "path": "GD_Siren_Skills.Cataclysm.Backdraft",
+    "section": "Cataclysm.Backdraft SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+    "description": "Your melee attacks deal additional fire damage. Additionally, when your shields are depleted you create a fiery explosion, damaging nearby enemies. Your shields must fully recharge between explosions.",
+    "fields": {
+      "SkillDescription": "\"Your [skill]melee attacks[-skill] deal additional [skill]fire damage[-skill].  Additionally, when your shields are depleted you create a [skill]fiery explosion[-skill], damaging nearby enemies.  Your shields must fully recharge between explosions.\"\r"
+    }
+  },
+  {
+    "class_id": "siren",
+    "path": "GD_Siren_Skills.Cataclysm.BlightPhoenix",
+    "section": "Cataclysm.BlightPhoenix SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+    "description": "Kill Skill. Killing an enemy causes you to deal constant Incendiary and Corrosive Damage to nearby enemies for a short time. The damage is based on your level, and the level of Blight Phoenix.",
+    "fields": {
+      "SkillDescription": "\"[skill]Kill Skill[-skill].  Killing an enemy causes you to deal constant [skill]Incendiary[-skill] and [skill]Corrosive Damage[-skill] to nearby enemies for a short time.  The damage is based on your level, and the level of [skill]Blight Phoenix[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "siren",
+    "path": "GD_Siren_Skills.Cataclysm.ChainReaction",
+    "section": "Cataclysm.ChainReaction SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+    "description": "While you have an enemy Phaselocked, all of your shots that hit enemies have a chance to ricochet and hit another nearby enemy. Chain Reaction only works with bullets.",
+    "fields": {
+      "SkillDescription": "\"While you have an enemy [skill]Phaselocked[-skill], all of your [skill]shots that hit enemies[-skill] have a chance to [skill]ricochet[-skill] and [skill]hit another nearby enemy[-skill].  [skill]Chain Reaction[-skill] only works with bullets.\"\r"
+    }
+  },
+  {
+    "class_id": "siren",
+    "path": "GD_Siren_Skills.Cataclysm.Flicker",
+    "section": "Cataclysm.Flicker SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+    "description": "Increases your chance to cause Elemental Status Effects with Fire, Shock, Corrosive and Slag guns.",
+    "fields": {
+      "SkillDescription": "\"Increases your chance to cause [skill]Elemental Status Effects[-skill] with [skill]Fire[-skill], [skill]Shock[-skill], [skill]Corrosive[-skill] and [skill]Slag[-skill] guns.\"\r"
+    }
+  },
+  {
+    "class_id": "siren",
+    "path": "GD_Siren_Skills.Cataclysm.Immolate",
+    "section": "Cataclysm.Immolate SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+    "description": "Adds Incendiary Damage to all shots fired while in Fight For Your Life. Additional Incendiary Damage is based on the Gun Damage of the weapon you're firing.",
+    "fields": {
+      "SkillDescription": "\"Adds [skill]Incendiary Damage[-skill] to all shots fired while in [skill]Fight For Your Life[-skill].  Additional [skill]Incendiary Damage[-skill] is based on the [skill]Gun Damage[-skill] of the weapon you're firing.\"\r"
+    }
+  },
+  {
+    "class_id": "siren",
+    "path": "GD_Siren_Skills.Cataclysm.Reaper",
+    "section": "Cataclysm.Reaper SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+    "description": "You deal increased Gun Damage to any enemy with more than 50% health remaining.",
+    "fields": {
+      "SkillDescription": "\"You deal increased [skill]Gun Damage[-skill] to any enemy with more than 50% health remaining.\"\r"
+    }
+  },
+  {
+    "class_id": "siren",
+    "path": "GD_Siren_Skills.Cataclysm.Ruin",
+    "section": "Cataclysm.Ruin SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+    "description": "Action Skill Augmentation. Phaselock now slags, electrocutes, and corrodes all nearby enemies.",
+    "fields": {
+      "SkillDescription": "\"[skill]Action Skill Augmentation[-skill]. [skill]Phaselock[-skill] now [skill]slags[-skill], [skill]electrocutes[-skill], and [skill]corrodes[-skill] all nearby enemies.\"\r"
+    }
+  },
+  {
+    "class_id": "siren",
+    "path": "GD_Siren_Skills.Harmony.Elated",
+    "section": "Harmony.Elated SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+    "description": "While you have an enemy Phaselocked, you and your friends regenerate health.",
+    "fields": {
+      "SkillDescription": "\"While you have an enemy [skill]Phaselocked[-skill], you and your friends [skill]regenerate health[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "siren",
+    "path": "GD_Siren_Skills.Harmony.LifeTap",
+    "section": "Harmony.LifeTap SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+    "description": "Kill Skill. Killing an enemy causes you to steal health from any enemy you damage for a short time.",
+    "fields": {
+      "SkillDescription": "\"[skill]Kill Skill[-skill].  Killing an enemy causes you to [skill]steal health[-skill] from any enemy you damage for a short time.\"\r"
+    }
+  },
+  {
+    "class_id": "siren",
+    "path": "GD_Siren_Skills.Harmony.Recompense",
+    "section": "Harmony.Recompense SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+    "description": "When you take health damage, there is a chance that your attacker takes damage equal to the amount of health lost.",
+    "fields": {
+      "SkillDescription": "\"When you take [skill]health damage[-skill], there is a chance that your [skill]attacker takes damage[-skill] equal to the amount of [skill]health lost[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "siren",
+    "path": "GD_Siren_Skills.Harmony.Res",
+    "section": "Harmony.Res SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+    "description": "You can instantly revive a friend in Fight For Your Life by using Phaselock on him/her.",
+    "fields": {
+      "SkillDescription": "\"You can [skill]instantly revive[-skill] a friend in [skill]Fight For Your Life[-skill] by using [skill]Phaselock[-skill] on him/her.\"\r"
+    }
+  },
+  {
+    "class_id": "siren",
+    "path": "GD_Siren_Skills.Harmony.Scorn",
+    "section": "Harmony.Scorn SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+    "description": "Melee Override Skill. Press <StringAliasMap:Action.Melee> to throw an orb of slag that constantly damages enemies near it. This ability has a cooldown. Pressing <StringAliasMap:Action.Melee> when Scorn is on cooldown will perform a regular melee attack.",
+    "fields": {
+      "SkillDescription": "\"[skill]Melee Override Skill[-skill].  Press <StringAliasMap:Action.Melee> to throw an [skill]orb of slag[-skill] that constantly damages enemies near it.  This ability has a cooldown.  Pressing <StringAliasMap:Action.Melee> when [skill]Scorn[-skill] is on cooldown will perform a regular melee attack.\"\r"
+    }
+  },
+  {
+    "class_id": "siren",
+    "path": "GD_Siren_Skills.Harmony.Sustenance",
+    "section": "Harmony.Sustenance SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+    "description": "You constantly regenerate health. The lower your current health, the more powerful the regeneration.",
+    "fields": {
+      "SkillDescription": "\"You constantly [skill]regenerate health[-skill].  The lower your current health, the more powerful the regeneration.\"\r"
+    }
+  },
+  {
+    "class_id": "siren",
+    "path": "GD_Siren_Skills.Harmony.SweetRelease",
+    "section": "Harmony.SweetRelease SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+    "description": "If the enemy you have Phaselocked is killed, it generates Life Orbs that automatically seek out and heal you and your friends. The healing is stronger when you or your friend's health is low.",
+    "fields": {
+      "SkillDescription": "\"If the enemy you have [skill]Phaselocked[-skill] is killed, it generates [skill]Life Orbs[-skill] that automatically seek out and [skill]heal[-skill] you and your friends.  The healing is stronger when you or your friend's health is low.\"\r"
+    }
+  },
+  {
+    "class_id": "siren",
+    "path": "GD_Siren_Skills.Motion.Inertia",
+    "section": "Motion.Inertia SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+    "description": "Kill Skill. Killing an enemy causes your shields to quickly regenerate and increases your Reload Speed for a few seconds.",
+    "fields": {
+      "SkillDescription": "\"[skill]Kill Skill[-skill].  Killing an enemy causes your [skill]shields to quickly regenerate[-skill] and increases your [skill]Reload Speed[-skill] for a few seconds.\"\r"
+    }
+  },
+  {
+    "class_id": "siren",
+    "path": "GD_Siren_Skills.Motion.KineticReflection",
+    "section": "Motion.KineticReflection SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+    "description": "Kill Skill. After killing an enemy, you gain the ability to deflect enemy bullets, sending them flying toward nearby enemies. You take reduced damage from deflected bullets. Kinetic Reflection only works with bullets. This effect lasts for a short time.",
+    "fields": {
+      "SkillDescription": "\"[skill]Kill Skill[-skill].  After killing an enemy, you gain the ability to [skill]deflect enemy bullets[-skill], sending them flying toward nearby enemies.  You take reduced damage from deflected bullets.  [skill]Kinetic Reflection[-skill] only works with bullets.  This effect lasts for a short time.\"\r"
+    }
+  },
+  {
+    "class_id": "siren",
+    "path": "GD_Siren_Skills.Motion.Quicken",
+    "section": "Motion.Quicken SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+    "description": "Increases the Cooldown Rate of your Phaselock ability.",
+    "fields": {
+      "SkillDescription": "\"Increases the [skill]Cooldown Rate[-skill] of your [skill]Phaselock[-skill] ability.\"\r"
+    }
+  },
+  {
+    "class_id": "siren",
+    "path": "GD_Siren_Skills.Motion.SubSequence",
+    "section": "Motion.SubSequence SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+    "description": "Action Skill Augmentation. When an enemy under the effects of your Phaselock dies, there is a chance for your Phaselock ability to seek out and affect another target.",
+    "fields": {
+      "SkillDescription": "\"[skill]Action Skill Augmentation.[-skill] When an enemy under the effects of your [skill]Phaselock[-skill] dies, there is a chance for your [skill]Phaselock[-skill] ability to seek out and [skill]affect another target[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Guerrilla.Able",
+    "section": "Guerrilla.Able SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "Damaging an enemy causes you to regenerate health for a few seconds. This effect does not stack multiple times.",
+    "fields": {
+      "SkillDescription": "\"Damaging an enemy causes you to [skill]regenerate health[-skill] for a few seconds.  This effect does not stack multiple times.\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Guerrilla.CrisisManagement",
+    "section": "Guerrilla.CrisisManagement SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "You gain increased Gun Damage and Melee Damage while your shields are depleted.",
+    "fields": {
+      "SkillDescription": "\"You gain increased [skill]Gun Damage[-skill] and [skill]Melee Damage[-skill] while your shields are depleted.\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Guerrilla.DoubleUp",
+    "section": "Guerrilla.DoubleUp SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "Adds a second gun to your Sabre Turret and changes both guns to fire slag rounds. Slagged enemies take additional damage from all non-slag attacks.",
+    "fields": {
+      "SkillDescription": "\"Adds a [skill]second gun[-skill] to your [skill]Sabre Turret[-skill] and changes both guns to fire [skill]slag rounds[-skill].  Slagged enemies take additional damage from all non-slag attacks.\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Guerrilla.Grenadier",
+    "section": "Guerrilla.Grenadier SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "Increases the maximum number of grenades you can carry.",
+    "fields": {
+      "SkillDescription": "\"Increases the maximum number of [skill]grenades[-skill] you can carry.\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Guerrilla.Ready",
+    "section": "Guerrilla.Ready SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "Increases Reload Speed.",
+    "fields": {
+      "SkillDescription": "\"Increases [skill]Reload Speed[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Guerrilla.Sentry",
+    "section": "Guerrilla.Sentry SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "Increases the number of shots your Sabre Turret fires in each burst, as well as your Sabre Turret's Duration.",
+    "fields": {
+      "SkillDescription": "\"Increases the number of shots your [skill]Sabre Turret[-skill] fires in each burst, as well as your [skill]Sabre Turret's Duration[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Guerrilla.TacticalWithdrawal",
+    "section": "Guerrilla.TacticalWithdrawal SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "Target your Sabre Turret and press <StringAliasMap:Action.Use> to recover your turret. This refunds some of the cooldown based on how much duration was left.",
+    "fields": {
+      "SkillDescription": "\"Target your [skill]Sabre Turret[-skill] and press <StringAliasMap:Action.Use> to [skill]recover your turret[-skill].  This refunds some of the [skill]cooldown[-skill] based on how much duration was left.\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Gunpowder.Battlefront",
+    "section": "Gunpowder.Battlefront SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "While your Sabre Turret is deployed you deal increased damage.",
+    "fields": {
+      "SkillDescription": "\"While your [skill]Sabre Turret[-skill] is deployed you deal [skill]increased damage[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Gunpowder.DoOrDie",
+    "section": "Gunpowder.DoOrDie SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "Allows you to throw grenades while in Fight For Your Life. Also increases damage dealt with grenades and rocket launchers.",
+    "fields": {
+      "SkillDescription": "\"Allows you to [skill]throw grenades[-skill] while in [skill]Fight For Your Life[-skill].  Also increases damage dealt with [skill]grenades[-skill] and [skill]rocket launchers[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Gunpowder.DutyCalls",
+    "section": "Gunpowder.DutyCalls SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "Increases the Gun Damage and Fire Rate of non-elemental guns.",
+    "fields": {
+      "SkillDescription": "\"Increases the [skill]Gun Damage[-skill] and [skill]Fire Rate[-skill] of non-elemental guns.\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Gunpowder.LongBowTurret",
+    "section": "Gunpowder.LongBowTurret SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "Your Sabre Turret can be deployed using Longbow technology, allowing you to deploy it much further away. Also, increases the Maximum Health of your Sabre Turret.",
+    "fields": {
+      "SkillDescription": "\"Your [skill]Sabre Turret[-skill] can be deployed using [skill]Longbow[-skill] technology, allowing you to deploy it much further away.  Also, increases the [skill]Maximum Health[-skill] of your [skill]Sabre Turret[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Gunpowder.Nuke",
+    "section": "Gunpowder.Nuke SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "Deploying your Sabre Turret sets off a small Nuclear Blast.",
+    "fields": {
+      "SkillDescription": "\"Deploying your [skill]Sabre Turret[-skill] sets off a small [skill]Nuclear Blast[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Gunpowder.Ranger",
+    "section": "Gunpowder.Ranger SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "Makes you better at just about everything.",
+    "fields": {
+      "SkillDescription": "\"Makes you better at just about [skill]everything[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Gunpowder.Steady",
+    "section": "Gunpowder.Steady SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "Reduces Recoil with all gun types, as well as damage dealt with grenades and rocket launchers.",
+    "fields": {
+      "SkillDescription": "\"Reduces [skill]Recoil[-skill] with all gun types, as well as damage dealt with [skill]grenades[-skill] and [skill]rocket launchers[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Scorpio.Skill_Scorpio",
+    "section": "Scorpio.Skill_Scorpio SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "Action Skill. Press <StringAliasMap:Action.ActionSkill> to deploy a Sabre Turret that automatically fires at enemies. When you're near the Sabre Turret, press <StringAliasMap:Action.Use> to reclaim it and refund some of your cooldown.",
+    "fields": {
+      "SkillDescription": "\"[skill]Action Skill[-skill].  Press <StringAliasMap:Action.ActionSkill> to deploy a [skill]Sabre Turret[-skill] that automatically fires at enemies.  When you're near the [skill]Sabre Turret[-skill], press <StringAliasMap:Action.Use> to reclaim it and refund some of your [skill]cooldown[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Survival.Forbearance",
+    "section": "Survival.Forbearance SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "Reduces the duration of enemy Elemental Status Effects on you. Additionally, increases Maximum Health.",
+    "fields": {
+      "SkillDescription": "\"Reduces the duration of enemy [skill]Elemental Status Effects[-skill] on you.  Additionally, increases [skill]Maximum Health[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Survival.Gemini",
+    "section": "Survival.Gemini SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "Allows you to deploy two Sabre Turrets. Once the first Sabre Turret is deployed press <StringAliasMap:Action.ActionSkill> again to deploy the second.",
+    "fields": {
+      "SkillDescription": "\"Allows you to deploy [skill]two Sabre Turrets[-skill].  Once the first [skill]Sabre Turret[-skill] is deployed press <StringAliasMap:Action.ActionSkill> again to deploy the second.\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Survival.Grit",
+    "section": "Survival.Grit SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "You gain a chance to ignore damage that would otherwise kill you. In addition to not taking damage from the attack, you will instantly regain half of your Maximum Health.",
+    "fields": {
+      "SkillDescription": "\"You gain a chance to [skill]ignore damage that would otherwise kill you[-skill].  In addition to not taking damage from the attack, you will instantly [skill]regain half of your Maximum Health[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Survival.Mag-Lock",
+    "section": "Survival.Mag-Lock SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "Allows your Sabre Turret to be deployed on walls and ceilings.",
+    "fields": {
+      "SkillDescription": "\"Allows your [skill]Sabre Turret[-skill] to be [skill]deployed on walls and ceilings[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Survival.PhalanxShield",
+    "section": "Survival.PhalanxShield SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "Your Sabre Turret projects a protective shield. The shield attempts to block enemy ranged attacks, but lets friendly ranged attacks pass through. Enemy movement and melee attacks are not affected.",
+    "fields": {
+      "SkillDescription": "\"Your [skill]Sabre Turret[-skill] projects a [skill]protective shield[-skill].  The shield attempts to block enemy ranged attacks, but lets friendly ranged attacks pass through.  Enemy movement and melee attacks are not affected.\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Survival.Preparation",
+    "section": "Survival.Preparation SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "Increases your Shield Capacity. Also, while your shield is full you regenerate health.",
+    "fields": {
+      "SkillDescription": "\"Increases your [skill]Shield Capacity[-skill].  Also, while your shield is full you [skill]regenerate health[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Survival.Pressure",
+    "section": "Survival.Pressure SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "Improves your Reload Speed and Shield Recharge Delay based on how much health you have. The lower your health, the higher the bonus.",
+    "fields": {
+      "SkillDescription": "\"Improves your [skill]Reload Speed[-skill] and [skill]Shield Recharge Delay[-skill] based on how much [skill]health[-skill] you have.  The [skill]lower your health, the higher the bonus[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Survival.QuickCharge",
+    "section": "Survival.QuickCharge SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "Kill Skill. Killing an enemy causes your shields to quickly regenerate for a short time.",
+    "fields": {
+      "SkillDescription": "\"[skill]Kill Skill[-skill].  Killing an enemy causes your shields to [skill]quickly regenerate[-skill] for a short time.\"\r"
+    }
+  },
+  {
+    "class_id": "commando",
+    "path": "GD_Soldier_Skills.Survival.Resourceful",
+    "section": "Survival.Resourceful SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+    "description": "Increases Action Skill Cooldown Rate.",
+    "fields": {
+      "SkillDescription": "\"Increases [skill]Action Skill Cooldown Rate[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_bigbird.skills.skill_bigbird_invulnerablestatuseffects",
+    "section": "skills.skill_bigbird_invulnerablestatuseffects SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Allium\\Compat\\Localization\\INT\\gd_bigbird.int",
+    "description": "",
+    "fields": {
+      "SkillName": "Snowman_GetHealth\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_snowman.skills.skill_watchandclearturretshield",
+    "section": "skills.skill_watchandclearturretshield SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Allium\\Compat\\Localization\\INT\\gd_snowman.int",
+    "description": "",
+    "fields": {
+      "SkillName": "消去枪塔护盾\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_anemone_plot_mission060.skill.drunk",
+    "section": "skill.drunk SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Anemone\\Compat\\Localization\\INT\\gd_anemone_plot_mission060.int",
+    "description": "",
+    "fields": {
+      "SkillName": "酒醉\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_anemone_relics.skills.roid_shield_skill_order_turtle_hardcarry",
+    "section": "skills.roid_shield_skill_order_turtle_hardcarry SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Anemone\\Compat\\Localization\\INT\\gd_anemone_relics.int",
+    "description": "",
+    "fields": {
+      "SkillName": "秩序狂暴护盾技能\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_anemone_relics.skills.roid_shield_skill_order_turtle_mouthwash",
+    "section": "skills.roid_shield_skill_order_turtle_mouthwash SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Anemone\\Compat\\Localization\\INT\\gd_anemone_relics.int",
+    "description": "",
+    "fields": {
+      "SkillName": "秩序狂暴护盾技能\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_anemone_shields.skills.roid_shield_skill_order_turtle",
+    "section": "skills.roid_shield_skill_order_turtle SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Anemone\\Compat\\Localization\\INT\\gd_anemone_shields.int",
+    "description": "",
+    "fields": {
+      "SkillName": "秩序狂暴护盾技能\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_anemone_shields.skills.nova_shield_skill_singularity",
+    "section": "skills.nova_shield_skill_singularity SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Anemone\\Compat\\Localization\\INT\\gd_anemone_shields.int",
+    "description": "",
+    "fields": {
+      "SkillName": "新星电击护盾技能\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_anemone_shields.skills.roid_shield_skill_order_peak",
+    "section": "skills.roid_shield_skill_order_peak SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Anemone\\Compat\\Localization\\INT\\gd_anemone_shields.int",
+    "description": "",
+    "fields": {
+      "SkillName": "秩序狂暴护盾技能\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_anemone_skill_gascloudboost.skills.skill_gascloud",
+    "section": "skills.skill_gascloud SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Anemone\\Compat\\Localization\\INT\\gd_anemone_skill_gascloudboost.int",
+    "description": "",
+    "fields": {
+      "SkillName": "毒气加成\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_anemone_weapons.skills.skill_unicornsplosion_vo",
+    "section": "skills.skill_unicornsplosion_vo SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Anemone\\Compat\\Localization\\INT\\gd_anemone_weapons.int",
+    "description": "",
+    "fields": {
+      "SkillName": "说话的枪技能\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_anemone_weapons.skills.skill_overcompensator_vo",
+    "section": "skills.skill_overcompensator_vo SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Anemone\\Compat\\Localization\\INT\\gd_anemone_weapons.int",
+    "description": "",
+    "fields": {
+      "SkillName": "说话的枪技能\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_anemone_weapons.skills.skill_hotmama_vo",
+    "section": "skills.skill_hotmama_vo SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Anemone\\Compat\\Localization\\INT\\gd_anemone_weapons.int",
+    "description": "",
+    "fields": {
+      "SkillName": "说话的枪技能\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_boostattack.skills.skill_boostattack",
+    "section": "skills.skill_boostattack SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Anemone\\Compat\\Localization\\INT\\gd_boostattack.int",
+    "description": "攻击加成效果的属性变换",
+    "fields": {
+      "SkillDescription": "攻击加成效果的属性变换\r",
+      "SkillName": "攻击加成状态效果\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_angelboss.skills.skill_angelboss_healthregen",
+    "section": "skills.skill_angelboss_healthregen SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_angelboss.int",
+    "description": "使用吸取生命光束时回复生命值",
+    "fields": {
+      "SkillDescription": "使用吸取生命光束时回复生命值\r",
+      "SkillName": "生命吸取\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_aster_artifacts.misc.skill_friendship",
+    "section": "misc.skill_friendship SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_aster_artifacts.int",
+    "description": "",
+    "fields": {
+      "SkillName": "友谊\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_aster_plot_mission01data.skills.skill_astermission01_moreinjuredtime",
+    "section": "skills.skill_astermission01_moreinjuredtime SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_aster_plot_mission01data.int",
+    "description": "",
+    "fields": {
+      "SkillName": "时间扭转复活\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_aster_plot_mission01data.skills.skill_lilithrez_healingregen",
+    "section": "skills.skill_lilithrez_healingregen SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_aster_plot_mission01data.int",
+    "description": "",
+    "fields": {
+      "SkillName": "生命圣坛-治疗加成\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_aster_shrines.skills.skill_speedshrine_meleeboost",
+    "section": "skills.skill_speedshrine_meleeboost SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_aster_shrines.int",
+    "description": "",
+    "fields": {
+      "SkillName": "近战圣坛-近战加成\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_aster_shrines.skills.skill_speedshrine_defenseboost",
+    "section": "skills.skill_speedshrine_defenseboost SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_aster_shrines.int",
+    "description": "",
+    "fields": {
+      "SkillName": "生命圣坛 - 速度加成\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_aster_shrines.skills.skill_ammoshrine_ammoregen",
+    "section": "skills.skill_ammoshrine_ammoregen SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_aster_shrines.int",
+    "description": "",
+    "fields": {
+      "SkillName": "弹药圣坛 - 补充弹药\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_aster_shrines.skills.skill_speedshrine_speedboost",
+    "section": "skills.skill_speedshrine_speedboost SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_aster_shrines.int",
+    "description": "",
+    "fields": {
+      "SkillName": "生命圣坛 - 速度加成\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_aster_shrines.skills.skill_speedshrine_damageboost",
+    "section": "skills.skill_speedshrine_damageboost SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_aster_shrines.int",
+    "description": "",
+    "fields": {
+      "SkillName": "伤害圣坛 - 伤害加成\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_aster_shrines.skills.skill_healthshrine_healingregen",
+    "section": "skills.skill_healthshrine_healingregen SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_aster_shrines.int",
+    "description": "",
+    "fields": {
+      "SkillName": "生命圣坛- 生命加成\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_aster_skills.claptrapapp_debuff",
+    "section": "claptrapapp_debuff SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_aster_skills.int",
+    "description": "小吵闹的魔法有够糟糕……",
+    "fields": {
+      "SkillDescription": "小吵闹的魔法有够糟糕……\r",
+      "SkillName": "负面状态\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_dragonshared.skills.skill_healthregen",
+    "section": "skills.skill_healthregen SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_dragonshared.int",
+    "description": "",
+    "fields": {
+      "SkillName": "Health_Regen\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_golemshared.skills.skill_slow",
+    "section": "skills.skill_slow SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_golemshared.int",
+    "description": "",
+    "fields": {
+      "SkillName": "缓慢击晕\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_golem_swordinstone.skills.skill_golemsisregen",
+    "section": "skills.skill_golemsisregen SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_golem_swordinstone.int",
+    "description": "",
+    "fields": {
+      "SkillName": "Golem Sword-in-Stone Regen\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_jackwarlock.skills.skill_fireresist",
+    "section": "skills.skill_fireresist SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_jackwarlock.int",
+    "description": "",
+    "fields": {
+      "SkillName": "火焰抗性\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_jackwarlock.skills.skill_shockresist",
+    "section": "skills.skill_shockresist SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_jackwarlock.int",
+    "description": "",
+    "fields": {
+      "SkillName": "火焰抗性\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_knight_paladin.skills.skill_blessingtransformed",
+    "section": "skills.skill_blessingtransformed SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_knight_paladin.int",
+    "description": "圣骑士的祝福",
+    "fields": {
+      "SkillDescription": "圣骑士的祝福\r",
+      "SkillName": "圣骑士祝福\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_knight_paladin.skills.skill_regen",
+    "section": "skills.skill_regen SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_knight_paladin.int",
+    "description": "圣骑士重生",
+    "fields": {
+      "SkillDescription": "圣骑士重生\r",
+      "SkillName": "圣骑士重生\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_necromancer.skills.skill_soultrap",
+    "section": "skills.skill_soultrap SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_necromancer.int",
+    "description": "使玩家减速",
+    "fields": {
+      "SkillDescription": "使玩家减速\r",
+      "SkillName": "减速\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_skeletonshared.skills.skill_slowstun",
+    "section": "skills.skill_slowstun SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_skeletonshared.int",
+    "description": "",
+    "fields": {
+      "SkillName": "缓慢击晕\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_skeletonshared.skills.skill_arrowstun",
+    "section": "skills.skill_arrowstun SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_skeletonshared.int",
+    "description": "",
+    "fields": {
+      "SkillName": "缓慢击晕\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_wisp.skills.skill_wisphaste",
+    "section": "skills.skill_wisphaste SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_wisp.int",
+    "description": "",
+    "fields": {
+      "SkillName": "小精灵加速\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_wisp.skills.skill_wispshield",
+    "section": "skills.skill_wispshield SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_wisp.int",
+    "description": "",
+    "fields": {
+      "SkillName": "小精灵护盾\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_wisp.skills.skill_wispammo",
+    "section": "skills.skill_wispammo SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_wisp.int",
+    "description": "",
+    "fields": {
+      "SkillName": "小精灵弹药\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_wisp.skills.skill_wispheal",
+    "section": "skills.skill_wispheal SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_wisp.int",
+    "description": "",
+    "fields": {
+      "SkillName": "小精灵治疗\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_wizard.skills.skill_fast",
+    "section": "skills.skill_fast SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_wizard.int",
+    "description": "敌军快速接近",
+    "fields": {
+      "SkillDescription": "敌军快速接近\r",
+      "SkillName": "快速\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_wizardshared.skills.skill_slow",
+    "section": "skills.skill_slow SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_wizardshared.int",
+    "description": "使玩家减速",
+    "fields": {
+      "SkillDescription": "使玩家减速\r",
+      "SkillName": "减速\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_wizardshared.skills.skill_icebody",
+    "section": "skills.skill_icebody SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Aster\\Compat\\Localization\\INT\\gd_wizardshared.int",
+    "description": "身体已经结冰",
+    "fields": {
+      "SkillDescription": "身体已经结冰\r",
+      "SkillName": "冰躯\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_pumpkinminion.skills.skill_slow",
+    "section": "skills.skill_slow SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Flax\\Compat\\Localization\\INT\\gd_pumpkinminion.int",
+    "description": "Slows players down",
+    "fields": {
+      "SkillDescription": "Slows players down\r",
+      "SkillName": "Slow\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_iris_raid_pyropete.skills.skill_firedot_incendiaryeffects",
+    "section": "skills.skill_firedot_incendiaryeffects SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Iris\\Compat\\Localization\\INT\\gd_iris_raid_pyropete.int",
+    "description": "点燃效果",
+    "fields": {
+      "SkillDescription": "点燃效果\r",
+      "SkillName": "火焰持续性伤害\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_iris_raid_pyropete.skills.skill_pyropeteshield",
+    "section": "skills.skill_pyropeteshield SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Iris\\Compat\\Localization\\INT\\gd_iris_raid_pyropete.int",
+    "description": "为敌人的非道具护盾设置基本属性值。",
+    "fields": {
+      "SkillDescription": "为敌人的非道具护盾设置基本属性值。\r",
+      "SkillName": "敌人基础护盾\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_iris_raid_pyropete.skills.skill_firedot_stacking",
+    "section": "skills.skill_firedot_stacking SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Iris\\Compat\\Localization\\INT\\gd_iris_raid_pyropete.int",
+    "description": "层数",
+    "fields": {
+      "SkillDescription": "层数\r",
+      "SkillName": "火焰持续性伤害\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_iris_raid_pyropete.skills.skill_watchandclearturretshield",
+    "section": "skills.skill_watchandclearturretshield SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Iris\\Compat\\Localization\\INT\\gd_iris_raid_pyropete.int",
+    "description": "",
+    "fields": {
+      "SkillName": "清除炮塔护盾\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_iris_raid_pyropete.skills.skill_fakefirestatuseffect",
+    "section": "skills.skill_fakefirestatuseffect SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Iris\\Compat\\Localization\\INT\\gd_iris_raid_pyropete.int",
+    "description": "",
+    "fields": {
+      "SkillName": "皮特冒牌火焰效果\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_iris_raid_pyropete.skills.skill_raid_pryropete_clearstacks",
+    "section": "skills.skill_raid_pryropete_clearstacks SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Iris\\Compat\\Localization\\INT\\gd_iris_raid_pyropete.int",
+    "description": "",
+    "fields": {
+      "SkillName": "皮特清除层数\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_iris_raid_pyropete.skills.skill_fakecorrosivestatuseffect",
+    "section": "skills.skill_fakecorrosivestatuseffect SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Iris\\Compat\\Localization\\INT\\gd_iris_raid_pyropete.int",
+    "description": "",
+    "fields": {
+      "SkillName": "皮特冒牌腐蚀效果\r"
+    }
+  },
+  {
+    "class_id": "psycho",
+    "path": "GD_Lilac_SkillsBase.ActionSkill.Skill_Psycho",
+    "section": "ActionSkill.Skill_Psycho SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_SkillsBase.int",
+    "description": "Action Skill. Press <StringAliasMap:Action.ActionSkill> to start your Buzz Axe Rampage. During Buzz Axe Rampage your Melee Damage and Movement Speed are increased. Killing an enemy instantly refills your health. Taking damage accelerates Cooldown Recharge. Attack: <StringAliasMap:Action.Fire> Throw Axe: Hold <StringAliasMap:Action.aim>, then <StringAliasMap:Action.Fire>",
+    "fields": {
+      "SkillDescription": "\"[skill]Action Skill[-skill].  Press <StringAliasMap:Action.ActionSkill> to start your [skill]Buzz Axe Rampage[-skill].  During [skill]Buzz Axe Rampage[-skill] your [skill]Melee Damage[-skill] and [skill]Movement Speed[-skill] are increased.<br><br>Killing an enemy instantly refills your [skill]health[-skill].  Taking damage accelerates [skill]Cooldown Recharge[-skill].<br><br>[skill]Attack:[-skill] <StringAliasMap:Action.Fire><br>[skill]Throw Axe:[-skill]  Hold <StringAliasMap:Action.aim>, then <StringAliasMap:Action.Fire>\"\r"
+    }
+  },
+  {
+    "class_id": "psycho",
+    "path": "GD_Lilac_Skills_Bloodlust.Skills.BloodBath",
+    "section": "Skills.BloodBath SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Bloodlust.int",
+    "description": "Kill Skill. Killing an enemy with a grenade or explosion increases Gun Damage for each stack of Bloodlust. Enemies killed this way have a greater chance of dropping grenade ammo.",
+    "fields": {
+      "SkillDescription": "\"[skill]Kill Skill[-skill].  Killing an enemy with a grenade or explosion increases [skill]Gun Damage[-skill] for each stack of [skill]Bloodlust[-skill].  Enemies killed this way have a greater chance of dropping grenade ammo.\"\r"
+    }
+  },
+  {
+    "class_id": "psycho",
+    "path": "GD_Lilac_Skills_Bloodlust.Skills.BloodEuphoria",
+    "section": "Skills.BloodEuphoria SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Bloodlust.int",
+    "description": "When your Kill Skills are deactivated, you gain health for each stack of Bloodlust.",
+    "fields": {
+      "SkillDescription": "\"When your [skill]Kill Skills[-skill] are deactivated, you gain health for each stack of [skill]Bloodlust[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "psycho",
+    "path": "GD_Lilac_Skills_Bloodlust.Skills.BloodfilledGuns",
+    "section": "Skills.BloodfilledGuns SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Bloodlust.int",
+    "description": "",
+    "fields": {
+      "SkillName": "\"Blood-Filled Guns\"\r"
+    }
+  },
+  {
+    "class_id": "psycho",
+    "path": "GD_Lilac_Skills_Bloodlust.Skills.Bloodsplosion",
+    "section": "Skills.Bloodsplosion SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Bloodlust.int",
+    "description": "Killing an enemy causes them to explode with an Elemental Nova matching the element of the damage that killed it, with non-elemental damage creating an explosive nova. Nova damage is increased for each stack of Bloodlust. Any Overkill Damage is also added to damage caused by an Elemental Nova.",
+    "fields": {
+      "SkillDescription": "\"Killing an enemy causes them to explode with an [skill]Elemental Nova[-skill] matching the element of the damage that killed it, with non-elemental damage creating an explosive nova.  Nova damage is increased for each stack of [skill]Bloodlust[-skill].<br><br>Any [skill]Overkill Damage[-skill] is also added to damage caused by an [skill]Elemental Nova[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "psycho",
+    "path": "GD_Lilac_Skills_Bloodlust.Skills.BloodyRevival",
+    "section": "Skills.BloodyRevival SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Bloodlust.int",
+    "description": "Assault Rifle Damage during Fight For Your Life is increased for each stack of Bloodlust.",
+    "fields": {
+      "SkillDescription": "\"[skill]Assault Rifle Damage[-skill] during [skill]Fight For Your Life[-skill] is increased for each stack of [skill]Bloodlust[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "psycho",
+    "path": "GD_Lilac_Skills_Bloodlust.Skills.BuzzAxeBombadier",
+    "section": "Skills.BuzzAxeBombadier SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Bloodlust.int",
+    "description": "When thrown, your buzz axe now has dynamite attached to it, which explodes on impact.",
+    "fields": {
+      "SkillDescription": "\"When thrown, your buzz axe now has [skill]dynamite[-skill] attached to it, which explodes on impact.\"\r"
+    }
+  },
+  {
+    "class_id": "psycho",
+    "path": "GD_Lilac_Skills_Bloodlust.Skills.FuelTheBlood",
+    "section": "Skills.FuelTheBlood SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Bloodlust.int",
+    "description": "Kill Skill. Killing an enemy with melee attacks increases Grenade Damage for each stack of Bloodlust, as well as adding bonus stacks to Bloodlust.",
+    "fields": {
+      "SkillDescription": "\"[skill]Kill Skill[-skill]. Killing an enemy with melee attacks increases [skill]Grenade Damage[-skill] for each stack of [skill]Bloodlust[-skill], as well as adding bonus stacks to [skill]Bloodlust[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "psycho",
+    "path": "GD_Lilac_Skills_Hellborn.Skills.DelusionalDamage",
+    "section": "Skills.DelusionalDamage SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Hellborn.int",
+    "description": "All Elemental Status Effects you inflict have a chance to light yourself on fire. Ignite chances are determined by those accumulated from Burn, Baby, Burn and Fuel the Fire.",
+    "fields": {
+      "SkillDescription": "\"All [skill]Elemental Status Effects[-skill] you inflict have a chance to [incendiary]light yourself on fire[-incendiary].<br><br>Ignite chances are determined by those accumulated from [skill]Burn, Baby, Burn[-skill] and [skill]Fuel the Fire[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "psycho",
+    "path": "GD_Lilac_Skills_Hellborn.Skills.ElementalElation",
+    "section": "Skills.ElementalElation SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Hellborn.int",
+    "description": "While Elemental Status Effect Damage is being done to enemies, you gain stacks of Elemental Elation. Fire Rate and Magazine Size increased for each stack of Elemental Elation. Stacks will not decay while you are on fire.",
+    "fields": {
+      "SkillDescription": "\"While [skill]Elemental Status Effect Damage[-skill] is being done to enemies, you gain stacks of [skill]Elemental Elation[-skill].  [skill]Fire Rate[-skill] and [skill]Magazine Size[-skill] increased for each stack of [skill]Elemental Elation[-skill].<br><br>Stacks will not decay [incendiary]while you are on fire[-incendiary].\"\r"
+    }
+  },
+  {
+    "class_id": "psycho",
+    "path": "GD_Lilac_Skills_Hellborn.Skills.FireFiend",
+    "section": "Skills.FireFiend SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Hellborn.int",
+    "description": "Melee attacks have a chance to Ignite enemies. Weapon Accuracy and Reload Speed are increased while you are on fire.",
+    "fields": {
+      "SkillDescription": "\"[skill]Melee attacks[-skill] have a chance to [incendiary]Ignite[-incendiary] enemies.<br><br>[skill]Weapon Accuracy[-skill] and [skill]Reload Speed[-skill] are increased [incendiary]while you are on fire[-incendiary].\"\r"
+    }
+  },
+  {
+    "class_id": "psycho",
+    "path": "GD_Lilac_Skills_Hellborn.Skills.FlameFlare",
+    "section": "Skills.FlameFlare SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Hellborn.int",
+    "description": "Increases the duration of all Burn Effects on you. Each time you apply a Burn Effect to an enemy, there's a chance another Burn Effect will be applied after a short time.",
+    "fields": {
+      "SkillDescription": "\"Increases the duration of all [incendiary]Burn Effects[-incendiary] on you.  Each time you apply a [incendiary]Burn Effect[-incendiary] to an enemy, there's a chance another [incendiary]Burn Effect[-incendiary] will be applied after a short time.\"\r"
+    }
+  },
+  {
+    "class_id": "psycho",
+    "path": "GD_Lilac_Skills_Hellborn.Skills.PainIsPower",
+    "section": "Skills.PainIsPower SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Hellborn.int",
+    "description": "Increases Gun Damage for all gun types except sniper rifles, decreases Critical Hit Damage with all weapons, and increases Melee Damage. Effects further increased while you are on fire.",
+    "fields": {
+      "SkillDescription": "\"Increases [skill]Gun Damage[-skill] for all gun types except sniper rifles, decreases [skill]Critical Hit Damage[-skill] with all weapons, and increases [skill]Melee Damage[-skill].<br><br>Effects further increased [incendiary]while you are on fire[-incendiary].\"\r"
+    }
+  },
+  {
+    "class_id": "psycho",
+    "path": "GD_Lilac_Skills_Hellborn.Skills.RavingRetribution",
+    "section": "Skills.RavingRetribution SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Hellborn.int",
+    "description": "While you are on fire, taking damage from enemies will spawn homing balls of fire that seek out the attacker and explode on impact. Fireballs can only trigger once per second.",
+    "fields": {
+      "SkillDescription": "\"[incendiary]While you are on fire[-incendiary], taking damage from enemies will spawn [incendiary]homing balls of fire[-incendiary] that seek out the attacker and explode on impact.  Fireballs can only trigger once per second.\"\r"
+    }
+  },
+  {
+    "class_id": "psycho",
+    "path": "GD_Lilac_Skills_Mania.Skills.EmbraceThePain",
+    "section": "Skills.EmbraceThePain SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Mania.int",
+    "description": "Increases Fire Rate while your shields are down. Additionally, increases the delay before your shields start to recharge.",
+    "fields": {
+      "SkillDescription": "\"Increases [skill]Fire Rate[-skill] while your shields are down. Additionally, increases the delay before your shields [skill]start to recharge[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "psycho",
+    "path": "GD_Lilac_Skills_Mania.Skills.EmptyRage",
+    "section": "Skills.EmptyRage SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Mania.int",
+    "description": "Increases Melee Damage. Further increased if your shield is down or your magazine is empty.",
+    "fields": {
+      "SkillDescription": "\"Increases [skill]Melee Damage[-skill]. Further increased if your [skill]shield is down[-skill] or your [skill]magazine is empty[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "psycho",
+    "path": "GD_Lilac_Skills_Mania.Skills.FeedTheMeat",
+    "section": "Skills.FeedTheMeat SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Mania.int",
+    "description": "Increases Maximum Health and Shield Recharge Delay.",
+    "fields": {
+      "SkillDescription": "\"Increases [skill]Maximum Health[-skill] and [skill]Shield Recharge Delay[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "psycho",
+    "path": "GD_Lilac_Skills_Mania.Skills.LightTheFuse",
+    "section": "Skills.LightTheFuse SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Mania.int",
+    "description": "Fight For Your Life is replaced with Light the Fuse. During Light the Fuse you pull out a live bundle of dynamite and can move normally. The bundle detonates when the timer runs out. If you kill someone, you are revived. Getting a revive with the bundle explosion gives you bonus Movement Speed for the remainder of the time that was left in Light the Fuse. Throw dynamite sticks with <StringAliasMap:Action.Fire>. Detonate bundle by holding <StringAliasMap:Action.Use>.",
+    "fields": {
+      "SkillDescription": "\"[skill]Fight For Your Life[-skill] is replaced with [skill]Light the Fuse[-skill].  During [skill]Light the Fuse[-skill] you pull out a live bundle of dynamite and can move normally.  The bundle detonates when the timer runs out.  If you kill someone, you are revived.<br><br>Getting a revive with the bundle explosion gives you bonus [skill]Movement Speed[-skill] for the remainder of the time that was left in [skill]Light the Fuse[-skill].<br><br>Throw dynamite sticks with <StringAliasMap:Action.Fire>.<br>Detonate bundle by holding <StringAliasMap:Action.Use>.\"\r"
+    }
+  },
+  {
+    "class_id": "psycho",
+    "path": "GD_Lilac_Skills_Mania.Skills.PullThePin",
+    "section": "Skills.PullThePin SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Mania.int",
+    "description": "Upon death, you drop a free grenade. Enemies killed with this grenade reward double XP.",
+    "fields": {
+      "SkillDescription": "\"Upon death, you drop a free grenade.  Enemies killed with this grenade reward [skill]double XP[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "psycho",
+    "path": "GD_Lilac_Skills_Mania.Skills.RedeemTheSoul",
+    "section": "Skills.RedeemTheSoul SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Mania.int",
+    "description": "You can instantly Revive down teammates. After reviving a teammate in this way you must Fight For Your Life. Increased time during Fight For Your Life. You may revive in this way only once each time Buzz Axe Rampage is on cooldown.",
+    "fields": {
+      "SkillDescription": "\"You can instantly [skill]Revive[-skill] down teammates.  After reviving a teammate in this way you must [skill]Fight For Your Life[-skill].  Increased time during Fight For Your Life.<br><br>You may revive in this way only once each time Buzz Axe Rampage is on cooldown.\"\r"
+    }
+  },
+  {
+    "class_id": "psycho",
+    "path": "GD_Lilac_Skills_Mania.Skills.SaltTheWound",
+    "section": "Skills.SaltTheWound SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Mania.int",
+    "description": "Taking damage from an enemy while your shield is down adds a stack of Salt the Wound. Increases Melee and Shotgun Damage for each stack accrued. Stacks begin to decay after a short time without taking health damage from enemies.",
+    "fields": {
+      "SkillDescription": "\"Taking damage from an enemy while your shield is down adds a stack of [skill]Salt the Wound[-skill].  Increases [skill]Melee[-skill] and [skill]Shotgun Damage[-skill] for each stack accrued.  Stacks begin to decay after a short time without taking health damage from enemies.\"\r"
+    }
+  },
+  {
+    "class_id": "psycho",
+    "path": "GD_Lilac_Skills_Mania.Skills.StripTheFlesh",
+    "section": "Skills.StripTheFlesh SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Mania.int",
+    "description": "Increases Explosive Damage. Bonus increased further when in Fight For Your Life.",
+    "fields": {
+      "SkillDescription": "\"Increases [skill]Explosive Damage[-skill]. Bonus increased further when in [skill]Fight For Your Life[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "psycho",
+    "path": "GD_Lilac_Skills_Mania.Skills.ThrillOfTheKill",
+    "section": "Skills.ThrillOfTheKill SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Mania.int",
+    "description": "A percentage of Overkill Damage (damage that is over and above what was needed to kill the enemy) is returned to you as health. The lower your health, the higher the percentage.",
+    "fields": {
+      "SkillDescription": "\"A percentage of [skill]Overkill Damage[-skill] (damage that is over and above what was needed to kill the enemy) is returned to you as [skill]health[-skill].  The lower your health, the higher the percentage.\"\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_crabwormshared.skills.skill_spitstun",
+    "section": "skills.skill_spitstun SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Nasturtium\\Compat\\Localization\\INT\\gd_crabwormshared.int",
+    "description": "",
+    "fields": {
+      "SkillName": "减速眩晕\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_goliathbride.skills.skill_watchandclearturretshield",
+    "section": "skills.skill_watchandclearturretshield SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Nasturtium\\Compat\\Localization\\INT\\gd_goliathbride.int",
+    "description": "",
+    "fields": {
+      "SkillName": "消除枪塔护盾\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_nast_anchormanshared.skills.skill_harpoon_slow",
+    "section": "skills.skill_harpoon_slow SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Nasturtium\\Compat\\Localization\\INT\\gd_nast_anchormanshared.int",
+    "description": "",
+    "fields": {
+      "SkillName": "减速眩晕\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_nast_anchormanshared.skills.skill_slow",
+    "section": "skills.skill_slow SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Nasturtium\\Compat\\Localization\\INT\\gd_nast_anchormanshared.int",
+    "description": "",
+    "fields": {
+      "SkillName": "减速眩晕\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_nast_native_withcdoctorshared.skills.skill_slow",
+    "section": "skills.skill_slow SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Nasturtium\\Compat\\Localization\\INT\\gd_nast_native_withcdoctorshared.int",
+    "description": "玩家速度减缓",
+    "fields": {
+      "SkillDescription": "玩家速度减缓\r",
+      "SkillName": "缓速\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_nast_native_withcdoctorshared.skills.skill_healthregen",
+    "section": "skills.skill_healthregen SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Nasturtium\\Compat\\Localization\\INT\\gd_nast_native_withcdoctorshared.int",
+    "description": "",
+    "fields": {
+      "SkillName": "Health_Regen\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_nast_native_withcdoctorshared.skills.skill_witchdoctorhealthregen",
+    "section": "skills.skill_witchdoctorhealthregen SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Nasturtium\\Compat\\Localization\\INT\\gd_nast_native_withcdoctorshared.int",
+    "description": "",
+    "fields": {
+      "SkillName": "WitchDoctor_Regen\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_nast_swordman.skills.skill_sword_doubledamage",
+    "section": "skills.skill_sword_doubledamage SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Nasturtium\\Compat\\Localization\\INT\\gd_nast_swordman.int",
+    "description": "双倍伤害",
+    "fields": {
+      "SkillDescription": "双倍伤害\r",
+      "SkillName": "双倍伤害\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_nast_thresherdrunk.skills.skill_drunkthresher_slow",
+    "section": "skills.skill_drunkthresher_slow SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Nasturtium\\Compat\\Localization\\INT\\gd_nast_thresherdrunk.int",
+    "description": "",
+    "fields": {
+      "SkillName": "减速眩晕\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_anchormanshared.skills.skill_harpoon_slow",
+    "section": "skills.skill_harpoon_slow SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Orchid\\Compat\\Localization\\INT\\gd_anchormanshared.int",
+    "description": "",
+    "fields": {
+      "SkillName": "减速眩晕\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_anchormanshared.skills.skill_slow",
+    "section": "skills.skill_slow SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Orchid\\Compat\\Localization\\INT\\gd_anchormanshared.int",
+    "description": "",
+    "fields": {
+      "SkillName": "减速眩晕\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_orchid_raidengineer.skill.skill_orchid_playerdeathpenalty",
+    "section": "skill.skill_orchid_playerdeathpenalty SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Orchid\\Compat\\Localization\\INT\\gd_orchid_raidengineer.int",
+    "description": "战斗中原地复活的生命值损耗",
+    "fields": {
+      "SkillDescription": "战斗中原地复活的生命值损耗\r",
+      "SkillName": "玩家死亡惩罚\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_orchid_raidengineer.skill.skill_orchid_raid_reaper",
+    "section": "skill.skill_orchid_raid_reaper SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Orchid\\Compat\\Localization\\INT\\gd_orchid_raidengineer.int",
+    "description": "",
+    "fields": {
+      "SkillName": "收割者\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_orchid_raidshaman.skill.skill_corrimmune",
+    "section": "skill.skill_corrimmune SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Orchid\\Compat\\Localization\\INT\\gd_orchid_raidshaman.int",
+    "description": "",
+    "fields": {
+      "SkillName": "腐蚀免疫\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_orchid_sandwormraid.skill.oozed_damageincrease",
+    "section": "skill.oozed_damageincrease SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Orchid\\Compat\\Localization\\INT\\gd_orchid_sandwormraid.int",
+    "description": "增加伤害",
+    "fields": {
+      "SkillDescription": "增加伤害\r",
+      "SkillName": "分泌物\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_orchid_sandwormraid.skill.oozed_dot",
+    "section": "skill.oozed_dot SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Orchid\\Compat\\Localization\\INT\\gd_orchid_sandwormraid.int",
+    "description": "增加伤害",
+    "fields": {
+      "SkillDescription": "增加伤害\r",
+      "SkillName": "分泌物\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_swordman.skills.skill_sword_doubledamage",
+    "section": "skills.skill_sword_doubledamage SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Orchid\\Compat\\Localization\\INT\\gd_swordman.int",
+    "description": "双倍伤害",
+    "fields": {
+      "SkillDescription": "双倍伤害\r",
+      "SkillName": "双倍伤害\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_native_hunter.skills.skill_boomerangstun",
+    "section": "skills.skill_boomerangstun SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_native_hunter.int",
+    "description": "使玩家减速",
+    "fields": {
+      "SkillDescription": "使玩家减速\r",
+      "SkillName": "减速\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_native_hunter.skills.skill_spearstun1",
+    "section": "skills.skill_spearstun1 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_native_hunter.int",
+    "description": "使玩家减速",
+    "fields": {
+      "SkillDescription": "使玩家减速\r",
+      "SkillName": "眩晕枪刺1\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_native_hunter.skills.skill_spearstun3",
+    "section": "skills.skill_spearstun3 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_native_hunter.int",
+    "description": "使玩家减速",
+    "fields": {
+      "SkillDescription": "使玩家减速\r",
+      "SkillName": "眩晕枪刺3\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_native_witchdoctorshared.skills.skill_witchdoctorhealthregen",
+    "section": "skills.skill_witchdoctorhealthregen SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_native_witchdoctorshared.int",
+    "description": "",
+    "fields": {
+      "SkillName": "WitchDoctor_Regen\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_native_witchdoctorshared.skills.skill_healthregen",
+    "section": "skills.skill_healthregen SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_native_witchdoctorshared.int",
+    "description": "",
+    "fields": {
+      "SkillName": "Health_Regen\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_native_witchdoctorshared.skills.skill_healthregen_badass",
+    "section": "skills.skill_healthregen_badass SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_native_witchdoctorshared.int",
+    "description": "",
+    "fields": {
+      "SkillName": "Health_Regen\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_native_witchdoctorshared.skills.skill_slow",
+    "section": "skills.skill_slow SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_native_witchdoctorshared.int",
+    "description": "使玩家减速",
+    "fields": {
+      "SkillDescription": "使玩家减速\r",
+      "SkillName": "减速\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.healthregen.skills.skill_sage_buff_healthregen04",
+    "section": "healthregen.skills.skill_sage_buff_healthregen04 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-生命回复\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.skillmanager.skill_sage_buffmanager",
+    "section": "skillmanager.skill_sage_buffmanager SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益管理器\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.ammoregen.skills.skill_sage_buff_ammoregen01",
+    "section": "ammoregen.skills.skill_sage_buff_ammoregen01 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-弹药回复\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.shockresist.skills.skill_sage_buff_shockresist01",
+    "section": "shockresist.skills.skill_sage_buff_shockresist01 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-电击抗性\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.shockresist.skills.skill_sage_buff_shockresist03",
+    "section": "shockresist.skills.skill_sage_buff_shockresist03 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-电击抗性\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.shockresist.skills.skill_sage_buff_shockresist02",
+    "section": "shockresist.skills.skill_sage_buff_shockresist02 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-电击抗性\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.shockresist.skills.skill_sage_buff_shockresist05",
+    "section": "shockresist.skills.skill_sage_buff_shockresist05 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-电击抗性\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.shockresist.skills.skill_sage_buff_shockresist04",
+    "section": "shockresist.skills.skill_sage_buff_shockresist04 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-电击抗性\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.explosiveresist.skills.skill_sage_buff_explosiveresist04",
+    "section": "explosiveresist.skills.skill_sage_buff_explosiveresist04 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-爆炸抗性\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.acidresist.skills.skill_sage_buff_acidresist01",
+    "section": "acidresist.skills.skill_sage_buff_acidresist01 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-酸蚀抗性\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.acidresist.skills.skill_sage_buff_acidresist03",
+    "section": "acidresist.skills.skill_sage_buff_acidresist03 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-酸蚀抗性\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.acidresist.skills.skill_sage_buff_acidresist02",
+    "section": "acidresist.skills.skill_sage_buff_acidresist02 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-酸蚀抗性\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.acidresist.skills.skill_sage_buff_acidresist05",
+    "section": "acidresist.skills.skill_sage_buff_acidresist05 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-酸蚀抗性\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.acidresist.skills.skill_sage_buff_acidresist04",
+    "section": "acidresist.skills.skill_sage_buff_acidresist04 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-酸蚀抗性\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.firerate.skills.skill_sage_buff_firerate01",
+    "section": "firerate.skills.skill_sage_buff_firerate01 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-射速\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.firerate.skills.skill_sage_buff_firerate03",
+    "section": "firerate.skills.skill_sage_buff_firerate03 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-射速\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.firerate.skills.skill_sage_buff_firerate02",
+    "section": "firerate.skills.skill_sage_buff_firerate02 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-射速\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.firerate.skills.skill_sage_buff_firerate05",
+    "section": "firerate.skills.skill_sage_buff_firerate05 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-射速\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.firerate.skills.skill_sage_buff_firerate04",
+    "section": "firerate.skills.skill_sage_buff_firerate04 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-射速\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.explosiveresist.skills.skill_sage_buff_explosiveresist02",
+    "section": "explosiveresist.skills.skill_sage_buff_explosiveresist02 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-爆炸抗性\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.explosiveresist.skills.skill_sage_buff_explosiveresist01",
+    "section": "explosiveresist.skills.skill_sage_buff_explosiveresist01 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-爆炸抗性\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.maxhealth.skills.skill_sage_buff_maxhealth03",
+    "section": "maxhealth.skills.skill_sage_buff_maxhealth03 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益之饮-强健\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.maxhealth.skills.skill_sage_buff_maxhealth02",
+    "section": "maxhealth.skills.skill_sage_buff_maxhealth02 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益之饮-强健\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.maxhealth.skills.skill_sage_buff_maxhealth05",
+    "section": "maxhealth.skills.skill_sage_buff_maxhealth05 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益之饮-强健\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.maxhealth.skills.skill_sage_buff_maxhealth04",
+    "section": "maxhealth.skills.skill_sage_buff_maxhealth04 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益之饮-强健\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.maxshield.skills.skill_sage_buff_maxshield03",
+    "section": "maxshield.skills.skill_sage_buff_maxshield03 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-提升护盾值上限\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.maxshield.skills.skill_sage_buff_maxshield02",
+    "section": "maxshield.skills.skill_sage_buff_maxshield02 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-提升护盾值上限\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.maxshield.skills.skill_sage_buff_maxshield01",
+    "section": "maxshield.skills.skill_sage_buff_maxshield01 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-提升护盾值上限\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.maxshield.skills.skill_sage_buff_maxshield05",
+    "section": "maxshield.skills.skill_sage_buff_maxshield05 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-提升护盾值上限\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.maxshield.skills.skill_sage_buff_maxshield04",
+    "section": "maxshield.skills.skill_sage_buff_maxshield04 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-提升护盾值上限\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.shieldregen.skills.skill_sage_buff_shieldregen05",
+    "section": "shieldregen.skills.skill_sage_buff_shieldregen05 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-护盾回复\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.shieldregen.skills.skill_sage_buff_shieldregen04",
+    "section": "shieldregen.skills.skill_sage_buff_shieldregen04 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-护盾回复\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.shieldregen.skills.skill_sage_buff_shieldregen01",
+    "section": "shieldregen.skills.skill_sage_buff_shieldregen01 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-护盾回复\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.shieldregen.skills.skill_sage_buff_shieldregen03",
+    "section": "shieldregen.skills.skill_sage_buff_shieldregen03 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-护盾回复\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.shieldregen.skills.skill_sage_buff_shieldregen02",
+    "section": "shieldregen.skills.skill_sage_buff_shieldregen02 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-护盾回复\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.fireresist.skills.skill_sage_buff_fireresist05",
+    "section": "fireresist.skills.skill_sage_buff_fireresist05 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-火焰抗性\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.fireresist.skills.skill_sage_buff_fireresist04",
+    "section": "fireresist.skills.skill_sage_buff_fireresist04 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-火焰抗性\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.fireresist.skills.skill_sage_buff_fireresist01",
+    "section": "fireresist.skills.skill_sage_buff_fireresist01 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-火焰抗性\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.fireresist.skills.skill_sage_buff_fireresist03",
+    "section": "fireresist.skills.skill_sage_buff_fireresist03 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-火焰抗性\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.fireresist.skills.skill_sage_buff_fireresist02",
+    "section": "fireresist.skills.skill_sage_buff_fireresist02 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-火焰抗性\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.explosiveresist.skills.skill_sage_buff_explosiveresist05",
+    "section": "explosiveresist.skills.skill_sage_buff_explosiveresist05 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-爆炸抗性\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.explosiveresist.skills.skill_sage_buff_explosiveresist03",
+    "section": "explosiveresist.skills.skill_sage_buff_explosiveresist03 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-爆炸抗性\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.healthregen.skills.skill_sage_buff_healthregen05",
+    "section": "healthregen.skills.skill_sage_buff_healthregen05 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-生命值回复\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.healthregen.skills.skill_sage_buff_healthregen03",
+    "section": "healthregen.skills.skill_sage_buff_healthregen03 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-生命值回复\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.healthregen.skills.skill_sage_buff_healthregen02",
+    "section": "healthregen.skills.skill_sage_buff_healthregen02 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-生命值回复\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.healthregen.skills.skill_sage_buff_healthregen01",
+    "section": "healthregen.skills.skill_sage_buff_healthregen01 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-生命值回复\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.ammoregen.skills.skill_sage_buff_ammoregen05",
+    "section": "ammoregen.skills.skill_sage_buff_ammoregen05 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-弹药回复\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.ammoregen.skills.skill_sage_buff_ammoregen04",
+    "section": "ammoregen.skills.skill_sage_buff_ammoregen04 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-弹药回复\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.ammoregen.skills.skill_sage_buff_ammoregen03",
+    "section": "ammoregen.skills.skill_sage_buff_ammoregen03 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-弹药回复\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.ammoregen.skills.skill_sage_buff_ammoregen02",
+    "section": "ammoregen.skills.skill_sage_buff_ammoregen02 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益-弹药回复\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_buffdrinks.maxhealth.skills.skill_sage_buff_maxhealth01",
+    "section": "maxhealth.skills.skill_sage_buff_maxhealth01 SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_buffdrinks.int",
+    "description": "",
+    "fields": {
+      "SkillName": "增益之饮-强健\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_rhinoshared.skills.skill_sage_slagtransformed",
+    "section": "skills.skill_sage_slagtransformed SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_rhinoshared.int",
+    "description": "由子弹转化",
+    "fields": {
+      "SkillDescription": "由子弹转化\r",
+      "SkillName": "子弹已转化\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_rhinoshared.skills.skill_sage_shocktransformed",
+    "section": "skills.skill_sage_shocktransformed SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_rhinoshared.int",
+    "description": "由电击转化",
+    "fields": {
+      "SkillDescription": "由电击转化\r",
+      "SkillName": "电击已转化\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_rhinoshared.skills.skill_sage_corrosivetransformed",
+    "section": "skills.skill_sage_corrosivetransformed SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_rhinoshared.int",
+    "description": "由腐蚀转化",
+    "fields": {
+      "SkillDescription": "由腐蚀转化\r",
+      "SkillName": "腐蚀已转化\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_rhinoshared.skills.skill_sage_firetransformed",
+    "section": "skills.skill_sage_firetransformed SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_rhinoshared.int",
+    "description": "由火焰转化",
+    "fields": {
+      "SkillDescription": "由火焰转化\r",
+      "SkillName": "火焰已转化\r"
+    }
+  },
+  {
+    "class_id": "internal_or_other",
+    "path": "gd_sage_scaylionshared.skill.scaylionturtle",
+    "section": "skill.scaylionturtle SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Sage\\Compat\\Localization\\INT\\gd_sage_scaylionshared.int",
+    "description": "",
+    "fields": {
+      "SkillName": "奇美拉护盾技能\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "gd_tulip_deathtrap.skills.skill_shieldboost_player",
+    "section": "skills.skill_shieldboost_player SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\gd_tulip_deathtrap.int",
+    "description": "相位锁定技术的护盾探针正在为你的护盾充能",
+    "fields": {
+      "SkillDescription": "相位锁定技术的护盾探针正在为你的护盾充能\r",
+      "SkillName": "护盾探针能量块\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.BestFriendsForever.BuckUp",
+    "section": "BestFriendsForever.BuckUp SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "Deathtrap Ability. Deathtrap restores the shields of one ally to full.",
+    "fields": {
+      "SkillDescription": "\"[skill]Deathtrap Ability[-skill].  Deathtrap [skill]restores the shields[-skill] of one ally to full.\"\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.BestFriendsForever.CookingUpTrouble",
+    "section": "BestFriendsForever.CookingUpTrouble SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "While your gun's Magazine is full you regenerate health.",
+    "fields": {
+      "SkillDescription": "\"While your gun's [skill]Magazine[-skill] is full you [skill]regenerate health[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.BestFriendsForever.ExplosiveClap",
+    "section": "BestFriendsForever.ExplosiveClap SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "Deathtrap Ability. Deathtrap creates an explosive blast with his robo-hands, dealing Explosive Damage to all nearby enemies.",
+    "fields": {
+      "SkillDescription": "\"[skill]Deathtrap Ability[-skill].  Deathtrap creates an explosive blast with his robo-hands, dealing [skill]Explosive Damage[-skill] to all nearby enemies.\"\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.BestFriendsForever.FancyMathematics",
+    "section": "BestFriendsForever.FancyMathematics SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "Improves Shield Recharge Delay and Shield Recharge Rate based on how low your health is. The lower your health, the greater the bonuses.",
+    "fields": {
+      "SkillDescription": "\"Improves [skill]Shield Recharge Delay[-skill] and [skill]Shield Recharge Rate[-skill] based on how low your [skill]health[-skill] is.  The lower your [skill]health[-skill], the greater the bonuses.\"\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.BestFriendsForever.MadeOfSternerStuff",
+    "section": "BestFriendsForever.MadeOfSternerStuff SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "You and Deathtrap take reduced damage from all sources. Additionally, Deathtrap gains increased Melee Damage.",
+    "fields": {
+      "SkillDescription": "\"You and [skill]Deathtrap[-skill] take [skill]reduced damage[-skill] from [skill]all sources[-skill].  Additionally, Deathtrap gains increased [skill]Melee Damage[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.BestFriendsForever.SharingIsCaring",
+    "section": "BestFriendsForever.SharingIsCaring SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "Grants a copy of your shield to Deathtrap, complete with all the bonuses and benefits your shield provides.",
+    "fields": {
+      "SkillDescription": "\"Grants a copy of your [skill]shield[-skill] to [skill]Deathtrap[-skill], complete with all the bonuses and benefits your shield provides.\"\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.BestFriendsForever.TheBetterHalf",
+    "section": "BestFriendsForever.TheBetterHalf SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "When your Magazine is past half-empty, you gain increased Fire Rate.",
+    "fields": {
+      "SkillDescription": "\"When your [skill]Magazine[-skill] is past half-empty, you gain increased [skill]Fire Rate[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.BestFriendsForever.UnstoppableForce",
+    "section": "BestFriendsForever.UnstoppableForce SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "Kill Skill. Killing an enemy grants you bonus Movement Speed and causes your shield to regenerate for a short while.",
+    "fields": {
+      "SkillDescription": "\"[skill]Kill Skill[-skill].  Killing an enemy grants you bonus [skill]Movement Speed[-skill] and causes your [skill]shield to regenerate[-skill] for a short while.\"\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.BestFriendsForever.UpshotRobot",
+    "section": "BestFriendsForever.UpshotRobot SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "While Deathtrap is active, kills made by Deathtrap or yourself increase Deathtrap's Duration and grant both of you a stacking Melee Damage bonus. Bonuses are lost when Deathtrap goes away.",
+    "fields": {
+      "SkillDescription": "\"While [skill]Deathtrap[-skill] is active, kills made by [skill]Deathtrap[-skill] or yourself increase [skill]Deathtrap's Duration[-skill] and grant both of you a stacking [skill]Melee Damage[-skill] bonus.  Bonuses are lost when [skill]Deathtrap[-skill] goes away.\"\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.EmbraceChaos.Anarchy",
+    "section": "EmbraceChaos.Anarchy SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "Killing an enemy or fully emptying your gun's Magazine while in combat grants you a stack of Anarchy. Each stack of Anarchy increases Gun Damage while decreasing Accuracy. Prematurely reloading your gun causes you to lose all stacks of Anarchy. Anarchy stacks are quickly lost while in Fight for your Life.",
+    "fields": {
+      "SkillDescription": "\"Killing an enemy or fully emptying your gun's [skill]Magazine[-skill] while in combat grants you a stack of [skill]Anarchy[-skill].  Each stack of [skill]Anarchy[-skill] increases [skill]Gun Damage[-skill] while decreasing [skill]Accuracy[-skill].  Prematurely reloading your gun causes you to lose all stacks of [skill]Anarchy[-skill].  [skill]Anarchy[-skill] stacks are quickly lost while in [skill]Fight for your Life[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.EmbraceChaos.BloodSoakedShields",
+    "section": "EmbraceChaos.BloodSoakedShields SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "Killing an enemy immediately restores a portion of your shields, but you lose a portion of your health.",
+    "fields": {
+      "SkillDescription": "\"Killing an enemy immediately restores a portion of your [skill]shields[-skill], but you lose a portion of your [skill]health[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.EmbraceChaos.DeathFromAbove",
+    "section": "EmbraceChaos.DeathFromAbove SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "Shooting an enemy while in mid-air consumes Anarchy stacks and causes a Digi-splosion, damaging nearby enemies.",
+    "fields": {
+      "SkillDescription": "\"Shooting an enemy while in mid-air consumes [skill]Anarchy[-skill] stacks and causes a [skill]Digi-splosion[-skill], damaging nearby enemies.\"\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.EmbraceChaos.Discord",
+    "section": "EmbraceChaos.Discord SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "Prematurely reloading activates Discord, increasing Accuracy, Fire Rate, and Health Regeneration. You constantly lose Anarchy stacks while Discord is active. Discord can be deactivated by prematurely reloading again.",
+    "fields": {
+      "SkillDescription": "\"Prematurely reloading activates [skill]Discord[-skill], increasing [skill]Accuracy[-skill], [skill]Fire Rate[-skill], and [skill]Health Regeneration[-skill].  You constantly lose [skill]Anarchy[-skill] stacks while [skill]Discord[-skill] is active.  [skill]Discord[-skill] can be deactivated by prematurely reloading again.\"\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.EmbraceChaos.ImmovableObject",
+    "section": "EmbraceChaos.ImmovableObject SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "Kill Skill. Killing an enemy increases Gun Damage and regenerates health for a short while, but your Movement Speed is also reduced.",
+    "fields": {
+      "SkillDescription": "\"[skill]Kill Skill[-skill].  Killing an enemy increases [skill]Gun Damage[-skill] and [skill]regenerates health[-skill] for a short while, but your [skill]Movement Speed[-skill] is also reduced.\"\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.EmbraceChaos.RationalAnarchist",
+    "section": "EmbraceChaos.RationalAnarchist SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "If you have 0 stacks of Anarchy, then the next time you would gain an Anarchy stack you gain 25 instead.",
+    "fields": {
+      "SkillDescription": "\"If you have 0 stacks of [skill]Anarchy[-skill], then the next time you would gain an [skill]Anarchy[-skill] stack you gain 25 instead.\"\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.EmbraceChaos.TypecastIconoclast",
+    "section": "EmbraceChaos.TypecastIconoclast SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "Whenever you gain a stack of Anarchy, there is a chance that you gain an additional stack.",
+    "fields": {
+      "SkillDescription": "\"Whenever you gain a stack of [skill]Anarchy[-skill], there is a chance that you gain an additional stack.\"\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.EmbraceChaos.WithClaws",
+    "section": "EmbraceChaos.WithClaws SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "Melee Override Skill. While you have a stack of Anarchy, press <StringAliasMap:Action.Melee> to digistruct claws and swipe twice at an enemy, dealing damage based on the number of Anarchy stacks you currently have and restoring health. The lower your health, the more health you gain. This attack consumes an Anarchy stack.",
+    "fields": {
+      "SkillDescription": "\"[skill]Melee Override Skill[-skill].  While you have a stack of [skill]Anarchy[-skill], press <StringAliasMap:Action.Melee> to [skill]digistruct claws[-skill] and swipe twice at an enemy, dealing damage based on the number of [skill]Anarchy[-skill] stacks you currently have and [skill]restoring health[-skill].  The lower your health, the more health you gain.  This attack consumes an [skill]Anarchy[-skill] stack.\"\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.LittleBigTrouble.ElectricalBurn",
+    "section": "LittleBigTrouble.ElectricalBurn SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "When your Electrocute Status Effects deal damage to enemies, there is a chance they will burst into flames and take Burn Damage. The amount of Burn Damage is based on the Electrocute damage dealt.",
+    "fields": {
+      "SkillDescription": "\"When your [skill]Electrocute Status Effects[-skill] deal damage to enemies, there is a chance they will [skill]burst into flames[-skill] and take [skill]Burn Damage[-skill].  The amount of [skill]Burn Damage[-skill] is based on the [skill]Electrocute[-skill] damage dealt.\"\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.LittleBigTrouble.InterspersedOutburst",
+    "section": "LittleBigTrouble.InterspersedOutburst SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "Not shooting an enemy for a short time grants you a stack of Interspersed Outburst. The next time you shoot an enemy, all stacks of Interspersed Outburst are consumed and you deal bonus Slag Damage. The more stacks consumed and the higher the skill rank, the greater the chance of slagging the target.",
+    "fields": {
+      "SkillDescription": "\"Not shooting an enemy for a short time grants you a stack of [skill]Interspersed Outburst[-skill].  The next time you shoot an enemy, all stacks of [skill]Interspersed Outburst[-skill] are consumed and you deal bonus [skill]Slag Damage[-skill].  The more stacks consumed and the higher the skill rank, the greater the chance of slagging the target.\"\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.LittleBigTrouble.MorePep",
+    "section": "LittleBigTrouble.MorePep SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "Increases your chances of applying Burn, Electrocute, Corrode, and Slag status effects.",
+    "fields": {
+      "SkillDescription": "\"Increases your chances of applying [skill]Burn[-skill], [skill]Electrocute[-skill], [skill]Corrode[-skill], and [skill]Slag[-skill] status effects.\"\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.LittleBigTrouble.Myelin",
+    "section": "LittleBigTrouble.Myelin SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "Increases Shock Damage Resistance and Shield Capacity.",
+    "fields": {
+      "SkillDescription": "\"Increases [skill]Shock Damage Resistance[-skill] and [skill]Shield Capacity[-skill].\"\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.LittleBigTrouble.ShockAndAAAGGGHHH",
+    "section": "LittleBigTrouble.ShockAndAAAGGGHHH SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "",
+    "fields": {
+      "SkillName": "\"Shock and ''AAAGGGGHHH!''\"\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.LittleBigTrouble.ShockStorm",
+    "section": "LittleBigTrouble.ShockStorm SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "Killing an enemy with a Critical Hit causes an Electrical Storm, dealing Shock Damage to nearby enemies. Electrical Storms are also caused by Deathtrap whenever he kills an enemy.",
+    "fields": {
+      "SkillDescription": "\"Killing an enemy with a [skill]Critical Hit[-skill] causes an [skill]Electrical Storm[-skill], dealing [skill]Shock Damage[-skill] to nearby enemies.  [skill]Electrical Storms[-skill] are also caused by [skill]Deathtrap[-skill] whenever he kills an enemy.\"\r"
+    }
+  },
+  {
+    "class_id": "mechromancer",
+    "path": "GD_Tulip_Mechromancer_Skills.LittleBigTrouble.TheStare",
+    "section": "LittleBigTrouble.TheStare SkillDefinition",
+    "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+    "description": "Deathtrap Ability. Deathtrap fires a laser beam and sweeps it across the battlefield, dealing Incendiary Damage and possibly igniting enemies.",
+    "fields": {
+      "SkillDescription": "\"[skill]Deathtrap Ability[-skill].  Deathtrap fires a laser beam and sweeps it across the battlefield, dealing [skill]Incendiary Damage[-skill] and possibly [skill]igniting[-skill] enemies.\"\r"
+    }
+  }
+]

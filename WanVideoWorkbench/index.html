@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Wan · 本地视频工作台</title>
+<style>
+:root{color-scheme:dark;font:15px/1.55 "Segoe UI","Microsoft YaHei UI",sans-serif;color:#f1f2ef;background:#111413;--edge:#383d39;--muted:#aab2aa;--green:#d3f58e}*{box-sizing:border-box}body{margin:0}header{border-bottom:1px solid var(--edge);padding:16px clamp(18px,4vw,64px);display:flex;align-items:center;gap:12px}header b{font:700 23px/1 "Segoe UI",sans-serif;letter-spacing:-1px}header span{color:var(--muted);border-left:1px solid var(--edge);padding-left:14px}main{max-width:1480px;margin:0 auto;padding:28px clamp(16px,4vw,60px);display:grid;grid-template-columns:minmax(310px,375px) minmax(0,1fr);gap:clamp(20px,3vw,48px)}h1,h2{font-size:18px;margin:0 0 14px}form,section{min-width:0}.modes{display:flex;padding:3px;background:#222723;border-radius:8px;margin-bottom:18px}.modes button{flex:1;background:none;border:0;border-radius:6px;color:var(--muted);padding:8px}.modes [aria-pressed=true]{background:#3a423b;color:white}button,input,textarea,select{font:inherit}button,select{cursor:pointer}label{display:block;margin:12px 0 5px;color:#d5dad4;font-size:13px}input,textarea,select{width:100%;background:#1d211e;border:1px solid var(--edge);border-radius:6px;color:inherit;padding:8px}textarea{resize:vertical;min-height:76px}input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offset:2px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.muted,small{color:var(--muted)}.primary{margin-top:18px;width:100%;border:0;border-radius:6px;padding:11px;background:var(--green);color:#1e2912;font-weight:650}button:disabled{opacity:.55;cursor:default}.stage{position:relative;aspect-ratio:16/10;overflow:hidden;background:#090c0a;display:grid;place-items:center;border:1px solid var(--edge);border-radius:9px}.empty{display:grid;justify-items:center;gap:8px;color:var(--muted)}.film{width:38px;height:26px;border:2px solid #778276;border-radius:4px;position:relative}.film:after{content:"";display:block;margin:5px 13px;border-left:9px solid #778276;border-top:6px solid transparent;border-bottom:6px solid transparent}.stage video{width:100%;height:100%;position:absolute;object-fit:contain}button.secondary,a.secondary{background:#252c26;color:#e8eee5;border:1px solid var(--edge);border-radius:5px;padding:5px 9px;text-decoration:none}.status{display:flex;gap:12px;align-items:center;justify-content:space-between;min-height:42px}.status span{overflow-wrap:anywhere}.error{color:#ffb7aa}.history{margin-top:26px}.result{border:0;border-bottom:1px solid var(--edge);padding:10px 2px;background:transparent;color:#eee;text-align:left;width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px}.result strong{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.result small{white-space:nowrap}.result[aria-current=true] strong{color:var(--green)}[hidden]{display:none!important}summary{cursor:pointer;color:var(--muted);font-size:13px;margin:12px 0}.refimg{max-height:110px;max-width:100%;margin-top:5px;border-radius:4px}progress{accent-color:var(--green);width:100%}@media(max-width:800px){main{grid-template-columns:1fr}.stage{aspect-ratio:16/9}.history{margin-top:10px}}
+</style></head><body>
+<header><b>Wan Video</b><span>本地视频工作台</span></header>
+<main><form id="form"><h1>生成视频</h1><div class="modes"><button type="button" id="textMode" aria-pressed="true">文生视频</button><button type="button" id="imageMode" aria-pressed="false">图生视频</button></div>
+<div id="ref" hidden><label for="image">首帧参考图</label><input id="image" type="file" accept="image/png,image/jpeg,image/webp"><img class="refimg" id="thumb" alt="首帧预览" hidden></div>
+<label for="prompt">画面与运动</label><textarea id="prompt" required maxlength="4000" placeholder="例如：纸船顺水漂行，镜头缓慢跟随，傍晚的暖光映在水面上。"></textarea>
+<label for="preset">画幅预设</label><select id="preset"></select>
+<div class="grid"><div><label for="frames">帧数 · 每次增加 4 帧</label><input type="number" id="frames" min="5" max="121" step="4" required></div><div><label for="fps">帧率 FPS</label><input type="number" id="fps" min="1" max="30" required></div></div>
+<small id="duration"></small>
+<details><summary>采样设置</summary><div class="grid"><div><label for="steps">步数</label><input id="steps" type="number" min="1" max="40" required value="20"></div><div><label for="seed">随机种子</label><input id="seed" type="number" min="0" max="9007199254740991" placeholder="随机"></div></div>
+<label for="negative">负向提示词</label><textarea id="negative" maxlength="4000"></textarea><small id="sampling"></small></details>
+<p id="qwen-note" class="muted" hidden><small>两个工作台共用显卡。若 Qwen 正在生图，请等它完成；若模型仍常驻，可在 Qwen 点「卸载模型」腾出显存。Qwen 的电池保护只管生图，生成视频前请接上电源。</small></p>
+<button class="primary" id="go" disabled>生成视频</button><p role="alert" class="error" id="error"></p></form>
+<section><h2>视频预览</h2><div class="stage"><div class="empty" id="empty"><div class="film"></div><span>生成的视频将在这里显示</span></div><video controls playsinline id="player" hidden></video></div>
+<div class="status"><span id="state" aria-live="polite">连接本地服务…</span><button class="secondary" id="cancel" hidden>取消生成</button><a class="secondary" id="download" hidden>下载 MP4</a></div><progress id="progress" hidden></progress>
+<div class="history"><h2>最近生成</h2><div id="results"></div></div></section></main>
+<script>
+const el=id=>document.getElementById(id);
+el('qwen-note').hidden=location.hash!=='#qwen';
+let mode='text', model=null, selected='', lastList='', activeId='', sending=false, lastDone='', thumbURL='';
+function setMode(v){
+ mode=v;el('ref').hidden=v!=='image';el('image').required=v==='image';
+ el('textMode').setAttribute('aria-pressed',v==='text');el('imageMode').setAttribute('aria-pressed',v==='image');
+}
+el('textMode').onclick=()=>setMode('text');el('imageMode').onclick=()=>setMode('image');
+el('image').onchange=()=>{if(thumbURL)URL.revokeObjectURL(thumbURL);const f=el('image').files[0];el('thumb').hidden=!f;if(f){thumbURL=URL.createObjectURL(f);el('thumb').src=thumbURL}};
+function timeInfo(){const n=+el('frames').value, fps=+el('fps').value;el('duration').textContent=fps>0&&n>0?'成片约 '+(n/fps).toFixed(2)+' 秒':''}
+el('frames').oninput=el('fps').oninput=timeInfo;
+el('preset').onchange=()=>{const p=model.presets[el('preset').value];el('frames').value=p.frames;el('fps').value=p.fps;timeInfo()};
+function selectVideo(j){
+ selected=j.id;const url='/video/'+j.id+'.mp4';el('player').src=url;el('player').hidden=false;el('empty').hidden=true;el('download').href=url;el('download').download='Wan-'+j.id+'.mp4';el('download').hidden=false;
+ document.querySelectorAll('.result').forEach(b=>b.setAttribute('aria-current',b.dataset.id===selected));
+}
+function list(jobs){
+ const ids=jobs.map(j=>j.id).join();if(lastList===ids&&el('results').childNodes.length)return;lastList=ids;el('results').replaceChildren();
+ if(!jobs.length){el('results').textContent='还没有生成记录';return}
+ for(const j of jobs){const b=document.createElement('button');b.className='result';b.dataset.id=j.id;b.setAttribute('aria-current',j.id===selected);b.onclick=()=>selectVideo(j);
+ const t=document.createElement('strong');t.textContent=j.prompt;const s=document.createElement('small');s.textContent=j.width+'×'+j.height+' · '+(j.frames/j.fps).toFixed(2)+'s';b.title='种子 '+j.seed+' · '+j.steps+' 步';b.append(t,s);el('results').append(b)}
+}
+async function refresh(){
+ const r=await fetch('/api/status',{cache:'no-store'});if(!r.ok)throw Error('本地服务连接失败');const s=await r.json();
+ if(!model){for(const [id,p] of Object.entries(s.presets)){const o=new Option(p.label,id);el('preset').add(o)}model=s;el('preset').onchange();el('steps').value=s.steps;el('negative').value=s.negative||'';if(s.sampling){const c=s.sampling;el('sampling').textContent=c.sampler+' · '+c.scheduler+' · CFG '+c.cfg+' · Shift '+c.shift}}
+ const a=s.active;activeId=a?.id||'';el('go').disabled=!!a||sending;el('cancel').hidden=!a;el('cancel').disabled=!!a?.cancelled;
+ el('progress').hidden=!a;if(a?.total){el('progress').max=a.total;el('progress').value=a.current}else el('progress').removeAttribute('value');
+ el('state').textContent=a?a.stage+(a.total?' · '+a.current+' / '+a.total:'')+' · '+Math.max(0,Math.floor(Date.now()/1000-a.started))+' 秒':s.last?.stage||'就绪';
+ if(s.last?.status==='error'&&!a)el('error').textContent=s.last.error;
+ list(s.history);if(s.history.length&&(!selected||(s.last?.status==='done'&&lastDone!==s.last.id))){selectVideo(s.history[0]);lastDone=s.last?.id||''}
+}
+el('form').onsubmit=async e=>{e.preventDefault();if(sending||activeId)return;sending=true;el('go').disabled=true;el('error').textContent='';try{
+ const data=new FormData();data.set('mode',mode);for(const k of ['prompt','negative','preset','steps','seed','frames','fps'])data.set(k,el(k).value);
+ if(mode==='image'){const f=el('image').files[0];if(!f||f.size>16*1024*1024)throw Error('请选择 16 MiB 以内的参考图');data.set('image',f)}
+ const r=await fetch('/api/jobs',{method:'POST',headers:{'X-Wan-Request':'1'},body:data});if(!r.ok)throw Error(await r.text())
+ }catch(err){el('error').textContent=err.message}finally{sending=false;await refresh().catch(()=>{el('state').textContent='连接中断'})}};
+el('cancel').onclick=async()=>{if(activeId){const r=await fetch('/api/jobs/'+activeId+'/cancel',{method:'POST',headers:{'X-Wan-Request':'1'}});if(!r.ok)el('error').textContent=await r.text();await refresh()}};
+async function poll(){try{await refresh()}catch(e){el('state').textContent='连接中断，正在重连';el('go').disabled=true}setTimeout(poll,1500)}poll();
+el('player').addEventListener('error',()=>{el('error').textContent='此浏览器无法解码 H.264 视频。可下载 MP4，或使用本机 Edge、Chrome 预览。'});
+</script></body></html>

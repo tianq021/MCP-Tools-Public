@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable><LangVersion>latest</LangVersion>
+    <AssemblyName>AfterIncBridge</AssemblyName><Version>0.6.8</Version>
+    <GameRoot Condition="'$(GameRoot)' == ''">F:\SteamLibrary\steamapps\common\After Inc</GameRoot>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BepInEx.Core" HintPath="$(GameRoot)\BepInEx\core\BepInEx.Core.dll" Private="false" />
+    <Reference Include="BepInEx.Unity.IL2CPP" HintPath="$(GameRoot)\BepInEx\core\BepInEx.Unity.IL2CPP.dll" Private="false" />
+    <Reference Include="Il2CppInterop.Runtime" HintPath="$(GameRoot)\BepInEx\core\Il2CppInterop.Runtime.dll" Private="false" />
+    <Reference Include="Assembly-CSharp" HintPath="$(GameRoot)\BepInEx\interop\Assembly-CSharp.dll" Private="false" Aliases="GameAssembly" />
+    <Reference Include="com.ndemiccreation.foundation" HintPath="$(GameRoot)\BepInEx\interop\com.ndemiccreation.foundation.dll" Private="false" Aliases="FoundationAssembly" />
+    <Reference Include="Il2Cppmscorlib" HintPath="$(GameRoot)\BepInEx\interop\Il2Cppmscorlib.dll" Private="false" />
+    <Reference Include="Unity.TextMeshPro" HintPath="$(GameRoot)\BepInEx\interop\Unity.TextMeshPro.dll" Private="false" />
+    <Reference Include="UnityEngine.UI" HintPath="$(GameRoot)\BepInEx\interop\UnityEngine.UI.dll" Private="false" />
+    <Reference Include="UnityEngine.UIModule" HintPath="$(GameRoot)\BepInEx\interop\UnityEngine.UIModule.dll" Private="false" />
+    <Reference Include="UnityEngine.TextRenderingModule" HintPath="$(GameRoot)\BepInEx\interop\UnityEngine.TextRenderingModule.dll" Private="false" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="$(GameRoot)\BepInEx\interop\UnityEngine.CoreModule.dll" Private="false" />
+  <Reference Include="MonoMod.RuntimeDetour" HintPath="$(GameRoot)\BepInEx\core\MonoMod.RuntimeDetour.dll" Private="false" /></ItemGroup>
+</Project>
+
+
+
+

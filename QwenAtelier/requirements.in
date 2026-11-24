@@ -1,0 +1,10 @@
+# Direct dependencies for the independent Python web backend (Python 3.12).
+# Exact resolved versions and hashes are written to requirements.lock.txt.
+fastapi
+uvicorn
+pydantic
+python-multipart
+Pillow
+cryptography
+httpx
+nvidia-ml-py

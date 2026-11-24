@@ -1,0 +1,39 @@
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Build and packaged output
+build/
+dist/
+*.exe
+*.dll
+*.pyd
+*.pkg
+# 项目默认发布包
+!/dist/
+/dist/*
+!/dist/AfterIncRevivalTrainer_CN.exe
+!/dist/AfterIncLevelTraits.dll
+
+# Local analysis environments and generated scan data
+.analysis_deps/
+scans/
+il2cpp_dump/
+tools/Il2CppDumper-*/
+tools/Il2CppDumper-*.zip
+*.bin
+
+# Native build intermediates (rebuild with native/build*.cmd)
+native/*.obj
+native/*.lib
+native/*.exp
+native/*.bak*
+
+# Local backups, logs, and editor state
+backups/
+*.log
+.idea/
+.vscode/
+Thumbs.db
+.DS_Store

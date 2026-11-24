@@ -1,0 +1,3868 @@
+[
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Action Skill",
+    "tier": 0,
+    "name": "Sabre Turret",
+    "max_rank": 1,
+    "rank_crosscheck": null,
+    "effect": "Action Skill. Deploy a Sabre Turret that automatically fires at enemies. When you're near the Sabre Turret you can reclaim it and refund some of your Cooldown. Cooldown: 42 seconds.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Guerilla",
+    "tier": 1,
+    "name": "Sentry",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+1 shot per burst and +2 s duration for Sabre Turret per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": [
+      {
+        "class_id": "commando",
+        "path": "GD_Soldier_Skills.Guerrilla.Sentry",
+        "section": "Guerrilla.Sentry SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+        "description": "Increases the number of shots your Sabre Turret fires in each burst, as well as your Sabre Turret's Duration.",
+        "fields": {
+          "SkillDescription": "\"Increases the number of shots your [skill]Sabre Turret[-skill] fires in each burst, as well as your [skill]Sabre Turret's Duration[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Guerilla",
+    "tier": 1,
+    "name": "Ready",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+8 % Reload Speed per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": [
+      {
+        "class_id": "commando",
+        "path": "GD_Soldier_Skills.Guerrilla.Ready",
+        "section": "Guerrilla.Ready SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+        "description": "Increases Reload Speed.",
+        "fields": {
+          "SkillDescription": "\"Increases [skill]Reload Speed[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Guerilla",
+    "tier": 2,
+    "name": "Laser Sight",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+10 % Turret Accuracy per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Guerilla",
+    "tier": 2,
+    "name": "Willing",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+15 % Shield Recharge Rate and -12 % Shield Recharge Delay per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Guerilla",
+    "tier": 3,
+    "name": "Onslaught",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Kill Skill. Killing an enemy gives you +6 % Gun Damage and +12 % Movement Speed per level for a short time.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Guerilla",
+    "tier": 3,
+    "name": "Scorched Earth",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Adds Multi-Rocket Pods to your Sabre Turret. 22 Rockets per Volley.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Guerilla",
+    "tier": 3,
+    "name": "Able",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Damaging an enemy regenerates +0.4 % of your Maximum Health per second per level for 3 seconds.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": [
+      {
+        "class_id": "commando",
+        "path": "GD_Soldier_Skills.Guerrilla.Able",
+        "section": "Guerrilla.Able SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+        "description": "Damaging an enemy causes you to regenerate health for a few seconds. This effect does not stack multiple times.",
+        "fields": {
+          "SkillDescription": "\"Damaging an enemy causes you to [skill]regenerate health[-skill] for a few seconds.  This effect does not stack multiple times.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Guerilla",
+    "tier": 4,
+    "name": "Grenadier",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+1 Grenade Capacity per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": [
+      {
+        "class_id": "commando",
+        "path": "GD_Soldier_Skills.Guerrilla.Grenadier",
+        "section": "Guerrilla.Grenadier SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+        "description": "Increases the maximum number of grenades you can carry.",
+        "fields": {
+          "SkillDescription": "\"Increases the maximum number of [skill]grenades[-skill] you can carry.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Guerilla",
+    "tier": 5,
+    "name": "Crisis Management",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+7 % Gun Damage and +6 % Melee Damage per level when shields are depleted.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": [
+      {
+        "class_id": "commando",
+        "path": "GD_Soldier_Skills.Guerrilla.CrisisManagement",
+        "section": "Guerrilla.CrisisManagement SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+        "description": "You gain increased Gun Damage and Melee Damage while your shields are depleted.",
+        "fields": {
+          "SkillDescription": "\"You gain increased [skill]Gun Damage[-skill] and [skill]Melee Damage[-skill] while your shields are depleted.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Guerilla",
+    "tier": 6,
+    "name": "Double Up",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Adds a second gun to the Sabre Turret and both guns fire Slag bullets.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": [
+      {
+        "class_id": "commando",
+        "path": "GD_Soldier_Skills.Guerrilla.DoubleUp",
+        "section": "Guerrilla.DoubleUp SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+        "description": "Adds a second gun to your Sabre Turret and changes both guns to fire slag rounds. Slagged enemies take additional damage from all non-slag attacks.",
+        "fields": {
+          "SkillDescription": "\"Adds a [skill]second gun[-skill] to your [skill]Sabre Turret[-skill] and changes both guns to fire [skill]slag rounds[-skill].  Slagged enemies take additional damage from all non-slag attacks.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Gunpowder",
+    "tier": 1,
+    "name": "Impact",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+4 % Gun Damage and +3 % Melee Damage per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Gunpowder",
+    "tier": 1,
+    "name": "Expertise",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+14 % weapon swap and aim speed per level ; +7 % movement speed when aiming per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Gunpowder",
+    "tier": 2,
+    "name": "Overload",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+10 % Magazine Size for Assault Rifles.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Gunpowder",
+    "tier": 2,
+    "name": "Metal Storm",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Kill Skill. Killing an enemy gives +12 % Fire Rate and +15 % Recoil Reduction per level for a short time.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Gunpowder",
+    "tier": 3,
+    "name": "Steady",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+8 % Recoil Reduction, +5 % Grenade Damage, and +4 % Rocket Launcher damage per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": [
+      {
+        "class_id": "commando",
+        "path": "GD_Soldier_Skills.Gunpowder.Steady",
+        "section": "Gunpowder.Steady SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+        "description": "Reduces Recoil with all gun types, as well as damage dealt with grenades and rocket launchers.",
+        "fields": {
+          "SkillDescription": "\"Reduces [skill]Recoil[-skill] with all gun types, as well as damage dealt with [skill]grenades[-skill] and [skill]rocket launchers[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Gunpowder",
+    "tier": 3,
+    "name": "Longbow Turret",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "+10000 % Turret Deploy Range, +110 % Turret Health.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": [
+      {
+        "class_id": "commando",
+        "path": "GD_Soldier_Skills.Gunpowder.LongBowTurret",
+        "section": "Gunpowder.LongBowTurret SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+        "description": "Your Sabre Turret can be deployed using Longbow technology, allowing you to deploy it much further away. Also, increases the Maximum Health of your Sabre Turret.",
+        "fields": {
+          "SkillDescription": "\"Your [skill]Sabre Turret[-skill] can be deployed using [skill]Longbow[-skill] technology, allowing you to deploy it much further away.  Also, increases the [skill]Maximum Health[-skill] of your [skill]Sabre Turret[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Gunpowder",
+    "tier": 3,
+    "name": "Battlefront",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+6 % Gun, Melee, and Grenade damage per level while turret is deployed.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": [
+      {
+        "class_id": "commando",
+        "path": "GD_Soldier_Skills.Gunpowder.Battlefront",
+        "section": "Gunpowder.Battlefront SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+        "description": "While your Sabre Turret is deployed you deal increased damage.",
+        "fields": {
+          "SkillDescription": "\"While your [skill]Sabre Turret[-skill] is deployed you deal [skill]increased damage[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Gunpowder",
+    "tier": 4,
+    "name": "Duty Calls",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+5 % Gun Damage and +3 % Fire Rate with non-elemental guns.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": [
+      {
+        "class_id": "commando",
+        "path": "GD_Soldier_Skills.Gunpowder.DutyCalls",
+        "section": "Gunpowder.DutyCalls SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+        "description": "Increases the Gun Damage and Fire Rate of non-elemental guns.",
+        "fields": {
+          "SkillDescription": "\"Increases the [skill]Gun Damage[-skill] and [skill]Fire Rate[-skill] of non-elemental guns.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Gunpowder",
+    "tier": 4,
+    "name": "Do or Die",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Allows you to throw grenades while in Fight for Your Life. +10 % Grenade and Rocket Launcher damage.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": [
+      {
+        "class_id": "commando",
+        "path": "GD_Soldier_Skills.Gunpowder.DoOrDie",
+        "section": "Gunpowder.DoOrDie SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+        "description": "Allows you to throw grenades while in Fight For Your Life. Also increases damage dealt with grenades and rocket launchers.",
+        "fields": {
+          "SkillDescription": "\"Allows you to [skill]throw grenades[-skill] while in [skill]Fight For Your Life[-skill].  Also increases damage dealt with [skill]grenades[-skill] and [skill]rocket launchers[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Gunpowder",
+    "tier": 5,
+    "name": "Ranger",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+1 % Gun Damage, Accuracy, Critical Hit Damage, Fire Rate, Magazine Size, Reload Speed, and Maximum Health per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": [
+      {
+        "class_id": "commando",
+        "path": "GD_Soldier_Skills.Gunpowder.Ranger",
+        "section": "Gunpowder.Ranger SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+        "description": "Makes you better at just about everything.",
+        "fields": {
+          "SkillDescription": "\"Makes you better at just about [skill]everything[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Gunpowder",
+    "tier": 6,
+    "name": "Nuke",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Deploying your Sabre Turret sets off a small Nuclear Blast.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": [
+      {
+        "class_id": "commando",
+        "path": "GD_Soldier_Skills.Gunpowder.Nuke",
+        "section": "Gunpowder.Nuke SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+        "description": "Deploying your Sabre Turret sets off a small Nuclear Blast.",
+        "fields": {
+          "SkillDescription": "\"Deploying your [skill]Sabre Turret[-skill] sets off a small [skill]Nuclear Blast[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Survival",
+    "tier": 1,
+    "name": "Healthy",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+6 % Maximum Health per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Survival",
+    "tier": 1,
+    "name": "Preparation",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+3 % shield capacity per level ; regenerate +0.4 % health per second per level when shields are full.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": [
+      {
+        "class_id": "commando",
+        "path": "GD_Soldier_Skills.Survival.Preparation",
+        "section": "Survival.Preparation SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+        "description": "Increases your Shield Capacity. Also, while your shield is full you regenerate health.",
+        "fields": {
+          "SkillDescription": "\"Increases your [skill]Shield Capacity[-skill].  Also, while your shield is full you [skill]regenerate health[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Survival",
+    "tier": 2,
+    "name": "Last Ditch Effort",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+8 % Gun Damage and +14 % Movement Speed per level during Fight For Your Life.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Survival",
+    "tier": 2,
+    "name": "Pressure",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Up to +14 % Reload Speed and -12 % Shield Recharge Delay per level depending on how low your health is.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": [
+      {
+        "class_id": "commando",
+        "path": "GD_Soldier_Skills.Survival.Pressure",
+        "section": "Survival.Pressure SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+        "description": "Improves your Reload Speed and Shield Recharge Delay based on how much health you have. The lower your health, the higher the bonus.",
+        "fields": {
+          "SkillDescription": "\"Improves your [skill]Reload Speed[-skill] and [skill]Shield Recharge Delay[-skill] based on how much [skill]health[-skill] you have.  The [skill]lower your health, the higher the bonus[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Survival",
+    "tier": 3,
+    "name": "Forbearance",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "-8 % Status Effect duration on you and +1 % Maximum Health per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": [
+      {
+        "class_id": "commando",
+        "path": "GD_Soldier_Skills.Survival.Forbearance",
+        "section": "Survival.Forbearance SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+        "description": "Reduces the duration of enemy Elemental Status Effects on you. Additionally, increases Maximum Health.",
+        "fields": {
+          "SkillDescription": "\"Reduces the duration of enemy [skill]Elemental Status Effects[-skill] on you.  Additionally, increases [skill]Maximum Health[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Survival",
+    "tier": 3,
+    "name": "Phalanx Shield",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Your Sabre Turret projects a shield that attempts to block enemy ranged fire but lets friendly ranged attacks pass through.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": [
+      {
+        "class_id": "commando",
+        "path": "GD_Soldier_Skills.Survival.PhalanxShield",
+        "section": "Survival.PhalanxShield SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+        "description": "Your Sabre Turret projects a protective shield. The shield attempts to block enemy ranged attacks, but lets friendly ranged attacks pass through. Enemy movement and melee attacks are not affected.",
+        "fields": {
+          "SkillDescription": "\"Your [skill]Sabre Turret[-skill] projects a [skill]protective shield[-skill].  The shield attempts to block enemy ranged attacks, but lets friendly ranged attacks pass through.  Enemy movement and melee attacks are not affected.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Survival",
+    "tier": 3,
+    "name": "Quick Charge",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Kill Skill. Killing an enemy regenerates +1 % of your shield per second per level for a short time.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": [
+      {
+        "class_id": "commando",
+        "path": "GD_Soldier_Skills.Survival.QuickCharge",
+        "section": "Survival.QuickCharge SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+        "description": "Kill Skill. Killing an enemy causes your shields to quickly regenerate for a short time.",
+        "fields": {
+          "SkillDescription": "\"[skill]Kill Skill[-skill].  Killing an enemy causes your shields to [skill]quickly regenerate[-skill] for a short time.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Survival",
+    "tier": 4,
+    "name": "Resourceful",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+5 % Action Skill Cooldown Rate per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": [
+      {
+        "class_id": "commando",
+        "path": "GD_Soldier_Skills.Survival.Resourceful",
+        "section": "Survival.Resourceful SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+        "description": "Increases Action Skill Cooldown Rate.",
+        "fields": {
+          "SkillDescription": "\"Increases [skill]Action Skill Cooldown Rate[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Survival",
+    "tier": 4,
+    "name": "Mag-Lock",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Your Sabre Turret can be deployed on walls and ceilings.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": [
+      {
+        "class_id": "commando",
+        "path": "GD_Soldier_Skills.Survival.Mag-Lock",
+        "section": "Survival.Mag-Lock SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+        "description": "Allows your Sabre Turret to be deployed on walls and ceilings.",
+        "fields": {
+          "SkillDescription": "\"Allows your [skill]Sabre Turret[-skill] to be [skill]deployed on walls and ceilings[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Survival",
+    "tier": 5,
+    "name": "Grit",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "You have a 4 % chance per level to ignore damage that would otherwise kill you. In addition to not taking damage from the attack, you will also regain half your Maximum health.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": [
+      {
+        "class_id": "commando",
+        "path": "GD_Soldier_Skills.Survival.Grit",
+        "section": "Survival.Grit SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+        "description": "You gain a chance to ignore damage that would otherwise kill you. In addition to not taking damage from the attack, you will instantly regain half of your Maximum Health.",
+        "fields": {
+          "SkillDescription": "\"You gain a chance to [skill]ignore damage that would otherwise kill you[-skill].  In addition to not taking damage from the attack, you will instantly [skill]regain half of your Maximum Health[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "commando",
+    "character": "突击兵 Axton",
+    "tree": "Survival",
+    "tier": 6,
+    "name": "Gemini",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Allows you to deploy two Sabre Turrets.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/commando.html",
+    "native_matches": [
+      {
+        "class_id": "commando",
+        "path": "GD_Soldier_Skills.Survival.Gemini",
+        "section": "Survival.Gemini SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Soldier_Skills.int",
+        "description": "Allows you to deploy two Sabre Turrets. Once the first Sabre Turret is deployed press <StringAliasMap:Action.ActionSkill> again to deploy the second.",
+        "fields": {
+          "SkillDescription": "\"Allows you to deploy [skill]two Sabre Turrets[-skill].  Once the first [skill]Sabre Turret[-skill] is deployed press <StringAliasMap:Action.ActionSkill> again to deploy the second.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Action Skill",
+    "tier": 0,
+    "name": "Phaselock",
+    "max_rank": 1,
+    "rank_crosscheck": null,
+    "effect": "Action Skill. Lock an enemy in another dimension, preventing him from fighting back for a short while. Some enemies cannot be Phaselocked and instead instantly take damage. Cooldown: 13 seconds",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Motion",
+    "tier": 1,
+    "name": "Ward",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+5 % Shield Capacity and -8 % Shield Recharge Delay per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Motion",
+    "tier": 1,
+    "name": "Accelerate",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+3 % Gun Damage and +4 % Bullet Speed per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Motion",
+    "tier": 2,
+    "name": "Suspension",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Increases the duration of Phaselock by +0.5 s per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Motion",
+    "tier": 2,
+    "name": "Kinetic Reflection",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Kill Skill. Killing an enemy causes you to deflect bullets against nearby enemies, reducing damage to you by 10 % and dealing 20 % damage per level for a short time.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": [
+      {
+        "class_id": "siren",
+        "path": "GD_Siren_Skills.Motion.KineticReflection",
+        "section": "Motion.KineticReflection SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+        "description": "Kill Skill. After killing an enemy, you gain the ability to deflect enemy bullets, sending them flying toward nearby enemies. You take reduced damage from deflected bullets. Kinetic Reflection only works with bullets. This effect lasts for a short time.",
+        "fields": {
+          "SkillDescription": "\"[skill]Kill Skill[-skill].  After killing an enemy, you gain the ability to [skill]deflect enemy bullets[-skill], sending them flying toward nearby enemies.  You take reduced damage from deflected bullets.  [skill]Kinetic Reflection[-skill] only works with bullets.  This effect lasts for a short time.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Motion",
+    "tier": 3,
+    "name": "Fleet",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Your Movement Speed increases by +10 % per level while your shields are depleted.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Motion",
+    "tier": 3,
+    "name": "Converge",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Your Phaselock ability now also pulls nearby enemies toward the original target.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Motion",
+    "tier": 3,
+    "name": "Inertia",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Kill Skill. Killing an enemy regenerates +0.8 % of your Shield per second and increases your Reload Speed by +10 % per level for a short time.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": [
+      {
+        "class_id": "siren",
+        "path": "GD_Siren_Skills.Motion.Inertia",
+        "section": "Motion.Inertia SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+        "description": "Kill Skill. Killing an enemy causes your shields to quickly regenerate and increases your Reload Speed for a few seconds.",
+        "fields": {
+          "SkillDescription": "\"[skill]Kill Skill[-skill].  Killing an enemy causes your [skill]shields to quickly regenerate[-skill] and increases your [skill]Reload Speed[-skill] for a few seconds.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Motion",
+    "tier": 4,
+    "name": "Quicken",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Increases the Cooldown Rate of your Phaselock's Ability by 6 % per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": [
+      {
+        "class_id": "siren",
+        "path": "GD_Siren_Skills.Motion.Quicken",
+        "section": "Motion.Quicken SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+        "description": "Increases the Cooldown Rate of your Phaselock ability.",
+        "fields": {
+          "SkillDescription": "\"Increases the [skill]Cooldown Rate[-skill] of your [skill]Phaselock[-skill] ability.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Motion",
+    "tier": 5,
+    "name": "Sub-Sequence",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "When an enemy dies under the effects of Phaselock, there is a chance for your Phaselock to seek out and affect another target ( 20 % chance per level ).",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": [
+      {
+        "class_id": "siren",
+        "path": "GD_Siren_Skills.Motion.SubSequence",
+        "section": "Motion.SubSequence SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+        "description": "Action Skill Augmentation. When an enemy under the effects of your Phaselock dies, there is a chance for your Phaselock ability to seek out and affect another target.",
+        "fields": {
+          "SkillDescription": "\"[skill]Action Skill Augmentation.[-skill] When an enemy under the effects of your [skill]Phaselock[-skill] dies, there is a chance for your [skill]Phaselock[-skill] ability to seek out and [skill]affect another target[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Motion",
+    "tier": 6,
+    "name": "Thoughtlock",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Phaselock causes enemies to switch allegiance and fight amongst themselves. Additionally, Phaselock's cooldown and duration are increased (3s and 4s respectively).",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Harmony",
+    "tier": 1,
+    "name": "Mind's Eye",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+5 % Critical Hit Damage and +6 % Melee Damage per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Harmony",
+    "tier": 1,
+    "name": "Sweet Release",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Killing an enemy who is currently Phaselocked creates 1 Life Orb per level which automatically seeks out and heals you and your friends. The healing is stronger when you or your friend's health is low (up to 15% per Orb).",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": [
+      {
+        "class_id": "siren",
+        "path": "GD_Siren_Skills.Harmony.SweetRelease",
+        "section": "Harmony.SweetRelease SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+        "description": "If the enemy you have Phaselocked is killed, it generates Life Orbs that automatically seek out and heal you and your friends. The healing is stronger when you or your friend's health is low.",
+        "fields": {
+          "SkillDescription": "\"If the enemy you have [skill]Phaselocked[-skill] is killed, it generates [skill]Life Orbs[-skill] that automatically seek out and [skill]heal[-skill] you and your friends.  The healing is stronger when you or your friend's health is low.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Harmony",
+    "tier": 2,
+    "name": "Restoration",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+3 % Maximum Health and attack allies to heal them for 6 % of the attack damage per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Harmony",
+    "tier": 2,
+    "name": "Wreck",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+10 % Fire Rate and +6 % Damage with guns per level while you have an enemy Phaselocked.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Harmony",
+    "tier": 3,
+    "name": "Elated",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "You and your friends regenerate +1 % health per second per level while you have an enemy Phaselocked.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": [
+      {
+        "class_id": "siren",
+        "path": "GD_Siren_Skills.Harmony.Elated",
+        "section": "Harmony.Elated SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+        "description": "While you have an enemy Phaselocked, you and your friends regenerate health.",
+        "fields": {
+          "SkillDescription": "\"While you have an enemy [skill]Phaselocked[-skill], you and your friends [skill]regenerate health[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Harmony",
+    "tier": 3,
+    "name": "Res",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "You can instantly revive a friend in Fight for Your Life by using Phaselock on him/her.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": [
+      {
+        "class_id": "siren",
+        "path": "GD_Siren_Skills.Harmony.Res",
+        "section": "Harmony.Res SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+        "description": "You can instantly revive a friend in Fight For Your Life by using Phaselock on him/her.",
+        "fields": {
+          "SkillDescription": "\"You can [skill]instantly revive[-skill] a friend in [skill]Fight For Your Life[-skill] by using [skill]Phaselock[-skill] on him/her.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Harmony",
+    "tier": 3,
+    "name": "Recompense",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Taking Health damage has a 10 % chance per level of dealing an equal amount of damage to your attacker.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": [
+      {
+        "class_id": "siren",
+        "path": "GD_Siren_Skills.Harmony.Recompense",
+        "section": "Harmony.Recompense SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+        "description": "When you take health damage, there is a chance that your attacker takes damage equal to the amount of health lost.",
+        "fields": {
+          "SkillDescription": "\"When you take [skill]health damage[-skill], there is a chance that your [skill]attacker takes damage[-skill] equal to the amount of [skill]health lost[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Harmony",
+    "tier": 4,
+    "name": "Sustenance",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Regenerate up to +0.4 % of your missing Health per second per level . The lower your health the more powerful the regeneration.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": [
+      {
+        "class_id": "siren",
+        "path": "GD_Siren_Skills.Harmony.Sustenance",
+        "section": "Harmony.Sustenance SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+        "description": "You constantly regenerate health. The lower your current health, the more powerful the regeneration.",
+        "fields": {
+          "SkillDescription": "\"You constantly [skill]regenerate health[-skill].  The lower your current health, the more powerful the regeneration.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Harmony",
+    "tier": 5,
+    "name": "Life Tap",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Kill Skill. Killing an enemy gives you +1.2 % Life Steal per level for a short while.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": [
+      {
+        "class_id": "siren",
+        "path": "GD_Siren_Skills.Harmony.LifeTap",
+        "section": "Harmony.LifeTap SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+        "description": "Kill Skill. Killing an enemy causes you to steal health from any enemy you damage for a short time.",
+        "fields": {
+          "SkillDescription": "\"[skill]Kill Skill[-skill].  Killing an enemy causes you to [skill]steal health[-skill] from any enemy you damage for a short time.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Harmony",
+    "tier": 6,
+    "name": "Scorn",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Melee Override. Press [melee] to throw an Orb of Slag that constantly damages enemies near it. This ability has a 18 second cooldown. Pressing [melee] when Scorn is on cooldown will perform a regular melee attack.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": [
+      {
+        "class_id": "siren",
+        "path": "GD_Siren_Skills.Harmony.Scorn",
+        "section": "Harmony.Scorn SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+        "description": "Melee Override Skill. Press <StringAliasMap:Action.Melee> to throw an orb of slag that constantly damages enemies near it. This ability has a cooldown. Pressing <StringAliasMap:Action.Melee> when Scorn is on cooldown will perform a regular melee attack.",
+        "fields": {
+          "SkillDescription": "\"[skill]Melee Override Skill[-skill].  Press <StringAliasMap:Action.Melee> to throw an [skill]orb of slag[-skill] that constantly damages enemies near it.  This ability has a cooldown.  Pressing <StringAliasMap:Action.Melee> when [skill]Scorn[-skill] is on cooldown will perform a regular melee attack.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Cataclysm",
+    "tier": 1,
+    "name": "Flicker",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+6 % Elemental Effect Chance per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": [
+      {
+        "class_id": "siren",
+        "path": "GD_Siren_Skills.Cataclysm.Flicker",
+        "section": "Cataclysm.Flicker SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+        "description": "Increases your chance to cause Elemental Status Effects with Fire, Shock, Corrosive and Slag guns.",
+        "fields": {
+          "SkillDescription": "\"Increases your chance to cause [skill]Elemental Status Effects[-skill] with [skill]Fire[-skill], [skill]Shock[-skill], [skill]Corrosive[-skill] and [skill]Slag[-skill] guns.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Cataclysm",
+    "tier": 1,
+    "name": "Foresight",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Increases Magazine Size and Reload Speed with all weapon types. +4 % Magazine Size and +5 % Reload Speed per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Cataclysm",
+    "tier": 2,
+    "name": "Immolate",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Adds +10 % Damage per level as Fire Damage to all shots fired when in Fight For Your Life.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": [
+      {
+        "class_id": "siren",
+        "path": "GD_Siren_Skills.Cataclysm.Immolate",
+        "section": "Cataclysm.Immolate SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+        "description": "Adds Incendiary Damage to all shots fired while in Fight For Your Life. Additional Incendiary Damage is based on the Gun Damage of the weapon you're firing.",
+        "fields": {
+          "SkillDescription": "\"Adds [skill]Incendiary Damage[-skill] to all shots fired while in [skill]Fight For Your Life[-skill].  Additional [skill]Incendiary Damage[-skill] is based on the [skill]Gun Damage[-skill] of the weapon you're firing.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Cataclysm",
+    "tier": 2,
+    "name": "Helios",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Phaselocking an enemy causes a fiery explosion, damaging all nearby enemies. 1 Helios Damage Rank per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Cataclysm",
+    "tier": 3,
+    "name": "Chain Reaction",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "While you have an enemy Phaselocked all of your bullets that hit enemies have a 8 % chance per level to ricochet and hit another nearby enemy.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": [
+      {
+        "class_id": "siren",
+        "path": "GD_Siren_Skills.Cataclysm.ChainReaction",
+        "section": "Cataclysm.ChainReaction SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+        "description": "While you have an enemy Phaselocked, all of your shots that hit enemies have a chance to ricochet and hit another nearby enemy. Chain Reaction only works with bullets.",
+        "fields": {
+          "SkillDescription": "\"While you have an enemy [skill]Phaselocked[-skill], all of your [skill]shots that hit enemies[-skill] have a chance to [skill]ricochet[-skill] and [skill]hit another nearby enemy[-skill].  [skill]Chain Reaction[-skill] only works with bullets.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Cataclysm",
+    "tier": 3,
+    "name": "Cloud Kill",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Shooting an enemy creates a lingering Acid Cloud, which lasts for 5 seconds, dealing constant Corrosive Damage to enemies who touch it. Only one Acid Cloud can be active at a time.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Cataclysm",
+    "tier": 3,
+    "name": "Backdraft",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Your melee attacks deal additional Fire Damage. Also, when your shields become depleted you create a fiery explosion, damaging nearby enemies. Your shields must fully recharge between explosions. 1 Backdraft Damage Rank per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": [
+      {
+        "class_id": "siren",
+        "path": "GD_Siren_Skills.Cataclysm.Backdraft",
+        "section": "Cataclysm.Backdraft SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+        "description": "Your melee attacks deal additional fire damage. Additionally, when your shields are depleted you create a fiery explosion, damaging nearby enemies. Your shields must fully recharge between explosions.",
+        "fields": {
+          "SkillDescription": "\"Your [skill]melee attacks[-skill] deal additional [skill]fire damage[-skill].  Additionally, when your shields are depleted you create a [skill]fiery explosion[-skill], damaging nearby enemies.  Your shields must fully recharge between explosions.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Cataclysm",
+    "tier": 4,
+    "name": "Reaper",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "You deal +8 % increased Gun Damage per level to any enemy who has more than 50% of his health remaining.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": [
+      {
+        "class_id": "siren",
+        "path": "GD_Siren_Skills.Cataclysm.Reaper",
+        "section": "Cataclysm.Reaper SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+        "description": "You deal increased Gun Damage to any enemy with more than 50% health remaining.",
+        "fields": {
+          "SkillDescription": "\"You deal increased [skill]Gun Damage[-skill] to any enemy with more than 50% health remaining.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Cataclysm",
+    "tier": 5,
+    "name": "Blight Phoenix",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Kill Skill. Killing an enemy causes you to deal constant Fire and Corrosive Damage to nearby enemies for a short time. The damage is based on your Level and the Level of the Blight Phoenix.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": [
+      {
+        "class_id": "siren",
+        "path": "GD_Siren_Skills.Cataclysm.BlightPhoenix",
+        "section": "Cataclysm.BlightPhoenix SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+        "description": "Kill Skill. Killing an enemy causes you to deal constant Incendiary and Corrosive Damage to nearby enemies for a short time. The damage is based on your level, and the level of Blight Phoenix.",
+        "fields": {
+          "SkillDescription": "\"[skill]Kill Skill[-skill].  Killing an enemy causes you to deal constant [skill]Incendiary[-skill] and [skill]Corrosive Damage[-skill] to nearby enemies for a short time.  The damage is based on your level, and the level of [skill]Blight Phoenix[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "siren",
+    "character": "魔女 Maya",
+    "tree": "Cataclysm",
+    "tier": 6,
+    "name": "Ruin",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Action Skill Augmentation. Phaselock now slags, corrodes and electrocutes all nearby enemies.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/siren.html",
+    "native_matches": [
+      {
+        "class_id": "siren",
+        "path": "GD_Siren_Skills.Cataclysm.Ruin",
+        "section": "Cataclysm.Ruin SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Siren_Skills.int",
+        "description": "Action Skill Augmentation. Phaselock now slags, electrocutes, and corrodes all nearby enemies.",
+        "fields": {
+          "SkillDescription": "\"[skill]Action Skill Augmentation[-skill]. [skill]Phaselock[-skill] now [skill]slags[-skill], [skill]electrocutes[-skill], and [skill]corrodes[-skill] all nearby enemies.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Action Skill",
+    "tier": 0,
+    "name": "Gunzerking",
+    "max_rank": 1,
+    "rank_crosscheck": null,
+    "effect": "Action Skill. Draw a second gun and go nuts! While Gunzerking you Instantly Regain 50% of Your Total Health, gain Damage Reduction against enemy attacks, and constantly Regenerate Health and Ammo. Does not regenerate rockets. Cooldown: 42 seconds",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": [
+      {
+        "class_id": "gunzerker",
+        "path": "GD_Mercenary_Skills.ActionSkill.Skill_Gunzerking",
+        "section": "ActionSkill.Skill_Gunzerking SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+        "description": "Action Skill. Press <StringAliasMap:Action.ActionSkill> to draw a second gun and go nuts! While Gunzerking you instantly regain 50% of your Maximum Health, gain Damage Reduction against enemy attacks, and constantly regenerate health and ammo. Does not regenerate rockets.",
+        "fields": {
+          "SkillDescription": "\"[skill]Action Skill[-skill].  Press <StringAliasMap:Action.ActionSkill> to draw a second gun and go nuts!  While [skill]Gunzerking[-skill] you [skill]instantly regain 50% of your Maximum Health[-skill], gain [skill]Damage Reduction[-skill] against enemy attacks, and constantly [skill]regenerate health and ammo[-skill].  Does not regenerate rockets.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Gunlust",
+    "tier": 1,
+    "name": "Locked And Loaded",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Reloading your gun gives you +5 % Fire Rate per level for a short time.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": [
+      {
+        "class_id": "gunzerker",
+        "path": "GD_Mercenary_Skills.Gun_Lust.LockedandLoaded",
+        "section": "Gun_Lust.LockedandLoaded SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+        "description": "Reloading your gun increases Fire Rate for a short time.",
+        "fields": {
+          "SkillName": "\"Locked & Loaded\"\r",
+          "SkillDescription": "\"[skill]Reloading[-skill] your gun increases [skill]Fire Rate[-skill] for a short time.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Gunlust",
+    "tier": 1,
+    "name": "Quick Draw",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+7 % Weapon Swap Speed and +2 % Critical Hit Damage per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Gunlust",
+    "tier": 2,
+    "name": "I'm Your Huckleberry",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+3 % Damage and Reload Speed per level with pistols.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": [
+      {
+        "class_id": "gunzerker",
+        "path": "GD_Mercenary_Skills.Gun_Lust.ImYourHuckleberry",
+        "section": "Gun_Lust.ImYourHuckleberry SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+        "description": "Increases Gun Damage and Reload Speed with pistols.",
+        "fields": {
+          "SkillDescription": "\"Increases [skill]Gun Damage[-skill] and [skill]Reload Speed[-skill] with pistols.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Gunlust",
+    "tier": 2,
+    "name": "All I Need is One",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Swapping weapons causes your next shot fired to deal +8 % damage per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": [
+      {
+        "class_id": "gunzerker",
+        "path": "GD_Mercenary_Skills.Gun_Lust.AllIneedIsOne",
+        "section": "Gun_Lust.AllIneedIsOne SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+        "description": "Swapping weapons causes your next shot fired to deal additional damage.",
+        "fields": {
+          "SkillDescription": "\"[skill]Swapping weapons[-skill] causes your next shot fired to deal [skill]additional damage[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Gunlust",
+    "tier": 3,
+    "name": "Divergent Likeness",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+6 % Damage when Gunzerking with two of the same type of guns. +6 % Accuracy when Gunzerking with two different types of guns.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Gunlust",
+    "tier": 3,
+    "name": "Auto-Loader",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Killing an enemy Instantly Reloads all of the guns that you have equipped that are not currently in your hands. Swapping guns after Auto-Loader has reloaded a gun triggers Locked & Loaded.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": [
+      {
+        "class_id": "gunzerker",
+        "path": "GD_Mercenary_Skills.Gun_Lust.AutoLoader",
+        "section": "Gun_Lust.AutoLoader SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+        "description": "Killing an enemy instantly reloads all of the guns you have equipped that are not currently in your hands. Swapping guns after Auto-Loader has reloaded a gun triggers Locked & Loaded.",
+        "fields": {
+          "SkillDescription": "\"Killing an enemy [skill]instantly reloads[-skill] all of the guns you have equipped that are not currently in your hands.  Swapping guns after [skill]Auto-Loader[-skill] has reloaded a gun triggers [skill]Locked & Loaded[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Gunlust",
+    "tier": 3,
+    "name": "Money Shot",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "The last bullet fired from any gun does +8 % damage per level per magazine size, up to +80 % damage per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": [
+      {
+        "class_id": "gunzerker",
+        "path": "GD_Mercenary_Skills.Gun_Lust.MoneyShot",
+        "section": "Gun_Lust.MoneyShot SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+        "description": "The last round fired from your magazine deals massively increased damage. Guns with small magazines receive a smaller bonus. This skill works with all weapon types.",
+        "fields": {
+          "SkillDescription": "\"The [skill]last round[-skill] fired from your magazine deals [skill]massively increased damage[-skill].  Guns with [skill]small magazines[-skill] receive a [skill]smaller bonus[-skill].  This skill works with all weapon types.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Gunlust",
+    "tier": 4,
+    "name": "Lay Waste",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Kill Skill. Killing an enemy gives +8 % Fire Rate and +5 % Critical Hit Damage with Guns per level for a short time.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": [
+      {
+        "class_id": "gunzerker",
+        "path": "GD_Mercenary_Skills.Gun_Lust.LayWaste",
+        "section": "Gun_Lust.LayWaste SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+        "description": "Kill Skill. Killing an enemy increases Fire Rate and Critical Hit Damage with all guns for a short while.",
+        "fields": {
+          "SkillDescription": "\"[skill]Kill Skill[-skill].  Killing an enemy increases [skill]Fire Rate[-skill] and [skill]Critical Hit Damage[-skill] with all guns for a short while.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Gunlust",
+    "tier": 4,
+    "name": "Down Not Out",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "You can Gunzerk while in Fight for Your Life.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Gunlust",
+    "tier": 5,
+    "name": "Keep It Piping Hot",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "While Gunzerking is in the process of cooling down you gain +5 % Gun Damage, +6 % Melee Damage, and +5 % Grenade Damage per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": [
+      {
+        "class_id": "gunzerker",
+        "path": "GD_Mercenary_Skills.Gun_Lust.KeepItPipingHot",
+        "section": "Gun_Lust.KeepItPipingHot SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+        "description": "While Gunzerking is in the process of cooling down, you gain bonus Gun Damage, Melee Damage, and Grenade Damage.",
+        "fields": {
+          "SkillDescription": "\"While [skill]Gunzerking[-skill] is in the process of [skill]cooling down[-skill], you gain bonus [skill]Gun Damage[-skill], [skill]Melee Damage[-skill], and [skill]Grenade Damage[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Gunlust",
+    "tier": 6,
+    "name": "No Kill Like Overkill",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Any excess damage dealt to an enemy that kills them is transferred to the next enemy fired at.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": [
+      {
+        "class_id": "gunzerker",
+        "path": "GD_Mercenary_Skills.Gun_Lust.NoKillLikeOverkill",
+        "section": "Gun_Lust.NoKillLikeOverkill SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+        "description": "Killing an enemy grants Bonus Damage to your next shot equal to the amount of excess damage you dealt to the enemy you just killed.",
+        "fields": {
+          "SkillDescription": "\"Killing an enemy grants [skill]Bonus Damage[-skill] to your next shot equal to the amount of [skill]excess damage[-skill] you dealt to the enemy you just killed.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Rampage",
+    "tier": 1,
+    "name": "Inconceivable",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Up to 10 % chance per level for shots not to consume ammo depending on how low your health and shields are.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": [
+      {
+        "class_id": "gunzerker",
+        "path": "GD_Mercenary_Skills.Gun_Lust.Inconceivable",
+        "section": "Gun_Lust.Inconceivable SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+        "description": "Your shots have a chance to not consume ammo. The lower your health and shields, the greater the chance of free shots.",
+        "fields": {
+          "SkillDescription": "\"Your shots have a chance to [skill]not consume ammo[-skill].  The lower your health and shields, the greater the chance of [skill]free shots[-skill].\"\r"
+        }
+      },
+      {
+        "class_id": "gunzerker",
+        "path": "GD_Mercenary_Skills.Rampage.Inconceivable",
+        "section": "Rampage.Inconceivable SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+        "description": "Your shots have a chance to not consume ammo. The lower your health and shields, the greater the chance of free shots.",
+        "fields": {
+          "SkillDescription": "\"Your shots have a chance to [skill]not consume ammo[-skill].  The lower your health and shields, the greater the chance of [skill]free shots[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Rampage",
+    "tier": 1,
+    "name": "Filled to the Brim",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+5 % Magazine Capacity and +3 % Ammunition Capacity per level for all weapon types.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Rampage",
+    "tier": 2,
+    "name": "All in the Reflexes",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+5 % Reload Speed and +4 % Melee Damage per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": [
+      {
+        "class_id": "gunzerker",
+        "path": "GD_Mercenary_Skills.Rampage.AllInTheReflexes",
+        "section": "Rampage.AllInTheReflexes SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+        "description": "Increases Reload Speed and Melee Damage.",
+        "fields": {
+          "SkillDescription": "\"Increases [skill]Reload Speed[-skill] and [skill]Melee Damage[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Rampage",
+    "tier": 2,
+    "name": "Last Longer",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+3 seconds Gunzerking duration per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": [
+      {
+        "class_id": "gunzerker",
+        "path": "GD_Mercenary_Skills.Rampage.LastLonger",
+        "section": "Rampage.LastLonger SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+        "description": "Increases the duration of Gunzerking.",
+        "fields": {
+          "SkillDescription": "\"Increases the duration of [skill]Gunzerking[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Rampage",
+    "tier": 3,
+    "name": "I'm Ready Already",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+5 % Gunzerking Cooldown Rate.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Rampage",
+    "tier": 3,
+    "name": "Steady as She Goes",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "+80 % Recoil Reduction and 30 % chance to improve Accuracy on hit when Gunzerking.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": [
+      {
+        "class_id": "gunzerker",
+        "path": "GD_Mercenary_Skills.Rampage.SteadyAsSheGoes",
+        "section": "Rampage.SteadyAsSheGoes SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+        "description": "Reduces Recoil with both guns while Gunzerking. Additionally, each shot that hits an enemy has a chance to improve your accuracy with both guns.",
+        "fields": {
+          "SkillDescription": "\"Reduces [skill]Recoil[-skill] with both guns while [skill]Gunzerking[-skill].  Additionally, each shot that hits an enemy has a chance to [skill]improve your accuracy with both guns[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Rampage",
+    "tier": 3,
+    "name": "5 Shots or 6",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Grants a 5 % chance per level to add an extra round of ammunition when firing instead of expending ammunition.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Rampage",
+    "tier": 4,
+    "name": "Yippie Ki Yay",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Increases the duration of Gunzerking by +0.6 seconds per level every time an enemy is killed while Gunzerking.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Rampage",
+    "tier": 4,
+    "name": "Double Your Fun",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Throwing a grenade while Gunzerking throws two grenades instead of one. The second grenade doesn't cost ammo.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": [
+      {
+        "class_id": "gunzerker",
+        "path": "GD_Mercenary_Skills.Rampage.DoubleYourFun",
+        "section": "Rampage.DoubleYourFun SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+        "description": "Throwing a grenade while Gunzerking causes you to throw 2 grenades. The second grenade does not cost ammo.",
+        "fields": {
+          "SkillDescription": "\"Throwing a grenade while [skill]Gunzerking[-skill] causes you to [skill]throw 2 grenades[-skill].  The second grenade does not cost ammo.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Rampage",
+    "tier": 5,
+    "name": "Get Some",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Shooting an enemy decreases Gunzerking cooldown by -0.6 seconds per level . Has a cooldown of 3 seconds.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": [
+      {
+        "class_id": "gunzerker",
+        "path": "GD_Mercenary_Skills.Rampage.GetSome",
+        "section": "Rampage.GetSome SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+        "description": "Shooting an enemy decreases your Gunzerking cooldown. This effect can only occur once every 3 seconds.",
+        "fields": {
+          "SkillDescription": "\"Shooting an enemy decreases your [skill]Gunzerking[-skill] cooldown.  This effect can only occur once every 3 seconds.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Rampage",
+    "tier": 6,
+    "name": "Keep Firing",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "While Gunzerking, you gain up to +88 % Fire Rate and +25 % Reload Speed depending on how long you hold down the trigger.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Brawn",
+    "tier": 1,
+    "name": "Hard to Kill",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+4 % Maximum Health and regenerate +0.1 % of your Maximum Health per second per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Brawn",
+    "tier": 1,
+    "name": "Incite",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Taking damage gives +6 % Movement Speed and +5 % Reload Speed per level for a few seconds.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": [
+      {
+        "class_id": "gunzerker",
+        "path": "GD_Mercenary_Skills.Brawn.Incite",
+        "section": "Brawn.Incite SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+        "description": "Taking damage from enemies increases your Movement Speed and Reload Speed for a few seconds.",
+        "fields": {
+          "SkillDescription": "\"Taking damage from enemies increases your [skill]Movement Speed[-skill] and [skill]Reload Speed[-skill] for a few seconds.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Brawn",
+    "tier": 2,
+    "name": "Asbestos",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "-8 % Negative Status Effect Duration per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": [
+      {
+        "class_id": "gunzerker",
+        "path": "GD_Mercenary_Skills.Brawn.Asbestos",
+        "section": "Brawn.Asbestos SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+        "description": "Reduces the duration of enemy Elemental Status Effects on you.",
+        "fields": {
+          "SkillDescription": "\"Reduces the duration of enemy [skill]Elemental Status Effects[-skill] on you.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Brawn",
+    "tier": 2,
+    "name": "I'm the Juggernaut",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Kill Skill. Killing an enemy gives +4 % Damage Reduction for a short time.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": [
+      {
+        "class_id": "gunzerker",
+        "path": "GD_Mercenary_Skills.Brawn.ImTheJuggernaut",
+        "section": "Brawn.ImTheJuggernaut SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+        "description": "Kill Skill. Killing an enemy reduces all damage taken for a few seconds.",
+        "fields": {
+          "SkillDescription": "\"[skill]Kill Skill[-skill].  Killing an enemy [skill]reduces all damage[-skill] taken for a few seconds.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Brawn",
+    "tier": 3,
+    "name": "Ain't Got Time To Bleed",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "While Gunzerking you regenerate up to +0.8 % of your Maximum Health per second per level depending on how low your health is.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": [
+      {
+        "class_id": "gunzerker",
+        "path": "GD_Mercenary_Skills.Brawn.AintGotTimeToBleed",
+        "section": "Brawn.AintGotTimeToBleed SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+        "description": "While Gunzerking you regenerate health. The lower your current health, the more powerful the regeneration.",
+        "fields": {
+          "SkillDescription": "\"While [skill]Gunzerking[-skill] you [skill]regenerate health[-skill].  The lower your current health, the more powerful the regeneration.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Brawn",
+    "tier": 3,
+    "name": "Fistful of Hurt",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Melee Override. Throw a heavy punch dealing massive damage and knockback. Has a cooldown of 15 seconds.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Brawn",
+    "tier": 3,
+    "name": "All Out of Bubblegum",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+7 % Fire Rate per level when shield is depleted.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Brawn",
+    "tier": 4,
+    "name": "Bus That Can't Slow Down",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+10 % Movement Speed per level while Gunzerking.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Brawn",
+    "tier": 4,
+    "name": "Just Got Real",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Up to +8 % Gun Damage per level depending on how low your health is.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": [
+      {
+        "class_id": "gunzerker",
+        "path": "GD_Mercenary_Skills.Brawn.JustGotReal",
+        "section": "Brawn.JustGotReal SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+        "description": "Increases Gun Damage for all gun types. The lower your health, the greater the damage bonus.",
+        "fields": {
+          "SkillDescription": "\"Increases [skill]Gun Damage[-skill] for all gun types.  The lower your health, the greater the damage bonus.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Brawn",
+    "tier": 5,
+    "name": "Sexual Tyrannosaurus",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Taking damage gives +0.4 % Health Regeneration per level for 5 seconds. This effect does not stack.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": [
+      {
+        "class_id": "gunzerker",
+        "path": "GD_Mercenary_Skills.Brawn.SexualTyrannosaurus",
+        "section": "Brawn.SexualTyrannosaurus SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+        "description": "Taking damage causes you to regenerate health for five seconds. This effect does not stack.",
+        "fields": {
+          "SkillDescription": "\"Taking damage causes you to [skill]regenerate health[-skill] for five seconds.  This effect does not stack.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "gunzerker",
+    "character": "狂枪手 Salvador",
+    "tree": "Brawn",
+    "tier": 6,
+    "name": "Come At Me, Bro",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "While Gunzerking, you can press [Action Skill] to taunt your enemies into attacking you. You instantly heal to Full Health and gain massive damage reduction for a few seconds.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/gunzerker.html",
+    "native_matches": [
+      {
+        "class_id": "gunzerker",
+        "path": "GD_Mercenary_Skills.Brawn.ComeAtMeBro",
+        "section": "Brawn.ComeAtMeBro SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Mercenary_Skills.int",
+        "description": "Action Skill Augment. While Gunzerking press <StringAliasMap:Action.ActionSkill> to taunt your enemies and instantly gain full health. Taunted enemies are more likely to attack you, and for the next few seconds you gain massive damage reduction.",
+        "fields": {
+          "SkillName": "\"Come At Me, Bro\"\r",
+          "SkillDescription": "\"[skill]Action Skill Augment[-skill].  While [skill]Gunzerking[-skill] press <StringAliasMap:Action.ActionSkill> to [skill]taunt your enemies[-skill] and instantly gain [skill]full health[-skill].  Taunted enemies are more likely to attack you, and for the next few seconds you gain [skill]massive damage reduction[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Action Skill",
+    "tier": 0,
+    "name": "Decepti0n",
+    "max_rank": 1,
+    "rank_crosscheck": null,
+    "effect": "Action Skill. Create a holographic decoy and vanish for a few seconds. The longer you are invisible the more Damage your next attack deals, but ending invisibility sooner causes your next Deception Cooldown to refresh faster. Cooldown: 15 seconds. Up to 650% Melee Damage. Up to 200% Gun Damage. Up to 250% Gun Critical Hit Damage.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.ActionSkill.Skill_Deception",
+        "section": "ActionSkill.Skill_Deception SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "Action Skill. Press <StringAliasMap:Action.ActionSkill> to create a holographic decoy and vanish for a few seconds. The longer you are invisible the more damage your next attack deals, but ending invisibility sooner results in a shorter Decepti0n cooldown. ",
+        "fields": {
+          "SkillDescription": "\"[skill]Action Skill.[-skill] Press <StringAliasMap:Action.ActionSkill> to create a [skill]holographic decoy[-skill] and [skill]vanish[-skill] for a few seconds.  The longer you are invisible the more [skill]damage[-skill] your next attack deals, but ending invisibility sooner results in a shorter [skill]Decepti0n[-skill] cooldown. \"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Sniping",
+    "tier": 1,
+    "name": "HeadSh0t",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+4 % Critical Hit Damage per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Sniping",
+    "tier": 1,
+    "name": "0ptics",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+3 % Zoom and +12 % Aim Steadiness (reduces aim disruption when taking damage) per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Sniping.Optics",
+        "section": "Sniping.Optics SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "Increases your Zoom with all gun types. Additionally, your aim is not disrupted as much when taking damage.",
+        "fields": {
+          "SkillDescription": "\"Increases your [skill]Zoom[-skill] with all gun types.  Additionally, your aim is not disrupted as much when taking damage.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Sniping",
+    "tier": 2,
+    "name": "Killer",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Kill Skill. Killing an enemy gives you +10 % Critical Hit Damage and +15 % Reload Speed per level for a few seconds.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Sniping.Killer",
+        "section": "Sniping.Killer SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "Kill Skill. Killing an enemy increases Critical Hit Damage and Reload Speed for a few seconds.",
+        "fields": {
+          "SkillDescription": "\"[skill]Kill Skill[-skill]. Killing an enemy increases [skill]Critical Hit Damage[-skill] and [skill]Reload Speed[-skill] for a few seconds.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Sniping",
+    "tier": 2,
+    "name": "Precisi0n",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+5 % Accuracy per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Sniping",
+    "tier": 3,
+    "name": "0ne Sh0t 0ne Kill",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "The first shot from a fully loaded magazine deals +12 % Damage per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Sniping.OneShotOneKill",
+        "section": "Sniping.OneShotOneKill SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "The first shot fired from a fully-loaded magazine deals increased damage.",
+        "fields": {
+          "SkillDescription": "\"The [skill]first shot[-skill] fired from a fully-loaded magazine deals [skill]increased damage[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Sniping",
+    "tier": 3,
+    "name": "B0re",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Shots pierce through enemies, gaining +100 % damage per enemy pierced. Enemy crit locations highlighted in Decepti0n.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Sniping.Bore",
+        "section": "Sniping.Bore SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "Your shots pierce through enemies. If your shot hits an enemy after piercing an enemy, it deals massively increased damage. B0re does not work with rockets and some special projectiles. Additionally, while Decepti0n is active, your visor will highlight enemy crit locations.",
+        "fields": {
+          "SkillDescription": "\"Your [skill]shots pierce through enemies[-skill].  If your shot hits an enemy after piercing an enemy, it deals [skill]massively increased damage[-skill].  [skill]B0re[-skill] does not work with rockets and some special projectiles. Additionally, while [skill]Decepti0n[-skill] is active, your [skill]visor will highlight enemy crit locations.[-skill]\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Sniping",
+    "tier": 3,
+    "name": "Vel0city",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+20 % Bullet Speed, +3 % Critical Hit Damage, and +2 % Gun Damage per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Sniping.Velocity",
+        "section": "Sniping.Velocity SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "Increases Bullet Speed, Gun Damage, and Critical Hit Damage with all guns.",
+        "fields": {
+          "SkillDescription": "\"Increases [skill]Bullet Speed[-skill], [skill]Gun Damage[-skill], and [skill]Critical Hit Damage[-skill] with all guns.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Sniping",
+    "tier": 4,
+    "name": "Kill C0nfirmed",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Up to +8 % Critical Hit Damage per level depending on how long you aim down the sights.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Sniping.KillConfirmed",
+        "section": "Sniping.KillConfirmed SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "Aiming down the sights with your gun grants you increased Critical Hit Damage. The longer you aim down the sights, the greater the bonus.",
+        "fields": {
+          "SkillDescription": "\"Aiming down the sights with your gun grants you increased [skill]Critical Hit Damage[-skill].  The longer you aim down the sights, the greater the bonus.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Sniping",
+    "tier": 5,
+    "name": "At 0ne with the Gun",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+25 % Hip-Shot accuracy, +10 % Reload Speed, and +1 Magazine Size with Sniper Rifles per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Sniping.AtOneWithTheGun",
+        "section": "Sniping.AtOneWithTheGun SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "Greatly improves your Accuracy with Sniper Rifles when shooting from the hip. Additionally, increases Reload Speed and Magazine Size with Sniper Rifles.",
+        "fields": {
+          "SkillDescription": "\"Greatly improves your [skill]Accuracy[-skill] with [skill]Sniper Rifles[-skill] when shooting from the hip.  Additionally, increases [skill]Reload Speed[-skill] and [skill]Magazine Size[-skill] with [skill]Sniper Rifles[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Sniping",
+    "tier": 6,
+    "name": "Critical Ascensi0n",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Scoring a Critical Hit with a Sniper Rifle gives you +6 % Critical Hit Damage and +5 % Damage with Sniper Rifles. Can stack up to 999 times. Stacks begin to decay if you haven't scored a critical hit in a while.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Cunning",
+    "tier": 1,
+    "name": "Fast Hands",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+5 % Reload Speed and +10 % Weapon Swap Speed per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Cunning.FastHands",
+        "section": "Cunning.FastHands SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "Increases Reload Speed and Weapon Swap Speed.",
+        "fields": {
+          "SkillDescription": "\"Increases [skill]Reload Speed[-skill] and [skill]Weapon Swap Speed[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Cunning",
+    "tier": 1,
+    "name": "C0unter Strike",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "After getting hit, your next melee attack has a chance to deal +50 % damage per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Cunning.CounterStrike",
+        "section": "Cunning.CounterStrike SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "After getting hit, your next melee attack has a chance to deal massively increased damage.",
+        "fields": {
+          "SkillDescription": "\"After getting hit, your next [skill]melee attack[-skill] has a chance to deal [skill]massively increased damage[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Cunning",
+    "tier": 2,
+    "name": "Fearless",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+5 % Fire Rate and +3 % Gun Damage per level when your shield is depleted.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Cunning.Fearless",
+        "section": "Cunning.Fearless SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "While your shield is depleted, you gain a bonus to Gun Damage and Fire Rate.",
+        "fields": {
+          "SkillDescription": "\"While your shield is depleted, you gain a bonus to [skill]Gun Damage[-skill] and [skill]Fire Rate[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Cunning",
+    "tier": 2,
+    "name": "Ambush",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+4 % damage per level when attacking enemies from behind or when attacking an enemy who is targeting someone other than you.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Cunning.Ambush",
+        "section": "Cunning.Ambush SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "Increases damage dealt when attacking from behind, or when attacking an enemy who is targeting someone other than you.",
+        "fields": {
+          "SkillDescription": "\"[skill]Increases damage[-skill] dealt when [skill]attacking from behind[-skill], or when attacking an enemy who is [skill]targeting someone other than you[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Cunning",
+    "tier": 3,
+    "name": "Rising Sh0t",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Each successful ranged or melee attack gives you +2 % Gun Damage and +1.8 % Melee Damage per level for a short time. This bonus can stack up to 5 times. Faster weapons can gain stacks more quickly, but slower weapons retain stacks for a longer period of time.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Cunning.RisingShot",
+        "section": "Cunning.RisingShot SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "Each successful ranged or melee attack grants a stacking damage bonus for a short time. This bonus can stack up to 5 times. Faster weapons can gain stacks more quickly, but slower weapons retain stacks for a longer period of time.",
+        "fields": {
+          "SkillDescription": "\"Each successful [skill]ranged or melee attack[-skill] grants a [skill]stacking damage bonus[-skill] for a short time.  This bonus can stack up to 5 times.  Faster weapons can gain stacks more quickly, but slower weapons retain stacks for a longer period of time.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Cunning",
+    "tier": 3,
+    "name": "Death Mark",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Dealing melee damage marks a target for 8 seconds. Marked targets take +80 % additional damage from all sources.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Cunning.DeathMark",
+        "section": "Cunning.DeathMark SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "Melee attacks mark the target for death for a short duration. Marked targets take additional damage from all sources. Also, it's not an easy thing to live with.",
+        "fields": {
+          "SkillDescription": "\"Melee attacks mark the target for death for a short duration. Marked targets take [skill]additional damage[-skill] from all sources. Also, it's not an easy thing to live with.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Cunning",
+    "tier": 3,
+    "name": "Unf0rseen",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Your holographic decoy explodes when you become visible again, causing shock damage to nearby enemies. Damage increases per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Cunning.Unforseen",
+        "section": "Cunning.Unforseen SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "Your holographic decoy explodes when you become visible again, dealing Shock Damage to nearby enemies.",
+        "fields": {
+          "SkillDescription": "\"Your holographic decoy explodes when you become visible again, dealing [skill]Shock Damage[-skill] to nearby enemies.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Cunning",
+    "tier": 4,
+    "name": "Innervate",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "While Decepti0n is active you gain +2 % Gun Damage, +7 % Movement Speed, and regenerate +0.8 % of your Maximum Health per second per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Cunning.Innervate",
+        "section": "Cunning.Innervate SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "While Decepti0n is active you gain increased Gun Damage and Movement Speed, as well as regenerate health.",
+        "fields": {
+          "SkillDescription": "\"While [skill]Decepti0n[-skill] is active you gain increased [skill]Gun Damage[-skill] and [skill]Movement Speed[-skill], as well as [skill]regenerate health[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Cunning",
+    "tier": 5,
+    "name": "Tw0 Fang",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Every time you fire you have a 6 % chance per level to fire twice.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Cunning.TwoFang",
+        "section": "Cunning.TwoFang SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "Every time you fire a gun, you have a chance to fire twice.",
+        "fields": {
+          "SkillDescription": "\"Every time you [skill]fire a gun[-skill], you have a chance to [skill]fire twice[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Cunning",
+    "tier": 6,
+    "name": "Death Bl0ss0m",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Action Skill Augment. Throws a handful of Kunai knives. Has a random elemental effect. Does not take character out of Decepti0n. Can be used five times per cooldown. Can apply Death Mark.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Cunning.DeathBlossom",
+        "section": "Cunning.DeathBlossom SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "Action Skill Augment. Press <StringAliasMap:Action.ActionSkill> while Decepti0n is active to throw a handful of kunai. Each kunai will explode with a random elemental type. Kunai do not benefit from the Decepti0n damage bonuses, but throwing kunai does not end Decepti0n and can apply Death Mark.",
+        "fields": {
+          "SkillDescription": "\"[skill]Action Skill Augment.[-skill] Press <StringAliasMap:Action.ActionSkill> while [skill]Decepti0n[-skill] is active to throw a handful of kunai.  Each kunai will explode with a random elemental type.  Kunai do not benefit from the [skill]Decepti0n[-skill] damage bonuses, but throwing kunai does not end [skill]Decepti0n[-skill] and can apply [skill]Death Mark[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Bloodshed",
+    "tier": 1,
+    "name": "Killing Bl0w",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+100 % Melee Damage per level against enemies with low health.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Bloodshed",
+    "tier": 1,
+    "name": "Ir0n Hand",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+3 % Melee Damage and Maximum Health per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Bloodshed.IronHand",
+        "section": "Bloodshed.IronHand SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "Increases your Melee Damage and Maximum Health.",
+        "fields": {
+          "SkillDescription": "\"Increases your [skill]Melee Damage[-skill] and [skill]Maximum Health[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Bloodshed",
+    "tier": 2,
+    "name": "Grim",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Kill Skill. Killing an enemy regenerates +0.7 % of your shield per second and gives +1.5 % Action Skill cooldown rate per level for a few seconds.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Bloodshed.Grim",
+        "section": "Bloodshed.Grim SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "Kill Skill. Killing an enemy causes your shields to quickly regenerate and increases your Action Skill Cooldown Rate for a few seconds.",
+        "fields": {
+          "SkillDescription": "\"[skill]Kill Skill.[-skill] Killing an enemy causes your [skill]shields to quickly regenerate[-skill] and increases your [skill]Action Skill Cooldown Rate[-skill] for a few seconds.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Bloodshed",
+    "tier": 2,
+    "name": "Be Like Water",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Shooting an enemy gives +6 % damage per level to your next melee attack. Melee Attacks give +4 % damage per level to your next gun attack.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Bloodshed.BeLikeWater",
+        "section": "Bloodshed.BeLikeWater SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "Shooting an enemy increases the damage of your next melee attack. Melee attacks increase the damage of your next shot.",
+        "fields": {
+          "SkillDescription": "\"[skill]Shooting[-skill] an enemy increases the damage of your next [skill]melee attack[-skill].  [skill]Melee attacks[-skill] increase the damage of your [skill]next shot[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Bloodshed",
+    "tier": 3,
+    "name": "F0ll0wthr0ugh",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Kill Skill. Killing an enemy gives +8 % Movement Speed, +6 % Gun Damage, and +8 % Melee Damage per level for a few seconds.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Bloodshed",
+    "tier": 3,
+    "name": "Execute",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Melee Override Skill. While Decepti0n is active and a target is under your crosshairs, melee to dash forward a short distance and perform a special melee attack. Has a range of 3 meters.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Bloodshed.Execute",
+        "section": "Bloodshed.Execute SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "Melee Override Skill. While Decepti0n is active and a target is under your crosshairs, press <StringAliasMap:Action.Melee> to dash forward a short distance and perform a special melee strike, dealing massive damage.",
+        "fields": {
+          "SkillDescription": "\"[skill]Melee Override Skill.[-skill]  While [skill]Decepti0n[-skill] is active and a target is under your crosshairs, press <StringAliasMap:Action.Melee> to [skill]dash forward[-skill] a short distance and perform a [skill]special melee strike[-skill], dealing massive damage.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Bloodshed",
+    "tier": 3,
+    "name": "Backstab",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Your melee attacks deal +8 % damage per level when hitting an enemy in the back, dealing massive damage.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Bloodshed.Backstab",
+        "section": "Bloodshed.Backstab SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "Your melee attacks deal additional damage when hitting an enemy in the back.",
+        "fields": {
+          "SkillDescription": "\"Your [skill]melee attacks[-skill] deal [skill]additional damage[-skill] when hitting an enemy in the [skill]back[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Bloodshed",
+    "tier": 4,
+    "name": "Resurgence",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Killing an enemy with a melee attack restores up to +4 % of your health per level depending on how low your health is.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Bloodshed.Resurgence",
+        "section": "Bloodshed.Resurgence SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "Killing an enemy with a melee attack restores health. The lower your health, the more health you receive.",
+        "fields": {
+          "SkillDescription": "\"Killing an enemy with a [skill]melee attack[-skill] restores [skill]health[-skill].  The lower your health, the more health you receive.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Bloodshed",
+    "tier": 5,
+    "name": "Like The Wind",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+3 % Gun and Melee Damage per level when moving.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Bloodshed.LikeTheWind",
+        "section": "Bloodshed.LikeTheWind SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "While moving, you deal increased Melee Damage and Gun Damage.",
+        "fields": {
+          "SkillDescription": "\"While moving, you deal increased [skill]Melee Damage[-skill] and [skill]Gun Damage[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "assassin",
+    "character": "刺客 Zer0",
+    "tree": "Bloodshed",
+    "tier": 6,
+    "name": "Many Must Fall",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Killing an enemy with a Melee Attack during Decepti0n deploys an additional holographic decoy and extends the duration of Decepti0n instead of ending it.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/assassin.html",
+    "native_matches": [
+      {
+        "class_id": "assassin",
+        "path": "GD_Assassin_Skills.Bloodshed.ManyMustFall",
+        "section": "Bloodshed.ManyMustFall SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\WillowGame\\Localization\\INT\\GD_Assassin_Skills.int",
+        "description": "Killing an enemy with a melee attack while Decepti0n is active causes you to deploy another holographic decoy, re-stealth, and adds time to Decepti0n's duration. This can be done multiple times in succession.",
+        "fields": {
+          "SkillDescription": "\"[skill]Killing an enemy[-skill] with a [skill]melee attack[-skill] while [skill]Decepti0n[-skill] is active causes you to deploy another holographic decoy, re-stealth, and adds time to [skill]Decepti0n's[-skill] duration.  This can be done multiple times in succession.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Action Skill",
+    "tier": 0,
+    "name": "Summon Deathtrap",
+    "max_rank": 1,
+    "rank_crosscheck": null,
+    "effect": "Action Skill. Summon Deathtrap to fight for you. Cooldown: 60 seconds",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Best Friends Forever",
+    "tier": 1,
+    "name": "Close Enough",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Your bullets that hit walls or other objects have a 10 % chance per level to ricochet toward a nearby enemy dealing 50% damage.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Best Friends Forever",
+    "tier": 1,
+    "name": "Cooking Up Trouble",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "While your gun's magazine is full you regenerate 0.4 % per level of maximum health per second.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": [
+      {
+        "class_id": "mechromancer",
+        "path": "GD_Tulip_Mechromancer_Skills.BestFriendsForever.CookingUpTrouble",
+        "section": "BestFriendsForever.CookingUpTrouble SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+        "description": "While your gun's Magazine is full you regenerate health.",
+        "fields": {
+          "SkillDescription": "\"While your gun's [skill]Magazine[-skill] is full you [skill]regenerate health[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Best Friends Forever",
+    "tier": 2,
+    "name": "Fancy Mathematics",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Improves shield recharge delay (up to -14 % per level ) and shield recharge rate (up to +12 % per level ) based on how low your health is. The lower your health the greater the bonuses.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": [
+      {
+        "class_id": "mechromancer",
+        "path": "GD_Tulip_Mechromancer_Skills.BestFriendsForever.FancyMathematics",
+        "section": "BestFriendsForever.FancyMathematics SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+        "description": "Improves Shield Recharge Delay and Shield Recharge Rate based on how low your health is. The lower your health, the greater the bonuses.",
+        "fields": {
+          "SkillDescription": "\"Improves [skill]Shield Recharge Delay[-skill] and [skill]Shield Recharge Rate[-skill] based on how low your [skill]health[-skill] is.  The lower your [skill]health[-skill], the greater the bonuses.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Best Friends Forever",
+    "tier": 2,
+    "name": "Buck Up",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Deathtrap Ability. Deathtrap restores the shields of one ally by 30%.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": [
+      {
+        "class_id": "mechromancer",
+        "path": "GD_Tulip_Mechromancer_Skills.BestFriendsForever.BuckUp",
+        "section": "BestFriendsForever.BuckUp SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+        "description": "Deathtrap Ability. Deathtrap restores the shields of one ally to full.",
+        "fields": {
+          "SkillDescription": "\"[skill]Deathtrap Ability[-skill].  Deathtrap [skill]restores the shields[-skill] of one ally to full.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Best Friends Forever",
+    "tier": 2,
+    "name": "The Better Half",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "When your magazine is at least half empty you gain fire rate +12 % per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": [
+      {
+        "class_id": "mechromancer",
+        "path": "GD_Tulip_Mechromancer_Skills.BestFriendsForever.TheBetterHalf",
+        "section": "BestFriendsForever.TheBetterHalf SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+        "description": "When your Magazine is past half-empty, you gain increased Fire Rate.",
+        "fields": {
+          "SkillDescription": "\"When your [skill]Magazine[-skill] is past half-empty, you gain increased [skill]Fire Rate[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Best Friends Forever",
+    "tier": 3,
+    "name": "Potent as a Pony",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Increases maximum health for you ( +4 % per level ) and Deathtrap ( +2 % per level ).",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Best Friends Forever",
+    "tier": 3,
+    "name": "Upshot Robot",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "While Deathtrap is active, if you or Deathtrap kill an enemy it increases Deathtrap's duration by 5 seconds and grants both of you a 4% stackable melee damage bonus. Bonuses are lost when Deathtrap goes away.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": [
+      {
+        "class_id": "mechromancer",
+        "path": "GD_Tulip_Mechromancer_Skills.BestFriendsForever.UpshotRobot",
+        "section": "BestFriendsForever.UpshotRobot SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+        "description": "While Deathtrap is active, kills made by Deathtrap or yourself increase Deathtrap's Duration and grant both of you a stacking Melee Damage bonus. Bonuses are lost when Deathtrap goes away.",
+        "fields": {
+          "SkillDescription": "\"While [skill]Deathtrap[-skill] is active, kills made by [skill]Deathtrap[-skill] or yourself increase [skill]Deathtrap's Duration[-skill] and grant both of you a stacking [skill]Melee Damage[-skill] bonus.  Bonuses are lost when [skill]Deathtrap[-skill] goes away.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Best Friends Forever",
+    "tier": 3,
+    "name": "Unstoppable Force",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Killing an enemy grants you +7 % per level movement speed and +0.8 % shield regeneration per level for a short while.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": [
+      {
+        "class_id": "mechromancer",
+        "path": "GD_Tulip_Mechromancer_Skills.BestFriendsForever.UnstoppableForce",
+        "section": "BestFriendsForever.UnstoppableForce SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+        "description": "Kill Skill. Killing an enemy grants you bonus Movement Speed and causes your shield to regenerate for a short while.",
+        "fields": {
+          "SkillDescription": "\"[skill]Kill Skill[-skill].  Killing an enemy grants you bonus [skill]Movement Speed[-skill] and causes your [skill]shield to regenerate[-skill] for a short while.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Best Friends Forever",
+    "tier": 4,
+    "name": "Explosive Clap",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Deathtrap Ability. Deathtrap causes an explosion in front of him, dealing explosive damage to all nearby enemies.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": [
+      {
+        "class_id": "mechromancer",
+        "path": "GD_Tulip_Mechromancer_Skills.BestFriendsForever.ExplosiveClap",
+        "section": "BestFriendsForever.ExplosiveClap SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+        "description": "Deathtrap Ability. Deathtrap creates an explosive blast with his robo-hands, dealing Explosive Damage to all nearby enemies.",
+        "fields": {
+          "SkillDescription": "\"[skill]Deathtrap Ability[-skill].  Deathtrap creates an explosive blast with his robo-hands, dealing [skill]Explosive Damage[-skill] to all nearby enemies.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Best Friends Forever",
+    "tier": 4,
+    "name": "Made of Sterner Stuff",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "You and Deathtrap gain +1 % per level damage reduction against all damage types. Deathtrap gains +3 % per level melee damage.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": [
+      {
+        "class_id": "mechromancer",
+        "path": "GD_Tulip_Mechromancer_Skills.BestFriendsForever.MadeOfSternerStuff",
+        "section": "BestFriendsForever.MadeOfSternerStuff SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+        "description": "You and Deathtrap take reduced damage from all sources. Additionally, Deathtrap gains increased Melee Damage.",
+        "fields": {
+          "SkillDescription": "\"You and [skill]Deathtrap[-skill] take [skill]reduced damage[-skill] from [skill]all sources[-skill].  Additionally, Deathtrap gains increased [skill]Melee Damage[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Best Friends Forever",
+    "tier": 5,
+    "name": "20% Cooler",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Increases the cooldown rate of your action skill by +6 % per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Best Friends Forever",
+    "tier": 6,
+    "name": "Sharing is Caring",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Grants a copy of your shield to Deathtrap.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": [
+      {
+        "class_id": "mechromancer",
+        "path": "GD_Tulip_Mechromancer_Skills.BestFriendsForever.SharingIsCaring",
+        "section": "BestFriendsForever.SharingIsCaring SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+        "description": "Grants a copy of your shield to Deathtrap, complete with all the bonuses and benefits your shield provides.",
+        "fields": {
+          "SkillDescription": "\"Grants a copy of your [skill]shield[-skill] to [skill]Deathtrap[-skill], complete with all the bonuses and benefits your shield provides.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Little Big Trouble",
+    "tier": 1,
+    "name": "More Pep",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Increases your chances of applying Burn ( +2 % per level ), Electrocute ( +4 % per level ), Corrode ( +2 % per level ), and Slag ( +2 % per level ) Status Effects.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": [
+      {
+        "class_id": "mechromancer",
+        "path": "GD_Tulip_Mechromancer_Skills.LittleBigTrouble.MorePep",
+        "section": "LittleBigTrouble.MorePep SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+        "description": "Increases your chances of applying Burn, Electrocute, Corrode, and Slag status effects.",
+        "fields": {
+          "SkillDescription": "\"Increases your chances of applying [skill]Burn[-skill], [skill]Electrocute[-skill], [skill]Corrode[-skill], and [skill]Slag[-skill] status effects.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Little Big Trouble",
+    "tier": 1,
+    "name": "Myelin",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Grants you +6 % per level Resistance to Shock Damage. Also increases your Shield Capacity by +3 % per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": [
+      {
+        "class_id": "mechromancer",
+        "path": "GD_Tulip_Mechromancer_Skills.LittleBigTrouble.Myelin",
+        "section": "LittleBigTrouble.Myelin SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+        "description": "Increases Shock Damage Resistance and Shield Capacity.",
+        "fields": {
+          "SkillDescription": "\"Increases [skill]Shock Damage Resistance[-skill] and [skill]Shield Capacity[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Little Big Trouble",
+    "tier": 2,
+    "name": "Shock Storm",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Killing an enemy with a Critical Hit causes an Electric Storm, dealing Rank ( 1 per level) Electrocute Damage to nearby enemies. Electrical Storms are also caused by Deathtrap whenever he kills an enemy.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": [
+      {
+        "class_id": "mechromancer",
+        "path": "GD_Tulip_Mechromancer_Skills.LittleBigTrouble.ShockStorm",
+        "section": "LittleBigTrouble.ShockStorm SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+        "description": "Killing an enemy with a Critical Hit causes an Electrical Storm, dealing Shock Damage to nearby enemies. Electrical Storms are also caused by Deathtrap whenever he kills an enemy.",
+        "fields": {
+          "SkillDescription": "\"Killing an enemy with a [skill]Critical Hit[-skill] causes an [skill]Electrical Storm[-skill], dealing [skill]Shock Damage[-skill] to nearby enemies.  [skill]Electrical Storms[-skill] are also caused by [skill]Deathtrap[-skill] whenever he kills an enemy.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Little Big Trouble",
+    "tier": 2,
+    "name": "The Stare",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Deathtrap Ability. Deathtrap fires a laser beam and sweeps it across the battlefield, dealing Burn Damage and possibly Igniting enemies.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": [
+      {
+        "class_id": "mechromancer",
+        "path": "GD_Tulip_Mechromancer_Skills.LittleBigTrouble.TheStare",
+        "section": "LittleBigTrouble.TheStare SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+        "description": "Deathtrap Ability. Deathtrap fires a laser beam and sweeps it across the battlefield, dealing Incendiary Damage and possibly igniting enemies.",
+        "fields": {
+          "SkillDescription": "\"[skill]Deathtrap Ability[-skill].  Deathtrap fires a laser beam and sweeps it across the battlefield, dealing [skill]Incendiary Damage[-skill] and possibly [skill]igniting[-skill] enemies.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Little Big Trouble",
+    "tier": 2,
+    "name": "Strength of Five Gorillas",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Increases Melee Damage for you and Deathtrap by +3 % per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Little Big Trouble",
+    "tier": 3,
+    "name": "Electrical Burn",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "When your Electrocute Status Effects deal damage to enemies, there is a 4 % (per level) chance they will burst into flames and take Burn Damage. The amount of Burn Damage is based on the Electrocute damage dealt.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": [
+      {
+        "class_id": "mechromancer",
+        "path": "GD_Tulip_Mechromancer_Skills.LittleBigTrouble.ElectricalBurn",
+        "section": "LittleBigTrouble.ElectricalBurn SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+        "description": "When your Electrocute Status Effects deal damage to enemies, there is a chance they will burst into flames and take Burn Damage. The amount of Burn Damage is based on the Electrocute damage dealt.",
+        "fields": {
+          "SkillDescription": "\"When your [skill]Electrocute Status Effects[-skill] deal damage to enemies, there is a chance they will [skill]burst into flames[-skill] and take [skill]Burn Damage[-skill].  The amount of [skill]Burn Damage[-skill] is based on the [skill]Electrocute[-skill] damage dealt.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Little Big Trouble",
+    "tier": 3,
+    "name": "Shock and \"AAAGGGGHHH!\"",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Reloading your gun causes an Electrical Explosion, damaging nearby enemies.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Little Big Trouble",
+    "tier": 3,
+    "name": "Evil Enchantress",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Kill Skill. Killing an enemy increases by +6 % per level the Damage that your Burn, Electrocute, and Corrode status effects deal for a short period of time.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Little Big Trouble",
+    "tier": 4,
+    "name": "One Two Boom",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Deathtrap Ability. Deathtrap shoots out an orb of energy at an enemy. If you shoot the orb it will explode, dealing massive Shock Damage to nearby enemies.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Little Big Trouble",
+    "tier": 4,
+    "name": "Wires Don't Talk",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Increases all Shock and Electrocute Damage that you inflict by +3 % per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Little Big Trouble",
+    "tier": 5,
+    "name": "Interspersed Outburst",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Not shooting an enemy for a short time grants you a stack of Interspersed Outburst (up to 5 stacks). The next time you shoot an enemy, all stacks of Interspersed Outburst are consumed and you deal Rank ( 1 per level) Slag Damage. The more stacks are consumed, the greater the chance of slagging the target.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": [
+      {
+        "class_id": "mechromancer",
+        "path": "GD_Tulip_Mechromancer_Skills.LittleBigTrouble.InterspersedOutburst",
+        "section": "LittleBigTrouble.InterspersedOutburst SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+        "description": "Not shooting an enemy for a short time grants you a stack of Interspersed Outburst. The next time you shoot an enemy, all stacks of Interspersed Outburst are consumed and you deal bonus Slag Damage. The more stacks consumed and the higher the skill rank, the greater the chance of slagging the target.",
+        "fields": {
+          "SkillDescription": "\"Not shooting an enemy for a short time grants you a stack of [skill]Interspersed Outburst[-skill].  The next time you shoot an enemy, all stacks of [skill]Interspersed Outburst[-skill] are consumed and you deal bonus [skill]Slag Damage[-skill].  The more stacks consumed and the higher the skill rank, the greater the chance of slagging the target.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Little Big Trouble",
+    "tier": 6,
+    "name": "Make it Sparkle",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Shooting Deathtrap with an elemental weapon charges him with that element, causing his melee attacks to deal additional damage of that element.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Ordered Chaos",
+    "tier": 1,
+    "name": "Smaller, Lighter, Faster",
+    "max_rank": 4,
+    "rank_crosscheck": true,
+    "effect": "Increases you reload speed +6 % per level but decreases your magazine size -1 % per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Ordered Chaos",
+    "tier": 1,
+    "name": "Anarchy",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Killing an enemy or fully emptying your gun's magazine while in combat grants you a stack of Anarchy (up to 150 stacks). For every stack of Anarchy you have, you gain +1.75% bonus gun damage, but your accuracy is decreased -1.75%. Prematurely reloading your guns removes all stacks of Anarchy. Anarchy stacks are quickly lost while in \"Fight for Your Life.\"",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": [
+      {
+        "class_id": "mechromancer",
+        "path": "GD_Tulip_Mechromancer_Skills.EmbraceChaos.Anarchy",
+        "section": "EmbraceChaos.Anarchy SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+        "description": "Killing an enemy or fully emptying your gun's Magazine while in combat grants you a stack of Anarchy. Each stack of Anarchy increases Gun Damage while decreasing Accuracy. Prematurely reloading your gun causes you to lose all stacks of Anarchy. Anarchy stacks are quickly lost while in Fight for your Life.",
+        "fields": {
+          "SkillDescription": "\"Killing an enemy or fully emptying your gun's [skill]Magazine[-skill] while in combat grants you a stack of [skill]Anarchy[-skill].  Each stack of [skill]Anarchy[-skill] increases [skill]Gun Damage[-skill] while decreasing [skill]Accuracy[-skill].  Prematurely reloading your gun causes you to lose all stacks of [skill]Anarchy[-skill].  [skill]Anarchy[-skill] stacks are quickly lost while in [skill]Fight for your Life[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Ordered Chaos",
+    "tier": 2,
+    "name": "Preshrunk Cyberpunk",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Increases the maximum number of Anarchy stacks you can have by +50 per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Ordered Chaos",
+    "tier": 2,
+    "name": "Robot Rampage",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Deathtrap Ability. Deathtrap lashes out with a flurry of attacks.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Ordered Chaos",
+    "tier": 2,
+    "name": "Blood Soaked Shields",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Killing an enemy immediately restores 20 % of your shields per level , but you lose 1 % of your current health per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": [
+      {
+        "class_id": "mechromancer",
+        "path": "GD_Tulip_Mechromancer_Skills.EmbraceChaos.BloodSoakedShields",
+        "section": "EmbraceChaos.BloodSoakedShields SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+        "description": "Killing an enemy immediately restores a portion of your shields, but you lose a portion of your health.",
+        "fields": {
+          "SkillDescription": "\"Killing an enemy immediately restores a portion of your [skill]shields[-skill], but you lose a portion of your [skill]health[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Ordered Chaos",
+    "tier": 3,
+    "name": "Annoyed Android",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Increases the movement speed of Deathtrap by +7 % per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Ordered Chaos",
+    "tier": 3,
+    "name": "Discord",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Prematurely reloading activates Discord granting you +65% accuracy, +25% fire rate, and 3% per second health regeneration. You constantly lose Anarchy stacks while Discord is active. Discord can be shut off by prematurely reloading again.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": [
+      {
+        "class_id": "mechromancer",
+        "path": "GD_Tulip_Mechromancer_Skills.EmbraceChaos.Discord",
+        "section": "EmbraceChaos.Discord SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+        "description": "Prematurely reloading activates Discord, increasing Accuracy, Fire Rate, and Health Regeneration. You constantly lose Anarchy stacks while Discord is active. Discord can be deactivated by prematurely reloading again.",
+        "fields": {
+          "SkillDescription": "\"Prematurely reloading activates [skill]Discord[-skill], increasing [skill]Accuracy[-skill], [skill]Fire Rate[-skill], and [skill]Health Regeneration[-skill].  You constantly lose [skill]Anarchy[-skill] stacks while [skill]Discord[-skill] is active.  [skill]Discord[-skill] can be deactivated by prematurely reloading again.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Ordered Chaos",
+    "tier": 3,
+    "name": "Typecast Iconoclast",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Whenever you get a stack of Anarchy there is a 6 % per level chance you get an additional stack.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": [
+      {
+        "class_id": "mechromancer",
+        "path": "GD_Tulip_Mechromancer_Skills.EmbraceChaos.TypecastIconoclast",
+        "section": "EmbraceChaos.TypecastIconoclast SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+        "description": "Whenever you gain a stack of Anarchy, there is a chance that you gain an additional stack.",
+        "fields": {
+          "SkillDescription": "\"Whenever you gain a stack of [skill]Anarchy[-skill], there is a chance that you gain an additional stack.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Ordered Chaos",
+    "tier": 4,
+    "name": "Rational Anarchist",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "If you have 0 stacks of Anarchy, then the next time you would gain an Anarchy stack you instead gain 25.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": [
+      {
+        "class_id": "mechromancer",
+        "path": "GD_Tulip_Mechromancer_Skills.EmbraceChaos.RationalAnarchist",
+        "section": "EmbraceChaos.RationalAnarchist SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+        "description": "If you have 0 stacks of Anarchy, then the next time you would gain an Anarchy stack you gain 25 instead.",
+        "fields": {
+          "SkillDescription": "\"If you have 0 stacks of [skill]Anarchy[-skill], then the next time you would gain an [skill]Anarchy[-skill] stack you gain 25 instead.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Ordered Chaos",
+    "tier": 4,
+    "name": "Death From Above",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Shooting an enemy while in midair consumes 1 stacks of Anarchy (1 per level) and causes a Rank ( 1 per level) Digi-splosion, damaging nearby enemies.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": [
+      {
+        "class_id": "mechromancer",
+        "path": "GD_Tulip_Mechromancer_Skills.EmbraceChaos.DeathFromAbove",
+        "section": "EmbraceChaos.DeathFromAbove SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+        "description": "Shooting an enemy while in mid-air consumes Anarchy stacks and causes a Digi-splosion, damaging nearby enemies.",
+        "fields": {
+          "SkillDescription": "\"Shooting an enemy while in mid-air consumes [skill]Anarchy[-skill] stacks and causes a [skill]Digi-splosion[-skill], damaging nearby enemies.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Ordered Chaos",
+    "tier": 5,
+    "name": "The Nth Degree",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Every -1 per level bullets that hits an enemy, one of them will ricochet toward another nearby enemy.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "mechromancer",
+    "character": "机械术士 Gaige",
+    "tree": "Ordered Chaos",
+    "tier": 6,
+    "name": "With Claws",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Melee Override Skill. While you have a stack of Anarchy, melee to digistruct claws and swipe twice at an enemy, dealing +0.6% melee damage per Anarchy stack and restoring health. The lower your health the more health you gain. This attack consumes an Anarchy stack.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/mechromancer.html",
+    "native_matches": [
+      {
+        "class_id": "mechromancer",
+        "path": "GD_Tulip_Mechromancer_Skills.EmbraceChaos.WithClaws",
+        "section": "EmbraceChaos.WithClaws SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Tulip\\Compat\\Localization\\INT\\GD_Tulip_Mechromancer_Skills.int",
+        "description": "Melee Override Skill. While you have a stack of Anarchy, press <StringAliasMap:Action.Melee> to digistruct claws and swipe twice at an enemy, dealing damage based on the number of Anarchy stacks you currently have and restoring health. The lower your health, the more health you gain. This attack consumes an Anarchy stack.",
+        "fields": {
+          "SkillDescription": "\"[skill]Melee Override Skill[-skill].  While you have a stack of [skill]Anarchy[-skill], press <StringAliasMap:Action.Melee> to [skill]digistruct claws[-skill] and swipe twice at an enemy, dealing damage based on the number of [skill]Anarchy[-skill] stacks you currently have and [skill]restoring health[-skill].  The lower your health, the more health you gain.  This attack consumes an [skill]Anarchy[-skill] stack.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Action Skill",
+    "tier": 0,
+    "name": "Buzz Axe Rampage",
+    "max_rank": 1,
+    "rank_crosscheck": null,
+    "effect": "Your Melee Damage and Movement Speed is increased. Killing an enemy instantly refills your Health. Taking damage accelerates Cooldown Recharge. Melee Damage: 500% Cooldown: 120 seconds",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": [
+      {
+        "class_id": "psycho",
+        "path": "GD_Lilac_SkillsBase.ActionSkill.Skill_Psycho",
+        "section": "ActionSkill.Skill_Psycho SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_SkillsBase.int",
+        "description": "Action Skill. Press <StringAliasMap:Action.ActionSkill> to start your Buzz Axe Rampage. During Buzz Axe Rampage your Melee Damage and Movement Speed are increased. Killing an enemy instantly refills your health. Taking damage accelerates Cooldown Recharge. Attack: <StringAliasMap:Action.Fire> Throw Axe: Hold <StringAliasMap:Action.aim>, then <StringAliasMap:Action.Fire>",
+        "fields": {
+          "SkillDescription": "\"[skill]Action Skill[-skill].  Press <StringAliasMap:Action.ActionSkill> to start your [skill]Buzz Axe Rampage[-skill].  During [skill]Buzz Axe Rampage[-skill] your [skill]Melee Damage[-skill] and [skill]Movement Speed[-skill] are increased.<br><br>Killing an enemy instantly refills your [skill]health[-skill].  Taking damage accelerates [skill]Cooldown Recharge[-skill].<br><br>[skill]Attack:[-skill] <StringAliasMap:Action.Fire><br>[skill]Throw Axe:[-skill]  Hold <StringAliasMap:Action.aim>, then <StringAliasMap:Action.Fire>\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Bloodlust",
+    "tier": 1,
+    "name": "Blood-Filled Guns",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+0.5 % Magazine Size per Bloodlust stack per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": [
+      {
+        "class_id": "psycho",
+        "path": "GD_Lilac_Skills_Bloodlust.Skills.BloodfilledGuns",
+        "section": "Skills.BloodfilledGuns SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Bloodlust.int",
+        "description": "",
+        "fields": {
+          "SkillName": "\"Blood-Filled Guns\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Bloodlust",
+    "tier": 1,
+    "name": "Blood Twitch",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+0.3 % Weapon Swap speed per Bloodlust stack per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Bloodlust",
+    "tier": 2,
+    "name": "Taste of Blood",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+0.1 % damage reduction during Buzz Axe Rampage per Bloodlust stack per level . +5 Bloodlust stacks per kill per level during Buzz Axe Rampage.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Bloodlust",
+    "tier": 2,
+    "name": "Bloody Revival",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+0.3 % Assault Rifle damage during Fight For Your Life per Bloodlust stack per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": [
+      {
+        "class_id": "psycho",
+        "path": "GD_Lilac_Skills_Bloodlust.Skills.BloodyRevival",
+        "section": "Skills.BloodyRevival SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Bloodlust.int",
+        "description": "Assault Rifle Damage during Fight For Your Life is increased for each stack of Bloodlust.",
+        "fields": {
+          "SkillDescription": "\"[skill]Assault Rifle Damage[-skill] during [skill]Fight For Your Life[-skill] is increased for each stack of [skill]Bloodlust[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Bloodlust",
+    "tier": 2,
+    "name": "Blood Overdrive",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Kill Skill. Killing an enemy gives +0.5 % Melee Damage and -0.005 s Grenade Fuse Time per Bloodlust stack per level for a short time.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Bloodlust",
+    "tier": 3,
+    "name": "Blood Bath",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Kill Skill. Killing an enemy with a grenade or explosion gives +0.5 % weapon damage per Bloodlust stack per level for a short time. Enemies killed this way have a 15 % chance per level of dropping Grenade ammunition.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": [
+      {
+        "class_id": "psycho",
+        "path": "GD_Lilac_Skills_Bloodlust.Skills.BloodBath",
+        "section": "Skills.BloodBath SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Bloodlust.int",
+        "description": "Kill Skill. Killing an enemy with a grenade or explosion increases Gun Damage for each stack of Bloodlust. Enemies killed this way have a greater chance of dropping grenade ammo.",
+        "fields": {
+          "SkillDescription": "\"[skill]Kill Skill[-skill].  Killing an enemy with a grenade or explosion increases [skill]Gun Damage[-skill] for each stack of [skill]Bloodlust[-skill].  Enemies killed this way have a greater chance of dropping grenade ammo.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Bloodlust",
+    "tier": 3,
+    "name": "Buzz Axe Bombardier",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "When thrown, your buzz axe now has Dynamite attached to it which explodes on impact.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Bloodlust",
+    "tier": 3,
+    "name": "Fuel the Blood",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Kill Skill. Killing an enemy with a melee attack gives +0.2 % Grenade Damage per Bloodlust stack per level for a short time and adds +2 Bloodlust stacks per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": [
+      {
+        "class_id": "psycho",
+        "path": "GD_Lilac_Skills_Bloodlust.Skills.FuelTheBlood",
+        "section": "Skills.FuelTheBlood SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Bloodlust.int",
+        "description": "Kill Skill. Killing an enemy with melee attacks increases Grenade Damage for each stack of Bloodlust, as well as adding bonus stacks to Bloodlust.",
+        "fields": {
+          "SkillDescription": "\"[skill]Kill Skill[-skill]. Killing an enemy with melee attacks increases [skill]Grenade Damage[-skill] for each stack of [skill]Bloodlust[-skill], as well as adding bonus stacks to [skill]Bloodlust[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Bloodlust",
+    "tier": 4,
+    "name": "Blood Trance",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Increases the duration of Buzz Axe Rampage by +0.05 seconds per Bloodlust stack (at time of activation) per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Bloodlust",
+    "tier": 4,
+    "name": "Boiling Blood",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Increases the time before Bloodlust stacks start to decay by +0.5 seconds per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Bloodlust",
+    "tier": 5,
+    "name": "Nervous Blood",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Kill Skill. Killing an enemy gives +0.3 % Reload Speed per Bloodlust stack per level for a short time.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Bloodlust",
+    "tier": 6,
+    "name": "Bloodsplosion",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Killing an enemy causes them to explode with an Elemental Nova matching the element of the damage that killed it\n\t\t\t\t(Non-elemental damage will cause an explosive nova). Overkill damage is added to this damage. Each Bloodlust stacks increases this damage by 5%.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": [
+      {
+        "class_id": "psycho",
+        "path": "GD_Lilac_Skills_Bloodlust.Skills.Bloodsplosion",
+        "section": "Skills.Bloodsplosion SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Bloodlust.int",
+        "description": "Killing an enemy causes them to explode with an Elemental Nova matching the element of the damage that killed it, with non-elemental damage creating an explosive nova. Nova damage is increased for each stack of Bloodlust. Any Overkill Damage is also added to damage caused by an Elemental Nova.",
+        "fields": {
+          "SkillDescription": "\"Killing an enemy causes them to explode with an [skill]Elemental Nova[-skill] matching the element of the damage that killed it, with non-elemental damage creating an explosive nova.  Nova damage is increased for each stack of [skill]Bloodlust[-skill].<br><br>Any [skill]Overkill Damage[-skill] is also added to damage caused by an [skill]Elemental Nova[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Mania",
+    "tier": 1,
+    "name": "Empty the Rage",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+4 % Melee Damage per level ; additional +10 % per level when shields or magazine is empty.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Mania",
+    "tier": 1,
+    "name": "Pull the Pin",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "When you die, you drop a free grenade. If you kill an enemy with it, you get double XP.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": [
+      {
+        "class_id": "psycho",
+        "path": "GD_Lilac_Skills_Mania.Skills.PullThePin",
+        "section": "Skills.PullThePin SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Mania.int",
+        "description": "Upon death, you drop a free grenade. Enemies killed with this grenade reward double XP.",
+        "fields": {
+          "SkillDescription": "\"Upon death, you drop a free grenade.  Enemies killed with this grenade reward [skill]double XP[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Mania",
+    "tier": 1,
+    "name": "Feed the Meat",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+10 % Max Health and +0.5 sec Shield Recharge Delay per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": [
+      {
+        "class_id": "psycho",
+        "path": "GD_Lilac_Skills_Mania.Skills.FeedTheMeat",
+        "section": "Skills.FeedTheMeat SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Mania.int",
+        "description": "Increases Maximum Health and Shield Recharge Delay.",
+        "fields": {
+          "SkillDescription": "\"Increases [skill]Maximum Health[-skill] and [skill]Shield Recharge Delay[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Mania",
+    "tier": 2,
+    "name": "Embrace the Pain",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+7 % Fire Rate per level when shields are down. +1 sec Shield Recharge Delay per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": [
+      {
+        "class_id": "psycho",
+        "path": "GD_Lilac_Skills_Mania.Skills.EmbraceThePain",
+        "section": "Skills.EmbraceThePain SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Mania.int",
+        "description": "Increases Fire Rate while your shields are down. Additionally, increases the delay before your shields start to recharge.",
+        "fields": {
+          "SkillDescription": "\"Increases [skill]Fire Rate[-skill] while your shields are down. Additionally, increases the delay before your shields [skill]start to recharge[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Mania",
+    "tier": 2,
+    "name": "Fuel the Rampage",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+20 % Buzz Axe Rampage cooldown from taking damage per level ; additional +20 % per level from Health damage. You can now be damaged by teammates; friendly fire damage is -5 % per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Mania",
+    "tier": 3,
+    "name": "Thrill of the Kill",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Up to 10 % per level of overkill damage is returned to you as Health, depending on how low your health is.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": [
+      {
+        "class_id": "psycho",
+        "path": "GD_Lilac_Skills_Mania.Skills.ThrillOfTheKill",
+        "section": "Skills.ThrillOfTheKill SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Mania.int",
+        "description": "A percentage of Overkill Damage (damage that is over and above what was needed to kill the enemy) is returned to you as health. The lower your health, the higher the percentage.",
+        "fields": {
+          "SkillDescription": "\"A percentage of [skill]Overkill Damage[-skill] (damage that is over and above what was needed to kill the enemy) is returned to you as [skill]health[-skill].  The lower your health, the higher the percentage.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Mania",
+    "tier": 3,
+    "name": "Light the Fuse",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Fight For Your Life is replaced with Light the Fuse. During Light the Fuse you pull out a live bundle of dynamite and can move normally. The bundle detonates when the timer runs out. If you kill someone you are revived. Getting a revive with the bundle explosion gives you bonus Movement Speed for the remainder of the time that was left in Light the Fuse. Throw Dynamite sticks with Fire. Detonate bundle by holding Action.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": [
+      {
+        "class_id": "psycho",
+        "path": "GD_Lilac_Skills_Mania.Skills.LightTheFuse",
+        "section": "Skills.LightTheFuse SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Mania.int",
+        "description": "Fight For Your Life is replaced with Light the Fuse. During Light the Fuse you pull out a live bundle of dynamite and can move normally. The bundle detonates when the timer runs out. If you kill someone, you are revived. Getting a revive with the bundle explosion gives you bonus Movement Speed for the remainder of the time that was left in Light the Fuse. Throw dynamite sticks with <StringAliasMap:Action.Fire>. Detonate bundle by holding <StringAliasMap:Action.Use>.",
+        "fields": {
+          "SkillDescription": "\"[skill]Fight For Your Life[-skill] is replaced with [skill]Light the Fuse[-skill].  During [skill]Light the Fuse[-skill] you pull out a live bundle of dynamite and can move normally.  The bundle detonates when the timer runs out.  If you kill someone, you are revived.<br><br>Getting a revive with the bundle explosion gives you bonus [skill]Movement Speed[-skill] for the remainder of the time that was left in [skill]Light the Fuse[-skill].<br><br>Throw dynamite sticks with <StringAliasMap:Action.Fire>.<br>Detonate bundle by holding <StringAliasMap:Action.Use>.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Mania",
+    "tier": 3,
+    "name": "Strip the Flesh",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+3 % Explosive damage per level ; additional +3 % per level in Fight For Your Life.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": [
+      {
+        "class_id": "psycho",
+        "path": "GD_Lilac_Skills_Mania.Skills.StripTheFlesh",
+        "section": "Skills.StripTheFlesh SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Mania.int",
+        "description": "Increases Explosive Damage. Bonus increased further when in Fight For Your Life.",
+        "fields": {
+          "SkillDescription": "\"Increases [skill]Explosive Damage[-skill]. Bonus increased further when in [skill]Fight For Your Life[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Mania",
+    "tier": 4,
+    "name": "Redeem the Soul",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "You can instantly Revive teammates at the cost of downing yourself. You may revive in this way only once each time Buzz axe Rampage is on cooldown. +50 % Fight For Your Life time.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": [
+      {
+        "class_id": "psycho",
+        "path": "GD_Lilac_Skills_Mania.Skills.RedeemTheSoul",
+        "section": "Skills.RedeemTheSoul SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Mania.int",
+        "description": "You can instantly Revive down teammates. After reviving a teammate in this way you must Fight For Your Life. Increased time during Fight For Your Life. You may revive in this way only once each time Buzz Axe Rampage is on cooldown.",
+        "fields": {
+          "SkillDescription": "\"You can instantly [skill]Revive[-skill] down teammates.  After reviving a teammate in this way you must [skill]Fight For Your Life[-skill].  Increased time during Fight For Your Life.<br><br>You may revive in this way only once each time Buzz Axe Rampage is on cooldown.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Mania",
+    "tier": 4,
+    "name": "Salt the Wound",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Taking damage from an enemy while your shield is down adds a stack of Salt the Wound to a maximum of 20. +1.5 % Melee Damage and +1 % Shotgun damage per stack per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": [
+      {
+        "class_id": "psycho",
+        "path": "GD_Lilac_Skills_Mania.Skills.SaltTheWound",
+        "section": "Skills.SaltTheWound SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Mania.int",
+        "description": "Taking damage from an enemy while your shield is down adds a stack of Salt the Wound. Increases Melee and Shotgun Damage for each stack accrued. Stacks begin to decay after a short time without taking health damage from enemies.",
+        "fields": {
+          "SkillDescription": "\"Taking damage from an enemy while your shield is down adds a stack of [skill]Salt the Wound[-skill].  Increases [skill]Melee[-skill] and [skill]Shotgun Damage[-skill] for each stack accrued.  Stacks begin to decay after a short time without taking health damage from enemies.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Mania",
+    "tier": 5,
+    "name": "Silence the Voices",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+50 % Melee Damage per level . 0 % chance to attack yourself with melee attacks.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Mania",
+    "tier": 6,
+    "name": "Release the Beast",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Activating the Buzz Axe Rampage when at or below 33% of your max health remaining (i.e., when the ! is showing) instantly refills your health and transforms you into a Badass Psycho Mutant with +100 % Melee Damage and +50 % Damage Reduction. Buzz Axe Rampage is instantly recharged afterwards.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Hellborn",
+    "tier": 1,
+    "name": "Burn, Baby, Burn",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+7 % ( +15 % when on fire) burn damage per level . 7 % chance per level per fire attack to set self on fire.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Hellborn",
+    "tier": 1,
+    "name": "Fuel the Fire",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Kill Skill. +7 % chance per level per fire attack to set self on fire. Killing an enemy gives +40 % Elemental Effect Chance per level for a short time.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Hellborn",
+    "tier": 2,
+    "name": "Numbed Nerves",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+10 % damage reduction per level when on fire.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Hellborn",
+    "tier": 2,
+    "name": "Pain is Power",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+5 % ( +10 % when on fire) Weapon and Melee Damage per level (except for Sniper Rifles). -5 % Critical Hit Damage per level",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": [
+      {
+        "class_id": "psycho",
+        "path": "GD_Lilac_Skills_Hellborn.Skills.PainIsPower",
+        "section": "Skills.PainIsPower SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Hellborn.int",
+        "description": "Increases Gun Damage for all gun types except sniper rifles, decreases Critical Hit Damage with all weapons, and increases Melee Damage. Effects further increased while you are on fire.",
+        "fields": {
+          "SkillDescription": "\"Increases [skill]Gun Damage[-skill] for all gun types except sniper rifles, decreases [skill]Critical Hit Damage[-skill] with all weapons, and increases [skill]Melee Damage[-skill].<br><br>Effects further increased [incendiary]while you are on fire[-incendiary].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Hellborn",
+    "tier": 3,
+    "name": "Elemental Elation",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "When Elemental Status Effect Damage is being done to enemies you gain stacks of Elemental Elation up to a maximum of 20. Each stack gives +.5 % Fire Rate and +1.0 % Magazine Size per level . Stacks will not decay while you are on fire.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": [
+      {
+        "class_id": "psycho",
+        "path": "GD_Lilac_Skills_Hellborn.Skills.ElementalElation",
+        "section": "Skills.ElementalElation SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Hellborn.int",
+        "description": "While Elemental Status Effect Damage is being done to enemies, you gain stacks of Elemental Elation. Fire Rate and Magazine Size increased for each stack of Elemental Elation. Stacks will not decay while you are on fire.",
+        "fields": {
+          "SkillDescription": "\"While [skill]Elemental Status Effect Damage[-skill] is being done to enemies, you gain stacks of [skill]Elemental Elation[-skill].  [skill]Fire Rate[-skill] and [skill]Magazine Size[-skill] increased for each stack of [skill]Elemental Elation[-skill].<br><br>Stacks will not decay [incendiary]while you are on fire[-incendiary].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Hellborn",
+    "tier": 3,
+    "name": "Delusional Damage",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "All Elemental Status Effects you cause have a chance to light yourself on fire. Ignite chances are determined by those accumulated from Burn, Baby, Burn and Fuel the Fire.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": [
+      {
+        "class_id": "psycho",
+        "path": "GD_Lilac_Skills_Hellborn.Skills.DelusionalDamage",
+        "section": "Skills.DelusionalDamage SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Hellborn.int",
+        "description": "All Elemental Status Effects you inflict have a chance to light yourself on fire. Ignite chances are determined by those accumulated from Burn, Baby, Burn and Fuel the Fire.",
+        "fields": {
+          "SkillDescription": "\"All [skill]Elemental Status Effects[-skill] you inflict have a chance to [incendiary]light yourself on fire[-incendiary].<br><br>Ignite chances are determined by those accumulated from [skill]Burn, Baby, Burn[-skill] and [skill]Fuel the Fire[-skill].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Hellborn",
+    "tier": 3,
+    "name": "Fire Fiend",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Melee Attacks have a +10 % per level chance to Ignite enemies. +10 % Weapon Accuracy and +7 % Reload Speed when on fire.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": [
+      {
+        "class_id": "psycho",
+        "path": "GD_Lilac_Skills_Hellborn.Skills.FireFiend",
+        "section": "Skills.FireFiend SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Hellborn.int",
+        "description": "Melee attacks have a chance to Ignite enemies. Weapon Accuracy and Reload Speed are increased while you are on fire.",
+        "fields": {
+          "SkillDescription": "\"[skill]Melee attacks[-skill] have a chance to [incendiary]Ignite[-incendiary] enemies.<br><br>[skill]Weapon Accuracy[-skill] and [skill]Reload Speed[-skill] are increased [incendiary]while you are on fire[-incendiary].\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Hellborn",
+    "tier": 4,
+    "name": "Flame Flare",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "+20 % Burn Duration on you per level . +15 % chance per level for your Burn effects to apply another Burn effect.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": [
+      {
+        "class_id": "psycho",
+        "path": "GD_Lilac_Skills_Hellborn.Skills.FlameFlare",
+        "section": "Skills.FlameFlare SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Hellborn.int",
+        "description": "Increases the duration of all Burn Effects on you. Each time you apply a Burn Effect to an enemy, there's a chance another Burn Effect will be applied after a short time.",
+        "fields": {
+          "SkillDescription": "\"Increases the duration of all [incendiary]Burn Effects[-incendiary] on you.  Each time you apply a [incendiary]Burn Effect[-incendiary] to an enemy, there's a chance another [incendiary]Burn Effect[-incendiary] will be applied after a short time.\"\r"
+        }
+      }
+    ]
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Hellborn",
+    "tier": 4,
+    "name": "Hellfire Halitosis",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "Melee Override Skill. Pressing Melee causes you to breathe fire in a cone in front of you. Cooldown is 15 seconds.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Hellborn",
+    "tier": 5,
+    "name": "Elemental Empathy",
+    "max_rank": 5,
+    "rank_crosscheck": true,
+    "effect": "Burn status effect damage heals you for 5 % of the damage dealt per level .",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": []
+  },
+  {
+    "class_id": "psycho",
+    "character": "疯子 Krieg",
+    "tree": "Hellborn",
+    "tier": 6,
+    "name": "Raving Retribution",
+    "max_rank": 1,
+    "rank_crosscheck": true,
+    "effect": "While you are on fire, taking damage from enemies will spawn homing balls of fire that seek out the attacker and explode on impact. Fireballs only trigger once per second.",
+    "source": "https://github.com/seigler/bl2skills.com/blob/master/psycho.html",
+    "native_matches": [
+      {
+        "class_id": "psycho",
+        "path": "GD_Lilac_Skills_Hellborn.Skills.RavingRetribution",
+        "section": "Skills.RavingRetribution SkillDefinition",
+        "source": "F:\\SteamLibrary\\steamapps\\common\\Borderlands 2\\DLC\\Lilac\\Compat\\Localization\\INT\\GD_Lilac_Skills_Hellborn.int",
+        "description": "While you are on fire, taking damage from enemies will spawn homing balls of fire that seek out the attacker and explode on impact. Fireballs can only trigger once per second.",
+        "fields": {
+          "SkillDescription": "\"[incendiary]While you are on fire[-incendiary], taking damage from enemies will spawn [incendiary]homing balls of fire[-incendiary] that seek out the attacker and explode on impact.  Fireballs can only trigger once per second.\"\r"
+        }
+      }
+    ]
+  }
+]

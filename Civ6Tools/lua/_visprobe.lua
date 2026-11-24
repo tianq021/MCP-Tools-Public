@@ -1,0 +1,20 @@
+local pid = Game.GetLocalPlayer()
+local team = Players[pid]:GetTeam()
+local p = Map.GetPlot(13, 12)
+print("team=" .. tostring(team))
+print("IsRevealed(team,false)=" .. tostring(p:IsRevealed(team, false)))
+print("IsRevealed(team)=" .. tostring(p:IsRevealed(team)))
+print("IsRevealed(pid)=" .. tostring(p:IsRevealed(pid)))
+print("IsVisible(team)=" .. tostring(p:IsVisible(team)))
+print("IsVisibleToTeam=" .. tostring(p:IsVisibleToTeam(team)))
+local ok, err = pcall(function()
+  local v = Players[pid]:GetTeam()
+  print("GetTeam ok " .. tostring(v))
+end)
+print("ok=" .. tostring(ok) .. " err=" .. tostring(err))
+print("TeamVis=" .. tostring(Teams[team]:IsPlotVisible(13, 12)))
+local t = Teams[team]
+for _, m in ipairs({"IsPlotVisible", "IsPlotRevealed"}) do
+  print("Team." .. m .. "=" .. type(t[m]))
+end
+print("---END---")

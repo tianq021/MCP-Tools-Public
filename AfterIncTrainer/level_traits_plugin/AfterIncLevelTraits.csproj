@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Version>1.6.2</Version>
+    <BaseOutputPath>../build/level_traits/bin/</BaseOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BepInEx.Core" HintPath="$(GameRoot)/BepInEx/core/BepInEx.Core.dll" Private="false" />
+    <Reference Include="BepInEx.Unity.IL2CPP" HintPath="$(GameRoot)/BepInEx/core/BepInEx.Unity.IL2CPP.dll" Private="false" />
+    <Reference Include="0Harmony" HintPath="$(GameRoot)/BepInEx/core/0Harmony.dll" Private="false" />
+    <Reference Include="Il2CppInterop.Runtime" HintPath="$(GameRoot)/BepInEx/core/Il2CppInterop.Runtime.dll" Private="false" />
+    <Reference Include="Assembly-CSharp" HintPath="$(GameRoot)/BepInEx/interop/Assembly-CSharp.dll" Aliases="GameAssembly" Private="false" />
+    <Reference Include="com.ndemiccreation.foundation" HintPath="$(GameRoot)/BepInEx/interop/com.ndemiccreation.foundation.dll" Private="false" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="$(GameRoot)/BepInEx/interop/UnityEngine.CoreModule.dll" Aliases="UnityGame" Private="false" />
+    <Reference Include="Il2Cppmscorlib" HintPath="$(GameRoot)/BepInEx/interop/Il2Cppmscorlib.dll" Private="false" />
+  </ItemGroup>
+</Project>

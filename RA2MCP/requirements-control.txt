@@ -1,0 +1,4 @@
+# Existing .venv also contains pinned ra2yrproto from the native build.
+mcp==1.30.0
+aiohttp==3.14.5
+protobuf==4.25.1

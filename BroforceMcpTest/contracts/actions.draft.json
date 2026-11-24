@@ -1,0 +1,63 @@
+{
+  "contract_version": "0.1-draft",
+  "implemented": false,
+  "runtime_validated": false,
+  "description": "Proposed semantic actions for a future local Broforce bridge; not an MCP server or a native game protocol.",
+  "target_build": "12964083",
+  "target": {
+    "player_slot_range": [0, 3],
+    "controller_resolution": "Resolve Player.controllerNum at runtime; do not treat slot as controller ID.",
+    "required_generation_fields": ["scene_generation", "actor_generation"],
+    "first_runtime_scope": "offline_normal_campaign"
+  },
+  "gameplay_buttons": [
+    {"name": "left", "native_player_channel": "left"},
+    {"name": "right", "native_player_channel": "right"},
+    {"name": "up", "native_player_channel": "up"},
+    {"name": "down", "native_player_channel": "down"},
+    {"name": "jump", "native_player_channel": "buttonJump"},
+    {"name": "fire", "native_player_channel": "fire"},
+    {"name": "special", "native_player_channel": "special", "context": "hero_specific_and_ammo_limited"},
+    {"name": "melee_interact", "native_player_channel": "highFive", "context": "contextual_melee_highfive_switch_cage_door"},
+    {"name": "gesture", "native_player_channel": "buttonGesture"},
+    {"name": "sprint", "native_player_channel": "sprint", "planned_initially_enabled": false}
+  ],
+  "planned_operations": [
+    "get_status", "get_state", "acquire_control", "renew_control",
+    "apply_input_snapshot", "release_all", "release_control"
+  ],
+  "snapshot_example": {
+    "operation": "apply_input_snapshot",
+    "request_id": "example-only-001",
+    "control_token": "example-only-token",
+    "player_slot": 0,
+    "scene_generation": 1,
+    "actor_generation": 1,
+    "buttons": ["right", "jump", "fire"],
+    "duration_ms": 150
+  },
+  "proposed_input_policy": {
+    "atomic_snapshot": true,
+    "replace_previous_owned_snapshot": true,
+    "suggested_duration_ms_range": [50, 300],
+    "maximum_duration_ms": 1000,
+    "timing_note": "Engineering defaults requiring runtime validation, not native game constants.",
+    "expiry_clock": "monotonic_unscaled",
+    "repeated_request_id": "do_not_reexecute_or_extend_deadline",
+    "target_control": "explicit_per_target_lease",
+    "reject_opposed_directions": true,
+    "clear_on": ["deadline", "lease_expiry", "disconnect", "scene_change", "actor_change", "death", "native_input_block"],
+    "preserve_native_pause_cutscene_chat_gates": true,
+    "release_scope": "bridge_owned_inputs_only"
+  },
+  "later_menu_actions": ["up", "down", "left", "right", "confirm", "back"],
+  "later_npc_goals": ["follow", "hold_position", "move_to", "attack", "release_control"],
+  "acknowledgement_stages": ["accepted", "input_applied", "outcome_observed"],
+  "known_unknowns": [
+    "runtime_hook_order_and_multiplayer_isolation",
+    "physical_gamepad_mapping",
+    "hero_specific_sprint_dash_and_special_behaviour",
+    "vehicle_and_special_mode_compatibility",
+    "coexistence_with_existing_trainer_bridge"
+  ]
+}

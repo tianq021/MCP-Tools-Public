@@ -1,0 +1,74 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Slime Rancher 2 桥接插件（MelonLoader / .NET 6 / IL2CPP）
+    编译：plugin\SlimeRancher2Bridge\build.ps1（它会传 MelonLoaderDir 和 GameDir）
+    说明：P0 只引用 MelonLoader.dll；0.4.3 起聊天输入框需要 IMGUI 强类型，
+          额外引用 MelonLoader 首启生成的互操作程序集（MelonLoader\Il2CppAssemblies\UnityEngine.*.dll）。
+          这些文件由 MelonLoader 在第一次启动游戏时生成；缺失时 build.ps1 会给出明确提示。
+  -->
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>10.0</LangVersion>
+    <AssemblyName>SlimeRancher2Bridge</AssemblyName>
+    <RootNamespace>SlimeRancher2Bridge</RootNamespace>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <PlatformTarget>x64</PlatformTarget>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <NoWarn>CS0618</NoWarn>
+    <MelonLoaderDir Condition="'$(MelonLoaderDir)' == ''">$(GameDir)\MelonLoader\net6</MelonLoaderDir>
+    <Il2CppAssembliesDir Condition="'$(Il2CppAssembliesDir)' == ''">$(GameDir)\MelonLoader\Il2CppAssemblies</Il2CppAssembliesDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp" HintPath="$(Il2CppAssembliesDir)\Assembly-CSharp.dll" Private="false" />
+    <Reference Include="Il2CppSystem.Core" HintPath="$(Il2CppAssembliesDir)\Il2CppSystem.Core.dll" Private="false" />
+    <Reference Include="UnityEngine.PhysicsModule" HintPath="$(Il2CppAssembliesDir)\UnityEngine.PhysicsModule.dll" Private="false" />
+    <Reference Include="UnityEngine.UI" HintPath="$(Il2CppAssembliesDir)\UnityEngine.UI.dll" Private="false" />
+    <Reference Include="Unity.Localization" HintPath="$(Il2CppAssembliesDir)\Unity.Localization.dll" Private="false" />
+    <Reference Include="UnityEngine.UIElementsModule" HintPath="$(Il2CppAssembliesDir)\UnityEngine.UIElementsModule.dll" Private="false" />
+    <Reference Include="MelonLoader">
+      <HintPath>$(MelonLoaderDir)\MelonLoader.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(Il2CppAssembliesDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>$(Il2CppAssembliesDir)\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(Il2CppAssembliesDir)\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>$(Il2CppAssembliesDir)\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <!-- SlimeModel.lastPosition 是 Unity.Mathematics 的 float4，需要这个引用 -->
+    <Reference Include="Unity.Mathematics">
+      <HintPath>$(Il2CppAssembliesDir)\Unity.Mathematics.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <!-- 互操作程序集自身的依赖（Il2CppInterop 生成的 UnityEngine.*.dll 引用它们） -->
+    <Reference Include="Il2CppInterop.Runtime">
+      <HintPath>$(MelonLoaderDir)\Il2CppInterop.Runtime.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Il2Cppmscorlib">
+      <HintPath>$(Il2CppAssembliesDir)\Il2Cppmscorlib.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Il2CppSystem">
+      <HintPath>$(Il2CppAssembliesDir)\Il2CppSystem.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,36 @@
+# IDE
+.idea/
+*.iml
+
+# System
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Secrets / local config
+.env
+.env.*
+*.key
+*.pem
+*.token
+secrets.*
+config.local.*
+settings.local.*
+
+# Logs / temp
+*.log
+logs/
+tmp/
+temp/
+output/
+outputs/
+
+# Python cache
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Archives: 仓库内建议只放解压后的清晰文件
+*.zip
+*.7z
+*.rar

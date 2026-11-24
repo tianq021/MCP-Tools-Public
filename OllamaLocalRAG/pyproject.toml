@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ollama-local-rag"
+version = "0.2.0"
+description = "Modular local RAG service backed by Ollama and SQLite"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy==2.3.5",
+  "pdfplumber==0.11.9",
+  "pypdf==6.10.0",
+  "python-docx==1.2.0",
+  "pypdfium2==5.12.1",
+]
+
+[project.scripts]
+ollama-rag-api = "ollama_rag.api.http_server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

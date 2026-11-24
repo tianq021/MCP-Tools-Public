@@ -1,0 +1,52 @@
+{
+  "rounds": 2,
+  "max_calls": 6,
+  "max_total_tokens": 120000,
+  "timeout_seconds": 120,
+  "max_prompt_bytes": 90000,
+  "max_response_bytes": 1000000,
+  "snapshot": {
+    "max_files": 40,
+    "max_file_bytes": 24000,
+    "max_total_bytes": 48000,
+    "include": [],
+    "exclude": []
+  },
+  "deepseek": {
+    "model": "deepseek-flash",
+    "max_output_tokens": 2500,
+    "max_usd": 0.25,
+    "input_usd_per_million": 0.3,
+    "output_usd_per_million": 1.2
+  },
+  "codex": {
+    "executable": "codex",
+    "model": null,
+    "max_calls": 3
+  },
+  "dsh": {
+    "root": "F:/deepseekA",
+    "node": "node",
+    "entry": null,
+    "home": null,
+    "workspace": null,
+    "output": null,
+    "default_grant": "workspace-write",
+    "max_grant": "workspace-write",
+    "timeout_seconds": 900,
+    "max_answer_chars": 200000
+  },
+  "api": {
+    "host": "127.0.0.1",
+    "port": 3081,
+    "tokens": [],
+    "max_concurrency": 2,
+    "max_body_bytes": 65536,
+    "requests_per_minute": 60,
+    "max_timeout_s": 3600,
+    "allowed_workspace_roots": [],
+    "provider_key_env": "DSH_ENTRY_DEEPSEEK_API_KEY",
+    "provider_key_file": null,
+    "audit": null
+  }
+}

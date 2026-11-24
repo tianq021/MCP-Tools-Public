@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>工具中心</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tools.css') }}">
+</head>
+
+<body>
+<div class="page">
+    <header class="top-header">
+        <div class="header-left">
+            <a class="header-link" href="{{ url_for('page.user_home') }}">返回首页</a>
+            <a class="logo" href="/tools">工具中心</a>
+            <span class="header-desc">本地工具集合页面</span>
+        </div>
+
+        <div class="header-right">
+            <a class="header-link" href="{{ url_for('page.logout') }}">退出登录</a>
+        </div>
+    </header>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-title">工具列表</div>
+
+            <div class="tool-menu">
+                {% for tool in tools %}
+                <button
+                    class="tool-menu-item {% if tool.default %}active{% endif %}"
+                    data-target="{{ tool.id }}-panel"
+                >
+                    <span class="tool-title">{{ tool.title }}</span>
+                    <span class="tool-category">{{ tool.category }}</span>
+                </button>
+                {% else %}
+                <div class="empty-menu">暂无工具</div>
+                {% endfor %}
+            </div>
+        </aside>
+
+        <main class="content">
+            {% for tool in tools %}
+            <section
+                id="{{ tool.id }}-panel"
+                class="tool-panel {% if tool.default %}active{% endif %}"
+            >
+                <div class="card">
+                    <h1>{{ tool.title }}</h1>
+                    <p>{{ tool.desc }}</p>
+                </div>
+
+                {% if tool.type == "placeholder" %}
+                <div class="empty-box tool-intro-list">
+                    <div class="intro-item">
+                        <strong>随机数:</strong>
+                        <span>返回随机数</span>
+                    </div>
+
+                    <div class="intro-item">
+                        <strong>哈希值计算:</strong>
+                        <span>输入文字或数字，返回 MD5、SHA1、SHA256、SHA512 哈希值</span>
+                    </div>
+
+                    <div class="intro-item">
+                        <strong>文件哈希值计算:</strong>
+                        <span>上传文件并返回多种哈希值，最大 5MB</span>
+                    </div>
+
+                    <div class="intro-item">
+                        <strong>评论区:</strong>
+                        <span>所有人都可以评论</span>
+                    </div>
+                </div>
+
+                {% elif tool.type == "random" %}
+                <div class="card random-tool-box">
+                    <h2>随机数生成</h2>
+
+                    <div class="tool-form">
+                        <label>
+                            最小值：
+                            <input id="{{ tool.id }}-min" type="number" value="1">
+                        </label>
+
+                        <label>
+                            最大值：
+                            <input id="{{ tool.id }}-max" type="number" value="100">
+                        </label>
+
+                        <button
+                            type="button"
+                            class="random-generate-btn"
+                            data-tool-id="{{ tool.id }}"
+                        >
+                            生成随机数
+                        </button>
+
+                        <label>
+                            随机结果：
+                            <input id="{{ tool.id }}-result" type="text" readonly placeholder="点击按钮生成随机数">
+                        </label>
+                    </div>
+                </div>
+
+                {% elif tool.type == "hash" %}
+                <div class="card">
+                    <h2>文字或数字哈希计算</h2>
+
+                    <form class="tool-form text-hash-form">
+                        <label class="hash-input-label">
+                            输入内容：
+                            <textarea class="hash-input" placeholder="请输入文字、数字或混合内容" required></textarea>
+                        </label>
+
+                        <button type="submit">计算哈希值</button>
+
+                        <div class="hash-result-box">
+                            <p class="hash-result-row"><span class="hash-result-label">内容长度：</span><span class="text-hash-length hash-result-value">-</span></p>
+
+                            <p class="hash-result-row"><span class="hash-result-label">MD5：</span><span class="text-hash-md5 hash-result-value">-</span></p>
+                            <p class="hash-result-row"><span class="hash-result-label">SHA1：</span><span class="text-hash-sha1 hash-result-value">-</span></p>
+                            <p class="hash-result-row"><span class="hash-result-label">SHA256：</span><span class="text-hash-sha256 hash-result-value">-</span></p>
+                            <p class="hash-result-row"><span class="hash-result-label">SHA512：</span><span class="text-hash-sha512 hash-result-value">-</span></p>
+
+                            <p class="text-hash-message"></p>
+                        </div>
+                    </form>
+                </div>
+
+                {% elif tool.type == "file_hash" %}
+                <div class="card">
+                    <h2>上传文件计算哈希值</h2>
+
+                    <form
+                        class="tool-form file-hash-form"
+                        enctype="multipart/form-data"
+                    >
+
+                    <input
+                        type="file"
+                        name="file"
+                        required
+                        accept=".png,.jpg,.jpeg,.webp,.pdf,.docx,.txt,.csv,.xlsx"
+                    >
+
+                    <button type="submit">计算哈希值</button>
+                    <div class="hash-result-box">
+                        <p class="hash-result-row"><span class="hash-result-label">文件名：</span><span class="hash-filename hash-result-value">等待上传</span></p>
+                        <p class="hash-result-row"><span class="hash-result-label">文件大小：</span><span class="hash-size hash-result-value">-</span></p>
+
+                        <p class="hash-result-row"><span class="hash-result-label">MD5：</span><span class="hash-md5 hash-result-value">-</span></p>
+                        <p class="hash-result-row"><span class="hash-result-label">SHA1：</span><span class="hash-sha1 hash-result-value">-</span></p>
+                        <p class="hash-result-row"><span class="hash-result-label">SHA256：</span><span class="hash-sha256 hash-result-value">-</span></p>
+                        <p class="hash-result-row"><span class="hash-result-label">SHA512：</span><span class="hash-sha512 hash-result-value">-</span></p>
+
+                        <p class="hash-message"></p>
+                    </div>
+
+                    </form>
+                </div>
+
+                {% elif tool.type == "base64" %}
+                <div class="card base64-card">
+                    <h2>Base64 编码/解码</h2>
+
+                    <form class="tool-form base64-form">
+                        <label class="hash-input-label">
+                            输入内容：
+                            <textarea class="hash-input base64-input" placeholder="请输入需要编码或解码的内容" required></textarea>
+                        </label>
+
+                        <div class="base64-actions">
+                            <button type="button" class="base64-encode-btn">编码</button>
+                            <button type="button" class="base64-decode-btn">解码</button>
+                            <button type="button" class="base64-clear-btn">清空</button>
+                        </div>
+
+                        <label class="hash-input-label">
+                            输出结果：
+                            <textarea class="hash-input base64-output" placeholder="结果会显示在这里" readonly></textarea>
+                        </label>
+
+                        <div class="base64-result-tools">
+                            <button type="button" class="base64-copy-btn">复制结果</button>
+                            <span class="base64-message"></span>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card base64-note-card">
+                    <div class="base64-note-list">
+                        <div>
+                            <strong>编码：</strong>
+                            <span>支持中文、英文、数字和常见符号，按 UTF-8 处理。</span>
+                        </div>
+
+                        <div>
+                            <strong>解码：</strong>
+                            <span>输入合法 Base64 字符串后还原为原始文本。</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                {% elif tool.type == "comments" %}
+                <div class="card comments-card">
+                    <div class="comment-header">
+                        <div>
+                            <h2>评论区</h2>
+                            <p>每页显示 10 条评论，可按时间或热度排序。热度 = 点赞数。</p>
+                        </div>
+
+                        <select id="commentSort">
+                            <option value="time">按时间排序</option>
+                            <option value="hot">按热度排序</option>
+                        </select>
+                    </div>
+
+                    <p class="comment-identity">
+                        以“{{ session.get('display_name') or session.get('username') }}”身份评论
+                    </p>
+                    <form id="commentForm" class="comment-form">
+                        <textarea
+                            id="commentContent"
+                            maxlength="500"
+                            placeholder="写一条评论..."
+                            required
+                        ></textarea>
+
+                        <button type="submit">发布评论</button>
+                    </form>
+
+                    <p id="commentMessage" class="comment-message"></p>
+
+                    <div id="commentList" class="comment-list">
+                        <p class="comment-empty">点击评论区后加载评论。</p>
+                    </div>
+
+                    <div class="comment-pagination">
+                        <button id="commentPrev" type="button">上一页</button>
+                        <span id="commentPageInfo">第 1 页 / 共 1 页</span>
+                        <button id="commentNext" type="button">下一页</button>
+                    </div>
+                </div>
+
+                {% elif tool.type == "link" %}
+                <div class="card">
+                    {% if tool.url %}
+                    <a class="open-btn" href="{{ tool.url }}" target="_blank">
+                        打开工具
+                    </a>
+                    {% else %}
+                    <p class="muted-text">该工具暂未配置链接。</p>
+                    {% endif %}
+                </div>
+
+                {% else %}
+                <div class="empty-box">
+                    暂不支持该工具类型：{{ tool.type }}
+                </div>
+                {% endif %}
+            </section>
+            {% endfor %}
+        </main>
+    </div>
+</div>
+
+
+<div
+    id="aiRecommendRoot"
+    class="ai-recommend-root"
+    data-page="tools"
+    data-api-url="/api/ai/tools/chat"
+    data-mode="chat"
+>
+    <button id="aiRecommendBtn" class="ai-recommend-btn" type="button" title="智能对话">
+        智能
+    </button>
+
+    <div id="aiRecommendPanel" class="ai-recommend-panel">
+        <div class="ai-recommend-header">
+            <span>智能对话</span>
+            <button id="aiRecommendClose" type="button">×</button>
+        </div>
+
+        <div id="aiRecommendMessages" class="ai-recommend-messages">
+            <div class="ai-msg ai-msg-bot">想聊点什么？</div>
+        </div>
+
+        <form id="aiRecommendForm" class="ai-recommend-form">
+            <input
+                id="aiRecommendInput"
+                type="text"
+                placeholder="例如：一段有趣的话题"
+                autocomplete="off"
+            >
+            <button type="submit">发送</button>
+        </form>
+    </div>
+</div>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/ai_recommend.css') }}">
+<script src="{{ url_for('static', filename='js/ai_recommend.js') }}"></script>
+
+
+<script src="{{ url_for('static', filename='js/tools.js') }}"></script>
+<script src="{{ url_for('static', filename='js/comments.js') }}"></script>
+</body>
+</html>

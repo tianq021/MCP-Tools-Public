@@ -1,0 +1,9 @@
+# Training dependencies — use an EXISTING conda env, do NOT install into the game controller venv.
+# Verified on this machine (2026-10-29):
+#   F:\conda\envs\python_mmx_LLM   torch 2.5.1+cu121, numpy, CUDA available  (recommended)
+#   F:\conda\envs\qiaohaotian_new  torch 2.10.0+cu126, numpy, sklearn
+numpy>=1.24
+torch>=2.0        # optional: numpy backend works without torch (slower to train)
+# optional extras
+# onnx>=1.16
+# onnxruntime>=1.17

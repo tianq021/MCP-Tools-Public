@@ -1,0 +1,1360 @@
+{
+  "building_cost_wood_swamps": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "沼泽使该区域积水，导致使用木材建造的成本上升。",
+    "excludes": [],
+    "family": "",
+    "title": "幽深沼泽"
+  },
+  "building_level_tech_motorway": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 3,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "拥有高速公路的区域，每提升一级建筑等级需要2点科技。",
+    "excludes": [],
+    "family": "",
+    "title": "混凝土伤疤"
+  },
+  "christmas_land": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": false,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "冬季永无止境。森林和鹿群区域大幅增加",
+    "excludes": [],
+    "family": "",
+    "title": "雪原"
+  },
+  "claim_any_drop_authority": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 4,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "占领区域会降低威望",
+    "excludes": [],
+    "family": "",
+    "title": "孤立"
+  },
+  "claim_discount_forest": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "森林区域的占领成本更低",
+    "excludes": [],
+    "family": "claim_discount",
+    "title": "植被地图"
+  },
+  "claim_discount_grassland": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "草原区域的占领成本更低",
+    "excludes": [],
+    "family": "claim_discount",
+    "title": "勘测地图"
+  },
+  "claim_discount_mountain": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "山地区域的占领消耗更低",
+    "excludes": [],
+    "family": "claim_discount",
+    "title": "地势图"
+  },
+  "claim_discount_swamp": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "沼泽区域的占领成本更低",
+    "excludes": [],
+    "family": "claim_discount",
+    "title": "湿地地图"
+  },
+  "claim_discount_urban": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "城市区域的占领成本更低",
+    "excludes": [],
+    "family": "claim_discount",
+    "title": "交通地图"
+  },
+  "claim_highyield_cost_up": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 4,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "高产区域的占领成本更高",
+    "excludes": [],
+    "family": "highyield_cost",
+    "title": "黄金地段"
+  },
+  "claim_highyield_free": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "高产区域可免费占领",
+    "excludes": [],
+    "family": "highyield_cost",
+    "title": "自由收获"
+  },
+  "claim_highyield_zombie": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 5,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 1,
+    "description": "占领高产区域会生成僵尸",
+    "excludes": [],
+    "family": "",
+    "title": "腐尸肥田"
+  },
+  "claim_urban_housing": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "每个已占领的城市区域可获得一座房屋",
+    "excludes": [],
+    "family": "",
+    "title": "城市回收"
+  },
+  "explore_discount_forest": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "森林区域的探索成本更低",
+    "excludes": [],
+    "family": "explore_discount",
+    "title": "兽径"
+  },
+  "explore_discount_grassland": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "草原区域的探索花费更低",
+    "excludes": [],
+    "family": "explore_discount",
+    "title": "开阔平原"
+  },
+  "explore_discount_mountain": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "山地区域的探索成本更低",
+    "excludes": [],
+    "family": "explore_discount",
+    "title": "徒步路线"
+  },
+  "explore_discount_speed_motorway": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "高速公路区域的探索成本更低、速度更快。",
+    "excludes": [],
+    "family": "",
+    "title": "混凝土走廊"
+  },
+  "explore_discount_swamp": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "沼泽区域的探索成本更低",
+    "excludes": [],
+    "family": "explore_discount",
+    "title": "木栈道"
+  },
+  "explore_discount_urban": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "城市区域的探索成本更低",
+    "excludes": [],
+    "family": "explore_discount",
+    "title": "鬼城"
+  },
+  "halloween_fighter": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": false,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "空气中弥漫着令人不安的寒意。开局拥有一名战士。",
+    "excludes": [],
+    "family": "",
+    "title": "不祥之兆"
+  },
+  "halloween_pumpkins": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": false,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "占领并收获南瓜！能出什么岔子呢……",
+    "excludes": [],
+    "family": "",
+    "title": "南瓜"
+  },
+  "halloween_trickortreat": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": false,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "这片地区冒出了一些奇怪的气泡。不给糖就捣蛋！有胆量的话，就戳破它们吧……",
+    "excludes": [],
+    "family": "",
+    "title": "不给糖就捣蛋"
+  },
+  "highyield_production_boost": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "高产区域会产出更多资源。",
+    "excludes": [],
+    "family": "",
+    "title": "超高产"
+  },
+  "impatient_population": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "定居者会更迫切地要求加快目标进度",
+    "excludes": [],
+    "family": "",
+    "title": "急躁的人口"
+  },
+  "infested_border_boost": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 3,
+    "description": "该地区的感染边境明显更多",
+    "excludes": [],
+    "family": "",
+    "title": "暗影迫近"
+  },
+  "original_authority": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 5,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "没有第二次机会！如果威望降至零，游戏失败。",
+    "excludes": [],
+    "family": "",
+    "title": "难以管束"
+  },
+  "outpost_technology_2": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": false,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "前哨站造价更低，科技2级即可解锁",
+    "excludes": [],
+    "family": "",
+    "title": "快速通道"
+  },
+  "sb_10_radio": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": false,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "该地堡可以使用无线电广播设备。",
+    "excludes": [],
+    "family": "",
+    "title": "无线电设备"
+  },
+  "sb_1_bunkers": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": false,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "该区域还有另一座地堡。",
+    "excludes": [],
+    "family": "",
+    "title": "并非孤身一人"
+  },
+  "sb_3_horde": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": false,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "僵尸群正潜伏在此区域。",
+    "excludes": [],
+    "family": "",
+    "title": "死路"
+  },
+  "sb_5_clothes": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": false,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "破布和兽皮或许能变成有用的东西……",
+    "excludes": [],
+    "family": "",
+    "title": "材料"
+  },
+  "sb_9_cleanse": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": false,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "丧尸群已侵占该区域。",
+    "excludes": [],
+    "family": "",
+    "title": "净化协议"
+  },
+  "scavenge_auto_urban": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "随时间从已占领的城市区域中获得搜刮气泡",
+    "excludes": [],
+    "family": "",
+    "title": "仓储区"
+  },
+  "scavenge_boost_food": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "定居者在搜寻食物时能找到更多资源",
+    "excludes": [],
+    "family": "scavenge_boost",
+    "title": "绿手指"
+  },
+  "scavenge_boost_fuel": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "定居者在搜寻燃料时可找到更多资源",
+    "excludes": [],
+    "family": "scavenge_boost",
+    "title": "玩火者"
+  },
+  "scavenge_boost_material": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 10,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "定居者在搜寻材料时能发现更多资源",
+    "excludes": [],
+    "family": "scavenge_boost",
+    "title": "节俭巧手"
+  },
+  "scavenge_boost_medicine": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 8,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "定居者搜寻药品时可找到更多资源",
+    "excludes": [],
+    "family": "scavenge_boost",
+    "title": "江湖郎中"
+  },
+  "scavenge_boost_stone": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 9,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "定居者可搜寻到更多的石材资源",
+    "excludes": [],
+    "family": "scavenge_boost",
+    "title": "寻石者"
+  },
+  "scavenge_boost_water": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "定居者在搜寻水时能找到更多资源",
+    "excludes": [],
+    "family": "scavenge_boost",
+    "title": "寻水者"
+  },
+  "scavenge_boost_wood": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "定居者在搜寻木材时能找到更多资源",
+    "excludes": [],
+    "family": "scavenge_boost",
+    "title": "削木者"
+  },
+  "scavenge_bubble_increase_urban": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "在城市区域中，拾荒产出的资源显著增加",
+    "excludes": [],
+    "family": "",
+    "title": "城市余波"
+  },
+  "soh_2_food_consume": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": false,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "这座地堡容纳的幸存者比平时多得多。食物消耗增加。",
+    "excludes": [],
+    "family": "",
+    "title": "人满为患"
+  },
+  "soh_4_start_settlement": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": false,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "开局拥有一个预建的定居点。",
+    "excludes": [],
+    "family": "",
+    "title": "破土而建"
+  },
+  "soh_5_wildfire": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": false,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "野火正在该地区蔓延。",
+    "excludes": [],
+    "family": "",
+    "title": "野火"
+  },
+  "soh_5_winter_disabled": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": false,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "此区域没有冬季",
+    "excludes": [],
+    "family": "",
+    "title": "撒哈拉之风"
+  },
+  "soh_8_mega_wasteland": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": false,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "该区域的荒原地块数量明显更多。",
+    "excludes": [],
+    "family": "",
+    "title": "贫瘠荒原"
+  },
+  "soh_8_stone": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": false,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "定居点会随着时间缓慢收集石材。",
+    "excludes": [],
+    "family": "",
+    "title": "外壳碎裂"
+  },
+  "soldier_combat_boost_forest": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 2,
+    "description": "战士在森林区域战斗力更强",
+    "excludes": [],
+    "family": "soldier_combat_boost_area",
+    "title": "森林潜行者"
+  },
+  "soldier_combat_boost_grassland": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 2,
+    "description": "战士在草原区域中战斗力更强",
+    "excludes": [],
+    "family": "soldier_combat_boost_area",
+    "title": "草原游骑兵"
+  },
+  "soldier_combat_boost_low_health": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 2,
+    "description": "战士的生命值越低，战斗力越强",
+    "excludes": [
+      "soldier_death_refund_mega"
+    ],
+    "family": "",
+    "title": "狂战士"
+  },
+  "soldier_combat_boost_moutain": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 2,
+    "description": "战士在山地区域拥有更高战斗力。",
+    "excludes": [],
+    "family": "soldier_combat_boost_area",
+    "title": "山地守卫"
+  },
+  "soldier_combat_boost_swamp": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 2,
+    "description": "战士在沼泽区域战力更强",
+    "excludes": [],
+    "family": "soldier_combat_boost_area",
+    "title": "沼泽潜行者"
+  },
+  "soldier_combat_boost_urban": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 2,
+    "description": "战士在城市区域中更强大",
+    "excludes": [],
+    "family": "soldier_combat_boost_area",
+    "title": "城市守卫"
+  },
+  "soldier_combat_debuff_motorway": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 1,
+    "description": "战士在有高速公路的区域战力更弱。",
+    "excludes": [],
+    "family": "",
+    "title": "盲区"
+  },
+  "soldier_consumption_always": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 2,
+    "description": "战士也会在已占领区域消耗资源",
+    "excludes": [],
+    "family": "",
+    "title": "高昂维护"
+  },
+  "soldier_consumption_boost": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 2,
+    "description": "战士消耗3倍资源",
+    "excludes": [],
+    "family": "",
+    "title": "暴食者"
+  },
+  "soldier_consumption_distance": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 2,
+    "description": "距离越远，战士消耗的资源越多",
+    "excludes": [],
+    "family": "",
+    "title": "超负荷的供应链"
+  },
+  "soldier_damage_wasteland_mega": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 5,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 1,
+    "description": "战斗人员在废土区域受到的伤害甚至更高。",
+    "excludes": [],
+    "family": "",
+    "title": "致命废土"
+  },
+  "soldier_death_refund_mega": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 1,
+    "description": "战士阵亡时返还300%的花费",
+    "excludes": [
+      "soldier_combat_boost_low_health"
+    ],
+    "family": "",
+    "title": "血腥之财"
+  },
+  "soldier_heal_settlement_mega_boost": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 1,
+    "description": "战士在定居点内的恢复速度大幅提升",
+    "excludes": [],
+    "family": "",
+    "title": "战地救治"
+  },
+  "soldier_heal_settlement_only": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 1,
+    "description": "战士只能在定居点内治疗，但治疗速度更快",
+    "excludes": [],
+    "family": "soldier_health_limit",
+    "title": "感染伤口"
+  },
+  "soldier_no_population": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 1,
+    "description": "战士没有人口要求",
+    "excludes": [],
+    "family": "",
+    "title": "尚武精神"
+  },
+  "sotp_1_drought_scale": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": false,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "水比平时更难获得，因此水井的建造成本和干旱发生概率都会提高。",
+    "excludes": [],
+    "family": "",
+    "title": "低地下水位"
+  },
+  "sotp_4_wood_consume": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": false,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "腐朽的木材必须定期更换，增加木材消耗。",
+    "excludes": [],
+    "family": "",
+    "title": "朽木"
+  },
+  "starting_build_scout_teams": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "开局额外获得一个建造队和一个探索队",
+    "excludes": [],
+    "family": "",
+    "title": "协作"
+  },
+  "taunt_free": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 1,
+    "description": "嘲讽行动现已免费",
+    "excludes": [],
+    "family": "",
+    "title": "大胆"
+  },
+  "taunt_kill_one": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 2,
+    "description": "嘲讽行动会消灭一只进入该区域的丧尸。",
+    "excludes": [],
+    "family": "",
+    "title": "偷袭"
+  },
+  "technology_cost_down": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 5,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "降低所有科技研究成本。",
+    "excludes": [],
+    "family": "technology_cost",
+    "title": "学者"
+  },
+  "technology_cost_up": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 5,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "提高所有科技研究成本。",
+    "excludes": [],
+    "family": "technology_cost",
+    "title": "黑暗时代"
+  },
+  "valentines_juliet": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": false,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "战士在另一名战士旁边时，治疗速度提高50%",
+    "excludes": [],
+    "family": "",
+    "title": "朱丽叶"
+  },
+  "valentines_romeo": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": false,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "当相邻的战士阵亡时，战士会损失一半生命值",
+    "excludes": [],
+    "family": "",
+    "title": "罗密欧"
+  },
+  "valentines_roses": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": false,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "该地区有玫瑰区域",
+    "excludes": [],
+    "family": "",
+    "title": "玫瑰绽放"
+  },
+  "winter_disabled": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 1,
+    "description": "此区域没有冬季",
+    "excludes": [],
+    "family": "season",
+    "title": "撒哈拉之风"
+  },
+  "zombie_autokill_by_nexus": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 1,
+    "description": "定居点区域内的僵尸会随时间推移被消灭",
+    "excludes": [
+      "zombie_spawn_nexus"
+    ],
+    "family": "",
+    "title": "护卫犬"
+  },
+  "zombie_damage_wasteland": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 5,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "荒原区域内的丧尸会随着时间推移被消灭。",
+    "excludes": [],
+    "family": "",
+    "title": "无人区"
+  },
+  "zombie_reanimation": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 1,
+    "description": "丧尸偶尔会复活",
+    "excludes": [],
+    "family": "",
+    "title": "死者复生"
+  },
+  "zombie_spawn_city_unclaimed": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 2,
+    "description": "未占领的城市区域偶尔会生成丧尸",
+    "excludes": [],
+    "family": "",
+    "title": "城市墓地"
+  },
+  "zombie_spawn_claimed": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 4,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 1,
+    "description": "占领区域会生成丧尸",
+    "excludes": [],
+    "family": "",
+    "title": "沉睡墓地"
+  },
+  "zombie_spawn_motorway": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 2,
+    "description": "高速公路区域偶尔会生成丧尸。",
+    "excludes": [],
+    "family": "",
+    "title": "钢铁棺材"
+  },
+  "zombie_spawn_nexus": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 2,
+    "description": "丧尸偶尔会在定居点区域生成",
+    "excludes": [
+      "zombie_autokill_by_nexus"
+    ],
+    "family": "",
+    "title": "远古墓地"
+  },
+  "zone_production_boost_cow": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "奶牛区域的食物产量翻倍",
+    "excludes": [
+      "zone_production_drop_cow"
+    ],
+    "family": "zone_production_boost_area",
+    "title": "丰美牧场"
+  },
+  "zone_production_boost_cow_leather": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 10,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "奶牛区域产出双倍材料",
+    "excludes": [
+      "zone_production_drop_cow_leather"
+    ],
+    "family": "zone_production_boost_area",
+    "title": "坚韧兽皮"
+  },
+  "zone_production_boost_deer": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "鹿区域的食物产量翻倍",
+    "excludes": [
+      "zone_production_drop_deer"
+    ],
+    "family": "zone_production_boost_area",
+    "title": "捕食者稀少"
+  },
+  "zone_production_boost_deer_pelts": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 10,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "鹿区域的材料产量翻倍",
+    "excludes": [
+      "zone_production_drop_deer_pelts"
+    ],
+    "family": "zone_production_boost_area",
+    "title": "健康皮毛"
+  },
+  "zone_production_boost_fruit": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "水果区域的食物产量翻倍",
+    "excludes": [
+      "zone_production_drop_fruit"
+    ],
+    "family": "zone_production_boost_area",
+    "title": "深根"
+  },
+  "zone_production_boost_fuel": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "木材区域产出双倍燃料",
+    "excludes": [
+      "zone_production_drop_fuel"
+    ],
+    "family": "zone_production_boost_area",
+    "title": "干燥木材"
+  },
+  "zone_production_boost_grain": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "谷物区域的食物产量翻倍",
+    "excludes": [
+      "zone_production_drop_grain"
+    ],
+    "family": "zone_production_boost_area",
+    "title": "传统谷物"
+  },
+  "zone_production_boost_herb": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 8,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "草药产区的药品产量翻倍",
+    "excludes": [
+      "zone_production_drop_herb"
+    ],
+    "family": "zone_production_boost_area",
+    "title": "共生生长"
+  },
+  "zone_production_boost_sheep": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "绵羊区域的食物产量翻倍",
+    "excludes": [
+      "zone_production_drop_sheep"
+    ],
+    "family": "zone_production_boost_area",
+    "title": "庇护草甸"
+  },
+  "zone_production_boost_sheep_wool": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 10,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "绵羊区域产出双倍材料",
+    "excludes": [
+      "zone_production_drop_sheep_wool"
+    ],
+    "family": "zone_production_boost_area",
+    "title": "浓密羊毛"
+  },
+  "zone_production_boost_stone": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 9,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "石头区域的石头产量翻倍",
+    "excludes": [
+      "zone_production_drop_stone"
+    ],
+    "family": "zone_production_boost_area",
+    "title": "废弃采石场"
+  },
+  "zone_production_boost_veg": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "蔬菜区域的食物产量翻倍",
+    "excludes": [
+      "zone_production_drop_veg"
+    ],
+    "family": "zone_production_boost_area",
+    "title": "堆肥丰富"
+  },
+  "zone_production_boost_wood": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "木材区域的木材产量翻倍",
+    "excludes": [
+      "zone_production_drop_wood"
+    ],
+    "family": "zone_production_boost_area",
+    "title": "原始林"
+  },
+  "zone_production_drop_cow": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "奶牛区域的食物产量减半",
+    "excludes": [
+      "zone_production_boost_cow"
+    ],
+    "family": "zone_production_drop_area",
+    "title": "贫瘠草场"
+  },
+  "zone_production_drop_cow_leather": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 10,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "奶牛区域的材料产量减半",
+    "excludes": [
+      "zone_production_boost_cow_leather"
+    ],
+    "family": "zone_production_drop_area",
+    "title": "皮蝇虫害"
+  },
+  "zone_production_drop_deer": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "鹿区域生产的食物减半",
+    "excludes": [
+      "zone_production_boost_deer"
+    ],
+    "family": "zone_production_drop_area",
+    "title": "蜱虫为患"
+  },
+  "zone_production_drop_deer_pelts": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 10,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "鹿区域的材料产量减半",
+    "excludes": [
+      "zone_production_boost_deer_pelts"
+    ],
+    "family": "zone_production_drop_area",
+    "title": "疥癣兽皮"
+  },
+  "zone_production_drop_fruit": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "水果区域的食物产量减半",
+    "excludes": [
+      "zone_production_boost_fruit"
+    ],
+    "family": "zone_production_drop_area",
+    "title": "蜜蜂减少"
+  },
+  "zone_production_drop_fuel": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "木材区域的燃料产量减半",
+    "excludes": [
+      "zone_production_boost_fuel"
+    ],
+    "family": "zone_production_drop_area",
+    "title": "腐朽木材"
+  },
+  "zone_production_drop_grain": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "谷物区域的食物产量减半",
+    "excludes": [
+      "zone_production_boost_grain"
+    ],
+    "family": "zone_production_drop_area",
+    "title": "田间枯萎病"
+  },
+  "zone_production_drop_herb": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 8,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "草药区域的药品产量减半",
+    "excludes": [
+      "zone_production_boost_herb"
+    ],
+    "family": "zone_production_drop_area",
+    "title": "杂草丛生"
+  },
+  "zone_production_drop_sheep": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "绵羊区域产出的食物减半",
+    "excludes": [
+      "zone_production_boost_sheep"
+    ],
+    "family": "zone_production_drop_area",
+    "title": "腐蹄疫"
+  },
+  "zone_production_drop_sheep_wool": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 10,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "绵羊区域的材料产量减半",
+    "excludes": [
+      "zone_production_boost_sheep_wool"
+    ],
+    "family": "zone_production_drop_area",
+    "title": "羊毛腐烂病"
+  },
+  "zone_production_drop_stone": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 9,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "石材区域的石材产量减半",
+    "excludes": [
+      "zone_production_boost_stone"
+    ],
+    "family": "zone_production_drop_area",
+    "title": "风化石材"
+  },
+  "zone_production_drop_veg": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "蔬菜区域产出的食物减半",
+    "excludes": [
+      "zone_production_boost_veg"
+    ],
+    "family": "zone_production_drop_area",
+    "title": "碱性土壤"
+  },
+  "zone_production_drop_wood": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "木材区域的木材产量减半",
+    "excludes": [
+      "zone_production_boost_wood"
+    ],
+    "family": "zone_production_drop_area",
+    "title": "幼小树苗"
+  },
+  "zone_type_boost_cow": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "该区域拥有显著更多的牛群区域",
+    "excludes": [],
+    "family": "zone_type_boost_area",
+    "title": "牧牛平原"
+  },
+  "zone_type_boost_deer": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "该地区的鹿区域明显更多",
+    "excludes": [],
+    "family": "zone_type_boost_area",
+    "title": "猎人的馈赠"
+  },
+  "zone_type_boost_fruit": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "该地区拥有的水果区域明显更多",
+    "excludes": [],
+    "family": "zone_type_boost_area",
+    "title": "果园之乡"
+  },
+  "zone_type_boost_grain": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "这个区域有明显更多的谷物地块",
+    "excludes": [],
+    "family": "zone_type_boost_area",
+    "title": "金色平原"
+  },
+  "zone_type_boost_herb": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "该地区的沼泽区域明显更多",
+    "excludes": [],
+    "family": "zone_type_boost_area",
+    "title": "沼泽地"
+  },
+  "zone_type_boost_high_yield": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "此区域的高产区域明显更多",
+    "excludes": [],
+    "family": "",
+    "title": "大丰收"
+  },
+  "zone_type_boost_sheep": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "该地区的绵羊区域数量显著增加",
+    "excludes": [],
+    "family": "zone_type_boost_area",
+    "title": "牧羊人之梦"
+  },
+  "zone_type_boost_stone": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "该地区拥有明显更多的山地区域",
+    "excludes": [],
+    "family": "zone_type_boost_area",
+    "title": "高地"
+  },
+  "zone_type_boost_urban": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "该地区的城市区域明显更多",
+    "excludes": [],
+    "family": "zone_type_boost_area",
+    "title": "城市蔓延"
+  },
+  "zone_type_boost_veg": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "这片区域中蔬菜地块明显更多",
+    "excludes": [],
+    "family": "zone_type_boost_area",
+    "title": "薯类盛产期"
+  },
+  "zone_type_boost_wasteland": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": 5,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": 3,
+    "description": "该区域的荒原地块数量明显更多。",
+    "excludes": [],
+    "family": "zone_type_boost_area",
+    "title": "贫瘠荒原"
+  },
+  "zone_type_boost_wood": {
+    "ambitionMax": 3.4028235e+38,
+    "ambitionMin": -1,
+    "canRoll": true,
+    "dangerMax": 3.4028235e+38,
+    "dangerMin": -1,
+    "description": "该地区的森林区域数量显著增加",
+    "excludes": [],
+    "family": "zone_type_boost_area",
+    "title": "古老林地"
+  }
+}

@@ -1,0 +1,507 @@
+{
+  "version": "v6_single_node_templates_1",
+  "templates": [
+    {
+      "templateId": "userGuide",
+      "description": "系统配置节点，提供欢迎语和基础配置。",
+      "node": {
+        "nodeId": "userGuide",
+        "name": "系统配置",
+        "intro": "系统配置",
+        "avatar": "core/workflow/template/systemConfig",
+        "flowNodeType": "userGuide",
+        "position": {
+          "x": 100,
+          "y": -400
+        },
+        "inputs": [
+          {
+            "key": "welcomeText",
+            "renderTypeList": [
+              "hidden"
+            ],
+            "valueType": "string",
+            "label": "core.app.Welcome Text",
+            "value": "#### FastGPT V6 单节点模板合并生成器\n输入工作流目标后，系统会根据固定单节点模板生成可导入、可人工补全的工作流 JSON。"
+          },
+          {
+            "key": "variables",
+            "renderTypeList": [
+              "hidden"
+            ],
+            "valueType": "any",
+            "label": "core.app.Chat Variable",
+            "value": []
+          },
+          {
+            "key": "questionGuide",
+            "renderTypeList": [
+              "hidden"
+            ],
+            "valueType": "any",
+            "label": "core.app.Question Guide",
+            "value": {
+              "open": false
+            }
+          }
+        ],
+        "outputs": []
+      },
+      "defaultOutputs": [],
+      "manualConfig": [],
+      "rules": [
+        "userGuide 只用于系统配置，不负责变量传值。"
+      ]
+    },
+    {
+      "templateId": "workflowStart_text",
+      "description": "纯文本输入流程开始节点。",
+      "node": {
+        "nodeId": "start",
+        "name": "流程开始",
+        "avatar": "core/workflow/template/workflowStart",
+        "flowNodeType": "workflowStart",
+        "position": {
+          "x": 500,
+          "y": -320
+        },
+        "inputs": [
+          {
+            "key": "userChatInput",
+            "renderTypeList": [
+              "reference",
+              "textarea"
+            ],
+            "valueType": "string",
+            "label": "workflow:user_question",
+            "required": true
+          }
+        ],
+        "outputs": [
+          {
+            "id": "userChatInput",
+            "key": "userChatInput",
+            "type": "static",
+            "valueType": "string",
+            "label": "用户问题"
+          }
+        ]
+      },
+      "defaultOutputs": [
+        "userChatInput"
+      ],
+      "manualConfig": [],
+      "rules": [
+        "纯文本工作流使用该入口。",
+        "不包含 userFiles 输出。"
+      ]
+    },
+    {
+      "templateId": "workflowStart_file",
+      "description": "文件上传流程开始节点，必须输出 userFiles。",
+      "node": {
+        "nodeId": "start",
+        "name": "流程开始",
+        "avatar": "core/workflow/template/workflowStart",
+        "flowNodeType": "workflowStart",
+        "position": {
+          "x": 500,
+          "y": -320
+        },
+        "inputs": [
+          {
+            "key": "userChatInput",
+            "renderTypeList": [
+              "reference",
+              "textarea"
+            ],
+            "valueType": "string",
+            "label": "workflow:user_question",
+            "required": true
+          }
+        ],
+        "outputs": [
+          {
+            "id": "userChatInput",
+            "key": "userChatInput",
+            "type": "static",
+            "valueType": "string",
+            "label": "用户问题"
+          },
+          {
+            "id": "userFiles",
+            "key": "userFiles",
+            "type": "static",
+            "valueType": "arrayString",
+            "label": "app:workflow.user_file_input"
+          }
+        ]
+      },
+      "defaultOutputs": [
+        "userChatInput",
+        "userFiles"
+      ],
+      "manualConfig": [
+        "用户运行时从聊天框上传文件"
+      ],
+      "rules": [
+        "必须包含 userFiles 输出。",
+        "readFiles 只能引用 start.userFiles，不能引用 userChatInput。"
+      ]
+    },
+    {
+      "templateId": "readFiles",
+      "description": "读取用户上传文件，固定二维数组引用 start.userFiles。",
+      "node": {
+        "nodeId": "readFiles",
+        "name": "文档解析",
+        "avatar": "core/workflow/template/readFiles",
+        "flowNodeType": "readFiles",
+        "showStatus": true,
+        "position": {
+          "x": 900,
+          "y": -320
+        },
+        "inputs": [
+          {
+            "key": "fileUrlList",
+            "renderTypeList": [
+              "reference"
+            ],
+            "valueType": "arrayString",
+            "required": true,
+            "label": "文件",
+            "value": [
+              [
+                "start",
+                "userFiles"
+              ]
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "id": "system_text",
+            "key": "system_text",
+            "type": "static",
+            "valueType": "string",
+            "label": "解析文本"
+          }
+        ]
+      },
+      "defaultOutputs": [
+        "system_text"
+      ],
+      "manualConfig": [],
+      "rules": [
+        "fileUrlList 必须是二维数组 [[\"start\", \"userFiles\"]]。",
+        "禁止引用 userChatInput。"
+      ]
+    },
+    {
+      "templateId": "textEditor",
+      "description": "提示词拼接节点，固定拼接 readFiles.system_text 和可选 analyzeContent.analysisText。",
+      "node": {
+        "nodeId": "formatPrompt",
+        "name": "总结提示词拼接",
+        "avatar": "core/workflow/template/textConcat",
+        "flowNodeType": "textEditor",
+        "position": {
+          "x": 1700,
+          "y": -320
+        },
+        "inputs": [
+          {
+            "key": "system_textareaInput",
+            "renderTypeList": [
+              "textarea"
+            ],
+            "valueType": "string",
+            "required": true,
+            "label": "workflow:concatenation_text",
+            "value": "请根据以下内容生成总结。\n\n文件分析结果：\n{{$analyzeContent.analysisText$}}\n\n原始文件内容：\n{{$readFiles.system_text$}}\n\n请用中文简要总结。"
+          }
+        ],
+        "outputs": [
+          {
+            "id": "system_text",
+            "key": "system_text",
+            "type": "static",
+            "valueType": "string",
+            "label": "workflow:concatenation_result"
+          }
+        ]
+      },
+      "defaultOutputs": [
+        "system_text"
+      ],
+      "manualConfig": [
+        "可根据业务修改固定提示词，但必须保留真实变量引用"
+      ],
+      "rules": [
+        "文件总结必须包含 {{$readFiles.system_text$}}。",
+        "如果有代码分析节点，必须包含 {{$analyzeContent.analysisText$}}。",
+        "禁止 ${readFiles.system_text}、{readFiles.system_text}、{summarize.answerText}。"
+      ]
+    },
+    {
+      "templateId": "chatNode",
+      "description": "AI 总结节点，模型字段留空，导入后人工选择模型。",
+      "node": {
+        "nodeId": "summarize",
+        "name": "AI 总结",
+        "avatar": "core/workflow/template/aiChat",
+        "flowNodeType": "chatNode",
+        "showStatus": true,
+        "position": {
+          "x": 2100,
+          "y": -320
+        },
+        "version": "4.9.7",
+        "inputs": [
+          {
+            "key": "model",
+            "renderTypeList": [
+              "settingLLMModel",
+              "reference"
+            ],
+            "label": "common:core.module.input.label.aiModel",
+            "valueType": "string",
+            "value": ""
+          },
+          {
+            "key": "temperature",
+            "renderTypeList": [
+              "hidden"
+            ],
+            "label": "",
+            "valueType": "number",
+            "value": 0
+          },
+          {
+            "key": "isResponseAnswerText",
+            "renderTypeList": [
+              "hidden"
+            ],
+            "label": "",
+            "valueType": "boolean",
+            "value": true
+          },
+          {
+            "key": "systemPrompt",
+            "renderTypeList": [
+              "textarea",
+              "reference"
+            ],
+            "valueType": "string",
+            "label": "common:core.ai.Prompt",
+            "value": "你是文件总结助手。请根据用户提供的内容输出清晰、简洁的中文总结。"
+          },
+          {
+            "key": "history",
+            "renderTypeList": [
+              "numberInput",
+              "reference"
+            ],
+            "valueType": "chatHistory",
+            "label": "common:core.module.input.label.chat history",
+            "required": true,
+            "value": 0
+          },
+          {
+            "key": "userChatInput",
+            "renderTypeList": [
+              "reference",
+              "textarea"
+            ],
+            "valueType": "string",
+            "label": "workflow:user_question",
+            "required": true,
+            "value": [
+              "formatPrompt",
+              "system_text"
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "id": "history",
+            "key": "history",
+            "type": "static",
+            "valueType": "chatHistory",
+            "label": "新上下文"
+          },
+          {
+            "id": "answerText",
+            "key": "answerText",
+            "type": "static",
+            "valueType": "string",
+            "label": "AI 回复"
+          },
+          {
+            "id": "system_error_text",
+            "key": "system_error_text",
+            "type": "error",
+            "valueType": "string",
+            "label": "错误信息"
+          }
+        ],
+        "catchError": false
+      },
+      "defaultOutputs": [
+        "answerText"
+      ],
+      "manualConfig": [
+        "导入后选择模型",
+        "根据业务修改 systemPrompt"
+      ],
+      "rules": [
+        "model.value 必须为空字符串。",
+        "renderTypeList 使用 settingLLMModel/reference。",
+        "禁止 gpt-3.5-turbo、qwen-plus、selectModel。"
+      ]
+    },
+    {
+      "templateId": "answerNode",
+      "description": "最终回复节点，由程序固定引用 summarize.answerText。",
+      "node": {
+        "nodeId": "answer",
+        "name": "指定回复",
+        "avatar": "core/workflow/template/reply",
+        "flowNodeType": "answerNode",
+        "position": {
+          "x": 2500,
+          "y": -320
+        },
+        "inputs": [
+          {
+            "key": "text",
+            "renderTypeList": [
+              "textarea",
+              "reference"
+            ],
+            "valueType": "any",
+            "required": true,
+            "isRichText": false,
+            "maxLength": 100000,
+            "label": "common:core.module.input.label.Response content",
+            "value": "{{$summarize.answerText$}}"
+          }
+        ],
+        "outputs": []
+      },
+      "defaultOutputs": [],
+      "manualConfig": [],
+      "rules": [
+        "answer.text 必须由程序固定为 {{$summarize.answerText$}}。",
+        "禁止空字符串、单大括号变量、数组引用。"
+      ]
+    },
+    {
+      "templateId": "code_file_analysis",
+      "description": "文件内容分析代码节点，使用固定安全 JS 模板。",
+      "node": {
+        "nodeId": "analyzeContent",
+        "name": "文件内容分析",
+        "avatar": "core/workflow/template/codeRun",
+        "flowNodeType": "code",
+        "showStatus": true,
+        "position": {
+          "x": 1300,
+          "y": -320
+        },
+        "inputs": [
+          {
+            "key": "system_addInputParam",
+            "renderTypeList": [
+              "addInputParam"
+            ],
+            "valueType": "dynamic",
+            "label": "",
+            "required": false
+          },
+          {
+            "key": "fileContent",
+            "renderTypeList": [
+              "reference"
+            ],
+            "valueType": "string",
+            "required": true,
+            "label": "fileContent",
+            "value": [
+              "readFiles",
+              "system_text"
+            ]
+          },
+          {
+            "key": "codeType",
+            "renderTypeList": [
+              "hidden"
+            ],
+            "label": "",
+            "valueType": "string",
+            "value": "js"
+          },
+          {
+            "key": "code",
+            "renderTypeList": [
+              "custom"
+            ],
+            "label": "",
+            "valueType": "string",
+            "value": "function main(params) {\n  const content = params.fileContent || '';\n  const lineCount = content ? content.split(/\\r?\\n/).length : 0;\n  const wordCount = content.trim() ? content.trim().split(/\\s+/).filter(Boolean).length : 0;\n  const hasSensitiveWords = /password|secret|token/i.test(content);\n  const analysisText = `文件行数：${lineCount}\\n单词数量：${wordCount}\\n是否包含敏感词：${hasSensitiveWords ? '是' : '否'}`;\n  return {\n    analysisResult: {\n      lineCount,\n      wordCount,\n      hasSensitiveWords\n    },\n    analysisText\n  };\n}"
+          }
+        ],
+        "outputs": [
+          {
+            "id": "system_addOutputParam",
+            "key": "system_addOutputParam",
+            "type": "dynamic",
+            "valueType": "dynamic",
+            "label": ""
+          },
+          {
+            "id": "system_rawResponse",
+            "key": "system_rawResponse",
+            "type": "static",
+            "valueType": "object",
+            "label": "system_rawResponse"
+          },
+          {
+            "id": "analysisResult",
+            "key": "analysisResult",
+            "type": "dynamic",
+            "valueType": "object",
+            "label": "analysisResult"
+          },
+          {
+            "id": "analysisText",
+            "key": "analysisText",
+            "type": "dynamic",
+            "valueType": "string",
+            "label": "analysisText"
+          },
+          {
+            "id": "error",
+            "key": "error",
+            "type": "error",
+            "valueType": "string",
+            "label": "error"
+          }
+        ],
+        "catchError": false
+      },
+      "defaultOutputs": [
+        "analysisResult",
+        "analysisText"
+      ],
+      "manualConfig": [],
+      "rules": [
+        "code.value 必须使用固定安全模板。",
+        "fileContent 输入必须绑定 readFiles.system_text。",
+        "必须输出 analysisResult 和 analysisText。",
+        "禁止 AI 自由改写 code.value。"
+      ]
+    }
+  ]
+}

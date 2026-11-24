@@ -1,0 +1,14 @@
+from pathlib import Path
+root = Path(SPECPATH)
+a = Analysis([str(root / 'trainer_gui.py')], pathex=[str(root)],
+             binaries=[(str(root / 'native' / 'AfterIncTaskExtension.dll'), 'native'),
+                       (str(root / 'native' / 'AfterIncSoldierUpgrade.dll'), 'native')],
+             datas=[(str(root / 'trait_icons' / '*.png'), 'trait_icons'),
+                    (str(root / 'trait_catalogue_zh.json'), '.')], hiddenimports=[], hookspath=[], hooksconfig={},
+             runtime_hooks=[], excludes=[], noarchive=False, optimize=0)
+pyz = PYZ(a.pure)
+exe = EXE(pyz, a.scripts, a.binaries, a.datas, [],
+          name='AfterIncRevivalTrainer_CN', debug=False,
+          bootloader_ignore_signals=False, strip=False, upx=False,
+          console=False, disable_windowed_traceback=False,
+          uac_admin=True, version=str(root / 'version_info.txt'))

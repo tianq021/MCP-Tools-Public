@@ -1,0 +1,7 @@
+.tools/
+node_modules/
+plugin/bin/
+plugin/obj/
+backups/
+runtime/
+*.user

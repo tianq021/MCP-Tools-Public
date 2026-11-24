@@ -1,0 +1,241 @@
+{
+ "version": 1,
+ "updated": "2026-11-15",
+ "disclaimer": "离线数值模型 + 预览，不是实机验证，也不是最终 DPS 公式。所有指数/字段语义都有推断成分；游戏内以实际对象和读数为准。",
+ "sources": {
+  "scaling_adjuster": {
+   "name": "apple1417 scaling_adjuster（PythonSDK 模组）",
+   "url": "https://github.com/apple1417/willow2-sdk-mods/blob/master/scaling_adjuster/__init__.py",
+   "object": "GD_Balance_HealthAndDamage.HealthAndDamage.Att_UniversalBalanceScaler:ConstantAttributeValueResolver_0",
+   "property": "ConstantValue",
+   "default_bl2": 1.13,
+   "default_tps": 1.11,
+   "note": "源码注释：113 means every level the numbers get 13% higher。滑块范围 0-500，值除以 100 后写入 ConstantValue。"
+  },
+  "ucp_pt3": {
+   "name": "BLCMods / Community Patch Team Patch.txt（UVHM PT3 BalanceMod）",
+   "url": "https://github.com/BLCM/BLCMods/tree/master/Borderlands%202%20mods/Community%20Patch%20Team",
+   "object": "GD_Playthrough3Tuning.Balance.BalanceMod_PT3",
+   "property": "BalanceModifiers",
+   "values": {
+    "MinEffectiveLevel": 50,
+    "EnemyHealthMultiplier": 4.0,
+    "BadassEnemyHealthMultiplier": 2.6,
+    "EnemyShieldStrengthMultiplier": 5.0,
+    "BadassEnemyShieldStrengthMultiplier": 3.5,
+    "EnemyDamageMultiplier": 1.1,
+    "BadassEnemyDamageMultiplier": 1.1,
+    "AmplifiedDamageMultiplier": 1.5,
+    "XPGainedFromCombatMultiplier": 0.66,
+    "XPGainedFromQuestsMultiplier": 0.66
+   },
+   "note": "UCP 的 PT3 数值；同一行还挂 EnemyHealthRegenFormula/Object 与 AmpDurationResistanceModifier。"
+  },
+  "nifsara_uvhm": {
+   "name": "Nifsara UVHM Rebalance（BLCMods）",
+   "url": "https://github.com/BLCM/BLCMods/tree/master/Borderlands%202%20mods/Nifsara/UVHM%20Rebalance",
+   "changes": {
+    "regular_enemy_health_shields": 0.5,
+    "hard_enemy_health_shields": 0.75,
+    "enemy_health_regen": 0,
+    "slag_damage_amplification": 0,
+    "player_dot_buff": "UCP DoT buff removed (150% -> 0%)",
+    "enemy_damage_early": "Regular 早期 0.22，随等级增长，到 50 级回到 1.1"
+   },
+   "note": "Readme/Changelog：Regular 50% lower、Hard 25% lower；无敌人回血；Slag 不再增伤；持续时间 8s->5s；移动/射速减益。"
+  },
+  "aaron_uvhm_rb": {
+   "name": "Aaron0000 UVHM-RB V2.4（BLCMods）",
+   "url": "https://github.com/BLCM/BLCMods/tree/master/Borderlands%202%20mods/Aaron0000/Overhauls",
+   "values": {
+    "MinEffectiveLevel": 1,
+    "EnemyHealthMultiplier": 0.5,
+    "BadassEnemyHealthMultiplier": 0.5,
+    "EnemyShieldStrengthMultiplier": 0.65,
+    "BadassEnemyShieldStrengthMultiplier": 1.0,
+    "EnemyDamageMultiplier": 0.3,
+    "BadassEnemyDamageMultiplier": 0.3
+   },
+   "slag_comment": "Slag no longer increases damage output by 200%/300%. Now only increases damage output a little ...",
+   "note": "这是该 mod 自己的 BalanceMod 替换值，不能和 UCP 的 4.0/5.0/1.1 直接相乘或直接对比。"
+  },
+  "oselands_intense": {
+   "name": "Osetor74 / Oselands Standalones: BL2 Intense Difficulty",
+   "url": "https://github.com/BLCM/BLCMods/tree/master/Borderlands%202%20mods/osetor74/Oselands%20Standalones",
+   "object": "GD_Challenges.BadassSkill.BadassSkill / GD_Challenges.BadassRewards.BARD_Health_Max",
+   "note": "示例：把 Badass Rank 效果单独改写/禁用（账号加成是独立因子），不是等级曲线的一部分。"
+  },
+  "overpower_level_bonuses": {
+   "name": "Aaron0000 OverpowerLevelBonuses（BLCMods）",
+   "url": "https://github.com/BLCM/BLCMods/tree/master/Borderlands%202%20mods/Aaron0000/Overhauls",
+   "objects": {
+    "player_health_formula": "GD_Balance_HealthAndDamage.HealthAndDamage.Init_PlayerHealth",
+    "scaler": "GD_Balance_HealthAndDamage.HealthAndDamage.Att_UniversalBalanceScaler",
+    "health_shield_multiplier": "GD_Balance_HealthAndDamage.HealthAndDamage.Att_UniversalBalanceMultiplier_HealthShields",
+    "game_stage": "GD_Lobelia_GameStages.Attributes.GameStageViaGetGameStage",
+    "skill_points_formula": "GD_Globals.Skills.INI_TotalSkillPointsForCurrentLevelFormula"
+   },
+   "note": "ValueFormula 字段：Multiplier / Level / Power / Offset；Level 指向 UniversalBalanceScaler，Power 指向 GameStage。额外 OP 血量缩放是该 mod 的选项。"
+  },
+  "badass_screenshot": {
+   "name": "用户提供的游戏内 Badass/账号加成截图",
+   "note": "仅作为账号加成独立因子；截图显示 Q 禁用加成状态，说明当前启用。数值是账号特定，不是全等级曲线。"
+  }
+ },
+ "universal_scaler": {
+  "object": "GD_Balance_HealthAndDamage.HealthAndDamage.Att_UniversalBalanceScaler:ConstantAttributeValueResolver_0",
+  "path_note": "路径来自 ScalingAdjuster 源码；ValueFormula 里以 AttributeDefinition'...Att_UniversalBalanceScaler' 形式引用。",
+  "model": "相对值 ≈ const^(effective_level - base_level)；绝对公式按 ValueFormula 结构推断为 Multiplier × Level^Power + Offset，其中 Level=scaler、Power=GameStage。",
+  "limitations": [
+   "ValueFormula 的字段求值顺序不是官方文档；本模型只用于相对曲线比较，不代表实际伤害/生命公式。",
+   "UniversalBalanceScaler 影响玩家/敌人/物品等多处，改它会全局改变数值，不等于只削弱敌人。"
+  ]
+ },
+ "uvhm": {
+  "min_effective_level": 50,
+  "enemy_health_regen_object": "D_Attributes.HealthResourcePool.HealthPassiveRegenerationRate",
+  "enemy_health_regen_formula": "GD_Playthrough3Tuning.Formulas.Init_EnemyHealthRegenFormula",
+  "player_health_formula": "GD_Balance_HealthAndDamage.HealthAndDamage.Init_PlayerHealth",
+  "health_shield_multiplier_attribute": "GD_Balance_HealthAndDamage.HealthAndDamage.Att_UniversalBalanceMultiplier_HealthShields",
+  "note": "PT3 从 MinEffectiveLevel=50 起应用；UCP/Aaron 都用 GD_Playthrough3Tuning.Balance.BalanceMod_PT3 改这些倍率。"
+ },
+ "slag": {
+  "reported_amplification_percent": [
+   "200%",
+   "300%"
+  ],
+  "source": "Aaron0000 UVHM-RB 注释：Slag no longer increases damage output by 200%/300%.",
+  "status": "ambiguous / unconfirmed",
+  "warning": "作者可能混用“加成百分比”和“伤害倍率”；不能据此宣称原版普通 x3、UVHM x4。需要实机/定义字段验证，或保留为作者原文。",
+  "native_normal_multiplier": null,
+  "native_uvhm_multiplier": null,
+  "note": "本模型不再把 x3/x4 当原生常量；Nifsara 把 Slag 增伤改为 0，只能当模组行为。"
+ },
+ "op": {
+  "model": "把 OP 视为额外有效等级：effective_level = 80 + OP；按同一 UniversalBalanceScaler 曲线估算；可选额外 OP 血量因子（OverpowerLevelBonuses 提供额外血量缩放选项）。",
+  "levels": [
+   0,
+   5,
+   10
+  ],
+  "limitations": [
+   "OP 的实际敌人等级/血量/伤害/装备等级并非只等于 +OP 等级；装备与技能同步提升后，有效 TTK 变化可能远小于本表。",
+   "额外 OP 血量/伤害缩放没有统一公开参数，本表不包含未知加成。"
+  ]
+ },
+ "equipment_level": {
+  "model": "装备等级差 d 的相对伤害因子 ≈ const^d（d=装备等级-敌人等级）；d<0 时下降，d>0 时上升。",
+  "status": "简化模型，未验证；实际还受部件、技能、元素、暴击、抗性影响"
+ },
+ "skill_stacking": {
+  "model": "同一属性多个来源如何叠加未完全验证；本工具只提供两种保守模型：加法（1+Σf）与乘法（∏(1+f)），真实规则介于/取决于属性系统。",
+  "status": "未验证；不要把模型当成游戏实际叠加公式"
+ },
+ "badass": {
+  "source": "用户截图（账号 Badass 81850 / 代币 4 / 金钥匙 11）",
+  "values": {
+   "生命": 0.115,
+   "护盾": 0.087,
+   "充能延时": -0.125,
+   "充能速度": 0.102,
+   "近战": 0.048,
+   "手雷": 0.091,
+   "精准": 0.216,
+   "枪伤": 0.282,
+   "射速": 0.257,
+   "后坐减少": 0.153,
+   "装填": 0.277,
+   "元素几率": 0.091,
+   "元素伤害": 0.084,
+   "暴击": 0.128
+  },
+  "factors": {
+   "health": 1.115,
+   "shield": 1.087,
+   "recharge_delay_multiplier": 0.875,
+   "recharge_rate": 1.102,
+   "melee": 1.048,
+   "grenade": 1.091,
+   "accuracy": 1.216,
+   "gun_damage": 1.282,
+   "fire_rate": 1.257,
+   "recoil_reduction": 1.153,
+   "reload": 1.277,
+   "elemental_chance": 1.091,
+   "elemental_damage": 1.084,
+   "crit": 1.128
+  },
+  "simplified_two_factor_product": 1.612,
+  "simplified_note": "1.282*1.257 只是“无换弹、枪伤与射速独立乘算”的简化示意，不是实际 DPS；装填、元素、暴击、精准、后坐、敌人抗性、触发条件都没纳入。",
+  "note": "Badass/账号加成必须作为独立因子，不能混进等级曲线或 UniversalBalanceScaler。"
+ },
+ "scenarios": [
+  {
+   "id": "reference_ucp",
+   "name": "参考：原版 / UCP PT3（const=1.13）",
+   "kind": "reference",
+   "const": 1.13,
+   "enemy_health_mult": 4.0,
+   "enemy_shield_mult": 5.0,
+   "enemy_damage_mult": 1.1,
+   "enemy_health_regen": 1.0,
+   "slag_amp": 3.0,
+   "note": "UCP PT3 值；仅作比较基准。"
+  },
+  {
+   "id": "scaling_1.08",
+   "name": "预演：UniversalBalanceScaler=1.08（未实机）",
+   "kind": "preview",
+   "const": 1.08,
+   "enemy_health_mult": 4.0,
+   "enemy_shield_mult": 5.0,
+   "enemy_damage_mult": 1.1,
+   "enemy_health_regen": 1.0,
+   "slag_amp": 3.0
+  },
+  {
+   "id": "nifsara_regular",
+   "name": "Nifsara UVHM Rebalance（Regular）",
+   "kind": "existing_mod",
+   "const": 1.13,
+   "enemy_health_mult": 2.0,
+   "enemy_shield_mult": 2.5,
+   "enemy_damage_mult": 1.1,
+   "enemy_health_regen": 0.0,
+   "slag_amp": 0.0,
+   "note": "相对原版 PT3 的 50% 敌人生命/护盾；无回血、无 Slag 增伤。"
+  },
+  {
+   "id": "nifsara_hard",
+   "name": "Nifsara UVHM Rebalance（Hard）",
+   "kind": "existing_mod",
+   "const": 1.13,
+   "enemy_health_mult": 3.0,
+   "enemy_shield_mult": 3.75,
+   "enemy_damage_mult": 1.1,
+   "enemy_health_regen": 0.0,
+   "slag_amp": 0.0,
+   "note": "相对原版 PT3 的 25% 敌人生命/护盾。"
+  }
+ ],
+ "levels": {
+  "base": 50,
+  "compare": [
+   55,
+   60,
+   72,
+   80
+  ],
+  "op": [
+   0,
+   5,
+   10
+  ]
+ },
+ "normalization_warning": "compare 的 H/S/D 是在 reference_ucp level=55 归一化的模型指数，不是实际修改全局常量后的引擎数值；不能据此说“55级只降20%”或实际影响比例。",
+ "model_labels": {
+  "compare": "MODEL_ONLY: normalized relative indices, not engine compensation",
+  "preview": "PREVIEW_ONLY: not applied, not validated",
+  "schemes": "DESIGN_ONLY: piecewise formula is a design target, not implemented"
+ }
+}

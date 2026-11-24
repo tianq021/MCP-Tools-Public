@@ -1,0 +1,10 @@
+DesktopControl.exe
+observation.json
+paused.flag
+test-window-state.json
+ControlTestWindow.exe
+captures/
+GameControlTestWindow.exe
+game-test-state.json
+game-test-minimize.flag
+profile-game-preview.yml

@@ -1,0 +1,184 @@
+{
+ "schema": "bl2-numeric-suppression-plan-v1",
+ "updated": "2026-11-15",
+ "status": "DESIGN_ONLY / NOT IMPLEMENTED；所有方案未应用到游戏，未实机验证",
+ "disclaimer": "本文件是设计/实验计划，不是已实现补丁。compare 的归一化指数不是引擎实际补偿；不得把模型值当真实改动结果。",
+ "audit_corrections": {
+  "slag": {
+   "old_claim": "原版 Slag 普通 x3、UVHM x4",
+   "correct": "Aaron0000 注释写 +200%/+300%，可能混用“加成百分比/伤害倍率”；不能宣称原版 x3/x4。保留原文并标 ambiguous。"
+  },
+  "badass_screenshot": {
+   "old_claim": "截图 81850/4 钥匙",
+   "correct": "账号 Badass 81850、代币 4、金钥匙 11；4 是代币，不是钥匙。"
+  },
+  "normalization": {
+   "old_claim": "改全局常量 1.08 后 55 级约降 20% / 80 级约 25.7%",
+   "correct": "那些数字来自 reference_ucp level=55 归一化模型指数；不是实际改全局常量后的引擎数值，不能当真实补偿比例。"
+  }
+ },
+ "schemes": [
+  {
+   "id": "A_global_scaler_1.08",
+   "name": "A：全局 UniversalBalanceScaler 1.13 -> 1.08",
+   "status": "DESIGN_ONLY",
+   "mechanism": "把 GD_Balance_HealthAndDamage.HealthAndDamage.Att_UniversalBalanceScaler:ConstantAttributeValueResolver_0 的 ConstantValue 设为 1.08（ScalingAdjuster 的写法）。",
+   "confirmed_scope": [
+    "对象/属性路径确认（ScalingAdjuster 源码）",
+    "OverpowerLevelBonuses 的 Init_PlayerHealth ValueFormula 引用该属性（玩家生命公式）",
+    "UCP 多个 ValueFormula（SkyRocket/DeathTrap/LightTheFuse 等）引用该属性；不是穷举"
+   ],
+   "real_impact_unknown": [
+    "引擎实际在 55/80/OP 的数值变化比例未知；不能用 1.13/1.08 的归一化指数代替",
+    "影响范围不止敌人：玩家生命/护盾/物品/技能/固定伤害/DOT 等都可能引用它",
+    "与 PT3 的 UVHM 额外倍率如何叠加未验证",
+    "OP 是独立系统，不能把 OP 变化混入等级曲线结论"
+   ],
+   "coverage_matrix": {
+    "enemy_health": "partial：PT3 有独立倍率；全局 scaler 在公式中的覆盖范围未穷举",
+    "enemy_shield": "partial：同上",
+    "enemy_damage": "partial：同上",
+    "player_health": "partial：Init_PlayerHealth 有引用证据；其他生命公式未穷举",
+    "player_shield": "unknown：未找到 shield 公式引用清单",
+    "guns_fixed_damage": "partial：有 ValueFormula 示例（SkyRocket 等），不是全部枪械",
+    "grenades_fixed_damage": "partial：SkyRocket 有示例",
+    "melee_fixed_damage": "partial：DeathTrap melee 等示例；玩家近战未穷举",
+    "skills_fixed_damage": "partial：LightTheFuse 等示例；技能表未穷举",
+    "dot": "unknown：DOT/status 公式未穷举",
+    "op": "separate：OP 独立，必须单独测量"
+   },
+   "required_measurements": [
+    "固定等级/OP 的敌人生命/护盾/伤害",
+    "玩家生命/护盾/回血",
+    "枪械/手雷/近战/技能固定伤害和 DOT 的实际读数",
+    "对象原值（ConstantValue、PT3 字段、相关公式）",
+    "同一敌人/同一枪的 TTK"
+   ],
+   "risks": [
+    "全局缩放同时改玩家和敌人，不是“只削敌人”",
+    "可能同时压缩玩家生命/护盾/技能伤害，需要按类别测量，不能只看敌人血量",
+    "不同公式可能重复缩放/漏缩放"
+   ]
+  },
+  {
+   "id": "B_anchor55_8pct",
+   "name": "B：55 级为锚，55 后 8% 增长（设计公式）",
+   "status": "DESIGN_ONLY / MODEL_ONLY",
+   "formula": "f(L) = 1.13 ^ (min(L,55) - 55) * 1.08 ^ max(L - 55, 0)",
+   "formula_label": "MODEL_ONLY；相对形状设计，不是引擎实际补偿",
+   "notes": [
+    "L<=55：沿 1.13^(L-55) 的参考形状；L>55：每级 1.08（8%）",
+    "仅改全局常量 1.08 无法实现这个分段；需要按公式/对象做条件化补丁或自定义逻辑",
+    "55 级之前并非“保证原版不变”，因为真实基础值/公式可能不完全等于 1.13^(L-55)"
+   ],
+   "implementation_candidates": [
+    {
+     "kind": "BLCMM/hotfix 条件化 ValueFormula",
+     "requirement": "逐个找到引用 UniversalBalanceScaler 的 AttributeInitializationDefinition/ValueFormula，按 GameStage/等级做分段",
+     "status": "未枚举完，未实现"
+    },
+    {
+     "kind": "PythonSDK 运行时缩放",
+     "requirement": "hook 伤害/生命/护盾/DOT 结算，按等级分段缩放",
+     "status": "未实现，递归/重复/多来源风险高"
+    },
+    {
+     "kind": "自定义游戏内容/Mod",
+     "requirement": "重写公式/属性，覆盖所有类别",
+     "status": "未实现"
+    }
+   ],
+   "coverage_required": [
+    "敌人生命/护盾/伤害",
+    "玩家生命/护盾",
+    "枪械/手雷/近战/技能固定伤害",
+    "DOT/状态伤害",
+    "OP 单独处理（不并入 f(L)）"
+   ],
+   "risks": [
+    "公式只描述成长形状，不是引擎实际值",
+    "全局常量不能实现分段；必须逐公式覆盖",
+    "与 PT3 倍率/技能/物品/OP 叠加可能双重缩放",
+    "OP 独立，不能把 OP 加成塞进等级曲线"
+   ]
+  },
+  {
+   "id": "C_reduce_uvhm_multipliers",
+   "name": "C：保留 1.13 曲线，只减 UVHM 回血/敌人额外倍率",
+   "status": "DESIGN_ONLY",
+   "mechanism": "不动全局 scaler；改 GD_Playthrough3Tuning.Balance.BalanceMod_PT3 的敌人生命/护盾/伤害倍率，并去掉/降低敌人生命回复。",
+   "objects": {
+    "balance_mod": "GD_Playthrough3Tuning.Balance.BalanceMod_PT3",
+    "fields": [
+     "EnemyHealthMultiplier",
+     "BadassEnemyHealthMultiplier",
+     "EnemyShieldStrengthMultiplier",
+     "BadassEnemyShieldStrengthMultiplier",
+     "EnemyDamageMultiplier",
+     "BadassEnemyDamageMultiplier"
+    ],
+    "regen_attribute": "D_Attributes.HealthResourcePool.HealthPassiveRegenerationRate",
+    "regen_formula": "GD_Playthrough3Tuning.Formulas.Init_EnemyHealthRegenFormula"
+   },
+   "references": {
+    "ucp_values": {
+     "MinEffectiveLevel": 50,
+     "EnemyHealthMultiplier": 4.0,
+     "BadassEnemyHealthMultiplier": 2.6,
+     "EnemyShieldStrengthMultiplier": 5.0,
+     "BadassEnemyShieldStrengthMultiplier": 3.5,
+     "EnemyDamageMultiplier": 1.1,
+     "BadassEnemyDamageMultiplier": 1.1
+    },
+    "nifsara": "Regular 生命/护盾 x0.5、Hard x0.75；无敌人回血；Slag 增伤=0",
+    "aaron_uvhm_rb": "自己的 BalanceMod：生命 0.5、护盾 0.65、伤害 0.3（不能与 UCP 值直接相乘/对比）"
+   },
+   "intended_effect": "只改善 UVHM 的 TTK/回血压力；不改前 50 级曲线、不动全局 scaler、OP 单独处理。",
+   "unknowns": [
+    "具体降到什么值才能改善 TTK 而不破坏平衡，需要实测",
+    "Slag 增伤/DoT/技能/物品的交互未验证",
+    "OP 额外倍率不在这个方案内"
+   ]
+  }
+ ],
+ "experiment_protocol": {
+  "status": "NOT EXECUTED；不改游戏",
+  "steps": [
+   {
+    "id": "baseline",
+    "name": "原值快照（只读）",
+    "detail": "记录 UniversalBalanceScaler/ConstantValue、PT3 BalanceModifiers 全文、相关 ValueFormula 原值；固定地图/等级/OP 记录敌人生命/护盾/伤害、玩家生命/护盾、枪械/手雷/近战/技能固定伤害、DOT、TTK。"
+   },
+   {
+    "id": "small_scope",
+    "name": "小范围实验",
+    "detail": "一次只改一个类别（建议先只测敌人生命或只测敌人回血）；不要同时改全局+PT3+回血。实验前保存对象原值/文件备份。"
+   },
+   {
+    "id": "apply",
+    "name": "预览/应用边界",
+    "detail": "先只生成预览；真正应用必须在用户明确授权的测试环境，且使用绝对值 set，不使用累加/重复钩子。"
+   },
+   {
+    "id": "idempotency",
+    "name": "幂等要求",
+    "detail": "同一值重复应用结果不变；hook 内部不得再次触发自己（reentrancy 标志/DoInjectedCallNext）；应用后读回对象值校验；重启/重载后一致。"
+   },
+   {
+    "id": "rollback",
+    "name": "撤销要求",
+    "detail": "保存每个对象的原始值/文件备份；撤销时恢复精确原值而不是“再减一次”；恢复后验证对象值与基线快照一致、TTK 回到基线。"
+   },
+   {
+    "id": "validation",
+    "name": "验证矩阵",
+    "detail": "在 55/60/72/80 OP0/OP5/OP10 分别测量：敌人生命/护盾/伤害、玩家生命/护盾、枪械/手雷/近战/技能固定伤害/DOT；Slag 与回血单独记录；OP 不并入等级曲线。"
+   }
+  ],
+  "safety": [
+   "本轮不改游戏、不写存档/profile/配置/EXE/Mods，不启动/控制游戏",
+   "OP 独立；不要把 OP 变化当作等级曲线效果",
+   "不能把归一化模型指数当真实 55/80 级改动比例"
+  ]
+ }
+}

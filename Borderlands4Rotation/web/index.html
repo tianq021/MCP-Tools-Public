@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>无主之地4 · 莫里斯黑市位置</title>
+<style>
+  :root{
+    --bg:#0c0d12; --bg2:#12141c; --card:#171a24; --card2:#1e222e;
+    --line:#2a2f3d; --txt:#e8eaf1; --dim:#9aa1b4; --dim2:#6b7285;
+    --acc:#ffb72b; --acc2:#ff7a1a; --ok:#4ade80; --warn:#fbbf24; --bad:#f87171;
+    --cyan:#5ee9e9;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;background:var(--bg);color:var(--txt);
+    font:14px/1.6 "Microsoft YaHei UI","Microsoft YaHei","PingFang SC",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  a{color:var(--cyan);text-decoration:none}
+  .app{display:grid;grid-template-columns:308px minmax(0,1fr);height:100vh}
+
+  /* ---------- 左侧栏 ---------- */
+  .sidebar{background:var(--bg2);border-right:1px solid var(--line);display:flex;flex-direction:column;min-height:0}
+  .brand{padding:16px 18px 12px;border-bottom:1px solid var(--line)}
+  .brand .t1{font-size:15px;font-weight:700;letter-spacing:.5px}
+  .brand .t1 b{color:var(--acc)}
+  .brand .t2{font-size:11px;color:var(--dim2);margin-top:3px}
+  .search{padding:10px 12px;border-bottom:1px solid var(--line)}
+  .search input{width:100%;background:var(--card);border:1px solid var(--line);color:var(--txt);
+    border-radius:8px;padding:8px 10px;font-size:13px;outline:none}
+  .search input:focus{border-color:#3d465c;box-shadow:0 0 0 2px rgba(255,183,43,.08)}
+  .nav{overflow:auto;padding:8px 8px 24px;min-height:0;scrollbar-width:thin}
+  .nav::-webkit-scrollbar{width:8px}
+  .nav::-webkit-scrollbar-thumb{background:#2b3040;border-radius:4px}
+  .grp{margin-top:10px}
+  .grp>h3{margin:0 0 6px;padding:0 10px;font-size:11px;letter-spacing:1px;color:var(--dim2);
+    text-transform:uppercase;font-weight:600}
+  .row{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;cursor:pointer;
+    color:var(--txt);border:1px solid transparent}
+  .row:hover{background:var(--card)}
+  .row.active{background:var(--card2);border-color:#3a4155}
+  .row .wk{font-size:12px;color:var(--acc);min-width:44px;font-variant-numeric:tabular-nums}
+  .row .nm{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .row .st{margin-left:auto;font-size:10px;padding:1px 6px;border-radius:999px;border:1px solid var(--line);color:var(--dim)}
+  .row .st.ok{color:var(--ok);border-color:#1f5c3c;background:rgba(74,222,128,.07)}
+  .row .st.warn{color:var(--warn);border-color:#5c4a1f;background:rgba(251,191,36,.07)}
+  .row .st.na{color:var(--dim2)}
+  .row .loc{font-size:11px;color:var(--dim);margin-left:auto;max-width:120px;overflow:hidden;
+    text-overflow:ellipsis;white-space:nowrap}
+  .row.small{padding:5px 10px}
+  .row.small .nm{font-size:12.5px}
+  .regionhead{display:flex;align-items:center;gap:8px;padding:8px 10px 4px;color:var(--dim);font-size:11.5px}
+  .regionhead .dot{width:6px;height:6px;border-radius:50%;background:var(--acc)}
+
+  /* ---------- 主区域 ---------- */
+  main{overflow:auto;min-height:0;scrollbar-width:thin}
+  main::-webkit-scrollbar{width:10px}
+  main::-webkit-scrollbar-thumb{background:#2b3040;border-radius:5px}
+  .wrap{max-width:1080px;margin:0 auto;padding:26px 30px 60px}
+
+  .topline{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:var(--dim);font-size:12px}
+  .pill{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;
+    border:1px solid var(--line);background:var(--card);font-size:12px;color:var(--dim)}
+  .pill.acc{color:var(--acc);border-color:#5a4318;background:rgba(255,183,43,.07)}
+  .pill.ok{color:var(--ok);border-color:#1f5c3c;background:rgba(74,222,128,.07)}
+  .pill.warn{color:var(--warn);border-color:#5c4a1f;background:rgba(251,191,36,.07)}
+  .pill.bad{color:var(--bad);border-color:#5c2020;background:rgba(248,113,113,.07)}
+
+  h1.hero{margin:14px 0 6px;font-size:34px;line-height:1.25;letter-spacing:.5px}
+  h1.hero .small{font-size:16px;color:var(--dim);font-weight:400;margin-left:10px}
+  .crumb{display:flex;flex-wrap:wrap;gap:6px;align-items:center;color:var(--dim);font-size:13px}
+  .crumb .sep{color:var(--dim2)}
+  .crumb .last{color:var(--txt)}
+
+  .grid{display:grid;gap:14px;margin-top:18px}
+  .grid.c2{grid-template-columns:1fr 1fr}
+  .grid.c3{grid-template-columns:repeat(3,1fr)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .card h2{margin:0 0 10px;font-size:13px;letter-spacing:1px;color:var(--dim2);font-weight:700;text-transform:uppercase}
+  .card .big{font-size:20px;font-weight:700;color:var(--txt)}
+  .kv{margin:8px 0 0}
+  .kv .k{color:var(--dim2);font-size:12px}
+  .kv .v{margin-top:2px;font-size:13.5px}
+
+  .count{display:flex;gap:18px;align-items:baseline}
+  .count .num{font-size:30px;font-weight:800;color:var(--acc);font-variant-numeric:tabular-nums;letter-spacing:1px}
+  .count .lab{color:var(--dim2);font-size:12px}
+
+  .hintwrap{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#000;
+    display:flex;align-items:center;justify-content:center}
+  .hintwrap img{display:block;width:100%;height:auto;cursor:zoom-in}
+  .hintbar{display:flex;align-items:center;gap:10px;margin:8px 0 0;font-size:12px;color:var(--dim2)}
+  .tag{font-size:11px;padding:2px 8px;border-radius:6px;background:var(--card2);border:1px solid var(--line);color:var(--dim)}
+
+  .howto{font-size:14px;line-height:1.85;color:#d7dbea;background:var(--card2);border-left:3px solid var(--acc);
+    border-radius:0 10px 10px 0;padding:12px 14px}
+  .note{font-size:12.5px;color:var(--dim);line-height:1.7}
+  .note b{color:var(--txt)}
+  .gall{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-top:10px}
+  .gall .item{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card2);cursor:pointer}
+  .gall .item:hover{border-color:#4a5369}
+  .gall .item img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+  .gall .item .cap{padding:7px 9px;font-size:12px;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+  table.src{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:6px}
+  table.src td,table.src th{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}
+  table.src th{color:var(--dim2);font-weight:600}
+  table.src td.dim{color:var(--dim)}
+
+  .list{display:flex;flex-direction:column;gap:6px}
+  .wkrow{display:flex;align-items:center;gap:12px;padding:8px 10px;border-radius:9px;border:1px solid var(--line);
+    background:var(--card);cursor:pointer}
+  .wkrow:hover{background:var(--card2)}
+  .wkrow .n{font-size:12px;color:var(--acc);min-width:52px;font-variant-numeric:tabular-nums}
+  .wkrow .d{font-size:12px;color:var(--dim2);min-width:150px;font-variant-numeric:tabular-nums}
+  .wkrow .l{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+  footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim2);font-size:11.5px;line-height:1.8}
+
+  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;
+    z-index:99;padding:24px;cursor:zoom-out}
+  .lightbox.on{display:flex}
+  .lightbox img{max-width:96vw;max-height:92vh;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+
+  @media (max-width:900px){
+    .app{grid-template-columns:1fr;grid-template-rows:auto 1fr;height:auto}
+    .sidebar{max-height:42vh}
+    .grid.c2,.grid.c3{grid-template-columns:1fr}
+    h1.hero{font-size:26px}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="t1">无主之地4 · <b>莫里斯黑市</b></div>
+      <div class="t2">Maurice's Black Market · 位置速查</div>
+    </div>
+    <div class="search"><input id="q" placeholder="搜索：周次 / 日期 / 地点名"></div>
+    <div class="nav" id="nav"></div>
+  </aside>
+  <main><div class="wrap" id="main"></div></main>
+</div>
+<div class="lightbox" id="lb"><img id="lbimg" alt=""></div>
+
+<script>
+const DATA = {"meta":{"generated_at":"2026-11-13T12:47:05+08:00","week1_start":"2025-09-12","current_week":62,"reset":{"rule_cn":"北京时间通常在周五凌晨刷新，倒计时按太平洋时间周四 09:00 估算。","weekday_cn":"周五","source_note":"估算时间为美国夏令时期间 00:00、标准时期间 01:00。实际生效时间以游戏服务器为准。"},"facts":[{"k":"解锁条件","v":"通关主线并完成终极秘藏猎人模式的「莫里斯的赏金任务」。"},{"k":"位置可见性","v":"所有玩家位置相同；机器不显示地图标记，靠近后才会显形；物品阵容每个玩家不同。"},{"k":"冷却","v":"打开一次（买不买都算）后 30–35 分钟冷却；冷却结束商品会换一批。"},{"k":"库存","v":"随机 2 种传奇装备 × 各 4 件 = 共 8 件；不含职业模组与强化部件；价格 45 万–100 万美元级。"},{"k":"地点池","v":"目前从社区记录中整理出 24 个点位。"}],"sources":[{"id":"S1","name":"Steam 官方每周活动公告","url":"https://steamcommunity.com/games/1285190/announcements","trust":"官方","note":"每周线索图与活动内容，无广告。"},{"id":"S2","name":"Gamerch 日文攻略 Wiki","url":"https://gamerch.com/borderlands4/941373","trust":"社区（较可靠）","note":"过去地点区域链与实景图；页面含站点广告，已只提取地点事实。"},{"id":"S3","name":"FPS Index","url":"https://fpsindex.com/all-maurices-black-market-locations-in-borderlands-4-bl4-all-weeks/","trust":"社区（较早停更）","note":"2025 年第 1–9 周的英文路线说明；页面含导航/评论，已只提取正文。"},{"id":"S4","name":"B 站周更视频（是咕咕不是姑姑咕）","url":"https://space.bilibili.com/43953352","trust":"社区","note":"第 1–61 周的周次与日期窗口，用于校验周次起算。"},{"id":"S5","name":"Eurogamer","url":"https://www.eurogamer.net/borderlands-4-maurice-black-market-vending-machine-location","trust":"媒体","note":"2026-02 当周位置与刷新时间参考。"},{"id":"S6","name":"bfcom.eu（德文）","url":"https://bfcom.eu/s/borderlands-4/259089-borderlands-4-maurice-schwarzmarkt-standort-14--21-november-2025--fades-district","trust":"媒体","note":"2025-11-14 当周写作 Fades District，用于印证第 10 周。"},{"id":"S7","name":"MentalMars 黑市跑图实录","url":"https://mentalmars.com/borderlands-4/loot/black-market/","trust":"社区","note":"第 62 周位置及进入隐藏房间的路线；页面随周次更新。"},{"id":"S8","name":"游民星空中文地图与收集攻略","url":"https://www.gamersky.com/handbook/202509/2015766.shtml","trust":"社区","note":"用于核对大区及部分兴趣点的简体中文名称。"},{"id":"S9","name":"游民星空中文首领与任务攻略","url":"https://www.gamersky.com/handbook/202509/2013599.shtml","trust":"社区","note":"用于核对部分每周活动的首领与任务名称。"}],"ads_note":"旧版数据里出现广告，是因为早期把整页网页正文（含站点导航、PR 广告位、评论区、推荐链接）直接存成了 extracted/*.txt。现在改为只抽取结构化字段（地点名/区域链/官方每周活动/线索图），原始 HTML 仅作为证据存档，不再进入展示层。"},"locations":[{"key":"plungeford","order":1,"orders":[1],"jp":"プランジフォード","en":"Plungeford","cn":"坠落浅滩","chain_cn":["隐没旷野","海岸骨境","坠落浅滩"],"chain_jp":["フェードフィールド","骨身海岸","プランジフォード"],"region_jp":"フェードフィールド","region_en":"Fadefields","target_jp":"プランジフォード","howto_cn":"到海岸骨境东部，滑翔到最高建筑的顶层平台。靠近后贩卖机才会显形。","img":"assets/locations/1.jpg","week_seen":1,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"],"weeks":[1]},{"key":"punitive_manufactory","order":2,"orders":[2,13],"jp":"ピュニティブ・マニファクトリウム","en":"Punitive Manufactory","cn":"惩罚工厂","chain_cn":["终点山脉","尖牙攀岩","惩罚工厂"],"chain_jp":["ターミナス・レンジ","牙々洞の道","ピュニティブ・マニファクトリウム"],"region_jp":"ターミナス・レンジ","region_en":"Terminus Range","target_jp":"ピュニティブ・マニファクトリウム","howto_cn":"从遗产杰作安全屋（Heritage Opus）前往尖牙攀岩，进入瀑布后的洞穴。沿路清怪并向上攀爬，到惩罚工厂顶层找贩卖机。","img":"assets/locations/2.jpg","week_seen":2,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"],"weeks":[2]},{"key":"crumblehole","order":3,"orders":[3],"jp":"クランブルホール","en":"Crumblehole","cn":"崩塌洞","chain_cn":["卡卡地亚焚毁区","崩塌洞"],"chain_jp":["カルカディア・バーン","クランブルホール"],"region_jp":"カルカディア・バーン","region_en":"Carcadia Burns","target_jp":"クランブルホール","howto_cn":"前往卡卡地亚焚毁区南部的崩塌洞。先占领乡野投掷教团发射井（Rustical Hurl Order Silo），再借滑索过去。","img":"assets/locations/3.jpg","week_seen":3,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"],"weeks":[3]},{"key":"rattlehead_crest","order":4,"orders":[4],"jp":"ラトルヘッド・クレスト","en":"Rattlehead Crest","cn":"响颅峰","chain_cn":["隐没旷野","崇拜者的绞索","响颅峰"],"chain_jp":["フェードフィールド","崇拝者の締め縄","ラトルヘッド・クレスト"],"region_jp":"フェードフィールド","region_en":"Fadefields","target_jp":"ラトルヘッド・クレスト","howto_cn":"从朝阳安全屋（Someday Rise）前往崇拜者的绞索西侧，进入响颅峰的建筑并上到顶层。","img":"assets/locations/4.jpg","week_seen":4,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"],"weeks":[4]},{"key":"carcadia_district","order":5,"orders":[5],"jp":"カルカディア地区","en":"Carcadia District","cn":"卡卡地亚区","chain_cn":["圣城","卡卡地亚区","哀鸣核心南侧"],"chain_jp":["ドミニオン","カルカディア地区","うめきのコアの南"],"region_jp":"ドミニオン","region_en":"Dominion","target_jp":"うめきのコアの南","howto_cn":"从藏身处安全屋（The Lockaway）前往卡卡地亚区的哀鸣核心南侧，用钩爪爬到建筑顶部。","img":"assets/locations/5.jpg","week_seen":5,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"],"weeks":[5]},{"key":"ruined_sumplands","order":6,"orders":[6],"jp":"ルインド・サンプランズ","en":"Ruined Sumplands","cn":"废墟洼地","chain_cn":["卡卡地亚焚毁区","废墟洼地"],"chain_jp":["カルカディア・バーン","ルインド・サンプランズ"],"region_jp":"カルカディア・バーン","region_en":"Carcadia Burns","target_jp":"ルインド・サンプランズ","howto_cn":"前往废墟洼地南部，用 ECHO 定位器跟随路线标记。","img":"assets/locations/6.jpg","week_seen":6,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"],"weeks":[6]},{"key":"elpis_orbital_shatterfield","order":7,"orders":[7,17,22],"jp":"エルピス軌道シャターフィールド","en":"Elpis Orbital Shatterfield","cn":"厄尔皮斯轨道破碎区","chain_cn":["卡卡地亚焚毁区","堕落王冠","厄尔皮斯轨道破碎区"],"chain_jp":["カルカディア・バーン","エルピス軌道シャターフィールド"],"region_jp":"カルカディア・バーン","region_en":"Carcadia Burns","target_jp":"エルピス軌道シャターフィールド","howto_cn":"从堕落王冠的传送点进入厄尔皮斯轨道破碎区，沿主路走到地图末段。在通往首领战的达尔升降梯前停下，滑进旁边的隐藏房间就能找到黑市。","img":"assets/locations/7.jpg","week_seen":7,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"],"weeks":[7,62]},{"key":"heart_of_the_mountain","order":8,"orders":[8],"jp":"山の中枢","en":"Heart of the Mountain","cn":"大山之心","chain_cn":["终点山脉","大山之心"],"chain_jp":["ターミナス・レンジ","山の中枢"],"region_jp":"ターミナス・レンジ","region_en":"Terminus Range","target_jp":"山の中枢","howto_cn":"到大山之心，从圣所遗骨（Bones of Sanctuary）北侧的安全屋出发。钻过窄缝、攀崖，再跳到对面继续向上，贩卖机在顶端。","img":"assets/locations/8.jpg","week_seen":8,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"],"weeks":[8]},{"key":"maestro_wreck","order":9,"orders":[9],"jp":"マエスター号の残骸","en":"Wreck of the Maestro","cn":"大师号残骸","chain_cn":["隐没旷野","嚎叫森林","大师号残骸"],"chain_jp":["フェード・フィールド","遠吠えの森","マエスター号の残骸"],"region_jp":"フェード・フィールド","region_en":"Fadefields","target_jp":"マエスター号の残骸","howto_cn":"先完成支线「野蛮打捞」，再进入嚎叫森林的大师号残骸。","img":"assets/locations/9.jpg","week_seen":9,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"],"weeks":[9]},{"key":"darkloom_biosphere","order":10,"orders":[10],"jp":"ダークローム・バイオスフィア","en":"Darkloom Biosphere","cn":"暗土生物球","chain_cn":["圣城","隐没区","暗土生物球"],"chain_jp":["ドミニオン","フェード地区","ダークローム・バイオスフィア"],"region_jp":"ドミニオン","region_en":"Dominion","target_jp":"ダークローム・バイオスフィア","howto_cn":"贩卖机在圣城隐没区的暗土生物球内部。可通过支线「坏种第二章」解锁入口。","img":"assets/locations/10.jpg","week_seen":null,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"]},{"key":"stopflow_bower","order":11,"orders":[11],"jp":"ストップフロー・バウエル","en":"Stopflow Bower","cn":"止流亭","chain_cn":["卡卡地亚焚毁区","巨物遗址","止流亭"],"chain_jp":["カルカディア・バーン","トネッジ・ピール","ストップフロー・バウエル"],"region_jp":"カルカディア・バーン","region_en":"Carcadia Burns","target_jp":"ストップフロー・バウエル","howto_cn":"在巨物遗址与英勇砥石之间寻找止流亭。","img":"assets/locations/11.jpg","week_seen":null,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"]},{"key":"windspear","order":12,"orders":[12],"jp":"ウィンドスピア","en":"Windspear","cn":"风之矛","chain_cn":["终点山脉","风之矛","圣职者驻地"],"chain_jp":["ターミナス・レンジ","ウィンドスピア","操の駐屯地"],"region_jp":"ターミナス・レンジ","region_en":"Terminus Range","target_jp":"操の駐屯地","howto_cn":"前往风之矛，在圣职者驻地（Vestal Garrison）与索普检查站（Checkpoint Thorp）之间寻找贩卖机。利克托黑站点是附近的另一个点位。","img":"assets/locations/12.jpg","week_seen":null,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"]},{"key":"ascension_plaza","order":14,"orders":[14],"jp":"アセンション・プラザ","en":"Ascension Plaza","cn":"飞升广场","chain_cn":["圣城","飞升广场"],"chain_jp":["ドミニオン","アセンション・プラザ"],"region_jp":"ドミニオン","region_en":"Dominion","target_jp":"アセンション・プラザ","howto_cn":"前往圣城的飞升广场。","img":"assets/locations/14.jpg","week_seen":null,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"]},{"key":"boneview_coast","order":15,"orders":[15],"jp":"骨見海岸","en":"Boneview Coast","cn":"观骨海岸","chain_cn":["隐没旷野","桑迪托别墅","观骨海岸"],"chain_jp":["フェードフィールド","サンディートゥー・ヴィラ","骨見海岸"],"region_jp":"フェードフィールド","region_en":"Fadefields","target_jp":"骨見海岸","howto_cn":"在隐没旷野的桑迪托别墅一带寻找观骨海岸。","img":"assets/locations/15.jpg","week_seen":null,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"]},{"key":"embracers_cliff","order":16,"orders":[16],"jp":"エンブレイサーの絶壁","en":"Embracer's Cliff","cn":"拥抱者断崖","chain_cn":["卡卡地亚焚毁区","侧倾斜面","拥抱者断崖"],"chain_jp":["カルカディア・バーン","ロップサイド","エンブレイサーの絶壁"],"region_jp":"カルカディア・バーン","region_en":"Carcadia Burns","target_jp":"エンブレイサーの絶壁","howto_cn":"前往卡卡地亚焚毁区的侧倾斜面，寻找拥抱者断崖。","img":"assets/locations/16.jpg","week_seen":null,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"]},{"key":"stoneblood_forest","order":18,"orders":[18],"jp":"ストーンブラッドの森","en":"Stoneblood Forest","cn":"石血森林","chain_cn":["终点山脉","石血森林","封圣之杯"],"chain_jp":["ターミナス・レンジ","ストーンブラッドの森","列聖の盃"],"region_jp":"ターミナス・レンジ","region_en":"Terminus Range","target_jp":"列聖の盃","howto_cn":"前往终点山脉的石血森林，在封圣之杯附近寻找贩卖机。","img":"assets/locations/18.jpg","week_seen":null,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"]},{"key":"hals_handbasket","order":19,"orders":[19],"jp":"ルインド・サンプランズ","en":"Harl's Handbasket","cn":"哈尔的手篮","chain_cn":["卡卡地亚焚毁区","废墟洼地","哈尔的手篮"],"chain_jp":["カルカディア・バーン","ルインド・サンプランズ","ハルのハンドバスケット"],"region_jp":"カルカディア・バーン","region_en":"Carcadia Burns","target_jp":"ハルのハンドバスケット","howto_cn":"前往废墟洼地北部的哈尔的手篮。","img":"assets/locations/19.jpg","week_seen":null,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"]},{"key":"flarefeel","order":20,"orders":[20],"jp":"フレアフェル","en":"Flarefeel","cn":"弗莱尔费尔","chain_cn":["隐没旷野","饥荒平原","弗莱尔费尔"],"chain_jp":["フェードフィールド","飢えの平原","フレアフェル"],"region_jp":"フェードフィールド","region_en":"Fadefields","target_jp":"フレアフェル","howto_cn":"前往隐没旷野的饥荒平原，在弗莱尔费尔寻找贩卖机。","img":"assets/locations/20.jpg","week_seen":null,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"]},{"key":"terminus_district","order":21,"orders":[21],"jp":"ターミナス地区","en":"Terminus District","cn":"终点区","chain_cn":["圣城","终点区","凯洛斯第一新闻网"],"chain_jp":["ドミニオン","ターミナス地区","ワン・カイロス・ニュース・ネットワーク"],"region_jp":"ドミニオン","region_en":"Dominion","target_jp":"ワン・カイロス・ニュース・ネットワーク","howto_cn":"从美食广场安全屋（The Food Court）前往圣城终点区，在凯洛斯第一新闻网附近寻找贩卖机。","img":"assets/locations/21.jpg","week_seen":null,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"]},{"key":"lawless","order":23,"orders":[23],"jp":"ロウ・レイス","en":"Lawless","cn":"无法之地","chain_cn":["终点山脉","无法之地","弃置地"],"chain_jp":["ターミナス・レンジ","ロウ・レイス","キャスト・オフ"],"region_jp":"ターミナス・レンジ","region_en":"Terminus Range","target_jp":"キャスト・オフ","howto_cn":"前往终点山脉的无法之地，在弃置地一带寻找贩卖机。","img":"assets/locations/23.jpg","week_seen":null,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"]},{"key":"tonidge_peel","order":24,"orders":[24],"jp":"トネッジ・ピール","en":"Tonidge Peel","cn":"巨物遗址","chain_cn":["卡卡地亚焚毁区","巨物遗址"],"chain_jp":["カルカディア・バーン","トネッジ・ピール"],"region_jp":"カルカディア・バーン","region_en":"Carcadia Burns","target_jp":"トネッジ・ピール","howto_cn":"前往卡卡地亚焚毁区的巨物遗址，按实景图寻找贩卖机。","img":"assets/locations/24.jpg","week_seen":null,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"]},{"key":"fade_district","order":25,"orders":[25],"jp":"フェード地区","en":"Fade District","cn":"隐没区","chain_cn":["圣城","隐没区"],"chain_jp":["ドミニオン","フェード地区"],"region_jp":"ドミニオン","region_en":"Dominion","target_jp":"フェード地区","howto_cn":"前往圣城的隐没区，按实景图寻找贩卖机。","img":"assets/locations/25.jpg","week_seen":null,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"]},{"key":"boglight_vigil","order":26,"orders":[26],"jp":"ボグライト・ヴィジランス","en":"Boglight Vigil","cn":"沼光岗哨","chain_cn":["隐没旷野","侵蚀高原","沼光岗哨"],"chain_jp":["フェードフィールド","解剖台地","ボグライト・ヴィジランス"],"region_jp":"フェードフィールド","region_en":"Fadefields","target_jp":"ボグライト・ヴィジランス","howto_cn":"前往隐没旷野的侵蚀高原，在沼光岗哨寻找贩卖机。","img":"assets/locations/26.jpg","week_seen":null,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"]},{"key":"killing_floor","order":27,"orders":[27],"jp":"キリング・フロア","en":"Killing Floor","cn":"屠宰场","chain_cn":["隐没旷野","侵蚀高原","屠宰场"],"chain_jp":["フェードフィールド","解剖台地","キリング・フロア"],"region_jp":"フェードフィールド","region_en":"Fadefields","target_jp":"キリング・フロア","howto_cn":"前往隐没旷野的侵蚀高原，在屠宰场寻找贩卖机。","img":"assets/locations/27.jpg","week_seen":null,"confidence":"community","sources":["Gamerch 日文攻略 Wiki（S2）"]}],"weeks":[{"week":1,"start":"2025-09-12","end":"2025-09-18","official":false,"boss":"","boss_cn":"","wildcard":"","wildcard_cn":"","hint_img":null,"hint_thumb":null,"hint_full":null,"location_key":"plungeford","location_status":"verified","location_note":"两来源交叉确认（FPS Index + Gamerch）"},{"week":2,"start":"2025-09-19","end":"2025-09-25","official":false,"boss":"","boss_cn":"","wildcard":"","wildcard_cn":"","hint_img":null,"hint_thumb":null,"hint_full":null,"location_key":"punitive_manufactory","location_status":"verified","location_note":"两来源交叉确认（FPS Index + Gamerch）"},{"week":3,"start":"2025-09-26","end":"2025-10-02","official":false,"boss":"","boss_cn":"","wildcard":"","wildcard_cn":"","hint_img":null,"hint_thumb":null,"hint_full":null,"location_key":"crumblehole","location_status":"verified","location_note":"两来源交叉确认（FPS Index + Gamerch）"},{"week":4,"start":"2025-10-03","end":"2025-10-09","official":true,"boss":"Driller Hole","boss_cn":"钻孔者霍尔","wildcard":"Mission: Means of Ascent (Deflector, Tricky, Cold Hearted)","wildcard_cn":"飞升之道（偏转、狡猾、冷酷）","hint_img":"fcbab5007122961f51e3449ada7b566fb97f3538.jpg","hint_thumb":"assets/hints/w04.jpg","hint_full":"assets/hints/full/w04.jpg","location_key":"rattlehead_crest","location_status":"verified","location_note":"两来源交叉确认（FPS Index + Gamerch）"},{"week":5,"start":"2025-10-10","end":"2025-10-16","official":true,"boss":"Directive-0","boss_cn":"零号指令","wildcard":"","wildcard_cn":"","hint_img":"3de28509eb4b36da86ca129c4b0387943053d0d3.jpg","hint_thumb":"assets/hints/w05.jpg","hint_full":"assets/hints/full/w05.jpg","location_key":"carcadia_district","location_status":"verified","location_note":"两来源交叉确认（FPS Index + Gamerch）"},{"week":6,"start":"2025-10-17","end":"2025-10-23","official":true,"boss":"The Oppressor","boss_cn":"压迫者","wildcard":"Mission: The Council Divided (Experienced, Strong, Leeching)","wildcard_cn":"分裂的议会（老练、强壮、汲取）","hint_img":"5bd3e61882423aa3d19bf644c8db339a6e5a49d1.jpg","hint_thumb":"assets/hints/w06.jpg","hint_full":"assets/hints/full/w06.jpg","location_key":"ruined_sumplands","location_status":"verified","location_note":"两来源交叉确认（FPS Index + Gamerch）"},{"week":7,"start":"2025-10-24","end":"2025-10-30","official":true,"boss":"The Battle Wagon","boss_cn":"战车","wildcard":"","wildcard_cn":"","hint_img":"3e6913fe5ab815cd56e7162acbc4a59b0587fd30.png","hint_thumb":"assets/hints/w07.jpg","hint_full":"assets/hints/full/w07.jpg","location_key":"elpis_orbital_shatterfield","location_status":"verified","location_note":"两来源交叉确认（FPS Index + Gamerch）"},{"week":8,"start":"2025-10-31","end":"2025-11-06","official":true,"boss":"Primordial Guardian Origo","boss_cn":"原初守护者奥里戈","wildcard":"","wildcard_cn":"","hint_img":"8f46efe84eabc2f5d519e77bff74d9bb8bb54b57.jpg","hint_thumb":"assets/hints/w08.jpg","hint_full":"assets/hints/full/w08.jpg","location_key":"heart_of_the_mountain","location_status":"verified","location_note":"两来源交叉确认（FPS Index + Gamerch）"},{"week":9,"start":"2025-11-07","end":"2025-11-13","official":true,"boss":"Pango Bango","boss_cn":"潘戈与班戈","wildcard":"Mission: Mob Rules (Healthy, Fortified, Regenerative)","wildcard_cn":"帮派规矩（强健、强化、再生）","hint_img":"5cd3e09b967b4c192ee992e28422f29274a86efd.jpg","hint_thumb":"assets/hints/w09.jpg","hint_full":"assets/hints/full/w09.jpg","location_key":"maestro_wreck","location_status":"verified","location_note":"两来源交叉确认（FPS Index + Gamerch）"},{"week":10,"start":"2025-11-14","end":"2025-11-20","official":true,"boss":"Voraxis","boss_cn":"沃拉克西斯","wildcard":"Mission: Primordial Vault: Carcadia Burn (Leaking, Contagious, Vengeful)","wildcard_cn":"原始秘藏（卡卡地亚焚毁区）（泄漏、传染、复仇）","hint_img":"8463b570ed7873c945b0379dcee1c4f130bccdcd.jpg","hint_thumb":"assets/hints/w10.jpg","hint_full":"assets/hints/full/w10.jpg","location_key":"darkloom_biosphere","location_status":"tentative","location_note":"推测位置为暗土生物球。Gamerch 将它列为第 10 个地点，德文攻略 bfcom.eu 当周只确认到同一区域的隐没区。"},{"week":11,"start":"2025-11-21","end":"2025-11-27","official":true,"boss":"Bio-Thresher Omega","boss_cn":"生化锤尾兽欧米伽","wildcard":"Mission: One Fell Swoop (Healthy, Ticking, Immovable)","wildcard_cn":"一击制胜（强健、倒计时、不动如山）","hint_img":"89328410539ba17c40dc1fb0b3a9a3190cd406ab.jpg","hint_thumb":"assets/hints/w11.jpg","hint_full":"assets/hints/full/w11.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":12,"start":"2025-11-28","end":"2025-12-04","official":false,"boss":"","boss_cn":"","wildcard":"","wildcard_cn":"","hint_img":null,"hint_thumb":null,"hint_full":null,"location_key":null,"location_status":"unknown","location_note":""},{"week":13,"start":"2025-12-05","end":"2025-12-11","official":true,"boss":"Shadowpelt","boss_cn":"影皮兽","wildcard":"Mission: His Vile Sanctum (Cold Hearted, Elemental Eater, Shielded)","wildcard_cn":"他的邪恶避难所（冷酷、元素吞噬、护盾）","hint_img":"aa1d1c700511e69c03b52fa0df7b70115ab15392.jpg","hint_thumb":"assets/hints/w13.jpg","hint_full":"assets/hints/full/w13.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":14,"start":"2025-12-12","end":"2025-12-18","official":true,"boss":"Bio-Bulkhead","boss_cn":"生化大块头","wildcard":"Mission: Her Flaming Vision (Invisible, Leaking, Shielded)","wildcard_cn":"她燃烧的幻象（隐形、泄漏、护盾）","hint_img":"e0226cbfecc4c9e2c15183c1fedd7d7f5d2bae83.jpg","hint_thumb":"assets/hints/w14.jpg","hint_full":"assets/hints/full/w14.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":15,"start":"2025-12-19","end":"2025-12-25","official":true,"boss":"Primordial Guardian Inceptus / Primordial Guardian Origo / Primordial Guardian Radix","boss_cn":"原初守护者因赛普特斯、原初守护者奥里戈、原初守护者拉迪克斯","wildcard":"","wildcard_cn":"","hint_img":"38ad41f053ac10204cf33e7db53b58a2bf8994f6.jpg","hint_thumb":"assets/hints/w15.jpg","hint_full":"assets/hints/full/w15.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":16,"start":"2025-12-26","end":"2026-01-01","official":false,"boss":"","boss_cn":"","wildcard":"","wildcard_cn":"","hint_img":null,"hint_thumb":null,"hint_full":null,"location_key":null,"location_status":"unknown","location_note":""},{"week":17,"start":"2026-01-02","end":"2026-01-08","official":false,"boss":"","boss_cn":"","wildcard":"","wildcard_cn":"","hint_img":null,"hint_thumb":null,"hint_full":null,"location_key":null,"location_status":"unknown","location_note":""},{"week":18,"start":"2026-01-09","end":"2026-01-15","official":true,"boss":"Genone","boss_cn":"杰农","wildcard":"Mission: Another Day, Another Universe (Experienced, Arms Dealer, Strong)","wildcard_cn":"又一天，又一个宇宙（老练、军火商、强壮）","hint_img":"696dfcbb8fd4681605a107290fa96acc07180b29.jpg","hint_thumb":"assets/hints/w18.jpg","hint_full":"assets/hints/full/w18.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":19,"start":"2026-01-16","end":"2026-01-22","official":true,"boss":"Foundry Freaks","boss_cn":"铸造厂怪胎","wildcard":"Mission: One Fell Swoop (Experienced, Vampiric, Strong)","wildcard_cn":"一击制胜（老练、吸血、强壮）","hint_img":"239b4b95ecb32fbe3112aed2b216fd52c21e5ffa.jpg","hint_thumb":"assets/hints/w19.jpg","hint_full":"assets/hints/full/w19.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":20,"start":"2026-01-23","end":"2026-01-29","official":true,"boss":"Axemaul","boss_cn":"斧咬兽","wildcard":"Mission: Unpaid Tab (Ticking, Contagious, Armored)","wildcard_cn":"未结账单（倒计时、传染、装甲）","hint_img":"dfe8e4de1f03c2c7ef6cd6aaf298824197f80f1d.jpg","hint_thumb":"assets/hints/w20.jpg","hint_full":"assets/hints/full/w20.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":21,"start":"2026-01-30","end":"2026-02-05","official":true,"boss":"Leader Willem","boss_cn":"领袖威廉","wildcard":"Mission: All Charged Up (Chain Master, Elemental Eater, Centripetal)","wildcard_cn":"充能完毕（连锁大师、元素吞噬、向心）","hint_img":"23d975edc8a5abf1c1a278ba190adab0cad3b0e7.jpg","hint_thumb":"assets/hints/w21.jpg","hint_full":"assets/hints/full/w21.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":22,"start":"2026-02-06","end":"2026-02-12","official":true,"boss":"Skyspanner Kratch","boss_cn":"擎天者克拉奇","wildcard":"Mission: Primordial Vault: Carcadia Burn (Armored, Chain Master, Strong)","wildcard_cn":"原始秘藏（卡卡地亚焚毁区）（装甲、连锁大师、强壮）","hint_img":"66e357a65d3fef2216260d276064b4537b086e7f.jpg","hint_thumb":"assets/hints/w22.jpg","hint_full":"assets/hints/full/w22.jpg","location_key":"terminus_district","location_status":"reported","location_note":"Eurogamer 于 2026 年 2 月 10 日记录，贩卖机位于终点区的凯洛斯第一新闻网附近。"},{"week":23,"start":"2026-02-13","end":"2026-02-19","official":true,"boss":"Idolator Sol / Vile Lictor / Callis, the Ripper Queen","boss_cn":"偶像崇拜者索尔、邪恶利克托、开颅女王卡利斯","wildcard":"Mission: Breeding Daisies (Leaking, Contagious, Cold-Hearted)","wildcard_cn":"培育雏菊（泄漏、传染、冷酷）","hint_img":"409f94ab99110b88e873657fbfa689bb4e3538ec.jpg","hint_thumb":"assets/hints/w23.jpg","hint_full":"assets/hints/full/w23.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":24,"start":"2026-02-20","end":"2026-02-26","official":true,"boss":"Skull Orchid","boss_cn":"颅骨兰","wildcard":"Mission: Old Lads (Shielded, Armored, Fortified)","wildcard_cn":"老伙计（护盾、装甲、强化）","hint_img":"092131ec62ebc13a500f6b7502748442545741bc.jpg","hint_thumb":"assets/hints/w24.jpg","hint_full":"assets/hints/full/w24.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":25,"start":"2026-02-27","end":"2026-03-05","official":true,"boss":"Horace","boss_cn":"霍勒斯","wildcard":"Mission: Primordial Vault: Fadefields (Quickened, Immovable, Chromatic)","wildcard_cn":"原始秘藏（隐没旷野）（加速、不动如山、变色）","hint_img":"deffa6656eb8940893f0005d0f365cdaf9e92907.png","hint_thumb":"assets/hints/w25.jpg","hint_full":"assets/hints/full/w25.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":26,"start":"2026-03-06","end":"2026-03-12","official":true,"boss":"Vile Prototype","boss_cn":"邪恶原型","wildcard":"Mission: Primordial Vault: Terminus Range (Cold Hearted, Shielded, Invisible)","wildcard_cn":"原始秘藏（终点山脉）（冷酷、护盾、隐形）","hint_img":"a02050e0cd08de10440421dfd4a9409e468b199b.jpg","hint_thumb":"assets/hints/w26.jpg","hint_full":"assets/hints/full/w26.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":27,"start":"2026-03-13","end":"2026-03-19","official":true,"boss":"Backhive / Rocken Roller / Driller Hole","boss_cn":"背巢兽、摇滚滚轮、钻孔者霍尔","wildcard":"Mission: Primordial Vault: Carcadia Burn (Armored, Chain Master, Strong)","wildcard_cn":"原始秘藏（卡卡地亚焚毁区）（装甲、连锁大师、强壮）","hint_img":"f6257d8c4afc532df041119187694fd4113f73b1.jpg","hint_thumb":"assets/hints/w27.jpg","hint_full":"assets/hints/full/w27.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":28,"start":"2026-03-20","end":"2026-03-26","official":true,"boss":"","boss_cn":"","wildcard":"","wildcard_cn":"","hint_img":"1631c18dff02e990ac387e70fcc884577cda1f2a.jpg","hint_thumb":"assets/hints/w28.jpg","hint_full":"assets/hints/full/w28.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":29,"start":"2026-03-27","end":"2026-04-02","official":true,"boss":"Meathead Riders","boss_cn":"肉头骑手","wildcard":"Mission: Bad Seed Pt. 2 (Leaking, Chromatic, Quickened)","wildcard_cn":"坏种第二章（泄漏、变色、加速）","hint_img":"ef76304358f185872b735a9792403fa71f11534d.jpg","hint_thumb":"assets/hints/w29.jpg","hint_full":"assets/hints/full/w29.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":30,"start":"2026-04-03","end":"2026-04-09","official":true,"boss":"Arjay / The Timekeeper / Moon-Maddened Callis","boss_cn":"阿尔杰、时间尊者、月狂卡利斯","wildcard":"Mission: Rising Action (Regenerative, Shielded, Elemental Eater)","wildcard_cn":"剧情升温（再生、护盾、元素吞噬）","hint_img":"d4ba0737fb503df9cdf69cb6013b1f7a7d479050.jpg","hint_thumb":"assets/hints/w30.jpg","hint_full":"assets/hints/full/w30.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":31,"start":"2026-04-10","end":"2026-04-16","official":true,"boss":"Mimicron","boss_cn":"拟态机","wildcard":"Mission: Savage Salvage (Leaking, Healthy, Ticking)","wildcard_cn":"野蛮打捞（泄漏、强健、倒计时）","hint_img":"a1f1f0e0c7b3db77f4c83995c10f1aeba8a9d15d.jpg","hint_thumb":"assets/hints/w31.jpg","hint_full":"assets/hints/full/w31.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":32,"start":"2026-04-17","end":"2026-04-23","official":true,"boss":"Sludgemaw","boss_cn":"泥浆巨口","wildcard":"Mission: Rush the Gate (Chain Master, Chromatic, Leaking)","wildcard_cn":"冲击大门（连锁大师、变色、泄漏）","hint_img":"89eb8ab0eb65ba503c8f0d29c6342a9c63b57e84.jpg","hint_thumb":"assets/hints/w32.jpg","hint_full":"assets/hints/full/w32.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":33,"start":"2026-04-24","end":"2026-04-30","official":true,"boss":"Bramblesong","boss_cn":"荆棘之歌","wildcard":"Mission: Siege and Destroy (Vengeful, Ticking, Tricky)","wildcard_cn":"围攻与摧毁（复仇、倒计时、狡猾）","hint_img":"8f67a4218e8ad90ce328da526bf7600a7e85c6fb.jpg","hint_thumb":"assets/hints/w33.jpg","hint_full":"assets/hints/full/w33.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":34,"start":"2026-05-01","end":"2026-05-07","official":true,"boss":"Divisioner","boss_cn":"分裂者","wildcard":"Mission: His Vile Sanctum (Armored, Deal With It, Invulnerable)","wildcard_cn":"他的邪恶避难所（装甲、自己想办法、无敌）","hint_img":"0344a982676943f696218c01c6e04e94e9ce259c.jpg","hint_thumb":"assets/hints/w34.jpg","hint_full":"assets/hints/full/w34.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":35,"start":"2026-05-08","end":"2026-05-14","official":true,"boss":"Rippa Roadbirds","boss_cn":"裂路鸟帮","wildcard":"Mission: A Lot to Process (Fortified, Shielded, Experienced)","wildcard_cn":"有太多事要处理（强化、护盾、老练）","hint_img":"38a078ab5c3759f3300ae077c28d96ae59f045e9.jpg","hint_thumb":"assets/hints/w35.jpg","hint_full":"assets/hints/full/w35.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":36,"start":"2026-05-15","end":"2026-05-21","official":true,"boss":"Foundry Freaks / Idolator Sol / Splashzone / Primordial Guardian Inceptus","boss_cn":"铸造厂怪胎、偶像崇拜者索尔、飞溅区、原初守护者因赛普特斯","wildcard":"Mission: Her Flaming Vision (Healthy, Chain Master, Deflector)","wildcard_cn":"她燃烧的幻象（强健、连锁大师、偏转）","hint_img":"ec16c79641f24c1522bf58f6ed057c6b4d4bdf38.jpg","hint_thumb":"assets/hints/w36.jpg","hint_full":"assets/hints/full/w36.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":37,"start":"2026-05-22","end":"2026-05-28","official":true,"boss":"Vile Ted & The Experiments","boss_cn":"邪恶泰德与实验体","wildcard":"Mission: Dark Subject (Leaking, Strong, Vampiric)","wildcard_cn":"黑暗实验（泄漏、强壮、吸血）","hint_img":"572f40be9203422bfd8ebd1bde979a55483f98c7.jpg","hint_thumb":"assets/hints/w37.jpg","hint_full":"assets/hints/full/w37.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":38,"start":"2026-05-29","end":"2026-06-04","official":true,"boss":"Fractis","boss_cn":"碎裂者","wildcard":"Mission: Rush the Gate (Quickened, Chromatic, Immovable)","wildcard_cn":"冲击大门（加速、变色、不动如山）","hint_img":"70fdadd5d1cff1dbcb4aa7b5665db0db33ff6415.jpg","hint_thumb":"assets/hints/w38.jpg","hint_full":"assets/hints/full/w38.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":39,"start":"2026-06-05","end":"2026-06-11","official":true,"boss":"Primordial Guardian Radix","boss_cn":"原初守护者拉迪克斯","wildcard":"Mission: AAA For Effort (Singularity, Armored, Leaking)","wildcard_cn":"努力值三 A（奇点、装甲、泄漏）","hint_img":"d52d2e75c70dfc27a7540cdb08753073941676ba.jpg","hint_thumb":"assets/hints/w39.jpg","hint_full":"assets/hints/full/w39.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":40,"start":"2026-06-12","end":"2026-06-18","official":true,"boss":"The Oppressor","boss_cn":"压迫者","wildcard":"Mission: Life's Purpose (Chromatic, Shielded, Contagious)","wildcard_cn":"人生目标（变色、护盾、传染）","hint_img":"ddb48de0227bb7826c965df96b5a45fece5b78e7.jpg","hint_thumb":"assets/hints/w40.jpg","hint_full":"assets/hints/full/w40.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":41,"start":"2026-06-19","end":"2026-06-25","official":true,"boss":"Mimicron / Genone / Callous Harbinger of Annihilating Death","boss_cn":"拟态机、杰农、冷酷的湮灭死亡使者","wildcard":"Mission: Flat Kairoser (Vampiric, Healthy, Regenerative)","wildcard_cn":"平面凯洛斯论者（吸血、强健、再生）","hint_img":"9087e5ddaa3ada1ffd7bd0833bc24b1ad5533a84.jpg","hint_thumb":"assets/hints/w41.jpg","hint_full":"assets/hints/full/w41.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":42,"start":"2026-06-26","end":"2026-07-02","official":true,"boss":"Directive-0","boss_cn":"零号指令","wildcard":"Mission: ClapGen (Vampiric, Strong, Quickened)","wildcard_cn":"小吵闹发电机（吸血、强壮、加速）","hint_img":"a93f5ab89e74418317ce76eefadad99e8050abde.jpg","hint_thumb":"assets/hints/w42.jpg","hint_full":"assets/hints/full/w42.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":43,"start":"2026-07-03","end":"2026-07-09","official":true,"boss":"Leader Willem / Rippa Roadbirds / Splashzone / Horace","boss_cn":"领袖威廉、裂路鸟帮、飞溅区、霍勒斯","wildcard":"Mission: Sage Against the Machine (Quartermaster, Elemental Eater, Ticking)","wildcard_cn":"智者对抗机器（军需官、元素吞噬、倒计时）","hint_img":"ab10c4ed87cbd33c59a9d80cd43fc1011d7935f0.jpg","hint_thumb":"assets/hints/w43.jpg","hint_full":"assets/hints/full/w43.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":44,"start":"2026-07-10","end":"2026-07-16","official":true,"boss":"Skull Orchid","boss_cn":"颅骨兰","wildcard":"Mission: Old Raymond (Leaking, Cold Hearted, Centripetal)","wildcard_cn":"老雷蒙德（泄漏、冷酷、向心）","hint_img":"4bca49f116f91cb7014dd63c07ac266c47663050.jpg","hint_thumb":"assets/hints/w44.jpg","hint_full":"assets/hints/full/w44.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":45,"start":"2026-07-17","end":"2026-07-23","official":true,"boss":"","boss_cn":"","wildcard":"Mission: Old Lads (Vampiric, Tricky, Armored)","wildcard_cn":"老伙计（吸血、狡猾、装甲）","hint_img":"a4bcc1d59bfe180751f29c796a85f0cc0d924a5b.jpg","hint_thumb":"assets/hints/w45.jpg","hint_full":"assets/hints/full/w45.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":46,"start":"2026-07-24","end":"2026-07-30","official":true,"boss":"Divisioner","boss_cn":"分裂者","wildcard":"Mission: Exit Through the Rift Shop (Experienced, Contagious, Deflector)","wildcard_cn":"从裂隙商店离开（老练、传染、偏转）","hint_img":"544cf06a349746b7fdf57a6d7bb4a9af354afe8d.jpg","hint_thumb":"assets/hints/w46.jpg","hint_full":"assets/hints/full/w46.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":47,"start":"2026-07-31","end":"2026-08-06","official":true,"boss":"Bio-Bulkhead","boss_cn":"生化大块头","wildcard":"Mission: Hangover Helper (Chain Master, Quickened, Shielded)","wildcard_cn":"解宿醉（连锁大师、加速、护盾）","hint_img":"b65be77a331b1bf1a00ff42d632a6bf147fc37c0.jpg","hint_thumb":"assets/hints/w47.jpg","hint_full":"assets/hints/full/w47.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":48,"start":"2026-08-07","end":"2026-08-13","official":true,"boss":"Rocken Roller / Axemaul / Shadowpelt","boss_cn":"摇滚滚轮、斧咬兽、影皮兽","wildcard":"Mission: Savage Salvage (Healthy, Shielded, Armored)","wildcard_cn":"野蛮打捞（强健、护盾、装甲）","hint_img":"832566765d0dce548b4cb7ffb4294c1bbde9f563.jpg","hint_thumb":"assets/hints/w48.jpg","hint_full":"assets/hints/full/w48.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":49,"start":"2026-08-14","end":"2026-08-20","official":true,"boss":"Core Observer","boss_cn":"核心观察者","wildcard":"Mission: One Slimy Issue (Healthy, Regenerative, Deflector)","wildcard_cn":"黏糊糊的麻烦（强健、再生、偏转）","hint_img":"0c9cc869005a16928dbcdd44935ff9385d00cb46.jpg","hint_thumb":"assets/hints/w49.jpg","hint_full":"assets/hints/full/w49.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":50,"start":"2026-08-21","end":"2026-08-27","official":true,"boss":"Pango and Bango","boss_cn":"潘戈与班戈","wildcard":"Mission: Wayward Gun (Leaking, Centripetal, Tricky)","wildcard_cn":"任性的枪（泄漏、向心、狡猾）","hint_img":"1b9a8bb8734e13d2453adc45d6ba2bfb3b93aeeb.jpg","hint_thumb":"assets/hints/w50.jpg","hint_full":"assets/hints/full/w50.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":51,"start":"2026-08-28","end":"2026-09-03","official":true,"boss":"Bio-Thresher Omega","boss_cn":"生化锤尾兽欧米伽","wildcard":"Mission: The Power Ballad of Rodd Vomit (Vampiric, Shielded, Sulfur Hexaflouride)","wildcard_cn":"罗德·沃米特的力量歌谣（吸血、护盾、六氟化硫）","hint_img":"79f9b2848e2e87b3126fab8efa92e04465be5ed7.jpg","hint_thumb":"assets/hints/w51.jpg","hint_full":"assets/hints/full/w51.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":52,"start":"2026-09-04","end":"2026-09-10","official":true,"boss":"Callis, The Ripper Queen","boss_cn":"开颅女王卡利斯","wildcard":"","wildcard_cn":"","hint_img":"630097449774fedfdb366c1e7f2e7819c452c197.jpg","hint_thumb":"assets/hints/w52.jpg","hint_full":"assets/hints/full/w52.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":53,"start":"2026-09-11","end":"2026-09-17","official":true,"boss":"Sidney Pointylegs","boss_cn":"尖腿西德尼","wildcard":"Mission: Overwriting a Wrong (Tricky, Quartermaster, Arms Dealer)","wildcard_cn":"改写错误（狡猾、军需官、军火商）","hint_img":"71f9fff2aff2a1684201d38e1ce7dbb8a5538b42.jpg","hint_thumb":"assets/hints/w53.jpg","hint_full":"assets/hints/full/w53.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":54,"start":"2026-09-18","end":"2026-09-24","official":true,"boss":"Idolator Sol / The Timekeeper / Vile Prototype / Fractis","boss_cn":"偶像崇拜者索尔、时间尊者、邪恶原型、碎裂者","wildcard":"Mission: Hangover Helper (Centripetal, Irritable, Quickened)","wildcard_cn":"解宿醉（向心、易怒、加速）","hint_img":"4fadd3417f6c4ec394633d9d7c47c3bfc83d69f5.jpg","hint_thumb":"assets/hints/w54.jpg","hint_full":"assets/hints/full/w54.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":55,"start":"2026-09-25","end":"2026-10-01","official":true,"boss":"Sludgemaw","boss_cn":"泥浆巨口","wildcard":"Mission: The Falling Wall (Cold Hearted, Elemental Eater, Armored)","wildcard_cn":"崩塌之墙（冷酷、元素吞噬、装甲）","hint_img":"c1ab591a3729d124f0df4d00175884f80e1a1b6a.jpg","hint_thumb":"assets/hints/w55.jpg","hint_full":"assets/hints/full/w55.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":56,"start":"2026-10-02","end":"2026-10-08","official":true,"boss":"Sidney Pointylegs","boss_cn":"尖腿西德尼","wildcard":"Mission: Hangover Helper (Robin Colinson, Quickened, Irritable)","wildcard_cn":"解宿醉（罗宾·科林森、加速、易怒）","hint_img":"1b8fe4e5a7f3778766416bc991f8b23c35e6bd9f.jpg","hint_thumb":"assets/hints/w56.jpg","hint_full":"assets/hints/full/w56.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":57,"start":"2026-10-09","end":"2026-10-15","official":true,"boss":"Mimicron","boss_cn":"拟态机","wildcard":"Mission: Savage Salvage (Healthy, Irritable, Chain Master)","wildcard_cn":"野蛮打捞（强健、易怒、连锁大师）","hint_img":"e5bb61bb8f47d50735576ee7d5594aa372a52382.jpg","hint_thumb":"assets/hints/w57.jpg","hint_full":"assets/hints/full/w57.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":58,"start":"2026-10-16","end":"2026-10-22","official":true,"boss":"Core Observer","boss_cn":"核心观察者","wildcard":"Mission: Rising Action (Centripetal, Sulfur Hexafluoride, Wealthy)","wildcard_cn":"剧情升温（向心、六氟化硫、富有）","hint_img":"f4c8b120362a1eab90f8e8017abcfa711850fa7b.jpg","hint_thumb":"assets/hints/w58.jpg","hint_full":"assets/hints/full/w58.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":59,"start":"2026-10-23","end":"2026-10-29","official":true,"boss":"Driller Hole","boss_cn":"钻孔者霍尔","wildcard":"Mission: Old Lads (Vampiric, Armored, Strong)","wildcard_cn":"老伙计（吸血、装甲、强壮）","hint_img":"c895ee86e600b6ca72040bd18bb97474fc97575b.jpg","hint_thumb":"assets/hints/w59.jpg","hint_full":"assets/hints/full/w59.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":60,"start":"2026-10-30","end":"2026-11-05","official":true,"boss":"Core Observer / Divisioner / Fractis / Directive-0","boss_cn":"核心观察者、分裂者、碎裂者、零号指令","wildcard":"Mission: The Falling Wall (Sulfur Hexafluoride, Centripetal, Immovable)","wildcard_cn":"崩塌之墙（六氟化硫、向心、不动如山）","hint_img":"662647a07dfee6ea612c405853d635f6d72b739b.jpg","hint_thumb":"assets/hints/w60.jpg","hint_full":"assets/hints/full/w60.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":61,"start":"2026-11-06","end":"2026-11-12","official":true,"boss":"The Battle Wagon","boss_cn":"战车","wildcard":"Mission: One Slimy Issue (Wimpy, Ticking, Dazed)","wildcard_cn":"黏糊糊的麻烦（软弱、倒计时、眩晕）","hint_img":"20d388a716e1df688b881b48d4c093cb17edc36a.jpg","hint_thumb":"assets/hints/w61.jpg","hint_full":"assets/hints/full/w61.jpg","location_key":null,"location_status":"unknown","location_note":""},{"week":62,"start":"2026-11-13","end":"2026-11-19","official":true,"boss":"Pango & Bango","boss_cn":"潘戈与班戈","wildcard":"Mission: His Vile Sanctum (Irritable, Centripetal, Leaking)","wildcard_cn":"他的邪恶避难所（易怒、向心、泄漏）","hint_img":"3a5e7c00158f935e21cca9c0332d96d74955fe3f.jpg","hint_thumb":"assets/hints/w62.jpg","hint_full":"assets/hints/full/w62.jpg","location_key":"elpis_orbital_shatterfield","location_status":"verified","location_note":"B 站实拍（BV1pzWd64ESc）与 MentalMars（S7）均指向厄尔皮斯轨道破碎区（Elpis Orbital Shatterfield）。"}]};
+const WEEK1 = Date.parse(`${DATA.meta.week1_start}T00:00:00+08:00`);
+const WEEK_MS = 7*24*3600*1000;
+const HOUR_MS = 3600000;
+const pacificHour = new Intl.DateTimeFormat('en', {timeZone:'America/Los_Angeles', hour:'numeric', hourCycle:'h23'});
+
+const byWeek = new Map(DATA.weeks.map(w=>[w.week,w]));
+const byKey  = new Map(DATA.locations.map(l=>[l.key,l]));
+const REGION_ORDER = ['Fadefields','Terminus Range','Carcadia Burns','Dominion','Elpis'];
+
+function nowWeek(){ return Math.floor((Date.now()-WEEK1)/WEEK_MS)+1; }
+function nextReset(now = Date.now()){
+  // 北京周五 00:00 对应太平洋时间周四 08:00 或 09:00。
+  const friday = WEEK1 + Math.floor((now-WEEK1)/WEEK_MS)*WEEK_MS;
+  const estimate = midnight => midnight + (9-Number(pacificHour.format(midnight)))*HOUR_MS;
+  const thisReset = estimate(friday);
+  return thisReset > now ? thisReset : estimate(friday+WEEK_MS);
+}
+function fmtDate(s){ return s; }
+function esc(s){ return (s==null?'':String(s)).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function locationSearchText(loc){
+  return loc ? [loc.cn, loc.en, loc.jp, ...loc.chain_cn, ...loc.chain_jp, loc.howto_cn].join(' ').toLowerCase() : '';
+}
+function statusPill(w){
+  if(w.location_status==='verified') return '<span class="pill ok">位置已确认</span>';
+  if(w.location_status==='reported') return '<span class="pill ok">社区实拍确认</span>';
+  if(w.location_status==='tentative') return '<span class="pill warn">位置：推测</span>';
+  return '<span class="pill warn">位置：待社区确认</span>';
+}
+function weekRow(w, active){
+  const loc = byKey.get(w.location_key);
+  const st = w.location_status==='verified'||w.location_status==='reported' ? 'ok' : (w.location_status==='tentative'?'warn':'na');
+  const label = w.location_status==='verified' ? '已确认' : (w.location_status==='reported' ? '实拍' : (w.location_status==='tentative' ? '推测' : '待确认'));
+  return `<div class="row ${active?'active':''}" data-view="week:${w.week}">
+    <span class="wk">W${w.week}</span><span class="nm">${fmtDate(w.start).slice(5)} → ${fmtDate(w.end).slice(5)}</span>
+    <span class="st ${st}">${label}</span>
+  </div>`;
+}
+
+/* ---------------- 侧边栏 ---------------- */
+let curView = null;
+function renderNav(filter){
+  const q = (filter||'').trim().toLowerCase();
+  const cw = nowWeek();
+  const nav = document.getElementById('nav');
+  let h = '';
+
+  const navItems = [
+    `<div class="row ${curView==='about'?'active':''}" data-view="about"><span class="wk">?</span><span class="nm">机制与数据来源</span></div>`
+  ];
+  h += `<div class="grp"><h3>当前</h3>${navItems.join('')}</div>`;
+
+  // 周次（倒序）
+  const weeks = [...DATA.weeks].sort((a,b)=>b.week-a.week);
+  const wrows = weeks.filter(w=>{
+    if(!q) return true;
+    const loc = byKey.get(w.location_key);
+    const hay = `w${w.week} 第${w.week}周 第 ${w.week} 周 ${w.start} ${w.end} ${locationSearchText(loc)}`;
+    return hay.includes(q);
+  }).map(w=>weekRow(w, curView==='week:'+w.week)).join('');
+  const weekBlock = `<div class="grp"><h3>周次（第 ${cw} 周为本周）</h3>${wrows}</div>`;
+
+  // 地点库（按区域）
+  const groups = {};
+  for(const l of DATA.locations){
+    const r = l.region_en || '其他';
+    (groups[r] = groups[r] || []).push(l);
+  }
+  const order = REGION_ORDER.filter(r=>groups[r]).concat(Object.keys(groups).filter(r=>!REGION_ORDER.includes(r)));
+  let lrows = '';
+  for(const r of order){
+    const items = groups[r].filter(l=>{
+      if(!q) return true;
+      return locationSearchText(l).includes(q);
+    });
+    if(!items.length) continue;
+    lrows += `<div class="regionhead"><span class="dot"></span>${esc(items[0].chain_cn[0])}</div>`;
+    for(const l of items){
+      const active = curView==='loc:'+l.key;
+      const seen = l.weeks && l.weeks.length ? 'W'+l.weeks.join(',W') : '';
+      lrows += `<div class="row small ${active?'active':''}" data-view="loc:${l.key}">
+        <span class="nm" title="${esc(l.en + ' · ' + l.jp)}">${esc(l.cn)}</span>${seen?`<span class="loc">${seen}</span>`:''}</div>`;
+    }
+  }
+  if(lrows) h += `<div class="grp"><h3>地点库（${DATA.locations.length} 个已知点位）</h3>${lrows}</div>`;
+  h += weekBlock;
+
+  nav.innerHTML = h;
+}
+
+/* ---------------- 视图 ---------------- */
+function renderWeek(week){
+  const w = byWeek.get(week);
+  if(!w) return renderMissing(week);
+  const loc = byKey.get(w.location_key);
+  const cw = nowWeek();
+  const isNow = week===cw;
+  const st = statusPill(w);
+
+  const locBlock = loc ? `
+    <div class="grid c2">
+      <div class="card">
+        <h2>怎么去</h2>
+        <div class="howto">${esc(loc.howto_cn)}</div>
+        <div class="kv"><div class="k">地图路径</div><div class="v">${loc.chain_cn.map(esc).join(' <span style="color:#5b6379">›</span> ')}</div></div>
+        <div class="kv"><div class="k">出现过</div><div class="v">${(loc.weeks&&loc.weeks.length)?loc.weeks.map(x=>`<a href="#week-${x}" data-view="week:${x}">W${x}</a>`).join('、'):'—'}</div></div>
+      </div>
+      <div class="card">
+        <h2>地点实景（社区截图）</h2>
+        <div class="hintwrap" style="aspect-ratio:16/9"><img src="${loc.img}" alt="${esc(loc.cn)}" data-zoom="${loc.img}"></div>
+        <div class="hintbar"><span class="tag">${esc(loc.cn)}</span><span>${esc(loc.en)}</span></div>
+      </div>
+    </div>` : `
+    <div class="card" style="margin-top:18px">
+      <h2>本周位置：官方只给线索图</h2>
+      <div class="note" style="margin-bottom:10px">
+        2K 每周只发布一张<b>官方线索图</b>，不公布地名；社区确认后才会写入数据。
+        当前版本尚未拿到本周的社区确认，所以这里先显示官方线索图，并把已知地点的实景放在下方供比对。
+      </div>
+      ${w.hint_full?`<div class="hintwrap"><img src="${w.hint_full}" alt="本周官方线索图" data-zoom="${w.hint_full}"></div>
+      <div class="hintbar"><span class="tag">官方线索图</span><span>点击放大 · 与下方“地点实景”对照地形</span></div>`:'<div class="note">本周官方线索图尚未收录。</div>'}
+    </div>`;
+
+  const hintCard = (loc && w.hint_full) ? `
+    <div class="card" style="margin-top:14px">
+      <h2>本周官方线索图</h2>
+      <div class="hintwrap"><img src="${w.hint_full}" alt="官方线索图" data-zoom="${w.hint_full}"></div>
+      <div class="hintbar"><span class="tag">官方</span><span>与上面的地点实景对照，可确认机器具体藏点</span></div>
+    </div>` : '';
+
+  const compare = loc ? '' : `
+    <div class="card" style="margin-top:14px">
+      <h2>已知地点实景对照（帮助比对线索图）</h2>
+      <div class="note">按区域排列，共 ${DATA.locations.length} 个点位。点任意一张进入地点详情。</div>
+      <div class="gall">
+        ${DATA.locations.map(l=>`<div class="item" data-view="loc:${l.key}">
+          <img src="${l.img}" alt="${esc(l.cn)}">
+          <div class="cap">${esc(l.cn)}</div>
+        </div>`).join('')}
+      </div>
+    </div>`;
+
+  const countdown = isNow ? `
+    <div class="card" style="margin-top:14px">
+      <h2>距离下次刷新</h2>
+    <div class="count"><span class="num" id="cd">--</span><span class="lab">按太平洋时间周四 09:00 估算</span></div>
+    </div>` : '';
+
+  document.getElementById('main').innerHTML = `
+    <div class="topline">
+      <span class="pill acc">第 ${w.week} 周</span>
+      <span class="pill">${w.start} → ${w.end}</span>
+      ${isNow?'<span class="pill ok">本周</span>':''}
+      ${st}
+      ${w.official?'<span class="pill">官方活动已发布</span>':'<span class="pill">官方活动帖未收录</span>'}
+    </div>
+    <h1 class="hero">${loc?esc(loc.cn):'本周位置待确认'}${loc?`<span class="small">${esc(loc.en)}</span>`:''}</h1>
+    ${loc?`<div class="crumb">${loc.chain_cn.map((x,i)=>`<span class="${i===loc.chain_cn.length-1?'last':''}">${esc(x)}</span>`).join('<span class="sep">›</span>')}</div>`:
+      `<div class="crumb"><span>${w.hint_full?'已收录官方线索图':'暂无本地线索图'}</span><span class="sep">·</span><span>等待社区确认点位</span></div>`}
+
+    ${w.location_note?`<div class="card" style="margin-top:14px"><h2>备注</h2><div class="note">${esc(w.location_note)}</div></div>`:''}
+
+    ${locBlock}
+    ${hintCard}
+    <div class="grid c3" style="margin-top:14px">
+      <div class="card"><h2>每周盛大安可首领</h2><div class="big" title="${esc(w.boss)}">${esc(w.boss_cn || '—')}</div></div>
+      <div class="card" style="grid-column:span 2"><h2>每周万用任务</h2><div class="big" style="font-size:16px" title="${esc(w.wildcard)}">${esc(w.wildcard_cn || '—')}</div></div>
+    </div>
+    ${countdown}
+    ${compare}
+    <footer>
+      数据：官方每周活动公告（线索图） + Gamerch 日文 Wiki（地点区域链/实景） + FPS Index（早期路线） + Eurogamer（2026-02 位置）。
+      周次按北京时间的周五至下周四编号；第 ${cw} 周为本周。
+      页面仅含本地数据与本地图片，无第三方广告。
+    </footer>`;
+  startCountdown(isNow);
+}
+
+function renderLoc(key){
+  const l = byKey.get(key);
+  if(!l) return renderMissing('?');
+  const cw = nowWeek();
+  document.getElementById('main').innerHTML = `
+    <div class="topline"><span class="pill acc">已知地点</span>
+      ${l.weeks&&l.weeks.length?`<span class="pill ok">已确认出现：${l.weeks.map(w=>'第'+w+'周').join('、')}</span>`:'<span class="pill">尚无对应周次记录</span>'}
+    </div>
+    <h1 class="hero">${esc(l.cn)}<span class="small">${esc(l.en)}</span></h1>
+    <div class="crumb">${l.chain_cn.map((x,i)=>`<span class="${i===l.chain_cn.length-1?'last':''}">${esc(x)}</span>`).join('<span class="sep">›</span>')}</div>
+
+    <div class="grid c2" style="margin-top:18px">
+      <div class="card">
+        <h2>怎么去</h2>
+        <div class="howto">${esc(l.howto_cn)}</div>
+        <div class="kv"><div class="k">日文原名</div><div class="v">${esc(l.jp)}</div></div>
+        <div class="kv"><div class="k">社区记录中的出现顺序</div><div class="v">${(l.orders||[]).join('、')}</div></div>
+        <div class="kv"><div class="k">来源</div><div class="v" style="color:var(--dim)">${(l.sources||[]).join('；')}</div></div>
+      </div>
+      <div class="card">
+        <h2>地点实景（社区截图）</h2>
+        <div class="hintwrap" style="aspect-ratio:16/9"><img src="${l.img}" alt="${esc(l.cn)}" data-zoom="${l.img}"></div>
+        <div class="hintbar"><span class="tag">对照用</span><span>机器不显示地图标记，靠近才显形</span></div>
+      </div>
+    </div>
+    <footer>
+      <a href="#week-${cw}" data-view="week:${cw}">← 回到本周</a>
+    </footer>`;
+}
+
+function renderAbout(){
+  const m = DATA.meta;
+  document.getElementById('main').innerHTML = `
+    <div class="topline"><span class="pill acc">机制</span><span class="pill">数据来源</span><span class="pill">无广告</span></div>
+    <h1 class="hero">莫里斯黑市：规则与数据说明</h1>
+    <div class="crumb"><span>每周固定时间换位置 · 不显示地图标记 · 靠近才显形</span></div>
+
+    <div class="grid c2" style="margin-top:18px">
+      <div class="card">
+        <h2>刷新时间</h2>
+        <div class="big">${esc(m.reset.weekday_cn)}凌晨（北京时间）</div>
+        <div class="note" style="margin-top:8px">${esc(m.reset.rule_cn)}<br><span style="color:var(--dim2)">${esc(m.reset.source_note)}</span></div>
+      </div>
+      <div class="card">
+        <h2>周次计算</h2>
+        <div class="note">以 ${esc(m.week1_start)} 为第 1 周起点，7 天一周；第 1 周对应官方 2025-09-12 当周。当前为第 ${nowWeek()} 周。</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h2>核心事实</h2>
+      <div class="list">${(m.facts||[]).map(f=>`<div class="kv"><div class="k">${esc(f.k)}</div><div class="v">${esc(f.v)}</div></div>`).join('')}</div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h2>数据来源（含可信度）</h2>
+      <p class="note">部分地点、首领、任务与词缀采用参考译名。地点可用英日文原名搜索，活动原文可在名称上悬停查看。</p>
+      <table class="src"><tr><th>编号</th><th>来源</th><th>可信度</th><th>用途</th></tr>
+      ${(m.sources||[]).map(s=>`<tr><td class="dim">${esc(s.id)}</td><td><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a></td><td class="dim">${esc(s.trust)}</td><td class="dim">${esc(s.note)}</td></tr>`).join('')}
+      </table>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h2>为什么以前的数据里会有“广告”？</h2>
+      <div class="note">${esc(m.ads_note)}</div>
+    </div>
+
+    <footer>单文件本地页面，数据生成于 ${esc(m.generated_at)}。每周更新：编辑 data/manual_weeks.json 后运行 python src/build_data.py 和 python src/build_site.py。</footer>`;
+}
+
+function renderMissing(x){
+  const lastWeek = DATA.weeks.at(-1).week;
+  document.getElementById('main').innerHTML = `<h1 class="hero">暂无数据</h1>
+    <div class="note">本地数据已收录到第 ${lastWeek} 周。第 ${esc(x)} 周的点位待录入。</div>
+    <p><a href="#week-${lastWeek}" data-view="week:${lastWeek}">查看最近收录的周次</a></p>`;
+}
+
+/* 倒计时 */
+let cdTimer = null;
+function startCountdown(on){
+  if(cdTimer){ clearInterval(cdTimer); cdTimer=null; }
+  const el = document.getElementById('cd');
+  if(!el) return;
+  const tick = ()=>{
+    const el2 = document.getElementById('cd');
+    if(!el2) return;
+    const now = Date.now();
+    const t = nextReset(now) - now;
+    const d = Math.floor(t/86400000), h=Math.floor(t%86400000/3600000), mi=Math.floor(t%3600000/60000), s=Math.floor(t%60000/1000);
+    el2.textContent = `${d} 天 ${String(h).padStart(2,'0')}:${String(mi).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  };
+  tick(); cdTimer = setInterval(tick, 1000);
+}
+
+/* 路由 */
+function route(){
+  const h = decodeURIComponent(location.hash.replace(/^#/,''));
+  let view = null;
+  if(h.startsWith('week-')) view = 'week:'+parseInt(h.slice(5),10);
+  else if(h.startsWith('loc-')) view = 'loc:'+h.slice(4);
+  else if(h==='about') view = 'about';
+  if(!view) view = 'week:'+nowWeek();
+  curView = view;
+  const [kind, arg] = view.split(':');
+  if(kind==='week'){ renderWeek(parseInt(arg,10)); }
+  else if(kind==='loc'){ renderLoc(arg); }
+  else { renderAbout(); }
+  renderNav(document.getElementById('q').value);
+  document.querySelector('main').scrollTop = 0;
+}
+
+/* 事件 */
+document.addEventListener('click', (e)=>{
+  const viewEl = e.target.closest('[data-view]');
+  if(viewEl){
+    const v = viewEl.getAttribute('data-view');
+    location.hash = v.replace(':','-');
+    return;
+  }
+  const zoom = e.target.closest('[data-zoom]');
+  if(zoom){
+    document.getElementById('lbimg').src = zoom.getAttribute('data-zoom');
+    document.getElementById('lb').classList.add('on');
+  }
+});
+document.getElementById('lb').addEventListener('click', ()=>{ document.getElementById('lb').classList.remove('on'); });
+document.getElementById('q').addEventListener('input', (e)=> renderNav(e.target.value));
+window.addEventListener('hashchange', route);
+route();
+</script>
+</body>
+</html>

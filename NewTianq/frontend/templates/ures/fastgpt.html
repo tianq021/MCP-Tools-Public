@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastGPT 对话工作台</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fastgpt.css') }}">
+</head>
+
+<body>
+<div class="page">
+    <header class="top-header">
+        <div class="header-left">
+            <a class="header-link" href="{{ url_for('page.user_home') }}" aria-label="返回首页">←</a>
+            <a class="logo" href="/fastgpt">FastGPT</a>
+            <span class="header-desc">对话工作台</span>
+        </div>
+
+        <div class="header-right">
+            <button id="featureExplanationButton" class="header-text-button" type="button">功能解释</button>
+            <span class="header-pill">{{ tools|length }} 个工具</span>
+            <a class="header-text-link" href="{{ url_for('page.logout') }}">退出登录</a>
+        </div>
+    </header>
+
+    <section id="featureExplanationPanel" class="feature-explanation-panel" aria-hidden="true">
+        <div class="feature-explanation-content">
+            <div>
+                <p class="eyebrow">页面帮助</p>
+                <h2 id="featureExplanationTitle">功能解释</h2>
+            </div>
+            <button id="featureExplanationClose" type="button" aria-label="关闭功能解释">×</button>
+            <p id="featureExplanationText">正在读取...</p>
+        </div>
+    </section>
+
+    <div class="layout">
+        <aside class="sidebar" aria-label="AI 工具列表">
+            <div class="sidebar-title">选择 AI</div>
+            <nav class="ai-tool-list" aria-label="AI 工具">
+                <section class="favorite-tools" aria-labelledby="favoriteToolsTitle">
+                    <div id="favoriteToolsTitle" class="tool-list-title">常用</div>
+                    <div id="favoriteToolList" class="tool-list-section"></div>
+                    <p id="favoriteToolsEmpty" class="favorite-empty">点击工具右侧的 ☆ 添加常用</p>
+                </section>
+
+                <div class="tool-list-divider" aria-hidden="true"></div>
+                <div class="tool-list-title">其他 AI</div>
+                <div id="allToolList" class="tool-list-section">
+                {% for tool in tools %}
+                <div class="tool-link-row" data-tool-id="{{ tool.id }}">
+                    <button
+                        class="tool-link-item"
+                        type="button"
+                        data-id="{{ tool.id }}"
+                        data-title="{{ tool.title }}"
+                        title="{{ tool.intro or tool.desc or tool.title }}"
+                        {% if tool.url %}
+                        data-url="{{ tool.url }}"
+                        {% endif %}
+                    >
+                        <span>{{ tool.title }}</span>
+                        {% if tool.desc %}
+                        <small>{{ tool.desc }}</small>
+                        {% endif %}
+                    </button>
+                    <button
+                        class="favorite-toggle"
+                        type="button"
+                        title="添加到常用"
+                        aria-label="添加到常用"
+                        aria-pressed="false"
+                    >☆</button>
+                </div>
+                {% else %}
+                <div class="empty-menu">暂无 AI 工具</div>
+                {% endfor %}
+                </div>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <section
+                class="chat-workspace"
+                aria-label="FastGPT 对话区域"
+                data-api-url="/api/ai/fastgpt/recommend"
+            >
+                <div class="chat-header">
+                    <div>
+                        <p class="eyebrow">FastGPT 对话</p>
+                        <h1 id="chatTitle">FastGPT 对话</h1>
+                    </div>
+                    <div class="chat-header-actions">
+                        <button id="exportCurrentChat" class="chat-action-btn" type="button">导出当前</button>
+                        <button id="exportAllChats" class="chat-action-btn" type="button">全部导出</button>
+                        <button id="clearCurrentChat" class="chat-action-btn danger" type="button">清空对话</button>
+                        <button id="openSelectedTool" class="open-tool-btn" type="button" disabled>打开工具</button>
+                    </div>
+                </div>
+
+                <div id="mainChatMessages" class="chat-body">
+                    <div class="chat-message bot">
+                        <span class="avatar">助手</span>
+                        <div class="bubble">
+                            请从左侧选择 AI 工具，也可以直接描述你的任务。
+                        </div>
+                    </div>
+                </div>
+
+                <form id="fastgptMainChatForm" class="chat-input-area">
+
+                    <div class="chat-input-bar">
+                        <input
+                            id="fastgptMainChatInput"
+                            type="text"
+                            placeholder="描述你的任务"
+                            autocomplete="off"
+                        >
+                        <button id="fastgptMainChatSubmit" type="submit">发送</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/fastgpt.js') }}"></script>
+</body>
+</html>

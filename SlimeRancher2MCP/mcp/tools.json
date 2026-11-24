@@ -1,0 +1,948 @@
+{
+  "version": 1,
+  "game": "Slime Rancher 2",
+  "bridge": "0.5.22",
+  "notes": "工具名统一 sr2_ 前缀。kind=read 可直接调用；kind=write 必须 dry_run=false + 唯一 request_id。加工具需同时改 plugin/SlimeRancher2Bridge/Tools*.cs。",
+  "tools": [
+    {
+      "name": "sr2_ranch_controls", "title": "查牧场现场可操作设备", "kind": "read",
+      "description": "列出当前已加载的喂食器、围栏结晶收集器、设备型资源收集器和已购买的筒仓面板，返回各自的 control_id、所属地块或设备实例 ID 及坐标。",
+      "args": [
+        {"name":"kind","type":"str","default":"","description":"feeder、plort_collector、resource_collector 或 silo_port。留空列全部。"},
+        {"name":"offset","type":"int","default":0,"ge":0,"le":2147483647},
+        {"name":"limit","type":"int","default":25,"ge":1,"le":100}
+      ]
+    },
+    {
+      "name": "sr2_dispense_feeder_food", "title": "让围栏喂食器投出一份食物", "kind": "write",
+      "description": "预演查看食物种类和余量。执行一次游戏原生投食操作，从该喂食器扣一份并投向围栏，回读余量。",
+      "args": [{"name":"control_id","type":"str","required":true,"min_length":1,"description":"sr2_ranch_controls 返回的 feeder 控制 ID。"}]
+    },
+    {
+      "name": "sr2_activate_plort_collector", "title": "启动围栏结晶收集器", "kind": "write",
+      "description": "按一次指定结晶收集器的游戏按钮。执行后回读按钮冷却和收集时段；实际入仓数量由后续游戏帧决定。",
+      "args": [{"name":"control_id","type":"str","required":true,"min_length":1,"description":"sr2_ranch_controls 返回的 plort_collector 控制 ID。"}]
+    },
+    {
+      "name": "sr2_activate_resource_collector", "title": "启动设备型资源收集器", "kind": "write",
+      "description": "按一次已放置的指定资源收集设备的游戏按钮，回读按钮冷却及收集时段。需要该设备已加载。",
+      "args": [{"name":"control_id","type":"str","required":true,"min_length":1,"description":"sr2_ranch_controls 返回的 resource_collector 控制 ID。"}]
+    },
+    {
+      "name": "sr2_cycle_silo_port", "title": "切换筒仓面板至下一槽", "kind": "write",
+      "description": "按一次已购买的指定筒仓面板，预演显示当前操作槽，执行后核对新槽位。物品留在原槽。",
+      "args": [{"name":"control_id","type":"str","required":true,"min_length":1,"description":"sr2_ranch_controls 返回的 silo_port 控制 ID。"}]
+    },
+    {
+      "name": "sr2_restore_health",
+      "title": "应急补充生命",
+      "kind": "write",
+      "description": "直接补充当前玩家的生命，可指定点数或补到当前上限。进档且角色仍有生命时可用。预演返回当前值、目标和上限，执行后回读实际变化。",
+      "args": [{"name":"points","type":"int","default":0,"ge":0,"le":2147483647,"description":"增加的点数。0 表示补满。"}]
+    },
+    {
+      "name": "sr2_restore_energy",
+      "title": "应急补充能量",
+      "kind": "write",
+      "description": "直接补充当前玩家能量，可用于喷气背包或冲刺。进档且角色仍有生命时可用。预演返回当前值、目标和上限，执行后回读实际变化。",
+      "args": [{"name":"points","type":"int","default":0,"ge":0,"le":2147483647,"description":"增加的点数。0 表示补满。"}]
+    },
+    {
+      "name": "sr2_select_vacpack_slot",
+      "title": "切换真空背包槽位",
+      "kind": "write",
+      "description": "选中指定已解锁的背包槽，预演显示原槽位和目标物品。切换后回读选中的编号。",
+      "args": [{"name":"index","type":"int","required":true,"ge":0,"le":2147483647,"description":"sr2_vacpack 返回的槽位 index，从 0 开始。"}]
+    },
+    {
+      "name": "sr2_mark_return_point",
+      "title": "记下临时返回点",
+      "kind": "write",
+      "description": "探测角色脚下的地面、水面和障碍物。通过后可将当前位置记为此存档的返回点。预演显示原标记；执行会替换该存档原有标记。退出游戏后标记失效。",
+      "args": []
+    },
+    {
+      "name": "sr2_return_to_mark",
+      "title": "返回临时标记点",
+      "kind": "write",
+      "description": "返回本次启动中为当前存档记录的标记点。需要处在同一场景组，且目标地形已加载。每次预演和执行都会重新检查落点，执行后回读实际坐标。",
+      "args": []
+    },
+    {
+      "name": "sr2_craft_gadget",
+      "title": "制作设备并存入设备库存",
+      "kind": "write",
+      "description": "用已拥有的蓝图制作设备。默认预演制造台是否允许制作，列出成品库存及整批费用。执行时按游戏规则扣料，回读费用与库存变化。需进档并加载对应制造分类。",
+      "args": [
+        {"name":"gadget_id","type":"str","required":true,"min_length":1,"description":"sr2_blueprints 返回的完整设备 ID。"},
+        {"name":"count","type":"int","default":1,"ge":1,"le":99,"description":"制作次数，仍受游戏自身上限约束。"}
+      ]
+    },
+    {
+      "name": "sr2_set_recipe_pin",
+      "title": "追踪设备配方或取消当前追踪",
+      "kind": "write",
+      "description": "pin 将指定已拥有的设备蓝图设为当前追踪配方，clear 取消当前配方追踪。预演可查看当前追踪，执行后可用 sr2_pinned_recipe 核对 HUD 配方。",
+      "args": [
+        {"name":"action","type":"str","required":true,"min_length":1,"description":"pin 或 clear。"},
+        {"name":"gadget_id","type":"str","default":"","description":"pin 必填 sr2_blueprints 的完整 ID。clear 时留空。"}
+      ]
+    },
+    {
+      "name": "sr2_set_feeder_speed",
+      "title": "调整围栏自动喂食速度",
+      "kind": "write",
+      "description": "调整指定围栏上已加载的自动喂食器。默认预演当前和目标档位，执行后回读实际档位。",
+      "args": [
+        {"name":"plot_id","type":"str","required":true,"min_length":1,"description":"sr2_corrals 或 sr2_plots 返回的完整围栏地块 id。"},
+        {"name":"speed","type":"str","required":true,"min_length":1,"description":"slow（慢）、normal（普通）或 fast（快）。"}
+      ]
+    },
+    {
+      "name": "sr2_achievements",
+      "title": "查游戏内成就进度",
+      "kind": "read",
+      "description": "读取游戏成就计数与目标，targets_met_count 为整个目录达到游戏目标的数量。Steam 账户的解锁状态由平台单独记录。需进档，支持分页。",
+      "args": [
+        {"name":"query","type":"str","default":"","description":"游戏成就标识或 Steam 成就名片段。留空查询全部，忽略大小写。"},
+        {"name":"offset","type":"int","default":0,"ge":0,"le":2147483647},
+        {"name":"limit","type":"int","default":25,"ge":1,"le":100}
+      ]
+    },
+    {
+      "name": "sr2_player_upgrades",
+      "title": "查玩家升级等级",
+      "kind": "read",
+      "description": "读取玩家个人升级的当前等级、定义中的等级数，以及有下一等级时的等级与本地化标题。需进档，支持分页。",
+      "args": [
+        {"name":"query","type":"str","default":"","description":"升级数字 ID 或内部名称片段。留空查询全部，忽略大小写。"},
+        {"name":"offset","type":"int","default":0,"ge":0,"le":2147483647},
+        {"name":"limit","type":"int","default":25,"ge":1,"le":100}
+      ]
+    },
+    {
+      "name": "sr2_map_zones",
+      "title": "查地图区域解锁",
+      "kind": "read",
+      "description": "列出地图区域 ID、本地化名称、所属地图、牧场区域标记和游戏的区域解锁状态。需进档，支持分页。",
+      "args": [
+        {"name":"query","type":"str","default":"","description":"区域 ID 片段。留空查询全部，忽略大小写。"},
+        {"name":"locked_only","type":"bool","default":false,"description":"只列尚未解锁的区域。"},
+        {"name":"offset","type":"int","default":0,"ge":0,"le":2147483647},
+        {"name":"limit","type":"int","default":25,"ge":1,"le":100}
+      ]
+    },
+    {
+      "name": "sr2_weather",
+      "title": "查各区天气预报",
+      "kind": "read",
+      "description": "从存档天气模型读取区域风向、天气模式、阶段和预报起止时间。world_time 和预报时间均为游戏世界时间，未知结束时间为 null。需进档，支持分页。",
+      "args": [
+        {"name":"query","type":"str","default":"","description":"区域 ID 片段。留空查询全部，忽略大小写。"},
+        {"name":"offset","type":"int","default":0,"ge":0,"le":2147483647},
+        {"name":"limit","type":"int","default":25,"ge":1,"le":100}
+      ]
+    },
+    {
+      "name": "sr2_prisma_forecast",
+      "title": "查迷宫扰动预报",
+      "kind": "read",
+      "description": "查询各扰动区域的预报解锁状态；已解锁且有预报记录时展示当前扰动等级、下一变化和未来变化表。时间为游戏世界时间。需进档，支持分页。",
+      "args": [
+        {"name":"query","type":"str","default":"","description":"扰动区域 ID 片段。留空查询全部，忽略大小写。"},
+        {"name":"offset","type":"int","default":0,"ge":0,"le":2147483647},
+        {"name":"limit","type":"int","default":25,"ge":1,"le":100}
+      ]
+    },
+    {
+      "name": "sr2_blueprints",
+      "title": "查设备蓝图",
+      "kind": "read",
+      "description": "查询存档中已登记、已拥有和可用的蓝图，返回设备 ID、类型、蓝图费用及拥有状态。支持分页。",
+      "args": [
+        {"name":"query","type":"str","default":"","description":"按定义 ID 或内部名称片段查找，忽略大小写。"},
+        {"name":"owned_only","type":"bool","default":false,"description":"只显示已拥有的条目。"},
+        {"name":"offset","type":"int","default":0,"ge":0,"le":2147483647},
+        {"name":"limit","type":"int","default":25,"ge":1,"le":100}
+      ]
+    },
+    {
+      "name": "sr2_gadget_stock",
+      "title": "查设备成品库存",
+      "kind": "read",
+      "description": "列出存放在设备库存中且数量大于零的成品，可按设备 ID 或内部名称搜索。已放置的设备位置见 sr2_gadgets。支持分页。",
+      "args": [
+        {"name":"query","type":"str","default":"","description":"按定义 ID 或内部名称片段查找，忽略大小写。"},
+        {"name":"offset","type":"int","default":0,"ge":0,"le":2147483647},
+        {"name":"limit","type":"int","default":25,"ge":1,"le":100}
+      ]
+    },
+    {
+      "name": "sr2_gadget_recipe",
+      "title": "核算设备制作缺口",
+      "kind": "read",
+      "description": "按制作次数计算配方总需求、可用库存和缺口。分别读取精炼库存、货币与升级组件；背包和筒仓内尚未入炉的材料不计入。另列蓝图拥有状态。",
+      "args": [
+        {"name":"gadget_id","type":"str","required":true,"min_length":1,"description":"sr2_blueprints 返回的完整设备 ID，区分大小写。"},
+        {"name":"count","type":"int","default":1,"ge":1,"le":99,"description":"制作次数。"}
+      ]
+    },
+    {
+      "name": "sr2_pinned_recipe",
+      "title": "查看当前追踪的配方",
+      "kind": "read",
+      "description": "读取游戏 HUD 当前追踪的配方、可见材料的现有数与所需数，以及游戏判断的满足状态。没有追踪配方时返回 pinned=false。",
+      "args": []
+    },
+    {
+      "name": "sr2_upgrade_components",
+      "title": "查升级组件库存",
+      "kind": "read",
+      "description": "逐项读取存档所列升级组件的当前数量，支持查看尚未取得的组件和分页。",
+      "args": [
+        {"name":"query","type":"str","default":"","description":"按定义 ID 或内部名称片段查找，忽略大小写。"},
+        {"name":"owned_only","type":"bool","default":false,"description":"只显示已拥有的条目。"},
+        {"name":"offset","type":"int","default":0,"ge":0,"le":2147483647},
+        {"name":"limit","type":"int","default":25,"ge":1,"le":100}
+      ]
+    },
+    {
+      "name": "sr2_resource_nodes",
+      "title": "查野外资源节点",
+      "kind": "read",
+      "description": "读取存档记录的野外采集点状态与待产物品（重复项保留）。在已加载场景找到对应生成点时返回现场坐标。需进档，继续翻页时将 next_offset 传给 offset。",
+      "args": [
+        {"name":"state","type":"str","default":"","description":"节点状态，例如 READY、HARVESTED，留空查询全部。"},
+        {"name":"loaded_only","type":"bool","default":false,"description":"只返回当前场景内找到活动生成点的记录。"},
+        {"name":"offset","type":"int","default":0,"ge":0,"le":2147483647},
+        {"name":"limit","type":"int","default":25,"ge":1,"le":100}
+      ]
+    },
+    {
+      "name": "sr2_research_logs",
+      "title": "查研究无人机日志进度",
+      "kind": "read",
+      "description": "读取存档中的研究无人机已读标记。场景对象活动时可获得坐标、日志条目 ID 与页数。需进档，继续翻页时将 next_offset 传给 offset。",
+      "args": [
+        {"name":"unread_only","type":"bool","default":false,"description":"只列尚未阅读的记录。"},
+        {"name":"offset","type":"int","default":0,"ge":0,"le":2147483647},
+        {"name":"limit","type":"int","default":25,"ge":1,"le":100}
+      ]
+    },
+    {
+      "name": "sr2_teleporters",
+      "title": "查传送器连接",
+      "kind": "read",
+      "description": "读取存档传送器登记的起点和各目的地的节点 ID 与场景组，按来源场景筛选。需进档，继续翻页时将 next_offset 传给 offset。",
+      "args": [
+        {"name":"source_group","type":"str","default":"","description":"起点场景组完整 ID，忽略大小写，留空查询全部。"},
+        {"name":"offset","type":"int","default":0,"ge":0,"le":2147483647},
+        {"name":"limit","type":"int","default":25,"ge":1,"le":100}
+      ]
+    },
+    {
+      "name": "sr2_pedia",
+      "title": "查史莱姆百科解锁进度",
+      "kind": "read",
+      "description": "按 ID 或内部名称搜索百科，返回条目 ID、名称、本地化标题（可用时）与解锁状态。unlocked_count 是整份目录的已解锁数。需进档，继续翻页时将 next_offset 传给 offset。",
+      "args": [
+        {"name":"query","type":"str","default":"","description":"条目 ID 或内部名称片段，忽略大小写。"},
+        {"name":"locked_only","type":"bool","default":false,"description":"只列尚未解锁的条目。"},
+        {"name":"offset","type":"int","default":0,"ge":0,"le":2147483647},
+        {"name":"limit","type":"int","default":25,"ge":1,"le":100}
+      ]
+    },
+    {
+      "name": "sr2_corrals",
+      "title": "清点围栏史莱姆",
+      "kind": "read",
+      "description": "按围栏及史莱姆种类汇总该地块追踪的对象。other_count 为其他对象数，unresolved_count 为无法识别数，跟踪数据缺失时数量为 null。需进档，传回 next_offset 可继续翻页。",
+      "args": [
+        {"name":"offset","type":"int","default":0,"ge":0,"le":2147483647},
+        {"name":"limit","type":"int","default":25,"ge":1,"le":100}
+      ]
+    },
+    {
+      "name": "sr2_slime_diet",
+      "title": "查史莱姆食谱",
+      "kind": "read",
+      "description": "查物种的食物组、额外可吃的食物、最爱与产物 ID，可按名字搜索并隐藏杂交种。需进档，传回 next_offset 可继续翻页。",
+      "args": [
+        {"name":"query","type":"str","default":"","description":"史莱姆定义 ID 或内部名称片段，忽略大小写。"},
+        {"name":"include_largos","type":"bool","default":true,"description":"是否包含杂交史莱姆。"},
+        {"name":"offset","type":"int","default":0,"ge":0,"le":2147483647},
+        {"name":"limit","type":"int","default":25,"ge":1,"le":100}
+      ]
+    },
+    {
+      "name": "sr2_gadgets",
+      "title": "定位已放置设备",
+      "kind": "read",
+      "description": "按实例列出设备 ID、类型、场景组、是否预置和坐标。position_source 为 live 时是现场坐标，为 last_position 时是模型上次记录的位置。需进档，传回 next_offset 可继续翻页。",
+      "args": [
+        {"name":"query","type":"str","default":"","description":"按设备定义 ID 片段筛选，忽略大小写。"},
+        {"name":"offset","type":"int","default":0,"ge":0,"le":2147483647},
+        {"name":"limit","type":"int","default":25,"ge":1,"le":100}
+      ]
+    },
+    {
+      "name": "sr2_drones",
+      "title": "查看无人机站任务",
+      "kind": "read",
+      "description": "逐站读取站点位置、站型、任务的来源/目标/物品/目的地、是否归站、能量耗尽的游戏时间及探索程序状态。可读字段取决于站点配置。需进档，传回 next_offset 可继续翻页。",
+      "args": [
+        {"name":"query","type":"str","default":"","description":"按设备定义 ID 片段筛选，忽略大小写。"},
+        {"name":"offset","type":"int","default":0,"ge":0,"le":2147483647},
+        {"name":"limit","type":"int","default":25,"ge":1,"le":100}
+      ]
+    },
+    {
+      "name": "sr2_zone_buildings",
+      "title": "按区域盘点建筑、已购地块改良和已放置设备",
+      "kind": "read",
+      "description": "查询指定游戏区域的地块建筑、每块地已经购买的改良以及已放置或预置的设备。省略 zone 使用玩家当前区域；支持完整区域 ID 或本地化名称。可包含空地。返回区域解锁状态、区域是否加载和全存档未能确认区域归属的记录数；区域没加载时，空列表不能用来判定该区域没有建筑。支持分页。",
+      "args": [
+        {"name":"zone","type":"str","default":"","description":"完整区域 ID 或本地化名称；留空查当前区域。"},
+        {"name":"include_empty","type":"bool","default":false,"description":"一并列出区域里的空地。"},
+        {"name":"offset","type":"int","default":0,"ge":0},
+        {"name":"limit","type":"int","default":50,"ge":1,"le":100}
+      ]
+    },
+    {
+      "name": "sr2_plots",
+      "title": "盘点牧场地块",
+      "kind": "read",
+      "description": "查看当前存档已记录的地块、升级、作物和追踪对象数。仅已加载对象提供坐标。结果按 ID 分页，继续查询时传回 next_offset。",
+      "args": [
+        {"name":"type","type":"str","default":"","description":"地块类型，如 GARDEN、COOP 或 SILO；留空查看全部，忽略大小写。"},
+        {"name":"loaded_only","type":"bool","default":false,"description":"只显示已绑定场景对象的记录。"},
+        {"name":"offset","type":"int","default":0,"ge":0,"le":2147483647},
+        {"name":"limit","type":"int","default":25,"ge":1,"le":100}
+      ]
+    },
+    {
+      "name": "sr2_gordos",
+      "title": "查询巨型史莱姆",
+      "kind": "read",
+      "description": "查看当前存档已记录的巨型史莱姆种类、发现状态、喂食进度与目标。仅已加载对象提供坐标。结果按 ID 分页，继续查询时传回 next_offset。",
+      "args": [
+        {"name":"state","type":"str","default":"","description":"popped（已撑爆）、seen（已发现且未撑爆）或 unseen（未发现且未撑爆）；留空查看全部，忽略大小写。"},
+        {"name":"loaded_only","type":"bool","default":false,"description":"只显示已绑定场景对象的记录。"},
+        {"name":"offset","type":"int","default":0,"ge":0,"le":2147483647},
+        {"name":"limit","type":"int","default":25,"ge":1,"le":100}
+      ]
+    },
+    {
+      "name": "sr2_pods",
+      "title": "查询藏宝舱",
+      "kind": "read",
+      "description": "查看当前存档已记录的藏宝舱及其开启状态。仅已加载对象提供坐标。结果按 ID 分页，继续查询时传回 next_offset。",
+      "args": [
+        {"name":"state","type":"str","default":"","description":"LOCKED 或 OPEN；留空查看全部，忽略大小写。"},
+        {"name":"loaded_only","type":"bool","default":false,"description":"只显示已绑定场景对象的记录。"},
+        {"name":"offset","type":"int","default":0,"ge":0,"le":2147483647},
+        {"name":"limit","type":"int","default":25,"ge":1,"le":100}
+      ]
+    },
+    {
+      "name": "sr2_doors",
+      "title": "查询机关门",
+      "kind": "read",
+      "description": "查看当前存档已记录的机关门及其状态。仅已加载对象提供坐标。结果按 ID 分页，继续查询时传回 next_offset。",
+      "args": [
+        {"name":"state","type":"str","default":"","description":"LOCKED、CLOSED 或 OPEN；留空查看全部，忽略大小写。"},
+        {"name":"loaded_only","type":"bool","default":false,"description":"只显示已绑定场景对象的记录。"},
+        {"name":"offset","type":"int","default":0,"ge":0,"le":2147483647},
+        {"name":"limit","type":"int","default":25,"ge":1,"le":100}
+      ]
+    },
+    {
+      "name": "sr2_state",
+      "title": "查看当前游戏会话",
+      "kind": "read",
+      "description": "查看游戏处于主菜单、加载中、游玩中或其他阶段，返回当前场景组 ID。游玩时可读取当前存档名。",
+      "args": []
+    },
+    {
+      "name": "sr2_time",
+      "title": "查看游戏内时间",
+      "kind": "read",
+      "description": "读取当前存档的天数、游戏内小时（含小数）、暂停和快进状态。需进入存档。",
+      "args": []
+    },
+    {
+      "name": "sr2_player",
+      "title": "查看玩家状态",
+      "kind": "read",
+      "description": "读取生命和能量的当前值与上限、新币余额、世界坐标与区域 ID。需进入存档，区域或余额暂不可读时对应字段为 null。",
+      "args": []
+    },
+    {
+      "name":"sr2_chat_history",
+      "title":"补读游戏聊天",
+      "kind":"read",
+      "description":"按字节游标补读玩家消息，下次传 next_cursor。动作明确时直接运行 python -B E:\\SlimeRancher2MCP\\tool\\ranch.py <子命令> --reply，一次完成并回信。需要查状态再判断时用 MCP，快捷命令参数可查 --help。",
+      "args":[
+        {"name":"cursor","type":"int","default":0,"ge":0},
+        {"name":"limit","type":"int","default":50,"ge":1,"le":100}
+      ]
+    },
+    {
+      "name": "sr2_shop_buy",
+      "title": "购买商店商品",
+      "kind": "write",
+      "description": "按商店标签和商品 id 查询费用、可购买情况，执行时使用当前已打开商店的发货点。默认仅预演。",
+      "args": [
+        {"name":"shop_tag","type":"str","required":true,"min_length":1,"description":"sr2_shop_list 返回的商店 tag"},
+        {"name":"item_id","type":"str","required":true,"min_length":1,"description":"商品行 id"},
+        {"name":"count","type":"int","default":1,"ge":1,"le":99,"description":"购买数量"}
+      ]
+    },
+    {
+      "name": "sr2_landing_check",
+      "title": "检查传送落点",
+      "kind": "read",
+      "description": "探测已加载场景指定坐标下方 12 米内的表面、坡度、Water 层和角色空间。只读，不传送。",
+      "args": [
+        {"name":"x","type":"float","required":true},
+        {"name":"y","type":"float","required":true},
+        {"name":"z","type":"float","required":true}
+      ]
+    },
+    {
+      "name": "sr2_market",
+      "title": "结晶市场当日报价",
+      "kind": "read",
+      "description": "读取当前存档市场挂牌价、涨跌额 change、基础价、饱和阈值和休市状态。单位为新币/颗，个别品种无报价时 price 和 change 为 null。需进入存档。",
+      "args": []
+    },
+    {
+      "name": "sr2_teleport",
+      "title": "按世界坐标传送玩家",
+      "kind": "write",
+      "description": "传送至世界坐标，执行前自动向下探测目标点：没有地面、探到水面或被阻挡时拒绝传送（防止传进未加载区域掉海）。预演会返回探测结果（probe）和距离。默认预演，执行需用户明确同意和唯一 request_id。返回起点、目标、探测结果及执行后即时回读。",
+      "args": [
+        {
+          "name": "x",
+          "type": "float",
+          "required": true,
+          "description": "世界坐标 X"
+        },
+        {
+          "name": "y",
+          "type": "float",
+          "required": true,
+          "description": "世界坐标 Y（高度）"
+        },
+        {
+          "name": "z",
+          "type": "float",
+          "required": true,
+          "description": "世界坐标 Z"
+        },
+        {
+          "name": "force",
+          "type": "bool",
+          "default": false,
+          "description": "探测不通过时仍强制传送（默认 false，仅在你确认安全后使用）"
+        }
+      ]
+    },
+    {
+      "name": "sr2_real_time",
+      "title": "现实时间",
+      "kind": "read",
+      "description": "读取现实世界的北京时间、UTC 偏移和 Unix 时间戳。游戏暂停、加速均不影响该时钟。",
+      "args": []
+    },
+    {
+      "name": "sr2_minimap",
+      "title": "小地图状态",
+      "kind": "read",
+      "description": "查询 SlimeMap 是否已被 MelonLoader 加载、实际版本、磁盘保存的显示模式与菜单键。尚无设置时返回 null；saved_mode 不代表画面当前可见。",
+      "args": []
+    },
+    {
+      "name": "sr2_player_position",
+      "title": "玩家坐标与朝向",
+      "kind": "read",
+      "description": "在游戏主线程读取玩家世界坐标和正前方向量（Unity X/Y/Z）。菜单、切场或互操作接口不可用时返回 available=false 和原因。",
+      "args": []
+    },
+    {
+      "name": "sr2_health",
+      "title": "桥接健康与版本",
+      "kind": "read",
+      "description": "读取桥接与游戏进程的基本状态：插件版本、MelonLoader 版本、游戏目录、进程运行时长、桥接启动时间与请求计数。游戏卡住时仍可返回（不依赖主线程）。",
+      "args": []
+    },
+    {
+      "name": "sr2_gameinfo",
+      "title": "游戏安装与构建信息",
+      "kind": "read",
+      "description": "从磁盘读取 SR2 安装信息：app.info（公司/产品）、Steam appmanifest（buildid/大小/最后更新时间）、UnityPlayer 版本、IL2CPP 元数据是否存在、MelonLoader 是否安装及互操作程序集是否已生成。用于确认当前 mod 环境与版本基线。",
+      "args": []
+    },
+    {
+      "name": "sr2_saves",
+      "title": "存档文件列表",
+      "kind": "read",
+      "description": "列出 %USERPROFILE%\\AppData\\LocalLow\\Monomi Park\\Slime Rancher 2 下的 *.sav（名称、大小、修改时间、按时间倒序）；只读文件元数据，不解析存档内容。目录不存在时如实说明（表示本机还没有 SR2 存档）。",
+      "args": [
+        {
+          "name": "limit",
+          "type": "int",
+          "default": 20,
+          "ge": 1,
+          "le": 200,
+          "description": "最多返回多少条，按修改时间倒序。"
+        }
+      ]
+    },
+    {
+      "name": "sr2_echo",
+      "title": "通道回显",
+      "kind": "read",
+      "description": "把参数原样回传，验证 MCP → HTTP → 游戏内插件的整条链路与参数序列化。",
+      "args": [
+        {
+          "name": "text",
+          "type": "str",
+          "default": "",
+          "max_length": 500,
+          "description": "任意测试文本。"
+        }
+      ]
+    },
+    {
+      "name": "sr2_chat_pending",
+      "title": "取玩家在游戏内发的消息",
+      "kind": "read",
+      "description": "取走游戏聊天消息并清空队列。动作明确时直接运行 python -B E:\\SlimeRancher2MCP\\tool\\ranch.py <子命令> [参数] --reply，可用 --help 查看命令。需要查状态再判断时用 MCP。",
+      "args": []
+    },
+    {
+      "name": "sr2_chat_send",
+      "title": "把回复推进游戏内聊天框",
+      "kind": "read",
+      "description": "把一段回复显示在游戏内聊天面板（聊天框关闭时弹出 15 秒提示条）。text 为 1~400 字符。",
+      "args": [
+        {
+          "name": "text",
+          "type": "str",
+          "required": true,
+          "description": "回复正文，1~400 字符。"
+        }
+      ]
+    },
+    {
+      "name": "sr2_chat_status",
+      "title": "游戏内聊天框状态",
+      "kind": "read",
+      "description": "聊天框是否展开、待取消息数、按键诊断（Input/GUI 计数、最近按键、旧输入类是否可用）、inbox 落盘路径与大小。",
+      "args": []
+    },
+    {
+      "name": "sr2_vacpack",
+      "title": "背包槽位",
+      "kind": "read",
+      "description": "读取玩家背包每个槽位的编号、物品 id/名称、数量、上限、是否选中、是否解锁。数据来自游戏 PlayerState.Ammo。",
+      "args": []
+    },
+    {
+      "name": "sr2_vacpack_clear",
+      "title": "清空背包（销毁）",
+      "kind": "write",
+      "description": "清空玩家背包槽位，调用游戏原生 AmmoSlot.Clear()。销毁性操作：物品直接消失、不会掉在地上。默认预演，执行需 dry_run=false + request_id。slot 可选，指定只清某个槽位编号。",
+      "args": [
+        {
+          "name": "slot",
+          "type": "str",
+          "default": "",
+          "description": "只清这个槽位编号（从 0 开始）；留空清全部有物品的槽位。"
+        }
+      ]
+    },
+    {
+      "name": "sr2_storage_list",
+      "title": "仓库列表与内容",
+      "kind": "read",
+      "description": "列出已加载的筒仓、收集器/传送仓以及当前存档中未加载的牧场筒仓。每个仓库提供编号、kind（plot_silo=地块仓库 / scene_storage=场景容器）、object_name、parent_name、gate（live/save/panel 解锁判断来源）、storage_key（如有）、loaded、writable 和槽位库存。已加载容器还会返回游戏区域 zone / zone_title（未加载时为 null，用于按区域选本区域筒仓）；顶层另返回 player_position 与 player_zone。未加载时距离与坐标为空。",
+      "args": []
+    },
+    {
+      "name": "sr2_store",
+      "title": "背包存进仓库",
+      "kind": "write",
+      "description": "把背包存入仓库，在野外也能存进当前存档的牧场筒仓。storage 可用 sr2_storage_list 的 storage_key 或编号；留空时先找已加载仓库，再找远处地块。按原生槽位规则、外观和剩余空间分配，返回转移计划及无法存入的余量。远仓槽位解锁优先用存档数据（0.5.4 起不再少算槽位）。默认预演，执行需 dry_run=false 和 request_id。",
+      "args": [
+        {
+          "name": "storage",
+          "type": "str",
+          "default": "",
+          "description": "目标地块稳定键或列表编号，留空自动选仓。"
+        },
+        {
+          "name": "item",
+          "type": "str",
+          "default": "",
+          "description": "只存这个物品：完整 id（IdentifiableType.PinkPlort）、短名（PinkPlort）或背包槽位编号；留空=全部。"
+        }
+      ]
+    },
+    {
+      "name": "sr2_transfer",
+      "title": "仓库之间搬东西",
+      "kind": "write",
+      "description": "把物品从一个仓库/收集器直接搬到另一个（不经过背包）。from/to 用 sr2_storage_list 的编号或 storage_key；to 留空则自动选另一个可写容器。按原生槽位规则与剩余空间分配（同物品/同外观堆叠优先，其次空格），执行后双向回读。默认预演，执行需 dry_run=false + request_id。",
+      "args": [
+        {
+          "name": "from",
+          "type": "str",
+          "required": true,
+          "description": "来源容器：sr2_storage_list 的编号或 storage_key。"
+        },
+        {
+          "name": "to",
+          "type": "str",
+          "default": "",
+          "description": "目标容器：编号或 storage_key；留空=自动选另一个可写仓库。"
+        },
+        {
+          "name": "item",
+          "type": "str",
+          "default": "",
+          "description": "只搬这种物品：完整 id、短名或来源槽位号；留空=全部。"
+        },
+        {
+          "name": "count",
+          "type": "str",
+          "default": "",
+          "description": "每种最多搬多少个；留空=全部。"
+        }
+      ]
+    },
+    {
+      "name": "sr2_sell_plorts",
+      "title": "快速卖结晶",
+      "kind": "write",
+      "description": "按当前市场价卖结晶（游戏原生 PlortEconomyDirector.TrySell）。source=vacpack（默认）只卖背包；storage 只卖收集器/仓库里的结晶（不需要先吸进背包）；both 两边都卖。默认预演，列出每笔的数量/单价/预计收入；执行需 dry_run=false + request_id。只有 TrySell 成功才扣来源，执行后回读两边与新币。市场休市时执行会被拒绝。item 可填完整 id、短名或背包槽位编号；count 可限定每种数量；storage 可指定容器编号或 storage_key。",
+      "args": [
+        {
+          "name": "item",
+          "type": "str",
+          "default": "",
+          "description": "只卖这种结晶：完整 id、短名（PinkPlort）或背包槽位编号；留空=全部结晶。"
+        },
+        {
+          "name": "count",
+          "type": "str",
+          "default": "",
+          "description": "每种最多卖多少个；留空=全卖。"
+        },
+        {
+          "name": "source",
+          "type": "str",
+          "default": "vacpack",
+          "description": "来源：vacpack 背包 / storage 收集器与仓库 / both 两边。"
+        },
+        {
+          "name": "storage",
+          "type": "str",
+          "default": "",
+          "description": "只卖这个容器（sr2_storage_list 的编号或 storage_key）；留空=所有容器。"
+        }
+      ]
+    },
+    {
+      "name": "sr2_shop_list",
+      "title": "商店列表（只读）",
+      "kind": "read",
+      "description": "列出当前场景的商店（看护人商店/立购坊那类）→ 分类 → 物品：id、新币价格、其他货币/材料成本、已拥有、剩余可买、是否售罄。只读，不购买。shop 可选，指定商店编号。",
+      "args": [
+        {
+          "name": "shop",
+          "type": "str",
+          "default": "",
+          "description": "只列这个商店编号（从 0 开始）；留空=全部。"
+        }
+      ]
+    },
+    {
+      "name": "sr2_refinery",
+      "title": "精炼炉储量",
+      "kind": "read",
+      "description": "读精炼炉（refinery）全局储量：每种可精炼物品的现有数量、上限 REFINERY_MAX、剩余空间。精炼炉储量全局共享，与玩家位置无关。",
+      "args": []
+    },
+    {
+      "name": "sr2_refine",
+      "title": "背包存进精炼炉",
+      "kind": "write",
+      "description": "把背包里的结晶/材料直接存进精炼炉（游戏原生 AcquisitionUtility.AcquireRefineryResource），全局共享、不涉及距离。默认预演；执行需 dry_run=false + request_id。只有 RefineryTypeGroup 成员能存，满的种类会跳过。item 可填物品 id 或背包槽位编号，count 可限量，留空=全存。",
+      "args": [
+        {
+          "name": "item",
+          "type": "str",
+          "default": "",
+          "description": "只存这个物品（id 或背包槽位编号）；留空=全部。"
+        },
+        {
+          "name": "count",
+          "type": "str",
+          "default": "",
+          "description": "每种最多存多少；留空=全存。"
+        }
+      ]
+    },
+    {
+      "name": "sr2_currency",
+      "title": "新币余额",
+      "kind": "read",
+      "description": "读当前新币（默认货币）余额、累计获得量，以及 CurrencyList 里的可用货币列表。数据源：CurrencyUtility.DefaultCurrency + PlayerState.GetCurrency。",
+      "args": []
+    },
+    {
+      "name": "sr2_currency_add",
+      "title": "加/减新币（作弊）",
+      "kind": "write",
+      "description": "直接增加（或减少）新币余额，调用 PlayerModel.AddCurrency。作弊类操作：默认预演，执行需 dry_run=false + request_id，执行后回读实际余额。amount 为非零整数，正数加、负数减。",
+      "args": [
+        {
+          "name": "amount",
+          "type": "str",
+          "required": true,
+          "description": "增减数量，非零整数（正数加、负数减）。"
+        }
+      ]
+    },
+    {
+      "name": "sr2_collect",
+      "title": "收集附近某样东西",
+      "kind": "write",
+      "description": "在玩家周围 radius 米内找指定物品的 Vacuumable（地上的结晶/食物/资源等），预览列表 → 执行时调用游戏自己的 Vacuumable.TryConsume() 吸进背包。默认预演，执行需 dry_run=false + request_id。执行后对比背包实际增量核对；失败项带游戏内部异常原因（invoke_error）。注意 TryConsume 需要角色靠近，远距离会返回空。item 必须是物品 id 或名称（如 PinkPlort）；radius 默认 20；limit 默认 10。",
+      "args": [
+        {
+          "name": "item",
+          "type": "str",
+          "required": true,
+          "description": "要收集的物品 id 或名称，例如 PinkPlort / CottonPlort。"
+        },
+        {
+          "name": "radius",
+          "type": "str",
+          "default": "20",
+          "description": "搜索半径（米），默认 20。"
+        },
+        {
+          "name": "limit",
+          "type": "str",
+          "default": "10",
+          "description": "最多收集几个，默认 10。"
+        }
+      ]
+    },
+    {
+      "name": "sr2_slimes", "title": "列出附近的史莱姆", "kind": "read",
+      "description": "按到玩家的距离列出史莱姆：种类、完整/短名、是否 Largo、坐标、距离、饥饿/躁动/恐惧/睡眠（0~1，读不到为 null）、是否狂暴/睡觉/雕像/发光，以及最近的围栏地块。数据来自存档模型 SlimeModel，所以已卸载区域的史莱姆也能列出（loaded=false，坐标取存档里的上次位置），默认不包含它们。只读。",
+      "args": [
+        {"name":"radius","type":"str","default":"50","description":"搜索半径（米），默认 50。"},
+        {"name":"query","type":"str","default":"","description":"按种类 id 或名称片段筛选，例如 Cotton 或 Angler。"},
+        {"name":"state","type":"str","default":"","description":"feral 只看狂暴个体，loaded 只看已加载个体；留空查看全部。"},
+        {"name":"include_unloaded","type":"bool","default":false,"description":"是否包含未加载区域里的史莱姆（坐标来自存档记录）。"},
+        {"name":"limit","type":"str","default":"30","description":"最多返回多少只，默认 30，上限 200。"}
+      ]
+    },
+    {
+      "name": "sr2_nearby",
+      "title": "扫描附近的物品与矿物",
+      "kind": "read",
+      "description": "列出玩家周围 radius 米内场景里的 Vacuumable，按物品分组：完整 id、名称、类别（craft=矿物/材料、plort=结晶、food=食物、slime=史莱姆）、数量、最近距离和最多 5 个坐标。category=craft 就是 2 代可以直接用真空枪吸进背包的矿物（如 StrangeDiamondCraft 奇异钻石、SilkySandCraft 细沙、LavaDustCraft 熔岩尘）。配合 sr2_collect 收取。只读。",
+      "args": [
+        {
+          "name": "radius",
+          "type": "str",
+          "default": "20",
+          "description": "搜索半径（米），默认 20。"
+        },
+        {
+          "name": "category",
+          "type": "str",
+          "default": "all",
+          "description": "all / craft / plort / food / slime，默认 all。"
+        },
+        {
+          "name": "limit",
+          "type": "str",
+          "default": "30",
+          "description": "最多返回多少组，默认 30。"
+        },
+        {
+          "name": "include_held",
+          "type": "bool",
+          "default": false,
+          "description": "是否包含被抓住/持有的对象，默认 false。"
+        }
+      ]
+    },
+    {
+      "name": "sr2_plot_upgrades",
+      "title": "地块升级与价格（只读）",
+      "kind": "read",
+      "description": "列出地块（默认地块仓库）已购买的升级、STORAGE2/3/4 状态、是否已加载，以及从游戏购买项资产里读到的每项新币价格（newbuck_cost，读不到为 null）。用于确认仓库还差哪次升级、买它要多少钱。只读。",
+      "args": [
+        {
+          "name": "storage",
+          "type": "str",
+          "default": "",
+          "description": "地块选择：列表编号或 plot: 开头的 stable key；留空=第一个仓库地块。"
+        },
+        {
+          "name": "limit",
+          "type": "str",
+          "default": "20",
+          "description": "最多返回多少个地块，默认 20。"
+        },
+        {
+          "name": "diagnose",
+          "type": "str",
+          "default": "",
+          "description": "传 1 时额外返回场景里的 LandPlotUIRoot / LandPlot 列表，用于排查购买入口是否可用。"
+        }
+      ]
+    },
+    {
+      "name": "sr2_plot_upgrade",
+      "title": "购买地块升级（开仓库格子）",
+      "kind": "write",
+      "description": "购买地块升级，默认买下一个还没买的 STORAGE 升级（用来开仓库剩下的格子）。价格取自游戏自己的购买项资产，走原生 LandPlotUIRoot.Upgrade(Upgrade, PurchaseCost)，只有返回 true 才算成功。默认预演；执行需 dry_run=false + request_id，且地块必须已加载（在牧场）。会检查新币是否足够。",
+      "args": [
+        {
+          "name": "storage",
+          "type": "str",
+          "default": "",
+          "description": "地块选择：列表编号或 plot: 开头的 stable key；留空=第一个仓库地块。"
+        },
+        {
+          "name": "upgrade",
+          "type": "str",
+          "default": "",
+          "description": "STORAGE2 / STORAGE3 / STORAGE4；留空=自动买下一个未购买的。"
+        }
+      ]
+    },
+    {
+      "name": "sr2_plot_catalog",
+      "title": "地块与改良设施目录（只读）",
+      "kind": "read",
+      "description": "列出可购买的地块类型（仓库 SILO / 花园 / 鸡舍 / 围栏 / 水池 / 焚化炉：价格、本地化名称与说明）、可购买的地块改良设施（STORAGE 升级等：价格、名称、效果说明），以及当前存档所有地块（type=EMPTY 表示空地）。用于购买前先看清能买什么、要多少钱、有什么效果。只读。",
+      "args": []
+    },
+    {
+      "name": "sr2_plot_buy",
+      "title": "购买地块（例如建仓库）",
+      "kind": "write",
+      "description": "在牧场的空地上购买一种地块（默认第一个空地），例如 type=SILO 建仓库。价格与目标预制体来自游戏自己的地块购买项资产，走原生 LandPlotUIRoot.BuyPlot(PurchaseCost, GameObject)，预演/查余额/买后回读地块类型与新币。执行需 dry_run=false + request_id，且空地所在场景必须已加载。",
+      "args": [
+        {
+          "name": "type",
+          "type": "str",
+          "required": true,
+          "description": "地块类型：SILO / GARDEN / COOP / CORRAL / POND / INCINERATOR。"
+        },
+        {
+          "name": "plot",
+          "type": "str",
+          "default": "",
+          "description": "目标空地：空地列表编号或 plot: 开头的 key；留空=第一个空地。"
+        }
+      ]
+    },
+    {
+      "name": "sr2_automation",
+      "title": "自动化设备盘点（无人机等）",
+      "kind": "read",
+      "description": "只读盘点自动化设备：已拥有/可用的 Gadget 蓝图（自动标记 DRONE 小蜜蜂、DRONE_STATION 无人机站、TELEPORTER 等 automation=true 项）、已放置 gadget 数量、牧场无人机与探索无人机数量及站位坐标、当前场景加载的无人机站/无人机组件数量。用于回答“有没有小蜜蜂之类的自动化设备”。",
+      "args": []
+    },
+    {
+      "name": "sr2_tidy",
+      "title": "一键整理背包",      "kind": "write",
+      "description": "按玩家约定整理背包：粉色结晶 PinkPlort、水滴结晶 PuddlePlort 与其它 *Craft 材料 → 精炼炉；其它结晶 → 按当前市场价卖出；活体（史莱姆/鸡）、水等留在背包。默认预演列出计划，执行需 dry_run=false + request_id，执行后回读背包、精炼炉与新币。",
+      "args": []
+    },
+    {
+      "name": "sr2_withdraw",
+      "title": "从仓库取回背包",
+      "kind": "write",
+      "description": "把筒仓/收集器里的物品取回背包（存仓的反向操作）。storage 用 sr2_storage_list 的编号或 storage_key（留空=所有容器）；item 支持完整 id、短名或槽位号；count 限定每种取回数量。走原生 AmmoSlotManager.MaybeAddToAnySlot(metadata)，成功后从来源槽位扣减并双向回读。默认预演，执行需 dry_run=false + request_id。",
+      "args": [
+        {
+          "name": "storage",
+          "type": "str",
+          "default": "",
+          "description": "来源容器：sr2_storage_list 的编号或 storage_key；留空=所有容器。"
+        },
+        {
+          "name": "item",
+          "type": "str",
+          "default": "",
+          "description": "只取这种物品：完整 id、短名（DeepBrineCraft）或槽位号；留空=全部。"
+        },
+        {
+          "name": "count",
+          "type": "str",
+          "default": "",
+          "description": "每种最多取回多少个；留空=全部。"
+        }
+      ]
+    },
+    {
+      "name": "sr2_buy_blueprint", "title": "用新币购买科技设备蓝图", "kind": "write",
+      "description": "按蓝图完整 ID、内部名称或标题片段购买一个科技设备（Gadget）蓝图。预演返回价格、当前新币余额和是否可买；执行会调用游戏原生 SpendCurrency 扣新币，再用 GadgetDirector.AddBlueprint 授予蓝图，并回读拥有状态与余额。已拥有或余额不足会被拒绝。",
+      "args": [
+        {"name":"gadget_id","type":"str","default":"","description":"蓝图 ID 或名称片段，例如 GadgetDefinition.MedStation 或 医疗站。"},
+        {"name":"query","type":"str","default":"","description":"gadget_id 的别名，二选一。"}
+      ]
+    },
+    {
+      "name": "sr2_backup", "title": "备份当前存档文件", "kind": "write",
+      "description": "把存档目录里的所有 .sav 复制到 项目根/backups/saves/时间戳_标签，逐个计算 SHA256 并回读核对，同时给出当前存档名。只写项目目录，不改游戏状态，主菜单也能用。默认预演，只列将要复制的文件。",
+      "args": [
+        {"name":"label","type":"str","default":"","description":"备份目录后缀标签，例如 before-buy。"}
+      ]
+    },
+    {
+      "name": "sr2_save", "title": "立即保存游戏（原生）", "kind": "write",
+      "description": "调用游戏原生 AutoSaveDirector.SaveGameAndFlush() 立即写盘，然后回读存档目录里的最新文件，用文件名和修改时间确认真的保存了。需要进档。默认预演。",
+      "args": []
+    },
+    {
+      "name": "sr2_plort_doors", "title": "查结晶门需要哪种结晶", "kind": "read",
+      "description": "列出场景里的结晶投料口（PlortDepositor）与解密槽（PuzzleSlot），返回需要投入的结晶种类（IdentifiableTypeToCatch）、已填入数量、坐标、到玩家的距离和锁定状态。用来判断某个结晶门要哪种结晶、还差几颗。只读。",
+      "args": [
+        {"name":"radius","type":"str","default":"0","description":"只保留这个距离（米）内的对象；0 或留空表示全部已加载对象。"},
+        {"name":"limit","type":"str","default":"40","description":"最多返回多少条，默认 40，上限 200。"}
+      ]
+    },
+    {
+      "name": "sr2_gadget_catalog", "title": "枚举全部设备蓝图与配方", "kind": "read",
+      "description": "直接枚举游戏里所有 GadgetDefinition 资产（不只是已拥有/可买的），返回 ID、标题、蓝图价格、是否已拥有以及制作配方（材料/货币/组件）。用来查还没拿到蓝图、商店也不卖的设备（例如小蜜蜂/无人机）需要什么材料。只读。",
+      "args": [
+        {"name":"query","type":"str","default":"","description":"按 ID、内部名称或本地化标题片段筛选，例如 Drone 或 无人机。"},
+        {"name":"limit","type":"str","default":"0","description":"最多返回多少条；0 或留空表示全部。"},
+        {"name":"include_recipe","type":"bool","default":true,"description":"是否附带制作配方，默认 true。"}
+      ]
+    }
+  ]
+}
+
+
+
+
+
+
+
+
+
+

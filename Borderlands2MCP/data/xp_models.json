@@ -1,0 +1,196 @@
+{
+ "version": 1,
+ "updated": "2026-11-15",
+ "disclaimer": "离线 XP 计算与能力说明；不写真实 XP/等级/存档，不在运行中游戏发 XP。运行时 hook 的签名/覆盖率仍需实机验证。",
+ "formula": {
+  "bonus": "floor(base_xp * extra_percent / 100)",
+  "total": "base_xp + bonus",
+  "base_definition": "base_xp 必须是游戏已经结算/准备结算给玩家的 XP；不是 mod 自己算出来的候选值，也不是 AwardCombatExperience.TotalExpPoints 这类中间量。",
+  "preserve_original": "原版基础 XP 保持不变；只额外发 bonus。"
+ },
+ "base_semantics": {
+  "confirmed": "任务奖励路径存在 mission.GetExperienceReward(PC, alt) + PC.ExpEarn(xp, EExperienceSource.EES_PlotMissionAward / EES_SideMissionAward)（ZetaDaemon RewardReroller）",
+  "not_confirmed": [
+   "AwardCombatExperience 的 TotalExpPoints 是候选/中间值，不是最终结算 XP，不能直接当公式里的 base_xp。",
+   "ExpEarn 的 params.Exp 是进入领取函数时的值还是乘算后的最终值，需要实机验证；只有确认后才能真正按“原 XP 百分比”加 bonus。",
+   "挑战/其他来源是否有独立 XP 结算路径未知；不要把“杀敌/任务/挑战全覆盖”当成已确认。"
+  ]
+ },
+ "coverage": {
+  "combat_kills": {
+   "status": "hook 路径有证据，base 语义未验证",
+   "evidence": "PyrexBLJ BossXPBooster 使用 AwardCombatExperience(PRE)，args 里有 KillerWPC/KilledActor/TotalExpPoints；Sartick ComboCounter 用 NotifyKilledEnemy + ExpEarn 发额外 XP。",
+   "note": "TotalExpPoints 不是最终 base；NotifyKilledEnemy 没有原 XP 数值，不能直接算百分比 bonus。"
+  },
+  "missions": {
+   "status": "结算路径有证据，是否经过同一 hook 未验证",
+   "evidence": "RewardReroller: mission.GetExperienceReward(PC, alt) 后 PC.ExpEarn(xp, EES_PlotMissionAward/EES_SideMissionAward)。",
+   "note": "若最终所有任务 XP 都走 ExpEarn，可在一处加 bonus；但本机没有实机验证。"
+  },
+  "challenges": {
+   "status": "未知",
+   "evidence": "本地 SDK mod 源码里只看到 EES_PlotMissionAward / EES_SideMissionAward 两个 EExperienceSource；没有找到挑战 XP 的 EES 名称。",
+   "note": "不能承诺挑战 XP 覆盖。"
+  },
+  "other": {
+   "status": "未知",
+   "evidence": "车辆/区域/其他奖励路径没有本地证据。",
+   "note": "不要承诺全来源覆盖。"
+  }
+ },
+ "runtime_hooks": [
+  {
+   "id": "exp_earn",
+   "hook": "WillowGame.WillowPlayerController.ExpEarn",
+   "evidence": [
+    "Sartick/bl-sdk-mods ComboCounter：旧式代码（ModMenu/旧 unrealsdk API）调用 Actor.ExpEarn(int(KillCounter**2.8), 0)",
+    "PyrexBLJ/BL2-SDK-Mods BossXPBooster：新式代码（mods_base/unrealsdk.hooks）调用 get_pc().ExpEarn(amount, 0, 0)",
+    "juso40 RogueLands increasedxpunlockable：Hook ExpEarn 后 DoInjectedCallNext + caller.ExpEarn(...)"
+   ],
+   "status": "未通过反射确认。2 参调用和 3 参调用都在旧式 SDK 代码中出现（ComboCounter/RewardReroller 2 参；RogueLands 3 参且读取 params.ExpType），所以不能把 2/3 参直接解释成 SDK 版本不同；第三参数很可能是可选参数/默认值。必须用反射或诊断 Mod 打印确认。",
+   "self_recursion_risk": "在 ExpEarn 的 hook 内再调用 ExpEarn 会再次进入 hook；必须用 DoInjectedCallNext/一次性标志/直接调原函数，否则递归/重复加成。",
+   "note": "ExpEarn 是领取 XP 的候选入口；若 params.Exp 确认为最终结算值，才适合按原 XP 百分比加 bonus。参数个数证据只能说明“2/3 参都有人调用”，不能说明 SDK 版本不同。",
+   "observed_calls": [
+    {
+     "call": "Actor.ExpEarn(int(KillCounter**2.8), 0)",
+     "args": 2,
+     "source": "Sartick/bl-sdk-mods ComboCounter",
+     "sdk_style": "旧式导入（from ..ModMenu import ...；unrealsdk old API）"
+    },
+    {
+     "call": "PC.ExpEarn(xp, source)",
+     "args": 2,
+     "source": "ZetaDaemon RewardReroller",
+     "sdk_style": "旧式导入（from Mods.ModMenu / Mods.Enums import ...）"
+    },
+    {
+     "call": "caller.ExpEarn(int(params.Exp * mult), params.Source, params.ExpType)",
+     "args": 3,
+     "source": "juso40 RogueLands increasedxpunlockable",
+     "sdk_style": "旧式 RegisterHook API；但读取了 params.ExpType，说明旧式函数参数里已有 ExpType"
+    },
+    {
+     "call": "get_pc().ExpEarn(amount, 0, 0)",
+     "args": 3,
+     "source": "PyrexBLJ BossXPBooster",
+     "sdk_style": "新式（from mods_base / unrealsdk.hooks）"
+    }
+   ],
+   "signature_status": "未通过反射确认。2 参调用和 3 参调用都在旧式 SDK 代码中出现（ComboCounter/RewardReroller 2 参；RogueLands 3 参且读取 params.ExpType），所以不能把 2/3 参直接解释成 SDK 版本不同；第三参数很可能是可选参数/默认值。必须用反射或诊断 Mod 打印确认。",
+   "semantics_status": "ExpEarn 的 Exp 参数是否为最终结算 XP（还是乘算前/后）未验证；AwardCombatExperience.TotalExpPoints 也不是最终结算 XP。"
+  },
+  {
+   "id": "award_combat",
+   "hook": "WillowGame.WillowGameInfo.AwardCombatExperience",
+   "args": [
+    "KillerWPC",
+    "KilledActor",
+    "TotalExpPoints"
+   ],
+   "evidence": "PyrexBLJ/BL2-SDK-Mods BossXPBooster 第 138 行 @hook(..., Type.PRE)，181 行按等级差乘数和 XPMultiplier 计算，190 行 PC.ExpEarn(amount,0,0)。",
+   "status": "参数语义需实机确认",
+   "self_recursion_risk": "在 AwardCombatExperience hook 里调用 ExpEarn 不会重入本 hook，但可能被 ExpEarn hook 再次处理，造成双份；要统一只在一层加 bonus。",
+   "note": "TotalExpPoints 不是最终 base；不能直接 floor(TotalExpPoints*percent/100) 当成“原 XP 的 bonus”。"
+  },
+  {
+   "id": "notify_killed",
+   "hook": "WillowGame.WillowPlayerController.NotifyKilledEnemy",
+   "args": [],
+   "evidence": "Sartick ComboCounter 用它触发 ExpEarn(int(KillCounter**2.8),0) 的额外 XP。",
+   "status": "只能证明“可以额外发 XP”，不是按原 XP 百分比",
+   "note": "该事件没有原 XP 数值，不能用于 formula 的 base_xp；只能做独立奖励（且要防刷/重复）。"
+  }
+ ],
+ "mods": {
+  "exp_adjuster": {
+   "name": "Exp Adjuster（本机已禁用：Mods.disabled_20261115/ExpAdjuster）",
+   "objects": [
+    "GD_Balance_Experience.Formulas.Init_EnemyExperience_PerPlaythrough",
+    "GD_Globals.General.Globals.ExpScaleByLevelDifference"
+   ],
+   "behavior": "改每周末基础 XP 率和敌人等级差 XP 曲线；不是保留原算法再额外加 bonus。",
+   "local_settings": {
+    "NVHM/TVHM/UVHM baserate": [
+     50,
+     50,
+     50
+    ],
+    "level_scales": "% for enemies 1 higher=100, 1 lower=90, 2 higher=116, 2 lower=71, 3 higher=117, 3 lower=15, 4 higher=122, 4 lower=18, 5 higher=133, 5 lower=27, 6 higher=148, 6 lower=1",
+    "AutoEnable": true
+   },
+   "warning": "本机 settings 的 base 50 和非原始等级差曲线都是改过的基础率；必须保持禁用。它不满足“原 XP 不变 + 额外 bonus”，也不能拿它做对照。"
+  },
+  "oseter_xpcontroller": {
+   "name": "Osetor74 XP & Level Controller",
+   "behavior": "给全游戏 XP 乘数（默认敌人 1.2x、任务 1.4x）+ 等级阈值后额外 3x；还有等级阈值/缩放控制。",
+   "warning": "是乘数/改曲线，不是“保留原 XP + bonus”；README 明确不兼容 Co-Op。"
+  },
+  "combo_counter": {
+   "name": "Sartick ComboCounter",
+   "behavior": "Hook NotifyKilledEnemy，按击杀计数 ExpEarn(int(KillCounter**2.8),0) 发额外 XP（2 参调用）。",
+   "warning": "不是按原 XP 百分比；只能证明额外发 XP 可行。"
+  },
+  "boss_xp_booster": {
+   "name": "PyrexBLJ BossXPBooster",
+   "behavior": "Hook AwardCombatExperience(PRE)，按 TotalExpPoints × 等级差乘数 × XPMultiplier 计算，再 PC.ExpEarn(amount,0,0)（3 参调用）。",
+   "warning": "TotalExpPoints 不是最终结算 XP；3 参调用不代表 SDK 版本差异；只能作为 hook/发 XP 证据，不能直接照搬为 formula 实现。"
+  },
+  "reward_reroller": {
+   "name": "ZetaDaemon RewardReroller（任务 XP 路径证据）",
+   "behavior": "mission.GetExperienceReward + PC.ExpEarn(xp, EES_PlotMissionAward/SideMissionAward)。",
+   "warning": "只说明任务 XP 走 ExpEarn；是否所有任务/其他来源都经过同一路径未验证。"
+  },
+  "easy_early_game": {
+   "name": "LightChaosman EasierEarlyGameExperience",
+   "behavior": "改 Globals.ExpScaleByLevelDifference 与 VehicleVSCharacterExpModifier，并降低载具/低等级敌人 XP 惩罚。",
+   "warning": "改的是等级差曲线/载具惩罚，不是保留原算法+bonus。"
+  }
+ },
+ "level_cap": {
+  "character_max_level": 80,
+  "op_levels": "OP 是独立系统，不靠 XP 升级；额外 XP 不应被描述为能升 OP。",
+  "at_cap_behavior": "满级后 XP 是否仍记录、bonus 是否被丢弃未知；离线计算默认 `applies=False`，需要显式 apply_at_cap 才把 total 标为应用。",
+  "level_thresholds": "本工具不知道 1-80 级每级所需 XP 曲线，因此不计算真实升级级数；只计算 bonus/total。"
+ },
+ "stacking": {
+  "formula": "bonus 只针对单次 base_xp；如果多个来源都加 bonus，叠加/取最高/互斥未验证。",
+  "advice": "运行时用同一事件只加一次；多个 bonus 源要显式定义加法或乘法，并做去重/冷却；不要同时 hook ExpEarn 和 AwardCombatExperience 各加一次。"
+ },
+ "recursion_guards": [
+  "在 hook 内调用 ExpEarn/AwardCombatExperience 前设置 reentrancy 标志，调用后清除；标志位期间直接返回不处理。",
+  "优先使用 DoInjectedCallNext/调用原函数一次，避免自己调用自己。",
+  "一个击杀只允许一次 bonus：按事件对象/时间戳去重；或只在 ExpEarn 层加，不同时在 AwardCombatExperience 层加。",
+  "对 base_xp<=0、bonus<=0、extra_percent<=0 直接跳过；绝不发负 XP。",
+  "满级时默认跳过 bonus（或按配置显式关闭），避免无意义 XP/潜在溢出。"
+ ],
+ "preview": {
+  "note": "运行时 hook 方案只是预览，不是可直接运行的成品；2 参和 3 参调用都可能由可选参数解释，不能据此断言 SDK 版本不同。必须先用只读诊断 Mod 确认 ExpEarn 签名和 Exp 的最终语义，再实机验证覆盖来源。",
+  "base_required": "必须能拿到“最终结算的 base_xp”；拿不到就只做固定额外奖励，不能声称按原 XP 百分比。"
+ },
+ "verification_steps": [
+  {
+   "step": "1. 反射/函数元数据",
+   "detail": "在只读诊断 Mod 里 FindObject('Function','WillowGame.WillowPlayerController.ExpEarn')，打印函数/参数信息（若 SDK 暴露 UFunction 参数）；至少确认 ExpEarn 是否有 ExpType 参数及默认值。没有反射 API 时用 hook 的 params 字段做证据。"
+  },
+  {
+   "step": "2. 同一次击杀前后 XP delta",
+   "detail": "Hook ExpEarn PRE/POST（或 NotifyKilledEnemy + AwardCombatExperience），记录 args.Exp、Source、ExpType，以及玩家 XP 数值/经验条前后变化；比较 delta 与 args.Exp 是否相等。"
+  },
+  {
+   "step": "3. 乘算来源对照",
+   "detail": "固定等级/固定敌人，分别在不带/带 XP 加成（Moxxi's Endowment、XP 圣物/职业模组/技能）下击杀：若 args.Exp 不变而实际 XP delta 变，则 ExpEarn 参数是乘算前 base；若两者都变，则参数含乘算。"
+  },
+  {
+   "step": "4. 任务与挑战",
+   "detail": "固定任务奖励：记录 mission.GetExperienceReward、ExpEarn args.Exp、实际 XP delta；挑战/其他来源分别重复；确认是否都经过 ExpEarn，以及 Source/ExpType 取值。"
+  },
+  {
+   "step": "5. 2 参 / 3 参调用",
+   "detail": "在安全环境（0 XP、非存档写入）尝试 ExpEarn(0,0) 与 ExpEarn(0,0,0)，观察是否都被接受；若都接受，说明第三参可选/默认，而不是 SDK 版本不同。不要用正 XP 做调用测试。"
+  },
+  {
+   "step": "6. 满级边界",
+   "detail": "80 级时记录 args.Exp 与 XP 存储/经验条变化；确认满级是否仍发/记录 XP，再决定 bonus 是否跳过。"
+  }
+ ]
+}

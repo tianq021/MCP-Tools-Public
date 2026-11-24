@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 放大 / 扩图 · 模拟验收</title>
+<link rel="stylesheet" href="../web/image-tools.css">
+<style>
+  :root { color-scheme: dark; }
+  body {
+    --bg: #101114;
+    --sidebar: #15161b;
+    --panel: #191b20;
+    --inset: #121419;
+    --border: #2b2d35;
+    --text: #edeef4;
+    --muted: #8d919e;
+    --accent: #b3a1ff;
+    --accent-bg: #292337;
+    --teal: #72d3b3;
+    --warning: #d6b682;
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Microsoft YaHei", system-ui, sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  body.light {
+    color-scheme: light;
+    --bg: #f4f3f7;
+    --sidebar: #fcfbfe;
+    --panel: #fff;
+    --inset: #f5f4f8;
+    --border: #e4e1eb;
+    --text: #25232d;
+    --muted: #7b7689;
+    --accent: #7860bf;
+    --accent-bg: #eee9fa;
+    --teal: #338b70;
+    --warning: #967441;
+  }
+  .mock-shell { max-width: 1280px; margin: 0 auto; padding: 20px; }
+  .mock-bar {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px; margin-bottom: 16px;
+  }
+  .mock-bar label { display: flex; flex-direction: column; gap: 4px; font-size: 10px; color: var(--muted); }
+  .mock-bar select, .mock-bar button {
+    font: inherit; font-size: 12px; padding: 7px 10px; border-radius: 6px;
+    border: 1px solid var(--border); background: var(--inset); color: var(--text);
+  }
+  .mock-bar button { cursor: pointer; }
+  .mock-bar button:hover { border-color: var(--accent); }
+  .mock-note { font-size: 10px; color: var(--muted); margin: 0 0 14px; }
+  .mock-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .mock-log {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px; font-size: 10px; color: var(--muted); max-height: 220px; overflow: auto;
+    white-space: pre-wrap; overflow-wrap: anywhere;
+  }
+  .mock-toast {
+    position: fixed; right: 16px; bottom: 16px; max-width: min(420px, 86vw);
+    background: var(--text); color: var(--bg); padding: 10px 14px; border-radius: 8px;
+    font-size: 12px; opacity: 0; transform: translateY(8px); transition: .18s; z-index: 10;
+    pointer-events: none;
+  }
+  .mock-toast.visible { opacity: 1; transform: translateY(0); }
+  .mock-scenarios { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .mock-scenarios button {
+    font: inherit; font-size: 10px; padding: 4px 9px; border-radius: 999px;
+    border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer;
+  }
+  .mock-scenarios button.active { color: var(--accent); border-color: var(--accent); background: var(--accent-bg); }
+</style>
+</head>
+<body>
+<div class="mock-shell">
+  <div class="mock-bar">
+    <label>模式
+      <select id="mock-mode">
+        <option value="upscale">AI 放大</option>
+        <option value="outpaint">AI 扩图</option>
+      </select>
+    </label>
+    <label>主题
+      <select id="mock-theme">
+        <option value="dark">深色</option>
+        <option value="light">浅色</option>
+      </select>
+    </label>
+    <label>视口宽度
+      <select id="mock-width">
+        <option value="fluid">自适应</option>
+        <option value="375">375 px</option>
+      </select>
+    </label>
+    <button type="button" id="mock-remount">重新挂载</button>
+    <button type="button" id="mock-destroy">销毁模块</button>
+    <button type="button" id="mock-clear-log">清空调用记录</button>
+  </div>
+
+  <p class="mock-note">
+    纯内存 mock：本页不访问真实 <code>/api</code>，所有接口由 <code>tests/image_tools_mock.js</code> 提供，
+    图片是 data URL 合成图。正式页面不会加载本文件。
+  </p>
+
+  <div class="mock-scenarios" id="mock-scenarios"></div>
+
+  <div class="mock-grid">
+    <div id="it-root"></div>
+    <pre class="mock-log" id="mock-log" aria-label="接口调用记录"></pre>
+  </div>
+</div>
+<div class="mock-toast" id="mock-toast" role="status" aria-live="polite"></div>
+
+<script src="../web/image-tools.js"></script>
+<script src="image_tools_mock.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+# Separate project-local .venv-rl --system-site-packages reuses existing torch 2.5.1.
+stable-baselines3==2.7.1
+sb3-contrib==2.7.1
+gymnasium==1.2.3
+cloudpickle==3.1.2
+protobuf==4.25.1

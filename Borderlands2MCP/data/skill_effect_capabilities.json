@@ -1,0 +1,606 @@
+{
+ "version": 1,
+ "updated": "2026-11-15",
+ "disclaimer": "本表是静态证据 + 补丁/模组预览，不是实机验证结论。任何“预览”都没有在游戏里运行过；效果是否生效、数值上限、叠加规则、存档是否持久化仍需进游戏验证。",
+ "grades": {
+  "L1": {
+   "name": "调已有参数",
+   "desc": "修改已有技能/装备效果条目里的数值或范围（例如把某技能的 WeaponReloadSpeed 加成从 +20% 改成 +50%）。",
+   "native": "SkillDefinition.SkillEffectDefinitions 里的 BaseModifierValue / PerGradeUpgrade / BonusUpgradeList 等",
+   "persistence": "热修/BLCMM 补丁：每次进游戏重新应用，不写存档；PythonSDK：只在 mod 运行时有效。",
+   "evidence": [
+    "ucp",
+    "zz_clone_bpd_skill"
+   ],
+   "implementability": "高（数据/API 层已验证有该字段；实际生效未实机验证）"
+  },
+  "L2": {
+   "name": "追加属性效果",
+   "desc": "给一个已有技能追加新的属性效果条目（回血、吸血、减伤、弹药恢复、元素伤害、额外弹丸等），或把某条效果换成另一个属性。",
+   "native": "SkillDefinition.SkillEffectDefinitions[] 的 AttributeToModify / EffectTarget / ModifierType / BaseModifierValue；运行时对应 Behavior_AttributeEffect.AttributeEffect",
+   "persistence": "同上：补丁/模组作用域内有效，不进入存档。",
+   "evidence": [
+    "ucp",
+    "attribute_list",
+    "zz_clone_bpd_skill",
+    "zz_clone_attr"
+   ],
+   "implementability": "中高（字段与属性对象都有证据；组合出的数值/叠加/上限未实机验证）"
+  },
+  "L3": {
+   "name": "移植其他技能效果",
+   "desc": "把 B 技能的 SkillEffectDefinitions 条目或整段 BehaviorProviderDefinition 复制到 A 技能（含跨职业）。",
+   "native": "SkillDefinition.SkillEffectDefinitions（数据层）；SkillDefinition.BehaviorProviderDefinition / BehaviorSequences / Behaviors（运行时行为层）",
+   "persistence": "数据层补丁每次应用；运行时行为克隆只在 mod 运行时有效。",
+   "evidence": [
+    "ucp",
+    "zz_clone_bpd_skill",
+    "zz_skill_randomizer",
+    "zz_unspec"
+   ],
+   "implementability": "中（数据层复制容易；行为图/触发条件/UI 树兼容性风险高，需实机）"
+  },
+  "L4": {
+   "name": "创建全新事件逻辑",
+   "desc": "用游戏事件 Hook（击杀、受击、造成伤害、Tick 等）自己实现逻辑，例如击杀回血、命中叠 buff、定时回弹药。",
+   "native": "PythonSDK @Hook：WillowPlayerPawn.KilledEnemy / WillowAIPawn.Died / WillowPawn.TakeDamage / WillowAIPawn.TakeDamage / WillowDamageTypeDefinition.DisplayRecentDamageForPlayer / WillowGameViewportClient.Tick 等",
+   "persistence": "只在 mod 运行时有效；存档只保存技能等级/点数，不保存模组逻辑。",
+   "evidence": [
+    "zz_killed_enemy",
+    "zz_died",
+    "zz_takedamage",
+    "zz_health_api"
+   ],
+   "implementability": "中（hook 名称有成熟 mod 证据；需要 PythonSDK，且必须实机调试）"
+  }
+ },
+ "evidence": {
+  "ucp": {
+   "name": "Borderlands 2 Community Patch Team / BLCMM BLCMods（社区补丁，开源仓库）",
+   "url": "https://github.com/BLCM/BLCMods/tree/master/Borderlands%202%20mods/Community%20Patch%20Team",
+   "detail": "Patch.txt 里 12026 行热修，其中 84 行直接 set 技能对象的 SkillEffectDefinitions；示例字段：AttributeToModify=AttributeDefinition'D_Attributes.Weapon.WeaponReloadSpeed'、ModifierType=MT_Scale、BaseModifierValue=(BaseValueConstant=...,BaseValueAttribute=None,InitializationDefinition=...,BaseValueScaleConstant=...)、GradeToStartApplyingEffect、PerGradeUpgradeInterval、PerGradeUpgrade、BonusUpgradeList、EffectTarget=TARGET_Self。"
+  },
+  "attribute_list": {
+   "name": "BLCMods / Laxlife / AttributeDefinition 资源（TPS 与 BL2 属性命名通用）",
+   "url": "https://github.com/BLCM/BLCMods/blob/master/Pre%20Sequel%20Mods/Laxlife/Resources/AttributeDefinition.txt",
+   "detail": "354 条 D_Attributes.* 属性定义，本表里的回血/吸血/受击减伤/弹药恢复/元素伤害/额外弹丸属性名均来自该文件或与其一致。"
+  },
+  "zz_clone_bpd_skill": {
+   "name": "ZetaDaemon/bl-sdk-mods: ZetaCommands clone_bpd_skill.py（开源 SDK 模组，GPL-3.0）",
+   "url": "https://github.com/ZetaDaemon/bl-sdk-mods/blob/main/ZetaCommands/builtins/clone_bpd_skill.py",
+   "detail": "克隆 SkillDefinition 的 BehaviorProviderDefinition/BehaviorSequences，并处理 Behavior_AttributeEffect.AttributeEffect、Behavior_ActivateSkill.SkillToActivate、Behavior_DeactivateSkill、Behavior_ActivateListenerSkill。证明技能效果是“技能定义 + 行为图”两层结构，可复制/改写。"
+  },
+  "zz_clone_attr": {
+   "name": "ZetaDaemon/bl-sdk-mods: clone_attr.py",
+   "url": "https://github.com/ZetaDaemon/bl-sdk-mods/blob/main/ZetaCommands/builtins/clone_attr.py",
+   "detail": "可以克隆 AttributeDefinition 及其 ContextResolverChain/ValueResolverChain，说明可以新建自定义属性对象（新效果不必只用原版属性）。"
+  },
+  "zz_skill_randomizer": {
+   "name": "bl-sdk/former-default-mods: SkillRandomizer（官方曾用默认模组）",
+   "url": "https://github.com/bl-sdk/former-default-mods/blob/master/SkillRandomizer/__init__.py",
+   "detail": "Hook WillowGame.PlayerSkillTree.Initialize，跨职业把任意 SkillDefinition 塞进技能树 Tier；使用 SkillDefinition.MaxGrade、SkillTreeDef.Root/Children、Tier.Layout/PointsToUnlockNextTier。证明跨职业技能/技能树在运行时是可行的。"
+  },
+  "zz_unspec": {
+   "name": "ZetaDaemon/bl-sdk-mods: UnspecSkills",
+   "url": "https://github.com/ZetaDaemon/bl-sdk-mods/blob/main/UnspecSkills/__init__.py",
+   "detail": "使用 PC.PlayerSkillTree.Skills / GetSkillGrade / GetSkillUpgradeCost / SetSkillGrade / GetSkillManager().ActiveSkills、ESkillEventType；证明技能等级和已激活技能在运行时可直接操作。"
+  },
+  "zz_killed_enemy": {
+   "name": "juso40/bl2sdk_Mods: KilledEnemyEventManager（开源 SDK 模组）",
+   "url": "https://github.com/juso40/bl2sdk_Mods",
+   "detail": "封装 Hook('WillowGame.WillowPlayerPawn.KilledEnemy') 事件管理器，提供 add/remove 回调。可作为“击杀触发”的运行时事件来源。"
+  },
+  "zz_died": {
+   "name": "mopioid/Borderlands-Reign-Of-Giants: RunHook('WillowGame.WillowAIPawn.Died')",
+   "url": "https://github.com/mopioid/Borderlands-Reign-Of-Giants",
+   "detail": "实际 Hook 了 WillowAIPawn.Died 并注册/注销；证明“敌人死亡”事件可被模组捕获。"
+  },
+  "zz_takedamage": {
+   "name": "juso40/bl2sdk_Mods: bossbar / BL2Eternal glorykills",
+   "url": "https://github.com/juso40/bl2sdk_Mods",
+   "detail": "Hook('WillowGame.WillowPawn.TakeDamage')、Hook('WillowGame.WillowAIPawn.TakeDamage')；可用于命中/受击触发逻辑。另见 WillowDamageTypeDefinition.DisplayRecentDamageForPlayer（BetterDamageFeedback 等模组使用）。"
+  },
+  "zz_health_api": {
+   "name": "juso40/bl2sdk_Mods: raid.py / glorykills.py",
+   "url": "https://github.com/juso40/bl2sdk_Mods",
+   "detail": "Pawn.GetHealth() / GetMaxHealth() / SetHealth(GetMaxHealth()) 实际调用；可作为“直接回血”的 API 证据。"
+  },
+  "mpmods_blcm": {
+   "name": "RobChiocchio/BL2-MP-Mods: CoopPatch .blcm / .txt 热修文件",
+   "url": "https://github.com/RobChiocchio/BL2-MP-Mods",
+   "detail": "展示 BLCMM/hotfix 文件格式：<code>...set <对象> <属性> <值>...</code>；包含 KillSkillDurationsPerPlayers 等技能/击杀相关全局对象的修改。"
+  },
+  "constructor": {
+   "name": "juso40/bl2sdk_Mods: Constructor（对象构造工具）",
+   "url": "https://github.com/juso40/bl2sdk_Mods",
+   "detail": "用 ConstructObject 复制 AttributeEffect / Behavior_AttributeEffect，示例 .blcm 里有 WeaponProjectilesPerShot、PlayerCriticalHitBonus 等 AttributeEffect 的 set 写法。"
+  }
+ },
+ "effects": [
+  {
+   "id": "hp_regen",
+   "name": "回血 / 生命回复",
+   "aliases": [
+    "回血",
+    "生命回复",
+    "health regen",
+    "hp_regen"
+   ],
+   "grades": [
+    "L2",
+    "L4"
+   ],
+   "score": 4,
+   "attributes": [
+    "D_Attributes.HealthResourcePool.HealthActiveRegenerationRate",
+    "D_Attributes.HealthResourcePool.HealthOnIdleRegenerationRate",
+    "D_Attributes.HealthResourcePool.HealthPassiveRegenerationRate",
+    "D_Attributes.HealthResourcePool.HealthMaxValue",
+    "D_Attributes.Moxxtails.Att_Moxxtail_HealthRegeneration"
+   ],
+   "hooks": [
+    "WillowPawn.SetHealth / GetHealth / GetMaxHealth（L4 直接回血）"
+   ],
+   "native": "给技能 SkillEffectDefinitions 追加 AttributeToModify = HealthResourcePool.Health*RegenerationRate; 或运行时 Hook Tick/TakeDamage 后调用 Pawn.SetHealth(Pawn.GetHealth()+n)。",
+   "evidence": [
+    "attribute_list",
+    "ucp",
+    "zz_health_api"
+   ],
+   "stacking": "同一属性多个 MT_Scale/MT_PreAdd 来源会按属性系统叠加；生命回复速率是否封顶、是否与 Moxxi 类效果叠加未验证。",
+   "implementability": "中高：属性条目可直接追加；直接回血 API 也有模组证据。需实机看 UI/实际速率。",
+   "status": "evidence_collected_not_game_verified",
+   "preview_kind": "skill_attribute",
+   "preview": "追加一条 SkillEffectDefinitions：AttributeToModify=ResourcePoolAttributeDefinition'D_Attributes.HealthResourcePool.HealthActiveRegenerationRate'，ModifierType=MT_PreAdd，BaseModifierValue=(BaseValueConstant=0.01,...)，EffectTarget=TARGET_Self，GradeToStartApplyingEffect=1，PerGradeUpgradeInterval=1。"
+  },
+  {
+   "id": "lifesteal",
+   "name": "吸血 / 伤害转治疗",
+   "aliases": [
+    "吸血",
+    "lifesteal",
+    "伤害转治疗",
+    "convert damage to healing"
+   ],
+   "grades": [
+    "L2"
+   ],
+   "score": 5,
+   "attributes": [
+    "D_Attributes.DamageEnhancementModifiers.PlayerConvertDamageToHealingPercent",
+    "D_Attributes.SkillAttributes.MeleeHealthStealPercent"
+   ],
+   "hooks": [],
+   "native": "给技能追加 AttributeToModify = DamageEnhancementModifiers.PlayerConvertDamageToHealingPercent（伤害百分比转治疗）；近战吸血可用 SkillAttributes.MeleeHealthStealPercent。",
+   "evidence": [
+    "attribute_list",
+    "ucp"
+   ],
+   "stacking": "百分比属性; 多来源可能相加/相乘；与 Moxxi 武器、Rubi/Grog Nozzle 类效果叠加规则未验证；治疗是否受最大生命上限影响未验证。",
+   "implementability": "高（属性名和 UCP 使用都有证据，是 8 项里最有把握的一项）；仍需实机验证数值/治疗表现。",
+   "status": "evidence_collected_not_game_verified",
+   "preview_kind": "skill_attribute",
+   "preview": "追加 SkillEffectDefinitions：AttributeToModify=AttributeDefinition'D_Attributes.DamageEnhancementModifiers.PlayerConvertDamageToHealingPercent'，ModifierType=MT_PreAdd，BaseModifierValue=(BaseValueConstant=0.05,...)，EffectTarget=TARGET_Self。"
+  },
+  {
+   "id": "damage_reduction",
+   "name": "减伤 / 受击伤害减免",
+   "aliases": [
+    "减伤",
+    "受伤减免",
+    "damage reduction",
+    "受击减伤"
+   ],
+   "grades": [
+    "L2"
+   ],
+   "score": 3,
+   "attributes": [
+    "D_Attributes.DamageSourceModifiers.ReceivedBulletDamageModifier",
+    "D_Attributes.DamageSourceModifiers.ReceivedMeleeDamageModifier",
+    "D_Attributes.DamageSourceModifiers.ReceivedGrenadeDamageModifier",
+    "D_Attributes.DamageSourceModifiers.ReceivedRocketDamageModifier",
+    "D_Attributes.DamageSourceModifiers.ReceivedStatusEffectDamageModifier",
+    "D_Attributes.Moxxtails.Att_Moxxtail_DamageResistance"
+   ],
+   "hooks": [
+    "L4 可用 WillowPawn.TakeDamage Hook 改伤害/回血"
+   ],
+   "native": "没有找到单一的通用 DamageReduction 属性；采用“按伤害来源分项”的 Received*DamageModifier（负 MT_Scale 即减伤）或 Moxxtail_DamageResistance。",
+   "evidence": [
+    "attribute_list",
+    "zz_takedamage"
+   ],
+   "stacking": "分伤害类型叠加；负值/上下限、是否与护盾减伤/元素抗性叠加未验证；需要逐项测试。",
+   "implementability": "中：机制存在，但要用对属性组合并处理负数语义，本轮无法验证。",
+   "status": "evidence_collected_not_game_verified",
+   "preview_kind": "skill_attribute",
+   "preview": "追加 5 条 Received*DamageModifier（子弹/近战/手雷/火箭/状态），ModifierType=MT_Scale，BaseValueConstant=-0.10（示例），EffectTarget=TARGET_Self。"
+  },
+  {
+   "id": "ammo_regen",
+   "name": "弹药恢复",
+   "aliases": [
+    "弹药恢复",
+    "回弹药",
+    "ammo regen",
+    "ammo_regen"
+   ],
+   "grades": [
+    "L2"
+   ],
+   "score": 5,
+   "attributes": [
+    "D_Attributes.AmmoResource_Combat_Rifle.Ammo_Combat_Rifle_RegenerationRate",
+    "D_Attributes.AmmoResource_Combat_Shotgun.Ammo_Combat_Shotgun_RegenerationRate",
+    "D_Attributes.AmmoResource_Patrol_SMG.Ammo_Patrol_SMG_RegenerationRate",
+    "D_Attributes.AmmoResource_Repeater_Pistol.Ammo_Repeater_Pistol_RegenerationRate",
+    "D_Attributes.AmmoResource_Sniper_Rifle.Ammo_Sniper_Rifle_RegenerationRate",
+    "D_Attributes.Ammo_Grenade_Protean.Ammo_Grenade_ProteanActiveRegenerationRate",
+    "D_Attributes.GameplayAttributes.PlayerCurrentWeaponAmmoRegenerationMultiplier"
+   ],
+   "hooks": [],
+   "native": "给技能追加对应弹药类型的 RegenerationRate 属性，或使用 PlayerCurrentWeaponAmmoRegenerationMultiplier 做当前武器乘区。",
+   "evidence": [
+    "attribute_list"
+   ],
+   "stacking": "每种弹药独立属性；与拾取/弹药箱/职业模组叠加关系未验证；恢复速度可能受游戏 tick 影响。",
+   "implementability": "高（属性名齐全，直接对应）；需实机验证恢复速率和是否消耗备用弹药。",
+   "status": "evidence_collected_not_game_verified",
+   "preview_kind": "skill_attribute",
+   "preview": "为步枪/散弹/冲锋/手枪/狙击/手雷分别追加 Ammo_*_RegenerationRate（示例 BaseValueConstant=0.01）。"
+  },
+  {
+   "id": "elemental_damage",
+   "name": "元素伤害加成",
+   "aliases": [
+    "元素伤害",
+    "火伤",
+    "电伤",
+    "腐蚀",
+    "渣伤",
+    "elemental damage"
+   ],
+   "grades": [
+    "L2"
+   ],
+   "score": 4,
+   "attributes": [
+    "D_Attributes.DamageTypeModifers.InstigatedCorrosiveDamageModifier",
+    "D_Attributes.DamageTypeModifers.InstigatedIncindiaryDamageModifier",
+    "D_Attributes.DamageTypeModifers.InstigatedIncendiaryStatusDamageModifier",
+    "D_Attributes.DamageTypeModifers.InstigatedShockDamageModifier",
+    "D_Attributes.DamageTypeModifers.InstigatedShockStatusDamageModifier",
+    "D_Attributes.DamageTypeModifers.InstigatedExplosiveDamageModifier",
+    "D_Attributes.DamageTypeModifers.IncendiaryImpactDamageModifier",
+    "D_Attributes.DamageTypeModifers.CorrosiveImpactDamageModifier"
+   ],
+   "hooks": [],
+   "native": "给技能追加 DamageTypeModifers.Instigated*DamageModifier（造成伤害）或 *StatusDamageModifier（持续伤害）。",
+   "evidence": [
+    "attribute_list",
+    "ucp"
+   ],
+   "stacking": "分元素的造成/持续伤害属性；与武器元素/圣物/模组加成叠加方式未验证；BL2 的渣（Slag）是否有同名属性需要 BL2 专用属性表核对（本轮用的属性表来自 TPS 资源，TPS 无渣）。",
+   "implementability": "中高：多数元素属性名已核对；渣属性需要 BL2 专用核实。",
+   "status": "evidence_collected_not_game_verified",
+   "preview_kind": "skill_attribute",
+   "preview": "追加对应元素的 Instigated*DamageModifier（MT_Scale，示例 +0.15）；渣属性标记 TODO。",
+   "contradictions": [
+    "BL2 的 AttributeDefinition 名单里没有 InstigatedSlagDamageModifier（渣只有 GrenadeModIsSlag 等标志），渣增伤不能用这条路径实现，需另找机制或标未验证。",
+    "BL2 游戏里该属性拼写是 InstigatedIncindiaryDamageModifier（Incindiary 是游戏原拼写），不是 Incendiary。"
+   ]
+  },
+  {
+   "id": "extra_projectiles",
+   "name": "额外弹丸 / 多重射击",
+   "aliases": [
+    "额外弹丸",
+    "多重弹丸",
+    "extra projectiles",
+    "多弹"
+   ],
+   "grades": [
+    "L2"
+   ],
+   "score": 5,
+   "attributes": [
+    "D_Attributes.Weapon.WeaponProjectilesPerShot",
+    "D_Attributes.Weapon.WeaponExtraShotChance",
+    "D_Attributes.Projectile.NumberOfChildProjectiles",
+    "D_Attributes.GrenadeMod.NumberOfChildProjectiles"
+   ],
+   "hooks": [],
+   "native": "给技能追加 WeaponProjectilesPerShot/WeaponExtraShotChance；手雷可用 GrenadeMod.NumberOfChildProjectiles，命中分裂用 Projectile.NumberOfChildProjectiles。",
+   "evidence": [
+    "attribute_list",
+    "ucp",
+    "constructor"
+   ],
+   "stacking": "弹丸数直接相加或按 MT_PreAdd；与武器自身弹丸数、额外射击概率叠加/上限未验证；过高可能性能/平衡问题。",
+   "implementability": "高（BL2CPF/Constructor/UCP 都有 WeapProjectilesPerShot 的 set 例子）；需实机验证叠加。",
+   "status": "evidence_collected_not_game_verified",
+   "preview_kind": "skill_attribute",
+   "preview": "追加 AttributeToModify=D_Attributes.Weapon.WeaponProjectilesPerShot，ModifierType=MT_PreAdd，BaseValueConstant=1。",
+   "contradictions": [
+    "D_Attributes.OffHandWeapon.WeaponProjectilesPerShot_Offhand 只出现在 TPS 属性表，BL2 AttributeDefinition 名单里没有；不要把它当 BL2 已确认属性。"
+   ]
+  },
+  {
+   "id": "on_kill",
+   "name": "击杀触发",
+   "aliases": [
+    "击杀触发",
+    "击杀回血",
+    "on kill",
+    "kill skill"
+   ],
+   "grades": [
+    "L3",
+    "L4"
+   ],
+   "score": 3,
+   "attributes": [],
+   "hooks": [
+    "WillowGame.WillowPlayerPawn.KilledEnemy",
+    "WillowGame.WillowAIPawn.Died",
+    "WillowGame.WillowPawn.Died"
+   ],
+   "native": "原生击杀技能由技能行为/事件系统实现（行为图 + SkillDefinition）；用全新的自定义逻辑则 Hook KilledEnemy/Died，再自己执行回血/加 buff/回弹药。",
+   "evidence": [
+    "zz_killed_enemy",
+    "zz_died",
+    "mpmods_blcm",
+    "zz_clone_bpd_skill"
+   ],
+   "stacking": "自定义逻辑完全由模组控制；如果同时叠加原生击杀技能，需自己限制触发间隔/次数。",
+   "implementability": "中：事件 Hook 有成熟模组证据；移植原生击杀技能行为（L3）需处理行为图与触发条件，未验证。",
+   "status": "evidence_collected_not_game_verified",
+   "preview_kind": "hook_logic",
+   "preview": "@Hook(\"WillowGame.WillowPlayerPawn.KilledEnemy\") 回调里实现回血/回弹药等；PREVIEW ONLY。"
+  },
+  {
+   "id": "on_hit",
+   "name": "命中 / 受击触发",
+   "aliases": [
+    "命中触发",
+    "受击触发",
+    "on hit",
+    "on damage"
+   ],
+   "grades": [
+    "L4"
+   ],
+   "score": 2,
+   "attributes": [],
+   "hooks": [
+    "WillowGame.WillowPawn.TakeDamage",
+    "WillowGame.WillowAIPawn.TakeDamage",
+    "WillowGame.WillowDamageTypeDefinition.DisplayRecentDamageForPlayer"
+   ],
+   "native": "用 Hook 捕获造成/受到伤害事件，然后自己实现回血、吸血、叠层、触发 buff 等；原生技能里“命中触发”通常由技能行为/技能事件实现。",
+   "evidence": [
+    "zz_takedamage",
+    "zz_health_api"
+   ],
+   "stacking": "完全自定义；需要自己处理多段伤害、AoE、持续伤害、多人等重复触发。",
+   "implementability": "中低：Hook 证据有，但“命中/造成伤害”与“受击”语义需实机区分；未验证。",
+   "status": "evidence_collected_not_game_verified",
+   "preview_kind": "hook_logic",
+   "preview": "@Hook(\"WillowGame.WillowPawn.TakeDamage\") 判断伤害来源/目标后执行效果；PREVIEW ONLY。"
+  },
+  {
+   "id": "tune_existing",
+   "name": "调已有技能参数",
+   "aliases": [
+    "调参",
+    "改数值",
+    "已有参数",
+    "tune"
+   ],
+   "grades": [
+    "L1"
+   ],
+   "score": 5,
+   "attributes": [],
+   "hooks": [],
+   "native": "SkillDefinition.SkillEffectDefinitions[] 里已有条目的 BaseModifierValue / PerGradeUpgrade / ModifierType / GradeToStartApplyingEffect 等",
+   "evidence": [
+    "ucp"
+   ],
+   "stacking": "直接改已有条目的数值，不新增属性来源；上限由原属性定义和技能等级决定；改太大可能出现 UI/平衡异常。",
+   "implementability": "高（UCP Patch.txt 里有 84 条直接 set 技能 SkillEffectDefinitions 的实例）；仍需实机验证。",
+   "status": "evidence_collected_not_game_verified",
+   "preview_kind": "note",
+   "preview": "用 BLCMM/hotfix 找到技能对象的 SkillEffectDefinitions[索引]，把 BaseModifierValue.BaseValueConstant / PerGradeUpgrade 等改成新值；示例见 UCP Patch.txt 里 GD_Mercenary_Skills.Gun_Lust.* 的 set 行。"
+  },
+  {
+   "id": "cross_class_skill",
+   "name": "跨职业移植技能/效果",
+   "aliases": [
+    "跨职业",
+    "移植",
+    "port",
+    "cross class"
+   ],
+   "grades": [
+    "L3"
+   ],
+   "score": 3,
+   "attributes": [],
+   "hooks": [],
+   "native": "数据层：把 B 技能 SkillEffectDefinitions 条目复制到 A 技能；运行时：SkillDefinition.BehaviorProviderDefinition 克隆（clone_bpd_skill）或把任意 SkillDefinition 塞进技能树（SkillRandomizer）。",
+   "evidence": [
+    "ucp",
+    "zz_clone_bpd_skill",
+    "zz_skill_randomizer",
+    "zz_unspec"
+   ],
+   "stacking": "移植后可能与原技能/职业模组重复叠加；技能树位置、前置条件、UI 显示、技能管理器是否接受需实机验证。",
+   "implementability": "中（有跨职业运行时证据；稳定性和 UI 兼容需实机）。",
+   "status": "evidence_collected_not_game_verified",
+   "preview_kind": "note",
+   "preview": "运行时伪代码：src = FindObject('SkillDefinition','<源技能>'); dst = FindObject('SkillDefinition','<目标技能>'); dst.SkillEffectDefinitions = list(src.SkillEffectDefinitions)；行为层可用 clone_bpd_skill 克隆 BehaviorProviderDefinition。"
+  }
+ ],
+ "notes": [
+  "所有属性名来自 BLCMods 的 AttributeDefinition 资源（TPS 版本）与 UCP/Constructor 示例；TPS 无渣属性，BL2 的渣伤害属性名需要 BL2 专用属性表或运行时 FindObject 再核实。",
+  "技能效果的持久化：热修/BLCMM 补丁每次启动重新应用；PythonSDK 模组只在其加载期间有效；存档只保存技能等级/点数，不保存效果本身。",
+  "跨职业技能：运行时有 SkillRandomizer 证据；数据层 UCP 可以 set 任意职业的技能对象，但把 B 职业技能定义塞进 A 职业技能树是否稳定需要实机验证。",
+  "叠加上限：AttributeDefinition 有 clamp/上下限机制（属性表里有 bClampedMin/bClampedMax 类似字段的其他对象），但具体到本表每个属性是否有硬上限、多个来源如何叠加，本轮没有运行时验证。",
+  "属性适用性已按 BL2 专用 AttributeDefinition dump 与 TPS 表逐项核对：确认 27、TPS-only 5、未找到 1（更新元素属性名后数量会变化，以 attribute_applicability_counts 为准）。",
+  "BL2 属性表是游戏内 dump，比 TPS 表更可靠；但 dump 不是官方文档，仍不能替代实机验证。"
+ ],
+ "attribute_applicability": {
+  "D_Attributes.HealthResourcePool.HealthActiveRegenerationRate": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.HealthResourcePool.HealthOnIdleRegenerationRate": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.HealthResourcePool.HealthPassiveRegenerationRate": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.HealthResourcePool.HealthMaxValue": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.Moxxtails.Att_Moxxtail_HealthRegeneration": {
+   "status": "tps_only",
+   "source": "TPS AttributeDefinition (Laxlife/BLCMods)，BL2 未确认"
+  },
+  "D_Attributes.DamageEnhancementModifiers.PlayerConvertDamageToHealingPercent": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.SkillAttributes.MeleeHealthStealPercent": {
+   "status": "tps_only",
+   "source": "TPS AttributeDefinition (Laxlife/BLCMods)，BL2 未确认"
+  },
+  "D_Attributes.DamageSourceModifiers.ReceivedBulletDamageModifier": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.DamageSourceModifiers.ReceivedMeleeDamageModifier": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.DamageSourceModifiers.ReceivedGrenadeDamageModifier": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.DamageSourceModifiers.ReceivedRocketDamageModifier": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.DamageSourceModifiers.ReceivedStatusEffectDamageModifier": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.Moxxtails.Att_Moxxtail_DamageResistance": {
+   "status": "tps_only",
+   "source": "TPS AttributeDefinition (Laxlife/BLCMods)，BL2 未确认"
+  },
+  "D_Attributes.AmmoResource_Combat_Rifle.Ammo_Combat_Rifle_RegenerationRate": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.AmmoResource_Combat_Shotgun.Ammo_Combat_Shotgun_RegenerationRate": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.AmmoResource_Patrol_SMG.Ammo_Patrol_SMG_RegenerationRate": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.AmmoResource_Repeater_Pistol.Ammo_Repeater_Pistol_RegenerationRate": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.AmmoResource_Sniper_Rifle.Ammo_Sniper_Rifle_RegenerationRate": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.Ammo_Grenade_Protean.Ammo_Grenade_ProteanActiveRegenerationRate": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.GameplayAttributes.PlayerCurrentWeaponAmmoRegenerationMultiplier": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.DamageTypeModifers.InstigatedCorrosiveDamageModifier": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.DamageTypeModifers.InstigatedIncindiaryDamageModifier": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.DamageTypeModifers.InstigatedIncendiaryStatusDamageModifier": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.DamageTypeModifers.InstigatedShockDamageModifier": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.DamageTypeModifers.InstigatedShockStatusDamageModifier": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.DamageTypeModifers.InstigatedExplosiveDamageModifier": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.DamageTypeModifers.IncendiaryImpactDamageModifier": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.DamageTypeModifers.CorrosiveImpactDamageModifier": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.Weapon.WeaponProjectilesPerShot": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.Weapon.WeaponExtraShotChance": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.Projectile.NumberOfChildProjectiles": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  },
+  "D_Attributes.GrenadeMod.NumberOfChildProjectiles": {
+   "status": "bl2_confirmed",
+   "source": "BL2 AttributeDefinition dump (Greem/BLCMods)"
+  }
+ },
+ "attribute_sources": {
+  "bl2": {
+   "url": "https://github.com/BLCM/BLCMods/blob/master/Borderlands%202%20mods/Greem/Resources/BL2/Weapon%20Attributes.txt",
+   "note": "BL2 游戏内 AttributeDefinition dump（312 条 D_Attributes.*）",
+   "count": 312
+  },
+  "tps": {
+   "url": "https://github.com/BLCM/BLCMods/blob/master/Pre%20Sequel%20Mods/Laxlife/Resources/AttributeDefinition.txt",
+   "note": "TPS AttributeDefinition（354 条），TPS 专有属性不能直接当 BL2 可用",
+   "count": 354
+  },
+  "status_meaning": {
+   "bl2_confirmed": "在 BL2 属性表中确认存在",
+   "tps_only": "只在 TPS 表中出现，BL2 未确认（可能不存在/名字不同）",
+   "not_found": "两份表都未找到，标未验证"
+  }
+ },
+ "attribute_applicability_counts": {
+  "bl2_confirmed": 29,
+  "tps_only": 3,
+  "not_found": 0
+ }
+}
